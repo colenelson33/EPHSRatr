@@ -15,13 +15,14 @@ struct ContentView: View {
     var body: some View {
         NavigationView{
             VStack{
+                let imageAdded = false
+                
                 UserImage()
                 Spacer()
                 HelloText()
                 Spacer()
                 Button {
                     print("Clicked")
-                    
                     
                 } label: {
                     Text("Continue as Guest")
@@ -47,9 +48,6 @@ struct ContentView_Previews: PreviewProvider {
 struct HelloText: View {
     var body: some View {
         Text("EPHS Class Rater")
-            .font(.largeTitle)
-            .fontWeight(.semibold)
-        
     }
 }
 
