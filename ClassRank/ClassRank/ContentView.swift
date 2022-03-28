@@ -30,7 +30,7 @@ struct ContentView_Previews: PreviewProvider {
 
 struct HelloText: View {
     var body: some View {
-        Text("Welcome Back")
+        Text("Welcome Back!!")
             .font(.largeTitle)
             .fontWeight(.semibold)
             .padding(.bottom, 20)
