@@ -16,6 +16,7 @@ struct ContentView: View {
         VStack{
             HelloText()
             UserImage()
+            HelloText1()
             
         }
     }
@@ -45,5 +46,12 @@ struct UserImage: View {
             .clipped()
             .cornerRadius(150)
             .padding(.bottom, 25)
+    }
+}
+
+struct HelloText1: View {
+    var body: some View {
+        Text("Hello")
+            .padding(.bottom, 20)
     }
 }
