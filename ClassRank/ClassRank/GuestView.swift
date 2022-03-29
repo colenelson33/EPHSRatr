@@ -10,30 +10,99 @@ import SwiftUI
 struct GuestView: View {
     var body: some View {
         NavigationView{
-            VStack{
-                
-                Button {
-                    print("Clicked")
-                } label: {
-                    Text("Math")
-                }.buttonStyle(GrowingBlockRedButton())
-                    .position(x: 110, y: -20)
-               
-                Button {
-                    print("Clicked")
-                } label: {
-                    Text("English")
-                }.buttonStyle(GrowingBlockWhiteButton())
-                    .position(x: 110, y: -220)
-                
+            HStack {
+                VStack(alignment: .leading, spacing:30 ){
+                    
+                    Button {
+                        print("Clicked")
+                    } label: {
+                        Text("Math")
+                    }.buttonStyle(GrowingBlockRedButton())
+                        
+                   
+                    Button {
+                        print("Clicked")
+                    } label: {
+                        Text("English")
+                    }.buttonStyle(GrowingBlockWhiteButton())
+                    
+                    Button {
+                        print("Clicked")
+                    } label: {
+                        Text("Language")
+                    }.buttonStyle(GrowingBlockRedButton())
+                    
+                    Button {
+                        print("Clicked")
+                    } label: {
+                        Text("Art")
+                    }.buttonStyle(GrowingBlockWhiteButton())
+                    
+                    Button {
+                        print("Clicked")
+                    } label: {
+                        Text("FACS")
+                    }.buttonStyle(GrowingBlockRedButton())
+                    
+                    Button {
+                        print("Clicked")
+                    } label: {
+                        Text("Tech Ed")
+                    }.buttonStyle(GrowingBlockWhiteButton())
+                    Spacer()
+                    Spacer()
+                    
+                }
+                VStack(alignment: .trailing, spacing: 30){
+                    
+                    Button {
+                        print("Clicked")
+                    } label: {
+                        Text("Science")
+                    }.buttonStyle(GrowingBlockRedButton())
+                    
+                   
+                    Button {
+                        print("Clicked")
+                    } label: {
+                        Text("Social Studies")
+                    }.buttonStyle(GrowingBlockWhiteButton())
+                        
+                    Button {
+                        print("Clicked")
+                    } label: {
+                        Text("Business")
+                    }.buttonStyle(GrowingBlockRedButton())
+                    
+                    Button {
+                        print("Clicked")
+                    } label: {
+                        Text("Music")
+                    }.buttonStyle(GrowingBlockWhiteButton())
+                    
+                    Button {
+                        print("Clicked")
+                    } label: {
+                        Text("Phy Ed/Health")
+                    }.buttonStyle(GrowingBlockRedButton())
+                    
+                    Button {
+                        print("Clicked")
+                    } label: {
+                        Text("Work Experience")
+                    }.buttonStyle(GrowingBlockWhiteButton())
+                    Spacer()
+                    Spacer()
+                }
             }
         }
+        
     }
 }
 struct GrowingBlockRedButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .padding()
+            .padding(.vertical, 20)
             .frame(width: 150, height: 100)
             .background(Color.red)
             .foregroundColor(.white)
@@ -46,7 +115,7 @@ struct GrowingBlockRedButton: ButtonStyle {
 struct GrowingBlockWhiteButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .padding()
+            .padding(.vertical, 20)
             .frame(width: 150, height: 100)
             .background(Color.white)
             .foregroundColor(.red)
