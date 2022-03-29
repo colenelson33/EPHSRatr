@@ -12,6 +12,7 @@
 		5E02761D27F110DB009E96A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E02761C27F110DB009E96A4 /* Assets.xcassets */; };
 		5E02762027F110DB009E96A4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E02761F27F110DB009E96A4 /* Preview Assets.xcassets */; };
 		5E02762D27F24744009E96A4 /* GuestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E02762C27F24744009E96A4 /* GuestView.swift */; };
+		5E02762F27F3590D009E96A4 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E02762E27F3590C009E96A4 /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		5E02761C27F110DB009E96A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5E02761F27F110DB009E96A4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5E02762C27F24744009E96A4 /* GuestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestView.swift; sourceTree = "<group>"; };
+		5E02762E27F3590C009E96A4 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 			children = (
 				5E02761827F110D8009E96A4 /* ClassRankApp.swift */,
 				5E02761A27F110D8009E96A4 /* ContentView.swift */,
+				5E02762E27F3590C009E96A4 /* LoginView.swift */,
 				5E02762C27F24744009E96A4 /* GuestView.swift */,
 				5E02761C27F110DB009E96A4 /* Assets.xcassets */,
 				5E02761E27F110DB009E96A4 /* Preview Content */,
@@ -142,6 +145,7 @@
 			files = (
 				5E02762D27F24744009E96A4 /* GuestView.swift in Sources */,
 				5E02761B27F110D8009E96A4 /* ContentView.swift in Sources */,
+				5E02762F27F3590D009E96A4 /* LoginView.swift in Sources */,
 				5E02761927F110D8009E96A4 /* ClassRankApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
