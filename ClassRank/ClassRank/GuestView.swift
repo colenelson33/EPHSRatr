@@ -103,8 +103,10 @@ struct GrowingBlockRedButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .padding(.vertical, 20)
-            .frame(width: 150, height: 100)
+           
+            .frame(width: 125, height: 75)
             .background(Color.red)
+            
             .foregroundColor(.white)
             .clipShape(Capsule())
             .scaleEffect(configuration.isPressed ? 1.2 : 1)
