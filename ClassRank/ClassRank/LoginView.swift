@@ -8,21 +8,75 @@
 import SwiftUI
 
 struct LoginView: View {
+    @State var username: String
+    @State var errorMessage = ""
+    @State var authenticationDidFail: Bool = false
+    @State var authenticationDidSucceed: Bool = false
+    
     var body: some View {
         
-        VStack{
-           
-            Label("Login", systemImage: /*@START_MENU_TOKEN@*/"42.circle"/*@END_MENU_TOKEN@*/)
-
-           // TextField("Username", text: )
+        
+        
+        ZStack {
+            VStack{
                 
+                //Label("Login", systemImage: /*@START_MENU_TOKEN@*/"42.circle"/*@END_MENU_TOKEN@*/)
+                
+                UsernameTextField(username: $username)
+                if authenticationDidFail {
+                    Text("Not a valid Student ID.")
+                        .foregroundColor(.red)
+                        .offset(y: -10)
+                }
+                if authenticationDidSucceed {
+                    Text("Login succeeded!")
+                        .font(.headline)
+                        .frame(width: 250, height: 80)
+                        .background(Color.green)
+                        .cornerRadius(30.0)
+                        .foregroundColor(.white)
+                        .animation(Animation.default)
+                }
+                Button {
+                    
+                    let trimmedUser = username.trimmingCharacters(in: .whitespacesAndNewlines)
+                    let firstThree = trimmedUser.substring(to: trimmedUser.inde)
+                    for ch in trimmedUser{
+                        if ch.isLetter {
+                            authenticationDidFail = true
+                        }
+                    }
+                    
+                    if trimmedUser.count != 8{
+                        authenticationDidFail = true
+                    }
+                } label: {
+                    Text("Login")
+                }
+                .buttonStyle(GrowingButton())
+                .padding(.top, 300)
+                
+                
+            }
+            .padding()
         }
-       
+        
     }
 }
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        LoginView(username: "")
+    }
+}
+
+struct UsernameTextField : View {
+@Binding var username: String
+var body: some View {
+return TextField("Student ID", text: $username)
+            .padding()
+            .background(lightGreyColor)
+            .cornerRadius(5.0)
+            .padding(.bottom, 20)
     }
 }
