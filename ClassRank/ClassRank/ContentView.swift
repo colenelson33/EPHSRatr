@@ -74,11 +74,26 @@ struct GrowingButton: ButtonStyle {
     }
 }
 
+struct GrowingWButton: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .padding(.vertical, 20)
+            .frame(width: 300, height: 50)
+            .background(Color.white)
+            .foregroundColor(.red)
+            .overlay(Capsule(style: .continuous)
+                .stroke(Color.red, lineWidth: 3))
+            .scaleEffect(configuration.isPressed ? 1.2 : 1)
+            .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
+    }
+}
+
 struct ButtonView: View {
     var body: some View {
         Button("Login") {
             print("Button pressed!")
         }
-        .buttonStyle(GrowingButton())
+        .buttonStyle(GrowingWButton())
+        
     }
 }
