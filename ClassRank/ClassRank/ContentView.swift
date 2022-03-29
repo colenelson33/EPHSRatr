@@ -12,6 +12,7 @@ let lightGreyColor = Color(red: 239.0/255.0, green: 243.0/255.0, blue: 230.0/255
 
 
 struct ContentView: View {
+    @State var showGuestView = false
     var body: some View {
         NavigationView{
             VStack{
@@ -21,16 +22,23 @@ struct ContentView: View {
                 Spacer()
                 HelloText()
                 Spacer()
-                Button {
-                    print("Clicked")
-                    
-                } label: {
-                    Text("Continue as Guest")
-                    
-                }.buttonStyle(GrowingButton())
-                    .padding(.top, 300)
+                NavigationLink(destination: GuestView()){
+                    Button {
+                        print("Clicked")
+                        showGuestView = true
+                    } label: {
+                        Text("Continue as Guest")
+                    }
+                }
                 
-                ButtonView()
+                .buttonStyle(GrowingButton())
+                    .padding(.top, 300)
+                NavigationLink(destination: LoginView()){
+                    ButtonView()
+                    
+                }
+                
+                
                 Spacer()
                 
                 
