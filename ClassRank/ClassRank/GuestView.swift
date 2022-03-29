@@ -9,7 +9,34 @@ import SwiftUI
 
 struct GuestView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView{
+            VStack{
+                Button {
+                    print("Clicked")
+                    
+                } label: {
+                    Text("Math")
+                    
+                }.buttonStyle(GrowingBlockButton())
+                    
+                
+                
+                
+                
+            }
+        }
+    }
+}
+struct GrowingBlockButton: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .padding()
+            .frame(width: 150, height: 150)
+            .background(Color.red)
+            .foregroundColor(.white)
+            .clipShape(Capsule())
+            .scaleEffect(configuration.isPressed ? 1.2 : 1)
+            .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
     }
 }
 
