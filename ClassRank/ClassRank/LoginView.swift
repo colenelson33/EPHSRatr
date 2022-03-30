@@ -36,6 +36,7 @@ struct LoginView: View {
                         .cornerRadius(30.0)
                         .foregroundColor(.white)
                         .animation(Animation.default)
+                   
                 }
                 Button {
                     
