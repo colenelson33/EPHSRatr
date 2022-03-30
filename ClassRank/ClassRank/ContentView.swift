@@ -12,7 +12,7 @@ let lightGreyColor = Color(red: 239.0/255.0, green: 243.0/255.0, blue: 230.0/255
 
 
 struct ContentView: View {
-    @State var showGuestView = false; @State var showLoginView = false
+   
     var body: some View {
         
        
@@ -24,25 +24,22 @@ struct ContentView: View {
                 Spacer()
                 HelloText()
                 Spacer()
-                
-                NavigationLink(destination: GuestView()){
-                    Button {
-                        print("Clicked")
-                        showGuestView = true
-                    } label: {
+                Button(action: {
+                }) {
+                    NavigationLink(destination: GuestView()) {
                         Text("Continue as Guest")
                     }
                 }
-                
                 .buttonStyle(GrowingButton())
                     .padding(.top, 300)
-                NavigationLink(destination: LoginView(username: "")){
-                    Button {
-                        print("Button pressed!")
-                        showLoginView = true
-                    } label: {
+                Button(action: {
+                }) {
+                    NavigationLink(destination: LoginView(username: "")) {
                         Text("Login")
                     }
+                    
+                }
+                
                     .buttonStyle(GrowingWButton())
                     
                 }
@@ -55,7 +52,7 @@ struct ContentView: View {
             }
         }
     }
-}
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
