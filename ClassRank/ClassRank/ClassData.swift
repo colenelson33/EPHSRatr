@@ -7,6 +7,7 @@
 
 import Foundation
 
-class ClassData {
-    
+class ClassData: Decodable, Identifiable {
+    let className: String
+    let averageGrade: String
 }
