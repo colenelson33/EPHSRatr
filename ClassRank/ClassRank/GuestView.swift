@@ -9,20 +9,23 @@ import SwiftUI
 
 struct GuestView: View {
     var body: some View {
-        ScrollView {
-            
+       
+        
+
             VStack {
             
+                
             Text("Departments")
                 .foregroundColor(.red)
-            
+
             NavigationView{
+                ScrollView{
                 HStack {
                     
                 
                     
                     Spacer()
-                    VStack(alignment: .leading, spacing:30 ){
+                    VStack(alignment: .leading, spacing: 30){
                         
                         Button {
                             print("Clicked")
@@ -108,8 +111,8 @@ struct GuestView: View {
                     }
                     Spacer()
                 }
+                }
             }
-        }
         
     }
 }
