@@ -113,6 +113,7 @@ struct GuestView: View {
                     Spacer()
                 }
                 }
+              //  .offset(y: -100)
                 .navigationTitle(Text("Departments"))
                 .navigationBarTitleDisplayMode(.automatic)
             }.searchable(text: $searchText)
