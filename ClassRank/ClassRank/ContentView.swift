@@ -34,9 +34,11 @@ struct ContentView: View {
                 .buttonStyle(GrowingButton())
                     .padding(.top, 300)
                 NavigationLink(destination: LoginView(username: "")){
-                    Button("Login") {
+                    Button {
                         print("Button pressed!")
                         showLoginView = true
+                    } label: {
+                        Text("Login")
                     }
                     .buttonStyle(GrowingWButton())
                     
