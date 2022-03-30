@@ -33,7 +33,7 @@ struct ContentView: View {
                 
                 .buttonStyle(GrowingButton())
                     .padding(.top, 300)
-                NavigationLink(destination: LoginView()){
+                NavigationLink(destination: LoginView(username: "")){
                     ButtonView()
                     
                 }

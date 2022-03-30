@@ -40,16 +40,22 @@ struct LoginView: View {
                 Button {
                     
                     let trimmedUser = username.trimmingCharacters(in: .whitespacesAndNewlines)
-                    let firstThree = trimmedUser.substring(to: trimmedUser.inde)
                     for ch in trimmedUser{
                         if ch.isLetter {
                             authenticationDidFail = true
                         }
                     }
-                    
                     if trimmedUser.count != 8{
                         authenticationDidFail = true
                     }
+                    else if trimmedUser.elementsEqual("903") == false || trimmedUser.elementsEqual("640") == false {
+                        authenticationDidFail = true
+                    }else {
+                        authenticationDidSucceed = true
+                    }
+                    
+                    
+                    
                 } label: {
                     Text("Login")
                 }
