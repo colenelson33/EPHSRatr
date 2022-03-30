@@ -12,7 +12,7 @@ let lightGreyColor = Color(red: 239.0/255.0, green: 243.0/255.0, blue: 230.0/255
 
 
 struct ContentView: View {
-    @State var showGuestView = false
+    @State var showGuestView = false; @State var showLoginView = false
     var body: some View {
         NavigationView{
             VStack{
@@ -34,7 +34,11 @@ struct ContentView: View {
                 .buttonStyle(GrowingButton())
                     .padding(.top, 300)
                 NavigationLink(destination: LoginView(username: "")){
-                    ButtonView()
+                    Button("Login") {
+                        print("Button pressed!")
+                        showLoginView = true
+                    }
+                    .buttonStyle(GrowingWButton())
                     
                 }
                 
@@ -96,12 +100,3 @@ struct GrowingWButton: ButtonStyle {
     }
 }
 
-struct ButtonView: View {
-    var body: some View {
-        Button("Login") {
-            print("Button pressed!")
-        }
-        .buttonStyle(GrowingWButton())
-        
-    }
-}

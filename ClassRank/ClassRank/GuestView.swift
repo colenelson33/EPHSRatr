@@ -9,7 +9,9 @@ import SwiftUI
 
 struct GuestView: View {
     var body: some View {
-        VStack {
+        ScrollView {
+            
+            VStack {
             
             Text("Departments")
                 .foregroundColor(.red)
@@ -143,4 +145,5 @@ struct GuestView_Previews: PreviewProvider {
     static var previews: some View {
         GuestView()
     }
+}
 }

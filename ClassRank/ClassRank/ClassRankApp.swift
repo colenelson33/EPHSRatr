@@ -11,7 +11,7 @@ import SwiftUI
 struct ClassRankApp: App {
     var body: some Scene {
         WindowGroup {
-            LoginView(username: "")
+            ContentView()
         }
     }
 }
