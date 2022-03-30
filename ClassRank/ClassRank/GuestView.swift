@@ -28,11 +28,14 @@ struct GuestView: View {
                     VStack(alignment: .leading, spacing: 30){
                         
                         
-                        Button {
-                            print("Clicked")
-                        } label: {
-                            Text("Math")
-                        }.buttonStyle(GrowingBlockRedButton())
+                        Button(action: {
+                        }) {
+                            NavigationLink(destination: LoginView(username: "")) {
+                                Text("Math")
+                            }
+                        }
+                        .buttonStyle(GrowingBlockRedButton())
+                        
                             
                        
                         Button {
@@ -113,7 +116,7 @@ struct GuestView: View {
                     Spacer()
                 }
                 }
-              //  .offset(y: -100)
+                .offset(y: 15)
                 .navigationTitle(Text("Departments"))
                 .navigationBarTitleDisplayMode(.automatic)
             }.searchable(text: $searchText)
