@@ -14,14 +14,17 @@ let lightGreyColor = Color(red: 239.0/255.0, green: 243.0/255.0, blue: 230.0/255
 struct ContentView: View {
     @State var showGuestView = false; @State var showLoginView = false
     var body: some View {
+        
+       
         NavigationView{
             VStack{
             
-                
+
                 UserImage()
                 Spacer()
                 HelloText()
                 Spacer()
+                
                 NavigationLink(destination: GuestView()){
                     Button {
                         print("Clicked")
@@ -45,7 +48,8 @@ struct ContentView: View {
                 }
                 
                 
-                Spacer()
+                
+            Spacer()
                 
                 
             }

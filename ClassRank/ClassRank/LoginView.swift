@@ -22,7 +22,8 @@ struct LoginView: View {
                 
                 //Label("Login", systemImage: /*@START_MENU_TOKEN@*/"42.circle"/*@END_MENU_TOKEN@*/)
                 
-                UsernameTextField(username: $username)
+              UsernameTextField(username: $username)
+              //  UsernameTextField()
                 if authenticationDidFail {
                     Text("Not a valid Student ID.")
                         .foregroundColor(.red)

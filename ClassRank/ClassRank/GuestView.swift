@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct GuestView: View {
+    
+    @State private var searchText = ""
+    
     var body: some View {
        
         
@@ -15,10 +18,10 @@ struct GuestView: View {
             VStack {
             
                 
-            Text("Departments")
-                .foregroundColor(.red)
+       
 
             NavigationView{
+                
                 ScrollView{
                 HStack {
                     
@@ -26,6 +29,7 @@ struct GuestView: View {
                     
                     Spacer()
                     VStack(alignment: .leading, spacing: 30){
+                        
                         
                         Button {
                             print("Clicked")
@@ -112,7 +116,11 @@ struct GuestView: View {
                     Spacer()
                 }
                 }
-            }
+            }.searchable(text: $searchText)
+                .navigationTitle(Text("Departments"))
+                .navigationBarTitleDisplayMode(.automatic)
+             
+                
         
     }
 }
