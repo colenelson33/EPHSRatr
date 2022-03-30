@@ -17,16 +17,13 @@ struct GuestView: View {
 
             VStack {
             
-                
-       
-
+        
             NavigationView{
                 
                 ScrollView{
                 HStack {
                     
                 
-                    
                     Spacer()
                     VStack(alignment: .leading, spacing: 30){
                         
@@ -116,9 +113,10 @@ struct GuestView: View {
                     Spacer()
                 }
                 }
-            }.searchable(text: $searchText)
                 .navigationTitle(Text("Departments"))
                 .navigationBarTitleDisplayMode(.automatic)
+            }.searchable(text: $searchText)
+                
              
                 
         
