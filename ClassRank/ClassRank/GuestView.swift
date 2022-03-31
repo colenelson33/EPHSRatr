@@ -9,28 +9,41 @@ import SwiftUI
 
 struct GuestView: View {
     
+    
     @State private var searchText = ""
     
     var body: some View {
        
         
 
-            VStack {
             
         
-            NavigationView{
+       
+        NavigationView{
+            
+            VStack{
+                Button(action: {
+                }) {
+                    NavigationLink(destination: ContentView()) {
+                        Text("Home")
+                    }.navigationBarBackButtonHidden(true)
+                }
                 
-                ScrollView{
-                HStack {
-                    
+                .buttonStyle(GrowingSmallButton())
+                .offset(x: -150)
                 
-                    Spacer()
-                    VStack(alignment: .leading, spacing: 30){
+                VStack {
+                    ScrollView{
+                        HStack {
+                            
+                            
+                            Spacer()
+                            VStack(alignment: .leading, spacing: 30){
                         
                         
                         Button(action: {
                         }) {
-                            NavigationLink(destination: LoginView(username: "")) {
+                            NavigationLink(destination: MathClass(currentClass: GlobalVar.CalcClass)) {
                                 Text("Math")
                             }
                         }
@@ -119,9 +132,12 @@ struct GuestView: View {
                 .offset(y: 15)
                 .navigationTitle(Text("Departments"))
                 .navigationBarTitleDisplayMode(.automatic)
-            }.searchable(text: $searchText)
+                .navigationBarBackButtonHidden(true)
                 
-             
+            }.searchable(text: $searchText)
+                    .navigationBarBackButtonHidden(true)
+
+            }
                 
         
     }
@@ -137,6 +153,19 @@ struct GrowingBlockRedButton: ButtonStyle {
             .clipShape(Capsule())
             .scaleEffect(configuration.isPressed ? 1.2 : 1)
             .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
+    }
+}
+struct GrowingSmallButton: ButtonStyle {
+        func makeBody(configuration: Configuration) -> some View {
+            configuration.label
+               // .padding(.vertical, 20)
+                .frame(width: 60, height: 30)
+                .background(Color.red)
+                
+                .foregroundColor(.white)
+                .clipShape(Capsule())
+                .scaleEffect(configuration.isPressed ? 1.2 : 1)
+                .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
     }
 }
 

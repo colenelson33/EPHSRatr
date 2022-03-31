@@ -15,6 +15,8 @@
 		5E02762D27F24744009E96A4 /* GuestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E02762C27F24744009E96A4 /* GuestView.swift */; };
 		5E02762F27F3590D009E96A4 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E02762E27F3590C009E96A4 /* LoginView.swift */; };
 		5E02763127F3E081009E96A4 /* ClassData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E02763027F3E081009E96A4 /* ClassData.swift */; };
+		5E150A9B27F5599F00B7943D /* ClassListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E150A9A27F5599F00B7943D /* ClassListView.swift */; };
+		5E150A9F27F55EF300B7943D /* GlobalVar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E150A9E27F55EF300B7943D /* GlobalVar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,8 @@
 		5E02762C27F24744009E96A4 /* GuestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestView.swift; sourceTree = "<group>"; };
 		5E02762E27F3590C009E96A4 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		5E02763027F3E081009E96A4 /* ClassData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassData.swift; sourceTree = "<group>"; };
+		5E150A9A27F5599F00B7943D /* ClassListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassListView.swift; sourceTree = "<group>"; };
+		5E150A9E27F55EF300B7943D /* GlobalVar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +68,8 @@
 				5E02762E27F3590C009E96A4 /* LoginView.swift */,
 				5E02763027F3E081009E96A4 /* ClassData.swift */,
 				5E02762C27F24744009E96A4 /* GuestView.swift */,
+				5E150A9A27F5599F00B7943D /* ClassListView.swift */,
+				5E150A9E27F55EF300B7943D /* GlobalVar.swift */,
 				2371F76327F4E37B00D6EDCA /* ClassJSON.json */,
 				5E02761C27F110DB009E96A4 /* Assets.xcassets */,
 				5E02761E27F110DB009E96A4 /* Preview Content */,
@@ -153,6 +159,8 @@
 				5E02762D27F24744009E96A4 /* GuestView.swift in Sources */,
 				5E02761B27F110D8009E96A4 /* ContentView.swift in Sources */,
 				5E02762F27F3590D009E96A4 /* LoginView.swift in Sources */,
+				5E150A9B27F5599F00B7943D /* ClassListView.swift in Sources */,
+				5E150A9F27F55EF300B7943D /* GlobalVar.swift in Sources */,
 				5E02761927F110D8009E96A4 /* ClassRankApp.swift in Sources */,
 				5E02763127F3E081009E96A4 /* ClassData.swift in Sources */,
 			);

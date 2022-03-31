@@ -45,11 +45,10 @@ struct ContentView: View {
                 }
                 
                 
-                
             Spacer()
                 
                 
-            }
+            }.navigationBarBackButtonHidden(true)
         }
     }
 

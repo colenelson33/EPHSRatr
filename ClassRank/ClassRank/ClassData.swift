@@ -8,6 +8,12 @@
 import Foundation
 
 class ClassData: Decodable, Identifiable {
-    let className: String
-    let averageGrade: String
+    var className: String
+    var averageGrade: String
+    init(className: String, averageGrade: String){
+        self.className = className
+        self.averageGrade = averageGrade
+    }
 }
+
+
