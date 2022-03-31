@@ -13,26 +13,10 @@ struct GuestView: View {
     @State private var searchText = ""
     
     var body: some View {
-       
-        
-
-            
-            
         NavigationView{
-            
-           /* VStack{
-                Button(action: {
-                }) {
-                    NavigationLink(destination: ContentView()) {
-                        Text("Home")
-                    }
-                }
                 
-                .buttonStyle(GrowingSmallButton())
-                .offset(x: -150)
-            */
-                VStack {
-                    ScrollView{
+                        ScrollView{
+                            
                         HStack {
                             
                             
@@ -126,36 +110,20 @@ struct GuestView: View {
                         Spacer()
                     }
                     Spacer()
-                }
+                
                     
                 
                 .offset(y: 15)
                 .navigationTitle(Text("Departments"))
-              //  .navigationBarTitleDisplayMode(.automatic)
+                .navigationBarTitleDisplayMode(.automatic)
               
                 
             }.searchable(text: $searchText)
-                    
-                
             
-           /* .navigationBarItems(
-               /* leading: Button(action: {
-                    NavigationLink(destination: ContentView())
-                    // Actions
-                    
-                }, label: { Text("Button") }),
-*/
-                leading: Button(action: {
-                // Actions
-                   // NavigationLink(destination: MathClass(currentClass: GlobalVar.CalcClass))
-                }, label: { Image("ephsHome")
-                        .resizable()
-                        .frame(width: 52, height: 50)
-                        .clipShape(Circle())
-           */
-                }.navigationBarBackButtonHidden(true)
-               // .navigationBarItems(leading: <#T##L#>, trailing: <#T##T#>)
-        }
+                }
+                .navigationViewStyle(.stack)
+        }.navigationBarBackButtonHidden(true)
+          
                                 
     }
 }

@@ -13,12 +13,24 @@ struct MathClass: View{
     var currentClass: ClassData
     
     var body: some View{
-        VStack{
-            Text(currentClass.className)
-            Text(currentClass.averageGrade)
+      
+        NavigationView{
+        
+            List(GlobalVar.MathClasses){ c in
+                NavigationLink(destination: IndividualClassView(currentClass: c), label: {
+                    VStack{
+                     //   Text(currentClass.averageGrade)
+                        Text(c.className)
+                    }
+                })
+                
+    
+                
+                
+           
             //Text(currentClass.)
         }
-        
+        }.navigationBarBackButtonHidden(true)
     }
 }
 

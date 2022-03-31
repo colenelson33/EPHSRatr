@@ -8,6 +8,9 @@
 import Foundation
 
 struct GlobalVar{
+    
+    static let MathClasses = [CalcClass, AlgebraClass]
     static let CalcClass = ClassData(className: "AP Calc", averageGrade: "A-")
+    static let AlgebraClass = ClassData(className: "Algebra2", averageGrade: "B+")
     
 }

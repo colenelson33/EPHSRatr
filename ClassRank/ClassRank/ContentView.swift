@@ -18,12 +18,9 @@ struct ContentView: View {
        
         NavigationView{
             VStack{
-            
-
                 UserImage()
-                Spacer()
                 HelloText()
-                Spacer()
+
                 Button(action: {
                 }) {
                     NavigationLink(destination: GuestView()) {
@@ -31,7 +28,7 @@ struct ContentView: View {
                     }
                 }
                 .buttonStyle(GrowingButton())
-                    .padding(.top, 300)
+                    //.padding(.top, 300)
                 Button(action: {
                 }) {
                     NavigationLink(destination: LoginView(username: "")) {
@@ -39,16 +36,16 @@ struct ContentView: View {
                     }
                     
                 }
-                
                     .buttonStyle(GrowingWButton())
                     
                 }
                 
                 
-            Spacer()
+            //Spacer()
                 
                 
             }.navigationBarBackButtonHidden(true)
+         
         }
     }
 
@@ -61,7 +58,9 @@ struct ContentView_Previews: PreviewProvider {
 
 struct HelloText: View {
     var body: some View {
-        Text("EPHS Class Rater")
+        Image("Class Rate")
+            .resizable()
+            .frame(width: 400, height: 350)
     }
 }
 
