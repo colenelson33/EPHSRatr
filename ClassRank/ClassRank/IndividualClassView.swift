@@ -15,9 +15,11 @@ struct IndividualClassView: View {
     var currentClass: ClassData
     
     var body: some View {
+        NavigationView{
         VStack{
             Text(currentClass.averageGrade)
             Text(currentClass.className)
         }
+        }.navigationBarHidden(true)
     }
 }

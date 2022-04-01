@@ -113,7 +113,7 @@ struct GuestView: View {
                 
                     
                 
-                .offset(y: 15)
+                //.offset(y: 15)
                 .navigationTitle(Text("Departments"))
                 .navigationBarTitleDisplayMode(.automatic)
               
@@ -123,6 +123,7 @@ struct GuestView: View {
                 }
                 .navigationViewStyle(.stack)
         }.navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
           
                                 
     }

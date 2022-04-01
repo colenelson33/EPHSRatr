@@ -44,7 +44,9 @@ struct ContentView: View {
             //Spacer()
                 
                 
-            }.navigationBarBackButtonHidden(true)
+            }//.navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
+                
          
         }
     }
