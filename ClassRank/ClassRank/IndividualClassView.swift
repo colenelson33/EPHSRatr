@@ -16,10 +16,31 @@ struct IndividualClassView: View {
     
     var body: some View {
         NavigationView{
-        VStack{
-            Text(currentClass.averageGrade)
-            Text(currentClass.className)
-        }
-        }.navigationBarHidden(true)
+            VStack{
+                Text(currentClass.averageGrade)
+                Text(currentClass.className)
+                
+                
+            }.navigationTitle(Text(currentClass.className))
+                .navigationBarTitleDisplayMode(.automatic)
+                .toolbar{
+                    //Adds toolbar above the navigation title, then proceeds to add image item as button
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        
+                        Button(action: {
+                        }) {
+                            NavigationLink(destination: ContentView()) {
+                                Image(systemName: "house.circle")
+                            }
+                        }
+                    }
+                    
+                }
+              
+            
+            
+            
+        }.navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
     }
 }

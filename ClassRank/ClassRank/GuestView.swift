@@ -14,7 +14,7 @@ struct GuestView: View {
     
     var body: some View {
         NavigationView{
-                
+        
                         ScrollView{
                             
                         HStack {
@@ -115,15 +115,32 @@ struct GuestView: View {
                 
                 //.offset(y: 15)
                 .navigationTitle(Text("Departments"))
+                
                 .navigationBarTitleDisplayMode(.automatic)
+                .toolbar{
+                    //Adds toolbar above the navigation title, then proceeds to add image item as button
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        
+                        Button(action: {
+                        }) {
+                            NavigationLink(destination: ContentView()) {
+                                Image(systemName: "house.circle")
+                                    .navigationBarBackButtonHidden(true)
+                            }
+                        }
+                        
+                        
+                    }
+                    
+                }
               
                 
             }.searchable(text: $searchText)
             
                 }
                 .navigationViewStyle(.stack)
-        }.navigationBarBackButtonHidden(true)
-            .navigationBarHidden(true)
+        }.navigationBarBackButtonHidden(false)
+        .navigationBarHidden(true)
           
                                 
     }
