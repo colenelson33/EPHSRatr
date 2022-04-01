@@ -11,9 +11,11 @@ class ClassData: Decodable, Identifiable {
     
     var className: String
     var averageGrade: String
+   
     init(className: String, averageGrade: String){
         self.className = className
         self.averageGrade = averageGrade
+      
     }
 }
 
