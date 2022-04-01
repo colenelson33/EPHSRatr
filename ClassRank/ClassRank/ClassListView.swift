@@ -15,7 +15,8 @@ struct MathClass: View{
     var body: some View{
       
         NavigationView{
-        
+            
+            
             List(GlobalVar.MathClasses){ c in
                 NavigationLink(destination: IndividualClassView(currentClass: c), label: {
                     VStack{
@@ -29,9 +30,27 @@ struct MathClass: View{
                 
            
             //Text(currentClass.)
+        }.navigationTitle(Text("Class List"))
         }
-        }.navigationBarBackButtonHidden(true)
+        .navigationBarBackButtonHidden(false)
+      //  .navigationBarHidden(true)
+        .toolbar{
+            //Adds toolbar above the navigation title, then proceeds to add image item as button
+            ToolbarItem(placement: .navigationBarLeading) {
+                
+                Button(action: {
+                }) {
+                    NavigationLink(destination: ContentView()) {
+                        Image(systemName: "house.circle")
+                    }
+                }
+            }
+            
+        }
+        
+        
     }
+        
 }
 
 
