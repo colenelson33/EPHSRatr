@@ -36,11 +36,13 @@ struct IndividualClassView: View {
                     }
                     
                 }
-              
+            
+            
             
             
             
         }.navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
+        
     }
 }

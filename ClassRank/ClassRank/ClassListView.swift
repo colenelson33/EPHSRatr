@@ -32,8 +32,8 @@ struct MathClass: View{
             //Text(currentClass.)
         }.navigationTitle(Text("Class List"))
         }
-        .navigationBarBackButtonHidden(false)
-      //  .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
         .toolbar{
             //Adds toolbar above the navigation title, then proceeds to add image item as button
             ToolbarItem(placement: .navigationBarLeading) {

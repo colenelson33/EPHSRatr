@@ -125,7 +125,7 @@ struct GuestView: View {
                         }) {
                             NavigationLink(destination: ContentView()) {
                                 Image(systemName: "house.circle")
-                                    .navigationBarBackButtonHidden(true)
+                                //    .navigationBarBackButtonHidden(true)
                             }
                         }
                         
@@ -139,7 +139,7 @@ struct GuestView: View {
             
                 }
                 .navigationViewStyle(.stack)
-        }.navigationBarBackButtonHidden(false)
+        }.navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
           
                                 
