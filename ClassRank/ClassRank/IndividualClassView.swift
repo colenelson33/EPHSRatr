@@ -24,9 +24,17 @@ struct IndividualClassView: View {
             }.navigationTitle(Text(currentClass.className))
                 .navigationBarTitleDisplayMode(.automatic)
                 .toolbar{
-                    //Adds toolbar above the navigation title, then proceeds to add image item as button
+                    
                     ToolbarItem(placement: .navigationBarLeading) {
                         
+                        Button(action: {
+                        }) {
+                            NavigationLink(destination: GuestView()) {
+                                Image(systemName: "arrowshape.turn.up.backward.circle.fill")
+                            }
+                        }
+                    }
+                        ToolbarItem(placement: .navigationBarTrailing){
                         Button(action: {
                         }) {
                             NavigationLink(destination: ContentView()) {
@@ -34,15 +42,18 @@ struct IndividualClassView: View {
                             }
                         }
                     }
+                        
+                        
+                    
                     
                 }
             
             
             
             
-            
+        .navigationBarHidden(true)
         }.navigationBarBackButtonHidden(true)
-            .navigationBarHidden(true)
+   
         
     }
 }
