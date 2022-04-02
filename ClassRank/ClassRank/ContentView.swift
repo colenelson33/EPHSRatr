@@ -13,14 +13,17 @@ let lightGreyColor = Color(red: 239.0/255.0, green: 243.0/255.0, blue: 230.0/255
 
 struct ContentView: View {
    
+    @AppStorage("isDarkMode") private var isDarkMode = false
+    
     var body: some View {
         
        
         NavigationView{
             VStack{
-                UserImage()
+               // UserImage()
+                Spacer()
                 HelloText()
-
+                Spacer()
                 Button(action: {
                 }) {
                     NavigationLink(destination: GuestView()) {
@@ -36,18 +39,34 @@ struct ContentView: View {
                     }
                     
                 }
-                    .buttonStyle(GrowingWButton())
+                .buttonStyle(GrowingWButton())
+                
+            }
+            .toolbar{
+                ToolbarItem(placement: .navigationBarLeading){
+                    //UserImage()
+                    Image("ephs")
                     
+                        
+                        .resizable()
+                        .offset(y: 30)
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 175, height: 50)
+                        .padding([.top, .bottom], 30)
+                }
+                ToolbarItem(placement: .navigationBarTrailing){
+                    Button(action: {
+                    }) {
+                        NavigationLink(destination: ModeSwitchView()) {
+                            Image(systemName: "gear")
+                        }
+                    }
                 }
                 
-                
-            //Spacer()
-                
-                
-            
-            
-
-        }.navigationBarBackButtonHidden(false)
+            }
+        }
+        .preferredColorScheme(isDarkMode ? .dark : .light)
+        .navigationBarBackButtonHidden(false)
         .navigationBarHidden(true)
        
     
@@ -67,16 +86,18 @@ struct HelloText: View {
     var body: some View {
         Image("Class Rate")
             .resizable()
-            .frame(width: 400, height: 350)
+            .scaledToFill()
+            .frame(width: 500, height: 350)
     }
 }
 
 struct UserImage: View {
     var body: some View {
         Image("ephs")
+            
             .resizable()
             .aspectRatio(contentMode: .fill)
-            .frame(width: 150, height: 150)
+            .frame(width: 100, height: 100)
             .padding([.top, .bottom], 25)
     }
 }

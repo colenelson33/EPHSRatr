@@ -21,6 +21,8 @@ struct IndividualClassView: View {
                 Text(currentClass.className)
                 
                 
+                
+                
             }.navigationTitle(Text(currentClass.className))
                 .navigationBarTitleDisplayMode(.automatic)
                 .toolbar{
@@ -30,7 +32,7 @@ struct IndividualClassView: View {
                         Button(action: {
                         }) {
                             NavigationLink(destination: GuestView()) {
-                                Image(systemName: "arrowshape.turn.up.backward.circle.fill")
+                                Image(systemName: "chevron.backward")
                             }
                         }
                     }
@@ -51,8 +53,10 @@ struct IndividualClassView: View {
             
             
             
+        .navigationTitle(Text(currentClass.className))
         .navigationBarHidden(true)
         }.navigationBarBackButtonHidden(true)
+           
    
         
     }

@@ -30,11 +30,11 @@ struct MathClass: View{
                 //Text(currentClass.)
             }
             .listStyle(.inset)
-            .navigationTitle(Text("Class List"))
-            .navigationBarHidden(false)
-        }
+            
+            .navigationBarHidden(true)
+        } .navigationTitle(Text("Class"))
           .navigationBarBackButtonHidden(true)
-        //.navigationBarHidden(true)
+         // .navigationBarHidden(true)
         .toolbar{
             
             ToolbarItem(placement: .navigationBarLeading) {
@@ -42,7 +42,7 @@ struct MathClass: View{
                 Button(action: {
                 }) {
                     NavigationLink(destination: GuestView()) {
-                        Image(systemName: "arrowshape.turn.up.backward.circle.fill")
+                        Image(systemName: "chevron.backward")
                     }
                 }
             }

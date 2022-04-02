@@ -18,6 +18,7 @@
 		5E150A9B27F5599F00B7943D /* ClassListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E150A9A27F5599F00B7943D /* ClassListView.swift */; };
 		5E150A9F27F55EF300B7943D /* GlobalVar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E150A9E27F55EF300B7943D /* GlobalVar.swift */; };
 		5E150AA127F63C4100B7943D /* IndividualClassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E150AA027F63C4100B7943D /* IndividualClassView.swift */; };
+		5EAB02CD27F80BC600323206 /* ModeSwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAB02CC27F80BC600323206 /* ModeSwitchView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		5E150A9A27F5599F00B7943D /* ClassListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassListView.swift; sourceTree = "<group>"; };
 		5E150A9E27F55EF300B7943D /* GlobalVar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVar.swift; sourceTree = "<group>"; };
 		5E150AA027F63C4100B7943D /* IndividualClassView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualClassView.swift; sourceTree = "<group>"; };
+		5EAB02CC27F80BC600323206 /* ModeSwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeSwitchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 			children = (
 				5E02761827F110D8009E96A4 /* ClassRankApp.swift */,
 				5E02761A27F110D8009E96A4 /* ContentView.swift */,
+				5EAB02CC27F80BC600323206 /* ModeSwitchView.swift */,
 				5E02762E27F3590C009E96A4 /* LoginView.swift */,
 				5E02763027F3E081009E96A4 /* ClassData.swift */,
 				5E02762C27F24744009E96A4 /* GuestView.swift */,
@@ -161,6 +164,7 @@
 			files = (
 				5E02762D27F24744009E96A4 /* GuestView.swift in Sources */,
 				5E02761B27F110D8009E96A4 /* ContentView.swift in Sources */,
+				5EAB02CD27F80BC600323206 /* ModeSwitchView.swift in Sources */,
 				5E02762F27F3590D009E96A4 /* LoginView.swift in Sources */,
 				5E150A9B27F5599F00B7943D /* ClassListView.swift in Sources */,
 				5E150A9F27F55EF300B7943D /* GlobalVar.swift in Sources */,
