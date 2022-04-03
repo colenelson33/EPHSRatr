@@ -14,6 +14,8 @@ struct ModeSwitchView: View {
     var body: some View {
         NavigationView{
         VStack{
+            Text("Toggle Dark/Light Mode")
+                .font(.largeTitle)
             Picker("Mode", selection: $isDarkMode){
                 Text("Light")
                     .tag(false)

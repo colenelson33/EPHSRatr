@@ -10,12 +10,14 @@ import Foundation
 class ClassData: Decodable, Identifiable {
     
     var className: String
-    var averageGrade: String
+    var averageGrade: Double
+    var Teacher: String
+    
    
-    init(className: String, averageGrade: String){
+    init(className: String, averageGrade: Double, Teacher: String){
         self.className = className
         self.averageGrade = averageGrade
-      
+        self.Teacher = Teacher
     }
 }
 

@@ -18,7 +18,7 @@ struct MathClass: View{
             
             
             List(GlobalVar.MathClasses){ c in
-                NavigationLink(destination: IndividualClassView(currentClass: c), label: {
+                NavigationLink(destination: IndividualClassView(currentClass: c, sliderValue: currentClass.averageGrade), label: {
                     VStack{
                         //   Text(currentClass.averageGrade)
                         Text(c.className)
