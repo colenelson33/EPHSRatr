@@ -120,8 +120,8 @@ struct GrowingWButton: ButtonStyle {
         configuration.label
             .padding(.vertical, 20)
             .frame(width: 300, height: 50)
-            .background(Color.white)
             .foregroundColor(.red)
+        
             .overlay(Capsule(style: .continuous)
                 .stroke(Color.red, lineWidth: 3))
             .scaleEffect(configuration.isPressed ? 1.2 : 1)

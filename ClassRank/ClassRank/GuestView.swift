@@ -14,14 +14,14 @@ struct GuestView: View {
     
     var body: some View {
         NavigationView{
-        
-                        ScrollView{
-                            
-                        HStack {
-                            
-                            
-                            Spacer()
-                            VStack(alignment: .leading, spacing: 30){
+            
+            ScrollView{
+                
+                HStack {
+                    
+                    
+                    Spacer()
+                    VStack(alignment: .leading, spacing: 30){
                         
                         
                         Button(action: {
@@ -32,8 +32,8 @@ struct GuestView: View {
                         }
                         .buttonStyle(GrowingBlockRedButton())
                         
-                            
-                       
+                        
+                        
                         Button {
                             print("Clicked")
                         } label: {
@@ -76,13 +76,13 @@ struct GuestView: View {
                             Text("Science")
                         }.buttonStyle(GrowingBlockRedButton())
                         
-                       
+                        
                         Button {
                             print("Clicked")
                         } label: {
                             Text("Social Studies")
                         }.buttonStyle(GrowingBlockWhiteButton())
-                            
+                        
                         Button {
                             print("Clicked")
                         } label: {
@@ -110,40 +110,40 @@ struct GuestView: View {
                         Spacer()
                     }
                     Spacer()
-                
                     
-                
-                //.offset(y: 15)
-                .navigationTitle(Text("Departments"))
-                
-                .navigationBarTitleDisplayMode(.automatic)
-                .toolbar{
-                    //Adds toolbar above the navigation title, then proceeds to add image item as button
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        
-                        Button(action: {
-                        }) {
-                            NavigationLink(destination: ContentView()) {
-                                Image(systemName: "house.circle")
-                                //    .navigationBarBackButtonHidden(true)
+                    
+                    
+                    //.offset(y: 15)
+                        .navigationTitle(Text("Departments"))
+                    
+                        .navigationBarTitleDisplayMode(.automatic)
+                        .toolbar{
+                            //Adds toolbar above the navigation title, then proceeds to add image item as button
+                            ToolbarItem(placement: .navigationBarLeading) {
+                                
+                                Button(action: {
+                                }) {
+                                    NavigationLink(destination: ContentView()) {
+                                        Image(systemName: "house.circle")
+                                        //    .navigationBarBackButtonHidden(true)
+                                    }
+                                }
+                                
+                                
                             }
+                            
                         }
-                        
-                        
-                    }
                     
-                }
-              
+                    
+                }.searchable(text: $searchText)
                 
-            }.searchable(text: $searchText)
-            
-                }
-                .navigationViewStyle(.stack)
+            }
+            .navigationViewStyle(.stack)
         }
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
-          
-                                
+        
+        
     }
 }
 struct GrowingBlockRedButton: ButtonStyle {
@@ -152,7 +152,7 @@ struct GrowingBlockRedButton: ButtonStyle {
             .padding(.vertical, 20)
             .frame(width: 160, height: 90)
             .background(Color.red)
-            
+        
             .foregroundColor(.white)
             .clipShape(Capsule())
             .scaleEffect(configuration.isPressed ? 1.2 : 1)
@@ -160,16 +160,16 @@ struct GrowingBlockRedButton: ButtonStyle {
     }
 }
 struct GrowingSmallButton: ButtonStyle {
-        func makeBody(configuration: Configuration) -> some View {
-            configuration.label
-               // .padding(.vertical, 20)
-                .frame(width: 60, height: 30)
-                .background(Color.red)
-                
-                .foregroundColor(.white)
-                .clipShape(Capsule())
-                .scaleEffect(configuration.isPressed ? 1.2 : 1)
-                .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+        // .padding(.vertical, 20)
+            .frame(width: 60, height: 30)
+            .background(Color.red)
+        
+            .foregroundColor(.white)
+            .clipShape(Capsule())
+            .scaleEffect(configuration.isPressed ? 1.2 : 1)
+            .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
     }
 }
 
@@ -178,10 +178,10 @@ struct GrowingBlockWhiteButton: ButtonStyle {
         configuration.label
             .padding(.vertical, 20)
             .frame(width: 160, height: 90)
-            .background(Color.white)
+       //     .background(Color.white)
             .foregroundColor(.red)
             .overlay(Capsule(style: .continuous)
-                .stroke(Color.red, lineWidth: 5))
+                        .stroke(Color.red, lineWidth: 5))
             .scaleEffect(configuration.isPressed ? 1.2 : 1)
             .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
     }
