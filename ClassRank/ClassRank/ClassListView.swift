@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct MathClass: View{
+struct ClassListView: View{
     
     var currentClass: ClassData
     
@@ -23,7 +23,7 @@ struct MathClass: View{
                         //   Text(currentClass.averageGrade)
                         Text(c.className)
                             .fontWeight(.semibold)
-                        
+                            
                     }
                 })
                 

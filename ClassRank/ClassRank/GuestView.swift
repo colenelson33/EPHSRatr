@@ -10,7 +10,7 @@ import SwiftUI
 struct GuestView: View {
     
     
-    @State private var searchText = ""
+    @State public var searchText = ""
     
     var body: some View {
         NavigationView{
@@ -26,7 +26,7 @@ struct GuestView: View {
                         
                         Button(action: {
                         }) {
-                            NavigationLink(destination: MathClass(currentClass: GlobalVar.CalcClass)) {
+                            NavigationLink(destination: ClassListView(currentClass: GlobalVar.iOS)) {
                                 Text("Math")
                             }
                         }
