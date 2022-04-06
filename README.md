@@ -4,3 +4,4 @@
 ![Screen Shot 2022-04-05 at 2 34 08 PM](https://user-images.githubusercontent.com/60491044/161835362-628b41ea-7b1e-4197-a2de-b0988338300a.png)
 ![Screen Shot 2022-04-05 at 2 34 25 PM](https://user-images.githubusercontent.com/60491044/161835364-deeee5dc-426a-4fe6-b414-cd0baca0092f.png)
 
+![icon_76pt@2x](https://user-images.githubusercontent.com/60491044/162061921-4e136d98-6c02-445e-b5d5-fc8c0aeaf93e.png)
