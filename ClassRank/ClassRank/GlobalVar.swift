@@ -10,9 +10,11 @@ import SwiftUI
 
 struct GlobalVar{
     
+   
+    
     static var currentGrade: Double = 100.0
     
-    var previousView: String = ""
+
     
     static let MathClasses = [iOS, Algebra, Algebra2, Algebra2S, AT, CalcAB, Calc3, CSP, Cyber, FST, FST2, FST3, Geo, ios2, preCalc, stats, alg2, honorsGeo, honorsPreCalc, calcAP, calcAPbc, apcsp, apcsa, apstats]
     static let iOS = ClassData(className: "Advanced iOS Mobile App Development", averageGrade: 90.0, Teacher: "Jen Nelson", credits: 2, preR: "iOS Mobile App Development AND both AP Computer Science A: Java AND AP Computer Sci Principles", description: "Extend your learning from iOS, develop new apps, go further with your first project - learn a new section of swift.  Successful completion of BOTH AP CSP and AP CS A (Java) are required for a second year of iOS.")

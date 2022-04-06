@@ -13,7 +13,7 @@ let lightGreyColor = Color(red: 239.0/255.0, green: 243.0/255.0, blue: 230.0/255
 
 struct ContentView: View {
    
-    @AppStorage("isDarkMode") private var isDarkMode = false
+    @AppStorage("isDarkMode") public var isDarkMode = false
     
     var body: some View {
         
@@ -49,9 +49,9 @@ struct ContentView: View {
                     
                         
                         .resizable()
-                        .offset(y: 30)
+                       
                         .aspectRatio(contentMode: .fill)
-                        .frame(width: 175, height: 50)
+                        .frame(width: 100, height: 30)
                         .padding([.top, .bottom], 30)
                 }
                 ToolbarItem(placement: .navigationBarTrailing){

@@ -52,10 +52,7 @@ struct IndividualClassView: View {
         let tipText: String = String(format: "%.1f", currentClass.averageGrade)
         
         
-        
-        
-        //let startingValue = currentClass.averageGrade
-        //$sliderValue = startingValue
+    
         
         NavigationView{
             ScrollView{
@@ -159,37 +156,12 @@ struct IndividualClassView: View {
             
             }
             
-        }//.navigationViewStyle(.stack)
-      //  .navigationTitle(Text(currentClass.className))
-            .navigationBarHidden(true)
-            .navigationBarBackButtonHidden(false)
-     /*   .toolbar{
-                            
-                            ToolbarItem(placement: .navigationBarLeading) {
-                                
-                                Button(action: {
-                                  //  GlobalVar.focusedCard = 0
-                                }) {
-                                    NavigationLink(destination: ClassListView(currentClass: <#T##ClassData#>)) {
-                                        Image(systemName: "chevron.backward")
-                                    }
-                                }
-                            }
-                            ToolbarItem(placement: .navigationBarTrailing){
-                                Button(action: {
-                                }) {
-                                    NavigationLink(destination: ContentView()) {
-                                        Image(systemName: "house.circle")
-                                    }
-                                }
-                            }
-                            
-                            
-                            
-                            
-                        }*/
         }
-        //.navigationBarHidden(true)
+       
+            .navigationBarHidden(true)
+        }
+        .navigationBarBackButtonHidden(false)
+
         
     }
     

@@ -30,32 +30,34 @@ struct ClassListView: View{
                 //Text(currentClass.)
             }
             .listStyle(.inset)
-            
-            .navigationBarHidden(true)
-        } .navigationTitle(Text("Class"))
-          .navigationBarBackButtonHidden(true)
-        //  .navigationBarHidden(true)
-        .toolbar{
-            
-            ToolbarItem(placement: .navigationBarLeading) {
-                
-                Button(action: {
-                }) {
-                    NavigationLink(destination: GuestView()) {
-                        Image(systemName: "chevron.backward")
-                    }
-                }
-            }
-                ToolbarItem(placement: .navigationBarTrailing){
-                Button(action: {
-                }) {
-                    NavigationLink(destination: ContentView()) {
-                        Image(systemName: "house.circle")
-                    }
-                }
-            }
-            
+            .navigationTitle(Text("Class"))
+            .navigationBarHidden(false)
+            .toolbar{
+                       
+                       ToolbarItem(placement: .navigationBarLeading) {
+                           
+                           Button(action: {
+                           }) {
+                               NavigationLink(destination: GuestView()) {
+                                   Image(systemName: "chevron.backward")
+                               }
+                           }
+                       }
+                           ToolbarItem(placement: .navigationBarTrailing){
+                           Button(action: {
+                           }) {
+                               NavigationLink(destination: ContentView()) {
+                                   Image(systemName: "house.circle")
+                               }
+                           }
+                       }
+                       
+                   }
         }
+        .navigationBarHidden(true)
+      //    .navigationBarBackButtonHidden(false)
+        //  .navigationBarHidden(true)
+       
         
         
     }

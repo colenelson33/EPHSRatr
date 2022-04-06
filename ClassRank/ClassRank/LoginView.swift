@@ -133,12 +133,15 @@ struct LoginView_Previews: PreviewProvider {
 }
 
 struct UsernameTextField : View {
+    
+
 @Binding var username: String
 var body: some View {
 return TextField("Student ID", text: $username)
             .padding()
-            .background(lightGreyColor)
+         //   .background(lightGreyColor)
             .cornerRadius(5.0)
             .padding(.bottom, 20)
+    
     }
 }
