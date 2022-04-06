@@ -105,6 +105,7 @@ struct IndividualClassView: View {
                             } onEditingChanged: { editing in
                                 isEditing = editing
                             }
+
                             .padding()
                             .disabled(true)
                             Text("Average Grade: \(tipText)%")
@@ -148,43 +149,47 @@ struct IndividualClassView: View {
                     
                     
                 }
-                .navigationBarTitleDisplayMode(.automatic)
-                .toolbar{
-                    
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        
-                        Button(action: {
-                          //  GlobalVar.focusedCard = 0
-                        }) {
-                            NavigationLink(destination: GuestView()) {
-                                Image(systemName: "chevron.backward")
-                            }
-                        }
-                    }
-                    ToolbarItem(placement: .navigationBarTrailing){
-                        Button(action: {
-                        }) {
-                            NavigationLink(destination: ContentView()) {
-                                Image(systemName: "house.circle")
-                            }
-                        }
-                    }
-                    
-                    
-                    
-                    
-                }
+              //  .navigationBarTitleDisplayMode(.automatic)
                 
                 
                 
                 
-                .navigationTitle(Text(currentClass.className))
-            .navigationBarHidden(true)
+                
+                
+            
             }
             
-        }.navigationViewStyle(.stack)
-        }.navigationBarBackButtonHidden(true)
+        }//.navigationViewStyle(.stack)
+      //  .navigationTitle(Text(currentClass.className))
             .navigationBarHidden(true)
+            .navigationBarBackButtonHidden(false)
+     /*   .toolbar{
+                            
+                            ToolbarItem(placement: .navigationBarLeading) {
+                                
+                                Button(action: {
+                                  //  GlobalVar.focusedCard = 0
+                                }) {
+                                    NavigationLink(destination: ClassListView(currentClass: <#T##ClassData#>)) {
+                                        Image(systemName: "chevron.backward")
+                                    }
+                                }
+                            }
+                            ToolbarItem(placement: .navigationBarTrailing){
+                                Button(action: {
+                                }) {
+                                    NavigationLink(destination: ContentView()) {
+                                        Image(systemName: "house.circle")
+                                    }
+                                }
+                            }
+                            
+                            
+                            
+                            
+                        }*/
+        }
+        //.navigationBarHidden(true)
         
     }
     

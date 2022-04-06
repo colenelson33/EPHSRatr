@@ -28,6 +28,7 @@ struct GuestView: View {
                         }) {
                             NavigationLink(destination: ClassListView(currentClass: GlobalVar.iOS)) {
                                 Text("Math")
+                                
                             }
                         }
                         .buttonStyle(GrowingBlockRedButton())
@@ -116,7 +117,7 @@ struct GuestView: View {
                     //.offset(y: 15)
                         .navigationTitle(Text("Departments"))
                     
-                        .navigationBarTitleDisplayMode(.automatic)
+                     //   .navigationBarTitleDisplayMode(.automatic)
                         .toolbar{
                             //Adds toolbar above the navigation title, then proceeds to add image item as button
                             ToolbarItem(placement: .navigationBarLeading) {

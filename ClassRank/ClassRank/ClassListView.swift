@@ -34,7 +34,7 @@ struct ClassListView: View{
             .navigationBarHidden(true)
         } .navigationTitle(Text("Class"))
           .navigationBarBackButtonHidden(true)
-         // .navigationBarHidden(true)
+        //  .navigationBarHidden(true)
         .toolbar{
             
             ToolbarItem(placement: .navigationBarLeading) {

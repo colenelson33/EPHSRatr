@@ -11,6 +11,7 @@ struct ModeSwitchView: View {
     
     @AppStorage("isDarkMode") private var isDarkMode = false
     
+    
     var body: some View {
         NavigationView{
         VStack{

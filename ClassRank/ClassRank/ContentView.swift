@@ -69,9 +69,6 @@ struct ContentView: View {
         .navigationBarBackButtonHidden(false)
         .navigationBarHidden(true)
        
-    
-                
-         
         }
     }
 
