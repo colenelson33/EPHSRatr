@@ -41,20 +41,25 @@ struct LoginView: View {
                 }
                 Button {
                     
-                    let trimmedUser = username.trimmingCharacters(in: .whitespacesAndNewlines)
+                    /*let trimmedUser = username.trimmingCharacters(in: .whitespacesAndNewlines)
+                    let sub = trimmedUser.prefix(3)
+                    print(sub)
                     for ch in trimmedUser{
                         if ch.isLetter {
                             authenticationDidFail = true
+                        }else{
+                        
+                            if trimmedUser.count != 8{
+                                authenticationDidFail = true
+                            }else if sub == "903" || sub == "604" {
+                                authenticationDidSucceed = true
+                                authenticationDidFail = false
+                            }
                         }
                     }
-                    if trimmedUser.count != 8{
-                        authenticationDidFail = true
-                    }
-                    else if trimmedUser.elementsEqual("903") == false || trimmedUser.elementsEqual("640") == false {
-                        authenticationDidFail = true
-                    }else {
-                        authenticationDidSucceed = true
-                    }
+                    */
+                    authenticationDidFail = checkUser(user: username)
+                    authenticationDidSucceed = checkUser(user: username)
                     
                     
                     
@@ -67,10 +72,29 @@ struct LoginView: View {
                 
             }
             .padding()
-            //.navigationBarBackButtonHidden(false)
+            .navigationBarBackButtonHidden(false)
         }
+        //.navigationBarHidden(true)
         
     }
+}
+
+func checkUser(user: String) -> Bool{
+    let trimmedUser = user.trimmingCharacters(in: .whitespacesAndNewlines)
+    let sub = trimmedUser.prefix(3)
+  //  print(sub)
+    for ch in trimmedUser{
+        if ch.isLetter {
+            return false
+        }
+    }
+    if trimmedUser.count != 8{
+                    return false
+                }else if sub == "903" || sub == "604" {
+                    return true
+                }
+
+    return false
 }
 
 struct LoginView_Previews: PreviewProvider {
