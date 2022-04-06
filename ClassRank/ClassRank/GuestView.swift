@@ -140,6 +140,7 @@ struct GuestView: View {
                 
             }
             .navigationViewStyle(.stack)
+            .navigationBarBackButtonHidden(true)
         }
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)

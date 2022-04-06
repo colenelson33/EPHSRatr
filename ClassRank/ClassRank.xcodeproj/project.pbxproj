@@ -69,8 +69,8 @@
 			children = (
 				5E02761827F110D8009E96A4 /* ClassRankApp.swift */,
 				5E02761A27F110D8009E96A4 /* ContentView.swift */,
-				5EAB02CC27F80BC600323206 /* ModeSwitchView.swift */,
 				5E02762E27F3590C009E96A4 /* LoginView.swift */,
+				5EAB02CC27F80BC600323206 /* ModeSwitchView.swift */,
 				5E02763027F3E081009E96A4 /* ClassData.swift */,
 				5E02762C27F24744009E96A4 /* GuestView.swift */,
 				5E150A9A27F5599F00B7943D /* ClassListView.swift */,
