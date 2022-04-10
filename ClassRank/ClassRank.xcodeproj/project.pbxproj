@@ -15,9 +15,13 @@
 		5E02762D27F24744009E96A4 /* GuestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E02762C27F24744009E96A4 /* GuestView.swift */; };
 		5E02762F27F3590D009E96A4 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E02762E27F3590C009E96A4 /* LoginView.swift */; };
 		5E02763127F3E081009E96A4 /* ClassData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E02763027F3E081009E96A4 /* ClassData.swift */; };
+		5E099EAB27FF8C2200590998 /* MainAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E099EAA27FF8C2100590998 /* MainAppView.swift */; };
+		5E099EAF2800D43D00590998 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E099EAE2800D43D00590998 /* CloudKit.framework */; };
 		5E150A9B27F5599F00B7943D /* ClassListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E150A9A27F5599F00B7943D /* ClassListView.swift */; };
 		5E150A9F27F55EF300B7943D /* GlobalVar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E150A9E27F55EF300B7943D /* GlobalVar.swift */; };
 		5E150AA127F63C4100B7943D /* IndividualClassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E150AA027F63C4100B7943D /* IndividualClassView.swift */; };
+		5EA6CB4A28011F5C00AF6D80 /* OtherGuestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA6CB4928011F5C00AF6D80 /* OtherGuestView.swift */; };
+		5EA6CB4C28012F9900AF6D80 /* GuestToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA6CB4B28012F9900AF6D80 /* GuestToggle.swift */; };
 		5EAB02CD27F80BC600323206 /* ModeSwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAB02CC27F80BC600323206 /* ModeSwitchView.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,9 +35,15 @@
 		5E02762C27F24744009E96A4 /* GuestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestView.swift; sourceTree = "<group>"; };
 		5E02762E27F3590C009E96A4 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		5E02763027F3E081009E96A4 /* ClassData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassData.swift; sourceTree = "<group>"; };
+		5E099EAA27FF8C2100590998 /* MainAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAppView.swift; sourceTree = "<group>"; };
+		5E099EAC2800D43600590998 /* ClassRank.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ClassRank.entitlements; sourceTree = "<group>"; };
+		5E099EAE2800D43D00590998 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		5E099EB02800D66000590998 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5E150A9A27F5599F00B7943D /* ClassListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassListView.swift; sourceTree = "<group>"; };
 		5E150A9E27F55EF300B7943D /* GlobalVar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVar.swift; sourceTree = "<group>"; };
 		5E150AA027F63C4100B7943D /* IndividualClassView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualClassView.swift; sourceTree = "<group>"; };
+		5EA6CB4928011F5C00AF6D80 /* OtherGuestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherGuestView.swift; sourceTree = "<group>"; };
+		5EA6CB4B28012F9900AF6D80 /* GuestToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestToggle.swift; sourceTree = "<group>"; };
 		5EAB02CC27F80BC600323206 /* ModeSwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeSwitchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -42,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E099EAF2800D43D00590998 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +64,7 @@
 			children = (
 				5E02761727F110D8009E96A4 /* ClassRank */,
 				5E02761627F110D8009E96A4 /* Products */,
+				5E099EAD2800D43D00590998 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,12 +79,15 @@
 		5E02761727F110D8009E96A4 /* ClassRank */ = {
 			isa = PBXGroup;
 			children = (
+				5E099EB02800D66000590998 /* Info.plist */,
+				5E099EAC2800D43600590998 /* ClassRank.entitlements */,
 				5E02761827F110D8009E96A4 /* ClassRankApp.swift */,
 				5E02761A27F110D8009E96A4 /* ContentView.swift */,
 				5E02762E27F3590C009E96A4 /* LoginView.swift */,
+				5E099EAA27FF8C2100590998 /* MainAppView.swift */,
 				5EAB02CC27F80BC600323206 /* ModeSwitchView.swift */,
 				5E02763027F3E081009E96A4 /* ClassData.swift */,
-				5E02762C27F24744009E96A4 /* GuestView.swift */,
+				5EA6CB4D28012FA500AF6D80 /* Departments */,
 				5E150A9A27F5599F00B7943D /* ClassListView.swift */,
 				5E150AA027F63C4100B7943D /* IndividualClassView.swift */,
 				5E150A9E27F55EF300B7943D /* GlobalVar.swift */,
@@ -89,6 +104,24 @@
 				5E02761F27F110DB009E96A4 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		5E099EAD2800D43D00590998 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5E099EAE2800D43D00590998 /* CloudKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5EA6CB4D28012FA500AF6D80 /* Departments */ = {
+			isa = PBXGroup;
+			children = (
+				5E02762C27F24744009E96A4 /* GuestView.swift */,
+				5EA6CB4B28012F9900AF6D80 /* GuestToggle.swift */,
+				5EA6CB4928011F5C00AF6D80 /* OtherGuestView.swift */,
+			);
+			path = Departments;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,12 +196,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E02762D27F24744009E96A4 /* GuestView.swift in Sources */,
+				5E099EAB27FF8C2200590998 /* MainAppView.swift in Sources */,
+				5EA6CB4C28012F9900AF6D80 /* GuestToggle.swift in Sources */,
 				5E02761B27F110D8009E96A4 /* ContentView.swift in Sources */,
 				5EAB02CD27F80BC600323206 /* ModeSwitchView.swift in Sources */,
 				5E02762F27F3590D009E96A4 /* LoginView.swift in Sources */,
 				5E150A9B27F5599F00B7943D /* ClassListView.swift in Sources */,
 				5E150A9F27F55EF300B7943D /* GlobalVar.swift in Sources */,
 				5E02761927F110D8009E96A4 /* ClassRankApp.swift in Sources */,
+				5EA6CB4A28011F5C00AF6D80 /* OtherGuestView.swift in Sources */,
 				5E150AA127F63C4100B7943D /* IndividualClassView.swift in Sources */,
 				5E02763127F3E081009E96A4 /* ClassData.swift in Sources */,
 			);
@@ -298,12 +334,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ClassRank/ClassRank.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ClassRank/Preview Content\"";
 				DEVELOPMENT_TEAM = 883DK65VTV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ClassRank/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -329,12 +367,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ClassRank/ClassRank.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ClassRank/Preview Content\"";
 				DEVELOPMENT_TEAM = 883DK65VTV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ClassRank/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

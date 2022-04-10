@@ -6,29 +6,115 @@
 //
 
 import SwiftUI
+import CloudKit
 
-let lightGreyColor = Color(red: 239.0/255.0, green: 243.0/255.0, blue: 230.0/255.0)
+class CloudKitClassRank: ObservableObject{
+    
+    @Published var isSignedInToiCloud: Bool = false
+    @Published var error: String = ""
+    @Published var userName: String = ""
+    @Published var permissionStatus: Bool = false
+    init(){
+        getICloudStatus()
+        requestPermission()
+        fetchiCloudUserRecordID()
+    }
+    
+    private func getICloudStatus(){
+        CKContainer.default().accountStatus { [weak self] returnedStatus, returnedError in
+            DispatchQueue.main.sync {
+                switch returnedStatus {
+                case .couldNotDetermine:
+                    self?.error = CloudKitError.iCloudAccountUnknown.rawValue
+                case .available:
+                    self?.isSignedInToiCloud = true
+                case .restricted:
+                    self?.error = CloudKitError.iCLoudAccountRestricted.rawValue
+                case .noAccount:
+                    self?.error = CloudKitError.iCloudAccountNotFound.rawValue
+                default:
+                    self?.error = CloudKitError.iCloudAccountUnknown.rawValue
+                }
+            }
+        }
+    }
+    
+    enum CloudKitError: String, LocalizedError{
+        case iCloudAccountNotFound
+        case iCloudAccountNotDetermined
+        case iCLoudAccountRestricted
+        case iCloudAccountUnknown
+    }
+    
+    func requestPermission(){
+        CKContainer.default().requestApplicationPermission([.userDiscoverability]) {[weak self] returnedStatus, returnedError in
+            DispatchQueue.main.async {
+                if returnedStatus == .granted {
+                    self?.permissionStatus = true
+                }else{
+                    print(returnedError?.localizedDescription)
+                }
+                    
+            }
+        }
+    }
+    
+    func fetchiCloudUserRecordID(){
+        CKContainer.default().fetchUserRecordID { [weak self] returnedID, error in
+            if let id = returnedID{
+                self?.discoveriCloudUser(id: id)
+            }
+        }
+    }
+    
+    func discoveriCloudUser(id: CKRecord.ID){
+        CKContainer.default().discoverUserIdentity(withUserRecordID: id){ [weak self] returnedID, returnedError in
+            DispatchQueue.main.async {
+                
+                if let name = returnedID?.nameComponents?.givenName{
+                    self?.userName = name
+                }
+                
+            }
+        }
+    }
+    
+}
+
+//let lightGreyColor = Color(red: 239.0/255.0, green: 243.0/255.0, blue: 230.0/255.0)
 
 
 
 struct ContentView: View {
-   
+    
+    @StateObject private var dataRank = CloudKitClassRank()
+    
+    @AppStorage("isLoggedIn") var loggedIn = false
+    
     @AppStorage("isDarkMode") public var isDarkMode = false
+    
+    @AppStorage("isGuest") var isGuest = false
+    @AppStorage("isDepartmentView") var isDepartmentView: Bool = true
     
     var body: some View {
         
        
         NavigationView{
             VStack{
+               
+                Text("Welcome back, \(dataRank.userName)")
+                Text(dataRank.permissionStatus.description)
+                Text("is signed in: \(dataRank.isSignedInToiCloud.description.uppercased())")
+                Text(dataRank.error)
                // UserImage()
                 Spacer()
                 HelloText()
                 Spacer()
                 Button(action: {
+                    isDepartmentView = true
+                    isGuest = true
                 }) {
-                    NavigationLink(destination: GuestView()) {
-                        Text("Continue as Guest")
-                    }
+                    Text("Continue as Guest")
                 }
                 .buttonStyle(GrowingButton())
                     //.padding(.top, 300)

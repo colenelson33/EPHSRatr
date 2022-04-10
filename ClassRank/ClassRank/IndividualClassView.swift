@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftUI
+import CloudKit
 
 
 func setDifficulty(grade: Double) -> String{
@@ -23,13 +24,13 @@ func setDifficulty(grade: Double) -> String{
     return level
 }
 
-
-
 struct IndividualClassView: View {
     
     
     
-    
+    @AppStorage("isLoggedIn") var loggedIn = false
+    @AppStorage("isGuest") var isGuest = false
+    @AppStorage("isDepartmentView") var isDepartmentView = true
     
     var currentClass: ClassData
     @State var sliderValue: Double
@@ -61,8 +62,6 @@ struct IndividualClassView: View {
                     .zIndex(100.0)
                 
                 PreWindow(title: "Prerequisites", message: currentClass.prerequisite, buttonText: "D O N E", show: $showPrePopUp)
-                
-         //       Window(title: "Prerequisites", message: "Classes needed: Algebra, etc", buttonText: "D O N E", show: $showPopUp1)
                     .zIndex(100.0)
                 VStack{
                     
@@ -135,31 +134,37 @@ struct IndividualClassView: View {
                     
                     
                     Spacer()
-                    
-                    
-                    
-                    // Text(currentClass.averageGrade)
-                    
-                    
-                    
-                    
-                    
-                    
                 }
-              //  .navigationBarTitleDisplayMode(.automatic)
                 
-                
-                
-                
-                
-                
-            
+
             }
-            
-        }
-       
+        
             .navigationBarHidden(true)
         }
+            
+         //  .navigationBarHidden(true)
+        }
+       
+        .navigationTitle(Text(""))
+            .toolbar{
+                            
+                            
+                            ToolbarItem(placement: .navigationBarTrailing){
+                                Button(action: {
+                                    withAnimation{
+                                    isGuest = false
+                                    loggedIn = false
+                                    isDepartmentView = true
+                                    }
+                                }) {
+                                    // NavigationLink(destination: ContentView()) {
+                                    Image(systemName: "house.circle")
+                                    // }
+                                }
+                            }
+                            
+                        }
+    //       .navigationBarHidden(true)
         .navigationBarBackButtonHidden(false)
 
         
@@ -219,12 +224,7 @@ struct Cards: View{
                             .font(.title3)
                             .fontWeight(.regular)
                             .opacity(opacityVal)
-                            .frame(width: 120, height: 40)
-                            .background(.gray.opacity(0.3))
-                            .cornerRadius(25)
-                            
-                            
-                        
+        
                     }.padding()
                 }
             }
@@ -286,13 +286,13 @@ struct TeacherWindow: View {
                             .frame(maxWidth: .infinity)
                             .frame(height: 54, alignment: .center)
                             .foregroundColor(Color.white)
-                            .background(Color(#colorLiteral(red: 0.6196078431, green: 0.1098039216, blue: 0.2509803922, alpha: 1)))
+                            .background(.gray)
                             .font(Font.system(size: 23, weight: .semibold))
                     }).buttonStyle(PlainButtonStyle())
                     
                 }
                 .frame(width: 300, height: 600)
-                .background(Color(#colorLiteral(red: 0.737254902, green: 0.1294117647, blue: 0.2941176471, alpha: 1)))
+                .background(Color(#colorLiteral(red: 1, green: 0, blue: 0, alpha: 1)))
                 .cornerRadius(25)
                 
             }
@@ -339,13 +339,13 @@ struct PreWindow: View {
                             .frame(maxWidth: .infinity)
                             .frame(height: 54, alignment: .center)
                             .foregroundColor(Color.white)
-                            .background(Color(#colorLiteral(red: 0.6196078431, green: 0.1098039216, blue: 0.2509803922, alpha: 1)))
+                            .background(.gray)
                             .font(Font.system(size: 23, weight: .semibold))
                     }).buttonStyle(PlainButtonStyle())
                     
                 }
                 .frame(width: 300, height: 600)
-                .background(Color(#colorLiteral(red: 0.737254902, green: 0.1294117647, blue: 0.2941176471, alpha: 1)))
+                .background(Color(#colorLiteral(red: 1, green: 0, blue: 0, alpha: 1)))
                 .cornerRadius(25)
                 
             }

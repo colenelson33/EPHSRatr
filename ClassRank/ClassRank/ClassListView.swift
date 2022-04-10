@@ -10,58 +10,72 @@ import SwiftUI
 
 struct ClassListView: View{
     
+    @AppStorage("isLoggedIn") var loggedIn = false
+    @AppStorage("isGuest") var isGuest = false
+    @AppStorage("isDepartmentView") var isDepartmentView = false
+    @AppStorage("departmentIndex") var departmentIndex = 0
+    
+    
     var currentClass: ClassData
     
+
     var body: some View{
         
         NavigationView{
             
             
-            List(GlobalVar.MathClasses){ c in
+        List(GlobalVar.DepartmentList[departmentIndex]){ c in
                 NavigationLink(destination: IndividualClassView(currentClass: c, sliderValue: currentClass.averageGrade), label: {
                     VStack{
                         //   Text(currentClass.averageGrade)
                         Text(c.className)
-                            .fontWeight(.semibold)
+                            .fontWeight(.bold)
+                            .padding()
+                            
                             
                     }
                 })
-                
-                //Text(currentClass.)
             }
-            .listStyle(.inset)
-            .navigationTitle(Text("Class"))
-            .navigationBarHidden(false)
+        
+                
+            .listStyle(.insetGrouped)
+            
+            .navigationTitle(Text("Class List"))
+            .navigationBarBackButtonHidden(false)
             .toolbar{
-                       
-                       ToolbarItem(placement: .navigationBarLeading) {
-                           
-                           Button(action: {
-                           }) {
-                               NavigationLink(destination: GuestView()) {
-                                   Image(systemName: "chevron.backward")
-                               }
-                           }
-                       }
-                           ToolbarItem(placement: .navigationBarTrailing){
-                           Button(action: {
-                           }) {
-                               NavigationLink(destination: ContentView()) {
-                                   Image(systemName: "house.circle")
-                               }
-                           }
-                       }
-                       
-                   }
+                        ToolbarItem(placement: .navigationBarLeading) {
+                            Button(action: {
+                                isDepartmentView = true
+                            }) {
+                                Image(systemName: "arrow.left")
+                                
+                            }
+                        }
+                        
+                        ToolbarItem(placement: .navigationBarTrailing){
+                            Button(action: {
+                                isGuest = false
+                                loggedIn = false
+                            }) {
+                                // NavigationLink(destination: ContentView()) {
+                                Image(systemName: "house.circle")
+                                // }
+                            }
+                        }
+                        
+                    }
+            
         }
-        .navigationBarHidden(true)
-      //    .navigationBarBackButtonHidden(false)
-        //  .navigationBarHidden(true)
-       
+            .navigationBarHidden(true)
+           
+
+        
+     
         
         
     }
-    
+        
+
 }
 
 

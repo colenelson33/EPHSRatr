@@ -8,15 +8,87 @@
 import Foundation
 import SwiftUI
 
+
+struct ListData: Identifiable,Hashable {
+    var id = UUID()
+    var title: String
+    var teacherList: Array<String>
+    var classesNum: Int
+    var Image: String
+    var Color: Color
+    var percentage: GLfloat
+    var departmentIndex: Int
+}
+extension Color {
+    static let pinkColor = Color(red: 227 / 255, green: 133 / 255, blue: 180 / 255)
+    static let purpleColor = Color(red: 123 / 255, green: 119 / 255, blue: 233 / 255)
+    static let OrangeColor = Color(red: 240 / 255, green: 146 / 255, blue: 171 / 255)
+}
+
+var data = [
+    ListData(title: "Art", teacherList: ["Amanda Budde", "Nancy Gallas", "Christopher True"], classesNum: GlobalVar.ArtClasses.count, Image: "LazyGrid",Color: Color.red, percentage: 0.30, departmentIndex: 0),
+    ListData(title: "Business & Marketing", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.BusinessClasses.count, Image: "LazyGrid2",Color: Color.red, percentage: 0.25, departmentIndex: 1),
+    ListData(title: "English", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.EnglishClasses.count, Image: "themeDetector",Color: Color.red, percentage: 0.10, departmentIndex: 2),
+    ListData(title: "Family & Consumer Sciences", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.famCons.count, Image: "try1",Color: Color.red, percentage: 0.45, departmentIndex: 3),
+    ListData(title: "Industrial Technology", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.industrialTechClasses.count, Image: "themeDetector",Color: Color.red, percentage: 0.86, departmentIndex: 4),
+    ListData(title: "Math", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.MathClasses.count, Image: "LazyGrid",Color: Color.red, percentage: 0.30, departmentIndex: 5),
+    ListData(title: "Music", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.MusicClasses.count, Image: "LazyGrid2",Color: Color.red, percentage: 0.25, departmentIndex: 6),
+    ListData(title: "Phy Ed/Health", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.phyEdClasses.count, Image: "themeDetector",Color: Color.red, percentage: 0.10, departmentIndex: 7),
+    ListData(title: "Science", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.ScienceClasses.count, Image: "try1",Color: Color.red, percentage: 0.45, departmentIndex: 8),
+    ListData(title: "Social Studies", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.SocialClasses.count, Image: "themeDetector", Color: Color.red, percentage: 0.86, departmentIndex: 9),
+    ListData(title: "Work Experience", teacherList: ["This", "That", "More"], classesNum: GlobalVar.WorkExperienceClasses.count, Image: "", Color: Color.red, percentage: 0.22, departmentIndex: 10),
+    ListData(title: "World Language", teacherList: ["This", "That", "More"], classesNum: GlobalVar.WorldLanguageClasses.count, Image: "", Color: Color.red, percentage: 0.22, departmentIndex: 11)
+]
+
 struct GlobalVar{
     
-   
+    static var inGuestView: Bool = true
     
     static var currentGrade: Double = 100.0
     
-
+    static let DepartmentList = [ArtClasses, BusinessClasses, EnglishClasses, famCons, industrialTechClasses, MathClasses, MusicClasses, phyEdClasses, ScienceClasses, WorkExperienceClasses, WorldLanguageClasses]
+  
+    static let ArtClasses = [iOS, ios2, iOS, iOS, iOS]
+    
+    static let BusinessClasses = [iOS, ios2, iOS, iOS, iOS]
+    
+    static let EnglishClasses = [iOS, ios2, iOS, iOS, iOS]
+    
+    static let famCons = [iOS, ios2, iOS, iOS, iOS]
+    
+    static let industrialTechClasses = [iOS, ios2, iOS, iOS, iOS]
     
     static let MathClasses = [iOS, Algebra, Algebra2, Algebra2S, AT, CalcAB, Calc3, CSP, Cyber, FST, FST2, FST3, Geo, ios2, preCalc, stats, alg2, honorsGeo, honorsPreCalc, calcAP, calcAPbc, apcsp, apcsa, apstats]
+    
+    static let MusicClasses = [iOS, ios2, iOS, iOS, iOS]
+    
+    static let phyEdClasses = [iOS, ios2, iOS, iOS, iOS]
+    
+    static let ScienceClasses = [iOS, ios2, iOS, iOS, iOS]
+    
+    static let SocialClasses = [iOS, ios2, iOS, iOS, iOS]
+    
+    static let WorkExperienceClasses = [iOS, ios2, iOS, iOS, iOS]
+    
+    static let WorldLanguageClasses = [iOS, ios2, iOS, iOS, iOS]
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     static let iOS = ClassData(className: "Advanced iOS Mobile App Development", averageGrade: 90.0, Teacher: "Jen Nelson", credits: 2, preR: "iOS Mobile App Development AND both AP Computer Science A: Java AND AP Computer Sci Principles", description: "Extend your learning from iOS, develop new apps, go further with your first project - learn a new section of swift.  Successful completion of BOTH AP CSP and AP CS A (Java) are required for a second year of iOS.")
     static let Algebra = ClassData(className: "Algebra 1 A&B", averageGrade: 87.2, Teacher: "", credits: 2, preR: "None", description: "All students who have not successfully completed Algebra I (linear algebra) in middle school or another school district must complete this course. This course will use a variety of instructional methods to engage students in the study of algebra. After successful completion of Algebra I, students should enroll in Geometry.")
     static let Algebra2 = ClassData(className: "Algebra II A&B", averageGrade: 90.2, Teacher: "", credits: 2, preR: "Algebra I and Geometry", description: "Students must register for both terms A & B of this course. Successful completion of the Algebra II course is a graduation requirement. This course provides the foundation for the study of advanced mathematics. Topics include:  linear, quadratic, and polynomial functions. Students will simplify complex expressions, powers, and roots, and solve equations, inequalities, and systems of equations through graphing and algebraic reasoning. The topics of sequences and series and an introduction to complex numbers are also explored in Algebra II. After successful completion of Algebra II, students should enroll in FST.")

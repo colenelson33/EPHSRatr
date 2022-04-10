@@ -9,6 +9,9 @@ import SwiftUI
 
 struct GuestView: View {
     
+    @AppStorage("isDarkMode") public var isDarkMode = false
+    @AppStorage("isLoggedIn") var loggedIn = false
+    @AppStorage("isGuest") var isGuest = false
     
     @State public var searchText = ""
     
@@ -112,21 +115,18 @@ struct GuestView: View {
                     }
                     Spacer()
                     
-                    
-                    
-                    //.offset(y: 15)
+                  
                         .navigationTitle(Text("Departments"))
                     
-                     //   .navigationBarTitleDisplayMode(.automatic)
                         .toolbar{
                             //Adds toolbar above the navigation title, then proceeds to add image item as button
                             ToolbarItem(placement: .navigationBarLeading) {
                                 
                                 Button(action: {
+                                    loggedIn = false
+                                    isGuest = false
                                 }) {
-                                    NavigationLink(destination: ContentView()) {
-                                        Image(systemName: "house.circle")
-                                        //    .navigationBarBackButtonHidden(true)
+                                    Image(systemName: "house.circle")
                                     }
                                 }
                                 
@@ -138,49 +138,37 @@ struct GuestView: View {
                     
                 }.searchable(text: $searchText)
                 
-            }
-            .navigationViewStyle(.stack)
-            .navigationBarBackButtonHidden(true)
+               
+            } .navigationBarHidden(true)
+            .navigationBarBackButtonHidden(false)
+            .preferredColorScheme(.dark)
+            
         }
-        .navigationBarBackButtonHidden(true)
-        .navigationBarHidden(true)
-        
-        
     }
-}
+
 struct GrowingBlockRedButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
+         
+            
             .padding(.vertical, 20)
-            .frame(width: 160, height: 90)
-            .background(Color.red)
-        
+            .frame(width: 160, height: 100)
+            .background(.red)
             .foregroundColor(.white)
             .clipShape(Capsule())
-            .scaleEffect(configuration.isPressed ? 1.2 : 1)
-            .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
-    }
-}
-struct GrowingSmallButton: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-        // .padding(.vertical, 20)
-            .frame(width: 60, height: 30)
-            .background(Color.red)
-        
-            .foregroundColor(.white)
-            .clipShape(Capsule())
+            .overlay(Capsule(style: .continuous)
+                        .stroke(Color.white, lineWidth: 5))
             .scaleEffect(configuration.isPressed ? 1.2 : 1)
             .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
     }
 }
 
+
 struct GrowingBlockWhiteButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .padding(.vertical, 20)
-            .frame(width: 160, height: 90)
-       //     .background(Color.white)
+            .frame(width: 160, height: 100)
             .foregroundColor(.red)
             .overlay(Capsule(style: .continuous)
                         .stroke(Color.red, lineWidth: 5))

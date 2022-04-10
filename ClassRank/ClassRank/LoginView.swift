@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct LoginView: View {
+    @AppStorage("isLoggedIn") var loggedIn = false
+    @AppStorage("isGuest") var isGuest = false
+    @AppStorage("isDepartmentView") var isDepartmentView = false
     @State var username: String
     @State var errorMessage = ""
     @State var authenticationDidFail: Bool = false
@@ -32,41 +35,21 @@ struct LoginView: View {
                 if authenticationDidSucceed {
                     //Text("Login succeeded!")
                     Button(action: {
+                        loggedIn = true
+                        isDepartmentView = true
                     }) {
-                        NavigationLink(destination: GuestView()) {
-                            Text("Continue")
-                        }
+                        Text("Continue")
+                            .font(.headline)
+                            .frame(width: 250, height: 80)
+                            .background(Color.green)
+                            .cornerRadius(30.0)
+                            .foregroundColor(.white)
                     }
-                        .font(.headline)
-                        .frame(width: 250, height: 80)
-                        .background(Color.green)
-                        .cornerRadius(30.0)
-                        .foregroundColor(.white)
-                   
-                        //.animation(Animation.default)
-                   
                 }
                 
                 
                 Button {
                     
-                    /*let trimmedUser = username.trimmingCharacters(in: .whitespacesAndNewlines)
-                    let sub = trimmedUser.prefix(3)
-                    print(sub)
-                    for ch in trimmedUser{
-                        if ch.isLetter {
-                            authenticationDidFail = true
-                        }else{
-                        
-                            if trimmedUser.count != 8{
-                                authenticationDidFail = true
-                            }else if sub == "903" || sub == "604" {
-                                authenticationDidSucceed = true
-                                authenticationDidFail = false
-                            }
-                        }
-                    }
-                    */
                     authenticationDidFail = checkUserFailed(user: username)
                     authenticationDidSucceed = checkUser(user: username)
                     
