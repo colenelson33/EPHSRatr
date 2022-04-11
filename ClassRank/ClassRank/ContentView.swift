@@ -14,11 +14,11 @@ class CloudKitClassRank: ObservableObject{
     @Published var error: String = ""
     @Published var userName: String = ""
     @Published var permissionStatus: Bool = false
-    init(){
-        getICloudStatus()
-        requestPermission()
-        fetchiCloudUserRecordID()
-    }
+   // init(){
+     //   getICloudStatus()
+       // requestPermission()
+     //   fetchiCloudUserRecordID()
+   // }
     
     private func getICloudStatus(){
         CKContainer.default().accountStatus { [weak self] returnedStatus, returnedError in
@@ -102,10 +102,10 @@ struct ContentView: View {
         NavigationView{
             VStack{
                
-                Text("Welcome back, \(dataRank.userName)")
-                Text(dataRank.permissionStatus.description)
-                Text("is signed in: \(dataRank.isSignedInToiCloud.description.uppercased())")
-                Text(dataRank.error)
+           //     Text("Welcome back, \(dataRank.userName)")
+           //     Text(dataRank.permissionStatus.description)
+         //       Text("is signed in: \(dataRank.isSignedInToiCloud.description.uppercased())")
+         //       Text(dataRank.error)
                // UserImage()
                 Spacer()
                 HelloText()
