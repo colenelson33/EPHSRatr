@@ -41,7 +41,7 @@ struct LoginView: View {
                         Text("Continue")
                             .font(.headline)
                             .frame(width: 250, height: 80)
-                            .background(Color.green)
+                            .background(Color.iCloudBlue)
                             .cornerRadius(30.0)
                             .foregroundColor(.white)
                     }

@@ -9,33 +9,31 @@
 /* Begin PBXBuildFile section */
 		2371F76427F4E37B00D6EDCA /* ClassJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = 2371F76327F4E37B00D6EDCA /* ClassJSON.json */; };
 		5E02761927F110D8009E96A4 /* ClassRankApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E02761827F110D8009E96A4 /* ClassRankApp.swift */; };
-		5E02761B27F110D8009E96A4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E02761A27F110D8009E96A4 /* ContentView.swift */; };
 		5E02761D27F110DB009E96A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E02761C27F110DB009E96A4 /* Assets.xcassets */; };
 		5E02762027F110DB009E96A4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E02761F27F110DB009E96A4 /* Preview Assets.xcassets */; };
 		5E02762D27F24744009E96A4 /* GuestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E02762C27F24744009E96A4 /* GuestView.swift */; };
-		5E02762F27F3590D009E96A4 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E02762E27F3590C009E96A4 /* LoginView.swift */; };
 		5E02763127F3E081009E96A4 /* ClassData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E02763027F3E081009E96A4 /* ClassData.swift */; };
-		5E099EAB27FF8C2200590998 /* MainAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E099EAA27FF8C2100590998 /* MainAppView.swift */; };
 		5E099EAF2800D43D00590998 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E099EAE2800D43D00590998 /* CloudKit.framework */; };
 		5E150A9B27F5599F00B7943D /* ClassListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E150A9A27F5599F00B7943D /* ClassListView.swift */; };
 		5E150A9F27F55EF300B7943D /* GlobalVar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E150A9E27F55EF300B7943D /* GlobalVar.swift */; };
 		5E150AA127F63C4100B7943D /* IndividualClassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E150AA027F63C4100B7943D /* IndividualClassView.swift */; };
 		5EA6CB4A28011F5C00AF6D80 /* OtherGuestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA6CB4928011F5C00AF6D80 /* OtherGuestView.swift */; };
 		5EA6CB4C28012F9900AF6D80 /* GuestToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA6CB4B28012F9900AF6D80 /* GuestToggle.swift */; };
-		5EAB02CD27F80BC600323206 /* ModeSwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAB02CC27F80BC600323206 /* ModeSwitchView.swift */; };
+		C87843092804EF6E00873D3B /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87843082804EF6E00873D3B /* TestData.swift */; };
+		C8F7D4F42804EFDC006E38FF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F7D4F32804EFDC006E38FF /* ContentView.swift */; };
+		C8F7D4F62804F001006E38FF /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F7D4F52804F001006E38FF /* LoginView.swift */; };
+		C8F7D4F82804F007006E38FF /* MainAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F7D4F72804F007006E38FF /* MainAppView.swift */; };
+		C8F7D4FA2804F00D006E38FF /* ModeSwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F7D4F92804F00D006E38FF /* ModeSwitchView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2371F76327F4E37B00D6EDCA /* ClassJSON.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ClassJSON.json; sourceTree = "<group>"; };
 		5E02761527F110D8009E96A4 /* ClassRate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClassRate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E02761827F110D8009E96A4 /* ClassRankApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassRankApp.swift; sourceTree = "<group>"; };
-		5E02761A27F110D8009E96A4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5E02761C27F110DB009E96A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5E02761F27F110DB009E96A4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5E02762C27F24744009E96A4 /* GuestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestView.swift; sourceTree = "<group>"; };
-		5E02762E27F3590C009E96A4 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		5E02763027F3E081009E96A4 /* ClassData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassData.swift; sourceTree = "<group>"; };
-		5E099EAA27FF8C2100590998 /* MainAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAppView.swift; sourceTree = "<group>"; };
 		5E099EAC2800D43600590998 /* ClassRank.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ClassRank.entitlements; sourceTree = "<group>"; };
 		5E099EAE2800D43D00590998 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		5E099EB02800D66000590998 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -44,7 +42,11 @@
 		5E150AA027F63C4100B7943D /* IndividualClassView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualClassView.swift; sourceTree = "<group>"; };
 		5EA6CB4928011F5C00AF6D80 /* OtherGuestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherGuestView.swift; sourceTree = "<group>"; };
 		5EA6CB4B28012F9900AF6D80 /* GuestToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestToggle.swift; sourceTree = "<group>"; };
-		5EAB02CC27F80BC600323206 /* ModeSwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeSwitchView.swift; sourceTree = "<group>"; };
+		C87843082804EF6E00873D3B /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
+		C8F7D4F32804EFDC006E38FF /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = Views/ContentView.swift; sourceTree = "<group>"; };
+		C8F7D4F52804F001006E38FF /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginView.swift; path = Views/LoginView.swift; sourceTree = "<group>"; };
+		C8F7D4F72804F007006E38FF /* MainAppView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainAppView.swift; path = Views/MainAppView.swift; sourceTree = "<group>"; };
+		C8F7D4F92804F00D006E38FF /* ModeSwitchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModeSwitchView.swift; path = Views/ModeSwitchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,15 +84,16 @@
 				5E099EB02800D66000590998 /* Info.plist */,
 				5E099EAC2800D43600590998 /* ClassRank.entitlements */,
 				5E02761827F110D8009E96A4 /* ClassRankApp.swift */,
-				5E02761A27F110D8009E96A4 /* ContentView.swift */,
-				5E02762E27F3590C009E96A4 /* LoginView.swift */,
-				5E099EAA27FF8C2100590998 /* MainAppView.swift */,
-				5EAB02CC27F80BC600323206 /* ModeSwitchView.swift */,
+				C8F7D4F32804EFDC006E38FF /* ContentView.swift */,
+				C8F7D4F52804F001006E38FF /* LoginView.swift */,
+				C8F7D4F92804F00D006E38FF /* ModeSwitchView.swift */,
+				C8F7D4F72804F007006E38FF /* MainAppView.swift */,
 				5E02763027F3E081009E96A4 /* ClassData.swift */,
 				5EA6CB4D28012FA500AF6D80 /* Departments */,
 				5E150A9A27F5599F00B7943D /* ClassListView.swift */,
 				5E150AA027F63C4100B7943D /* IndividualClassView.swift */,
 				5E150A9E27F55EF300B7943D /* GlobalVar.swift */,
+				C87843082804EF6E00873D3B /* TestData.swift */,
 				2371F76327F4E37B00D6EDCA /* ClassJSON.json */,
 				5E02761C27F110DB009E96A4 /* Assets.xcassets */,
 				5E02761E27F110DB009E96A4 /* Preview Content */,
@@ -196,12 +199,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E02762D27F24744009E96A4 /* GuestView.swift in Sources */,
-				5E099EAB27FF8C2200590998 /* MainAppView.swift in Sources */,
+				C8F7D4FA2804F00D006E38FF /* ModeSwitchView.swift in Sources */,
+				C8F7D4F82804F007006E38FF /* MainAppView.swift in Sources */,
+				C8F7D4F42804EFDC006E38FF /* ContentView.swift in Sources */,
 				5EA6CB4C28012F9900AF6D80 /* GuestToggle.swift in Sources */,
-				5E02761B27F110D8009E96A4 /* ContentView.swift in Sources */,
-				5EAB02CD27F80BC600323206 /* ModeSwitchView.swift in Sources */,
-				5E02762F27F3590D009E96A4 /* LoginView.swift in Sources */,
+				C87843092804EF6E00873D3B /* TestData.swift in Sources */,
 				5E150A9B27F5599F00B7943D /* ClassListView.swift in Sources */,
+				C8F7D4F62804F001006E38FF /* LoginView.swift in Sources */,
 				5E150A9F27F55EF300B7943D /* GlobalVar.swift in Sources */,
 				5E02761927F110D8009E96A4 /* ClassRankApp.swift in Sources */,
 				5EA6CB4A28011F5C00AF6D80 /* OtherGuestView.swift in Sources */,

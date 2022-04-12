@@ -11,8 +11,9 @@ import SwiftUI
 struct ClassRankApp: App {
     var body: some Scene {
         WindowGroup {
-           MainAppView()
+          MainAppView()
             //GuestToggle()
+           // TestData()
         }
     }
 }

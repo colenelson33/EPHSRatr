@@ -10,6 +10,7 @@ import CloudKit
 
 class CloudKitClassRank: ObservableObject{
     
+    @AppStorage("iCloudLoggedIn") var iCloudLoggedIn: Bool = false
     @Published var isSignedInToiCloud: Bool = false
     @Published var error: String = ""
     @Published var userName: String = ""
@@ -51,6 +52,7 @@ class CloudKitClassRank: ObservableObject{
             DispatchQueue.main.async {
                 if returnedStatus == .granted {
                     self?.permissionStatus = true
+                    self!.iCloudLoggedIn = true
                 }else{
                     print(returnedError?.localizedDescription)
                 }
@@ -96,6 +98,7 @@ struct ContentView: View {
     @AppStorage("isGuest") var isGuest = false
     @AppStorage("isDepartmentView") var isDepartmentView: Bool = true
     
+    
     var body: some View {
         
        
@@ -103,13 +106,16 @@ struct ContentView: View {
             VStack{
                
                 Text("Welcome back, \(dataRank.userName)")
-                Text(dataRank.permissionStatus.description)
+                    .font(.title)
+                    .foregroundColor(.red)
+               /* Text(dataRank.permissionStatus.description)
                 Text("is signed in: \(dataRank.isSignedInToiCloud.description.uppercased())")
-                Text(dataRank.error)
+                Text(dataRank.error)*/
                // UserImage()
                 Spacer()
                 HelloText()
                 Spacer()
+                
                 Button(action: {
                     isDepartmentView = true
                     isGuest = true
@@ -121,7 +127,15 @@ struct ContentView: View {
                 Button(action: {
                 }) {
                     NavigationLink(destination: LoginView(username: "")) {
-                        Text("Login")
+                        Label {
+                            Text("Login with iCloud")
+                                .foregroundColor(Color.iCloudBlue)
+                        } icon: {
+                            Image(systemName: "icloud")
+                                .foregroundColor(Color.iCloudBlue)
+                        }
+                        
+                        
                     }
                     
                 }
@@ -206,7 +220,7 @@ struct GrowingWButton: ButtonStyle {
             .foregroundColor(.red)
         
             .overlay(Capsule(style: .continuous)
-                .stroke(Color.red, lineWidth: 3))
+                .stroke(Color.iCloudBlue, lineWidth: 3))
             .scaleEffect(configuration.isPressed ? 1.2 : 1)
             .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
     }
