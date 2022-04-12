@@ -11,19 +11,64 @@ import CloudKit
 class TestDataViewModel: ObservableObject{
     
     @Published var text: String = ""
-    @Published var grade: String = ""
+    @Published var fruits: [String] = []
+//    @Published var grade: String = ""
+    
+    init(){
+        fetchItems()
+    }
     
     func saveButtonPressed(){
         guard !text.isEmpty else {
             return
         }
-    //    addItem(name: text)
-        averageGrade(val: grade)
+        addItem(name: text)
+        
+       // averageGrade(val: grade)
     }
-    private func averageGrade(val: String){
-        let avgGrade = CKRecord(recordType: "MathGrade")
-        avgGrade["grade"] = val
-        saveItem(record: Double: avgGrade)
+    
+    func fetchItems(){
+        
+        let predicate = NSPredicate(value: true)
+        let query = CKQuery(recordType: "fruits", predicate: predicate)
+        query.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        let queryOperation = CKQueryOperation(query: query)
+        
+        var returnedItems: [String] = []
+        
+        
+        queryOperation.recordMatchedBlock = { (returnedRecordID, returnedResult) in
+            switch returnedResult{
+            case .success(let record):
+                guard let name = record["name"] as? String else{
+                    return
+                }
+                returnedItems.append(name)
+                
+            case .failure(let error):
+                print("Record matched error: \(error)")
+            }
+            
+        }
+        
+        queryOperation.queryResultBlock = { [weak self]returnedResult in
+            print(returnedResult)
+            DispatchQueue.main.async {
+                self?.fruits = returnedItems
+            }
+            
+        }
+        
+        addOperations(operation: queryOperation)
+       
+    }
+    
+    func addOperations(operation: CKDatabaseOperation){
+        
+       
+        CKContainer.default().publicCloudDatabase.add(operation)
+        
+        
     }
     
     private func addItem(name: String){
@@ -37,8 +82,15 @@ class TestDataViewModel: ObservableObject{
         CKContainer.default().publicCloudDatabase.save(record) { [weak self] returnedRecord, returnedError in
             print(returnedRecord)
             print("Error: \(returnedError)")
-            
             self?.text = ""
+        }
+    }
+    
+    private func checkForDouble(grade: String) -> Double{
+        if let newGrade = Double(grade){
+            return newGrade
+        }else{
+            return 0.0
         }
     }
     
@@ -56,8 +108,9 @@ struct TestData: View {
                 textField
                 button
                 List{
-                    Text("Hi")
-                    Text("Hello")
+                    ForEach(vm.fruits, id: \.self){
+                        Text($0)
+                    }
                 }
                .listStyle(.plain)
             }
@@ -81,7 +134,7 @@ extension TestData{
             .font(.headline)
     }
     private var textField: some View{
-        TextField("Add Something", text: $vm.grade)
+        TextField("Add Something", text: $vm.text)
             .padding(.leading)
             .frame(height: 55)
             .background(.gray)

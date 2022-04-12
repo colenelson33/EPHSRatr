@@ -52,7 +52,7 @@ class CloudKitClassRank: ObservableObject{
             DispatchQueue.main.async {
                 if returnedStatus == .granted {
                     self?.permissionStatus = true
-                    self!.iCloudLoggedIn = true
+                    self?.iCloudLoggedIn = true
                 }else{
                     print(returnedError?.localizedDescription)
                 }
@@ -108,9 +108,9 @@ struct ContentView: View {
                 Text("Welcome back, \(dataRank.userName)")
                     .font(.title)
                     .foregroundColor(.red)
-               /* Text(dataRank.permissionStatus.description)
+                Text(dataRank.permissionStatus.description)
                 Text("is signed in: \(dataRank.isSignedInToiCloud.description.uppercased())")
-                Text(dataRank.error)*/
+                Text(dataRank.error)
                // UserImage()
                 Spacer()
                 HelloText()
@@ -126,7 +126,7 @@ struct ContentView: View {
                     //.padding(.top, 300)
                 Button(action: {
                 }) {
-                    NavigationLink(destination: LoginView(username: "")) {
+                    NavigationLink(destination: TestData()) {
                         Label {
                             Text("Login with iCloud")
                                 .foregroundColor(Color.iCloudBlue)
