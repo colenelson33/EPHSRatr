@@ -15,7 +15,8 @@ struct fruitModel: Hashable{
 }
 
 struct gradeModel: Hashable{
-    let name: String
+    
+    let name: [Double]
     let record: CKRecord
     
     
@@ -25,14 +26,14 @@ class TestDataViewModel: ObservableObject{
     
     @Published var text: String = ""
     @Published var fruits: [fruitModel] = []
-    //@Published var grades: gradeModel
-    @Published var gradeArray: [gradeModel] = []
+    //@Published var grades: [Double]
+    @Published var gradeArray: gradeModel
 //    @Published var grade: String = ""
     
     init(){
         fetchItems()
     }
-    
+
     func saveButtonPressed(){
        /* guard !text.isEmpty else {
             return
@@ -66,7 +67,7 @@ class TestDataViewModel: ObservableObject{
         
     }*/
     
-   /* func fetchItems(){
+    func fetchItems2(){
         
         
         //let predicate = NSPredicate(format: "name = %@", argumentArray: ["Cocoanut"])
@@ -102,47 +103,52 @@ class TestDataViewModel: ObservableObject{
         }
         
         addOperations(operation: queryOperation)
-       
-    }*/
+       }
     
     func fetchItems(){
-        
-        
-        //let predicate = NSPredicate(format: "name = %@", argumentArray: ["Cocoanut"])
-        let predicate = NSPredicate(value: true)
-        let query = CKQuery(recordType: "Grade", predicate: predicate)
-        //query.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-        let queryOperation = CKQueryOperation(query: query)
-       // queryOperation.resultsLimit = 5
-        
-        var returnedItems: [gradeModel] = []
-        
-        
-        queryOperation.recordMatchedBlock = { (returnedRecordID, returnedResult) in
-            switch returnedResult{
-            case .success(let record):
-                guard let name = record["name"] as? String else{
+         
+         
+         let predicate = NSPredicate(value: true)
+         let query = CKQuery(recordType: "Grade", predicate: predicate)
+         let queryOperation = CKQueryOperation(query: query)
+         queryOperation.resultsLimit = 1
+         
+         
+         
+         
+         queryOperation.recordMatchedBlock = { (returnedRecordID, returnedResult) in
+             switch returnedResult{
+             case .success(let record):
+                 guard let name = record["gradeList"] as? [Double] else{
                     return
-                }
-                returnedItems.append(gradeModel(name: name, record: record))
+                 }
+                 var returnedItem = gradeModel(name: name, record: record)
+
+                 
                 
-            case .failure(let error):
-                print("Record matched error: \(error)")
-            }
-            
-        }
+                 
+             case .failure(let error):
+                 print("Record matched error: \(error)")
+                 return
+             }
+             
+
+         }
+         
+         queryOperation.queryResultBlock = { returnedResult in
+             print(returnedResult)
+             DispatchQueue.main.async {
+               //  self?.fetchItems()
+             }
+             
+         }
+         
+         addOperations(operation: queryOperation)
         
-        queryOperation.queryResultBlock = { [weak self] returnedResult in
-            print(returnedResult)
-            DispatchQueue.main.async {
-                self?.gradeArray = returnedItems
-            }
-            
-        }
-        
-        addOperations(operation: queryOperation)
-       
-    }
+     }
+    
+    
+    
     
     func addOperations(operation: CKDatabaseOperation){
         
@@ -157,8 +163,16 @@ class TestDataViewModel: ObservableObject{
         record["name"] = "Something else something else"
         saveItem(record: record)
         
+    }
+    
+    func updateGradeList(grade: gradeModel, newGrades: [Double]){
+        
+        let record = grade.record
+        record["gradeList"] = newGrades
         
     }
+    
+    
     
     private func addItem(name: Double){
         let newFruit = CKRecord(recordType: "Grade")
@@ -192,7 +206,7 @@ class TestDataViewModel: ObservableObject{
             
         }
     }
-    func deleteItem(indexSet: IndexSet){
+    /*func deleteItem(indexSet: IndexSet){
         guard let index = indexSet.first else{ return }
         let fruit = gradeArray[index]
         let record = fruit.record
@@ -204,7 +218,7 @@ class TestDataViewModel: ObservableObject{
             }
             
         }
-    }
+    }*/
     
     private func checkForDouble(grade: String) -> Double{
         if let newGrade = Double(grade){
@@ -228,12 +242,12 @@ struct TestData: View {
                 textField
                 button
                 List{
-                    ForEach(vm.fruits, id: \.self){ fruit in
-                        Text(fruit.name)
-                            .onTapGesture {
+                   // ForEach(vm.gradeArray.name, id: \.self){ grade in
+                     //   Text(grade.name)
+                            /*.onTapGesture {
                                 vm.updateItem(fruit: fruit)
-                            }
-                    }.onDelete(perform: vm.deleteItem )
+                            }*/
+                   // }//.onDelete(perform: vm.deleteItem )
                         
                     
                 }
