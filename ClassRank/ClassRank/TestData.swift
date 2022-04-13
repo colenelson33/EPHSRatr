@@ -8,10 +8,25 @@
 import SwiftUI
 import CloudKit
 
+struct fruitModel: Hashable{
+    let name: String
+    let record: CKRecord
+    
+}
+
+struct gradeModel: Hashable{
+    let name: String
+    let record: CKRecord
+    
+    
+}
+
 class TestDataViewModel: ObservableObject{
     
     @Published var text: String = ""
-    @Published var fruits: [String] = []
+    @Published var fruits: [fruitModel] = []
+    //@Published var grades: gradeModel
+    @Published var gradeArray: [gradeModel] = []
 //    @Published var grade: String = ""
     
     init(){
@@ -19,22 +34,49 @@ class TestDataViewModel: ObservableObject{
     }
     
     func saveButtonPressed(){
-        guard !text.isEmpty else {
+       /* guard !text.isEmpty else {
             return
+        }*/
+        if let grade = Double(text){
+        addItem(name: grade)
         }
-        addItem(name: text)
         
        // averageGrade(val: grade)
     }
-    
-    func fetchItems(){
+   /* func fetchGrade(){
+        let predicate = NSPredicate(value: true)
+        let query = CKQuery(recordType: "Grade", predicate: predicate)
+        let queryOperation = CKQueryOperation(query: query)
         
+        var returnedGrades: [Double] = []
+        
+        queryOperation.recordMatchedBlock = { (returnedRecordID, returnedResult) in
+            switch returnedResult{
+            case .success(let record):
+                guard let name = record["name"] as? Double else{ return }
+                returnedGrades.append(returnedResult)
+                
+            case .failure(let error):
+                print("Record matched error: \(error)")
+            }
+            
+        }
+        
+        
+        
+    }*/
+    
+   /* func fetchItems(){
+        
+        
+        //let predicate = NSPredicate(format: "name = %@", argumentArray: ["Cocoanut"])
         let predicate = NSPredicate(value: true)
         let query = CKQuery(recordType: "fruits", predicate: predicate)
         query.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         let queryOperation = CKQueryOperation(query: query)
+        queryOperation.resultsLimit = 5
         
-        var returnedItems: [String] = []
+        var returnedItems: [fruitModel] = []
         
         
         queryOperation.recordMatchedBlock = { (returnedRecordID, returnedResult) in
@@ -43,7 +85,7 @@ class TestDataViewModel: ObservableObject{
                 guard let name = record["name"] as? String else{
                     return
                 }
-                returnedItems.append(name)
+                returnedItems.append(fruitModel(name: name, record: record))
                 
             case .failure(let error):
                 print("Record matched error: \(error)")
@@ -61,6 +103,45 @@ class TestDataViewModel: ObservableObject{
         
         addOperations(operation: queryOperation)
        
+    }*/
+    
+    func fetchItems(){
+        
+        
+        //let predicate = NSPredicate(format: "name = %@", argumentArray: ["Cocoanut"])
+        let predicate = NSPredicate(value: true)
+        let query = CKQuery(recordType: "Grade", predicate: predicate)
+        //query.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        let queryOperation = CKQueryOperation(query: query)
+       // queryOperation.resultsLimit = 5
+        
+        var returnedItems: [gradeModel] = []
+        
+        
+        queryOperation.recordMatchedBlock = { (returnedRecordID, returnedResult) in
+            switch returnedResult{
+            case .success(let record):
+                guard let name = record["name"] as? String else{
+                    return
+                }
+                returnedItems.append(gradeModel(name: name, record: record))
+                
+            case .failure(let error):
+                print("Record matched error: \(error)")
+            }
+            
+        }
+        
+        queryOperation.queryResultBlock = { [weak self] returnedResult in
+            print(returnedResult)
+            DispatchQueue.main.async {
+                self?.gradeArray = returnedItems
+            }
+            
+        }
+        
+        addOperations(operation: queryOperation)
+       
     }
     
     func addOperations(operation: CKDatabaseOperation){
@@ -71,18 +152,57 @@ class TestDataViewModel: ObservableObject{
         
     }
     
-    private func addItem(name: String){
-        let newFruit = CKRecord(recordType: "fruits")
+    func updateItem(fruit: fruitModel){
+        let record = fruit.record
+        record["name"] = "Something else something else"
+        saveItem(record: record)
+        
+        
+    }
+    
+    private func addItem(name: Double){
+        let newFruit = CKRecord(recordType: "Grade")
         newFruit["name"] = name
         saveItem(record: newFruit)
         
     }
     
+   /* private func addIndividualGrade(grade: Double){
+        CKContainer.default().publicCloudDatabase.save(grade){ [weak self]
+            returnedGrade, returnedError in
+            print(returnedGrade)
+            print("Error: \(returnedError)")
+            DispatchQueue.main.async {
+                self?.text = ""
+                self?.fetchGrade()
+            }
+            
+        }
+    }
+    */
     private func saveItem(record: CKRecord){
         CKContainer.default().publicCloudDatabase.save(record) { [weak self] returnedRecord, returnedError in
             print(returnedRecord)
             print("Error: \(returnedError)")
-            self?.text = ""
+            DispatchQueue.main.async {
+                self?.text = ""
+                self?.fetchItems()
+            }
+            
+            
+        }
+    }
+    func deleteItem(indexSet: IndexSet){
+        guard let index = indexSet.first else{ return }
+        let fruit = gradeArray[index]
+        let record = fruit.record
+        
+        CKContainer.default().publicCloudDatabase.delete(withRecordID: record.recordID) { [weak self] returnedRecordID, error in
+            DispatchQueue.main.async {
+                self?.gradeArray.remove(at: index)
+                self?.fetchItems()
+            }
+            
         }
     }
     
@@ -108,9 +228,14 @@ struct TestData: View {
                 textField
                 button
                 List{
-                    ForEach(vm.fruits, id: \.self){
-                        Text($0)
-                    }
+                    ForEach(vm.fruits, id: \.self){ fruit in
+                        Text(fruit.name)
+                            .onTapGesture {
+                                vm.updateItem(fruit: fruit)
+                            }
+                    }.onDelete(perform: vm.deleteItem )
+                        
+                    
                 }
                .listStyle(.plain)
             }
