@@ -84,9 +84,10 @@ struct smallcardView: View {
         GeometryReader { g in
             VStack(alignment: .leading) {
                 HStack {
-                    Image(p.Image)
+                    Image(systemName: p.Image)
                         .resizable()
-                        .frame(width: 120, height: 90)
+                        .foregroundColor(.white)
+                        .frame(width: 50, height: 50)
                         .cornerRadius(10)
                         .matchedGeometryEffect(id: "image", in: namespace)
                     
@@ -198,8 +199,9 @@ struct bigcardView: View {
                     
                 
                 
-               Image(p.Image)
+                Image("")
                     .resizable()
+                    //.scaledToFill()
                     .frame(height: 160)
                     .frame(maxHeight: .infinity)
                     .cornerRadius(10)

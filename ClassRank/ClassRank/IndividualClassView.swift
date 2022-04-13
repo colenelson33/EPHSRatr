@@ -28,12 +28,14 @@ struct IndividualClassView: View {
     
     
     
-    @AppStorage("isLoggedIn") var loggedIn = false
+    @AppStorage("isLoggedIn") var loggedIn = true
     @AppStorage("isGuest") var isGuest = false
     @AppStorage("isDepartmentView") var isDepartmentView = true
     
     var currentClass: ClassData
-    @State var sliderValue: Double
+    @State var sliderGValue: Double
+    @State var sliderHValue: Double
+
     @State private var speed = 50.0
     @State private var isEditing = false
     @State var showPopUp: Bool = false
@@ -92,40 +94,82 @@ struct IndividualClassView: View {
                         
                         Spacer()
                         VStack{
-                            Slider(value: $sliderValue, in: 0...100){
-                                Text("Speed")
-                            } minimumValueLabel: {
-                                Text("0")
-                            } maximumValueLabel: {
-                                Text("100")
-                            } onEditingChanged: { editing in
-                                isEditing = editing
-                            }
+                            if(loggedIn == true) {
+                                Slider(value: $sliderGValue, in: 0...100){
+                                
+                                    Text("Speed")
+                                } minimumValueLabel: {
+                                    Text("0")
+                                } maximumValueLabel: {
+                                    Text("100")
+                                } onEditingChanged: { editing in
+                                    isEditing = editing
+                                }
 
-                            .padding()
-                            .disabled(true)
-                            Text("Average Grade: \(tipText)%")
-                                .font(.system(size: 20))
-                                .fontWeight(.bold)
-                                .foregroundColor(isEditing ? .blue : .red)
                                 .padding()
-                            
-                            Slider(value: $sliderValue, in: 0...4){
-                                Text("Speed")
-                            } minimumValueLabel: {
-                                Text("0")
-                            } maximumValueLabel: {
-                                Text("4+")
-                            } onEditingChanged: { editing in
-                                isEditing = editing
+                                .disabled(false)
+                                Text("Average Grade: \(tipText)%")
+                                    .font(.system(size: 20))
+                                    .fontWeight(.bold)
+                                    .foregroundColor(isEditing ? .black : .red)
+                                    .padding()
+                                
+                                Slider(value: $sliderHValue, in: 0...10){
+                                    Text("Speed")
+                                } minimumValueLabel: {
+                                    Text("0")
+                                } maximumValueLabel: {
+                                    Text("10")
+                                } onEditingChanged: { editing in
+                                    isEditing = editing
+                                }
+                                .padding()
+                                .disabled(false)
+                                Text("Homework Per Night")
+                                    .font(.system(size: 20))
+                                    .fontWeight(.bold)
+                                    .foregroundColor(isEditing ? .black : .red)
+                                    .padding()
+                            } else {
+                                Slider(value: $sliderGValue, in: 0...100){
+                                    Text("Speed")
+                                } minimumValueLabel: {
+                                    Text("0")
+                                } maximumValueLabel: {
+                                    Text("100")
+                                } onEditingChanged: { editing in
+                                    isEditing = editing
+                                }
+
+                                .padding()
+                                .disabled(true)
+                                Text("Average Grade: \(tipText)%")
+                                    .font(.system(size: 20))
+                                    .fontWeight(.bold)
+                                    .foregroundColor(isEditing ? .blue : .red)
+                                    .padding()
+                                
+                                Slider(value: $sliderHValue, in: 0...10){
+                                    Text("Speed")
+                                } minimumValueLabel: {
+                                    Text("0")
+                                } maximumValueLabel: {
+                                    Text("10")
+                                } onEditingChanged: { editing in
+                                    isEditing = editing
+                                }
+                                .padding()
+                                .disabled(true)
+                                Text("Homework Per Night")
+                                    .font(.system(size: 20))
+                                    .fontWeight(.bold)
+                                    .foregroundColor(isEditing ? .blue : .red)
+                                    .padding()
                             }
-                            .padding()
-                            .disabled(true)
-                            Text("Homework Per Night")
-                                .font(.system(size: 20))
-                                .fontWeight(.bold)
-                                .foregroundColor(isEditing ? .blue : .red)
-                                .padding()
+                            
+                            
+                            
+                            
                         }
                         
                         
@@ -240,7 +284,7 @@ struct IndividualClassView_Previews: PreviewProvider{
     
     static var previews: some View {
         
-        IndividualClassView(currentClass: GlobalVar.iOS, sliderValue: 0.0)
+        IndividualClassView(currentClass: GlobalVar.apstats, sliderGValue: 0.0, sliderHValue: 0.0)
       //  Window(title: "Teacher Info", message: "Name: Jen Nelson", buttonText: "Ok", show: .constant(true))
     }
 }

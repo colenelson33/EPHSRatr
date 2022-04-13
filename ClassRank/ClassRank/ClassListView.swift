@@ -25,7 +25,7 @@ struct ClassListView: View{
             
             
         List(GlobalVar.DepartmentList[departmentIndex]){ c in
-                NavigationLink(destination: IndividualClassView(currentClass: c, sliderValue: currentClass.averageGrade), label: {
+            NavigationLink(destination: IndividualClassView(currentClass: c, sliderGValue: currentClass.averageGrade, sliderHValue: currentClass.averageHW), label: {
                     VStack{
                         //   Text(currentClass.averageGrade)
                         Text(c.className)

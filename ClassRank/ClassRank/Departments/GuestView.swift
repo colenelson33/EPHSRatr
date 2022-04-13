@@ -29,7 +29,7 @@ struct GuestView: View {
                         
                         Button(action: {
                         }) {
-                            NavigationLink(destination: ClassListView(currentClass: GlobalVar.iOS)) {
+                            NavigationLink(destination: ClassListView(currentClass: GlobalVar.apstats)) {
                                 Text("Math")
                                 
                             }

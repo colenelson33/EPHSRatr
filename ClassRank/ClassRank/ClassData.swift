@@ -15,15 +15,17 @@ class ClassData: Decodable, Identifiable {
     var credits: Int
     var prerequisite: String
     var description: String
+    var averageHW: Double
     
    
-    init(className: String, averageGrade: Double, Teacher: String, credits: Int, preR: String, description: String){
+    init(className: String, averageGrade: Double, Teacher: String, credits: Int, preR: String, description: String, averageHW: Double){
         self.className = className
         self.averageGrade = averageGrade
         self.Teacher = Teacher
         self.credits = credits
         self.prerequisite = preR
         self.description = description
+        self.averageHW = averageHW
     }
 }
 

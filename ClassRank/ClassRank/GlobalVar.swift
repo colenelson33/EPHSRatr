@@ -27,18 +27,18 @@ extension Color {
 }
 
 var data = [
-    ListData(title: "Art", teacherList: ["Amanda Budde", "Nancy Gallas", "Christopher True"], classesNum: GlobalVar.ArtClasses.count, Image: "LazyGrid",Color: Color.red, percentage: 0.30, departmentIndex: 0),
-    ListData(title: "Business & Marketing", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.BusinessClasses.count, Image: "LazyGrid2",Color: Color.red, percentage: 0.25, departmentIndex: 1),
-    ListData(title: "English", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.EnglishClasses.count, Image: "themeDetector",Color: Color.red, percentage: 0.10, departmentIndex: 2),
-    ListData(title: "Family & Consumer Sciences", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.famCons.count, Image: "try1",Color: Color.red, percentage: 0.45, departmentIndex: 3),
-    ListData(title: "Industrial Technology", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.industrialTechClasses.count, Image: "themeDetector",Color: Color.red, percentage: 0.86, departmentIndex: 4),
-    ListData(title: "Math", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.MathClasses.count, Image: "LazyGrid",Color: Color.red, percentage: 0.30, departmentIndex: 5),
-    ListData(title: "Music", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.MusicClasses.count, Image: "LazyGrid2",Color: Color.red, percentage: 0.25, departmentIndex: 6),
-    ListData(title: "Phy Ed/Health", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.phyEdClasses.count, Image: "themeDetector",Color: Color.red, percentage: 0.10, departmentIndex: 7),
-    ListData(title: "Science", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.ScienceClasses.count, Image: "try1",Color: Color.red, percentage: 0.45, departmentIndex: 8),
-    ListData(title: "Social Studies", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.SocialClasses.count, Image: "themeDetector", Color: Color.red, percentage: 0.86, departmentIndex: 9),
-    ListData(title: "Work Experience", teacherList: ["This", "That", "More"], classesNum: GlobalVar.WorkExperienceClasses.count, Image: "", Color: Color.red, percentage: 0.22, departmentIndex: 10),
-    ListData(title: "World Language", teacherList: ["This", "That", "More"], classesNum: GlobalVar.WorldLanguageClasses.count, Image: "", Color: Color.red, percentage: 0.22, departmentIndex: 11)
+    ListData(title: "Art", teacherList: ["Amanda Budde", "Nancy Gallas", "Christopher True"], classesNum: GlobalVar.ArtClasses.count, Image: "paintbrush",Color: Color.red, percentage: 0.30, departmentIndex: 0),
+    ListData(title: "Business & Marketing", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.BusinessClasses.count, Image: "dollarsign.circle",Color: Color.red, percentage: 0.25, departmentIndex: 1),
+    ListData(title: "English", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.EnglishClasses.count, Image: "book.closed",Color: Color.red, percentage: 0.10, departmentIndex: 2),
+    ListData(title: "Family & Consumer Sciences", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.famCons.count, Image: "person.3",Color: Color.red, percentage: 0.45, departmentIndex: 3),
+    ListData(title: "Industrial Technology", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.industrialTechClasses.count, Image: "airplane.departure",Color: Color.red, percentage: 0.86, departmentIndex: 4),
+    ListData(title: "Math", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.MathClasses.count, Image: "x.squareroot",Color: Color.red, percentage: 0.30, departmentIndex: 5),
+    ListData(title: "Music", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.MusicClasses.count, Image: "music.note",Color: Color.red, percentage: 0.25, departmentIndex: 6),
+    ListData(title: "Phy Ed/Health", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.phyEdClasses.count, Image: "bandage",Color: Color.red, percentage: 0.10, departmentIndex: 7),
+    ListData(title: "Science", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.ScienceClasses.count, Image: "leaf",Color: Color.red, percentage: 0.45, departmentIndex: 8),
+    ListData(title: "Social Studies", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.SocialClasses.count, Image: "globe", Color: Color.red, percentage: 0.86, departmentIndex: 9),
+    ListData(title: "Work Experience", teacherList: ["This", "That", "More"], classesNum: GlobalVar.WorkExperienceClasses.count, Image: "person.text.rectangle", Color: Color.red, percentage: 0.22, departmentIndex: 10),
+    ListData(title: "World Language", teacherList: ["This", "That", "More"], classesNum: GlobalVar.WorldLanguageClasses.count, Image: "globe.europe.africa", Color: Color.red, percentage: 0.22, departmentIndex: 11)
 ]
 
 struct GlobalVar{
@@ -49,33 +49,36 @@ struct GlobalVar{
     
     static let DepartmentList = [ArtClasses, BusinessClasses, EnglishClasses, famCons, industrialTechClasses, MathClasses, MusicClasses, phyEdClasses, ScienceClasses, WorkExperienceClasses, WorldLanguageClasses]
   
-    static let ArtClasses = [APStudioD, APStudioDP, APStudioSC, AdvancedCeramics, ceramics1, ceramics2, DigitalArt, DigitalArt2, Drawing, Drawing2, jewelry, painting1, painting2, sculpture, sculpture2, studioArt, ]
+    static let ArtClasses = [apstats, apstats, apstats]
+    //[APStudioD, APStudioDP, APStudioSC, AdvancedCeramics, ceramics1, ceramics2, DigitalArt, DigitalArt2, Drawing, Drawing2, jewelry, painting1, painting2, sculpture, sculpture2, studioArt, ]
     
-    static let BusinessClasses = [IntroToTechSkinny, Accounting, AdvancedAccounting, AdvancedMarketing, APEconomics, APMicro, BusinessInnovations, BusinessIntroduction, BusinessIntroductionSpanishEdition, BusinessLawEthics, Careers910, Careers1112, Entrepreneurship, FinanceInvesting, IntroductionToTechnology, IntroductionToTechnologyBlended,IntroductionToTechnologySkills, Keyboarding, MarketingStrategies, PersonalFinancialManagement, SeniorInternProgram, SpreadsheetsAndDatabases]
+    static let BusinessClasses = [apstats, apstats, apstats]
+    //[IntroToTechSkinny, Accounting, AdvancedAccounting, AdvancedMarketing, APEconomics, APMicro, BusinessInnovations, BusinessIntroduction, BusinessIntroductionSpanishEdition, BusinessLawEthics, Careers910, Careers1112, Entrepreneurship, FinanceInvesting, IntroductionToTechnology, IntroductionToTechnologyBlended,IntroductionToTechnologySkills, Keyboarding, MarketingStrategies, PersonalFinancialManagement, SeniorInternProgram, SpreadsheetsAndDatabases]
     
-    static let EnglishClasses = [iOS, ios2, iOS, iOS, iOS]
+    static let EnglishClasses = [apstats, apstats, apstats]
     
-    static let famCons = [iOS, ios2, iOS, iOS, iOS]
+    static let famCons = [apstats, apstats, apstats]
     
-    static let industrialTechClasses = [iOS, ios2, iOS, iOS, iOS]
+    static let industrialTechClasses = [apstats, apstats, apstats]
     
-    static let MathClasses = [iOS, Algebra, Algebra2, Algebra2S, AT, CalcAB, Calc3, CSP, Cyber, FST, FST2, FST3, Geo, ios2, preCalc, stats, alg2, honorsGeo, honorsPreCalc, calcAP, calcAPbc, apcsp, apcsa, apstats]
+    static let MathClasses = [apstats, apstats, apstats]
+    //[iOS, Algebra, Algebra2, Algebra2S, AT, CalcAB, Calc3, CSP, Cyber, FST, FST2, FST3, Geo, ios2, preCalc, stats, alg2, honorsGeo, honorsPreCalc, calcAP, calcAPbc, apcsp, apcsa, apstats]
     
-    static let MusicClasses = [iOS, ios2, iOS, iOS, iOS]
+    static let MusicClasses = [apstats, apstats, apstats]
     
-    static let phyEdClasses = [iOS, ios2, iOS, iOS, iOS]
+    static let phyEdClasses = [apstats, apstats, apstats]
     
-    static let ScienceClasses = [iOS, ios2, iOS, iOS, iOS]
+    static let ScienceClasses = [apstats, apstats, apstats]
     
-    static let SocialClasses = [iOS, ios2, iOS, iOS, iOS]
+    static let SocialClasses = [apstats, apstats, apstats]
     
-    static let WorkExperienceClasses = [iOS, ios2, iOS, iOS, iOS]
+    static let WorkExperienceClasses = [apstats, apstats, apstats]
     
-    static let WorldLanguageClasses = [iOS, ios2, iOS, iOS, iOS]
+    static let WorldLanguageClasses = [apstats, apstats, apstats]
     
     
     
-    static let SpreadsheetsAndDatabases = ClassData(className: "Spreadsheets and Databases", averageGrade: 0.0, Teacher: "", credits: 1, preR: "None", description: "Excel is perhaps the most important software program used in the workplace today, and you will have a strong competitive advantage in college and the workplace by taking this class! Learn how Excel makes it easy to create formulas and functions to get significant meaning out of numbers in a spreadsheet. Work with pivot tables, use lookup functions, and create charts and graphs along with various other worksheet enhancements to make your data work magic. Learn how Access can help you better manage and organize data through the use of tables, advanced queries, and reports in a relational database.")
+   /* static let SpreadsheetsAndDatabases = ClassData(className: "Spreadsheets and Databases", averageGrade: 0.0, Teacher: "", credits: 1, preR: "None", description: "Excel is perhaps the most important software program used in the workplace today, and you will have a strong competitive advantage in college and the workplace by taking this class! Learn how Excel makes it easy to create formulas and functions to get significant meaning out of numbers in a spreadsheet. Work with pivot tables, use lookup functions, and create charts and graphs along with various other worksheet enhancements to make your data work magic. Learn how Access can help you better manage and organize data through the use of tables, advanced queries, and reports in a relational database.")
     
     static let SeniorInternProgram = ClassData(className: "Senior Intern Program", averageGrade: 0.0, Teacher: "", credits: 4, preR: "None", description: "Get a head start on planning for your future by participating in the Senior Intern Program. You will complete in-depth personality and interest assessments to learn how your strengths match to careers and then you will learn how to network with people in industry to explore all types of options. The skills you learn and practice in interviewing ensure you are able to secure the positions for which you’re applying. You will have the opportunity to do informational interviews, job shadows, and internships in any career area you would like to explore. This includes everything from opportunities in health sciences, political science, business, the trades, engineering, law, natural resources, entrepreneurship, arts, and communication to emerging opportunities as well. Your time in the Senior Intern Program is very individualized and experiential.")
     
@@ -197,8 +200,9 @@ struct GlobalVar{
     static let apcsp = ClassData(className: "AP Computer Sci Principles A&B", averageGrade: 10.2, Teacher: "Jenn Nelson/Jessica Breed", credits: 2, preR: "Read & write at grade level", description: "A rigorous, fast-paced course that gets you ready for the AP CSP exam (given nationally in May). We practice computational thinking and learn about the wide field of computer science. Some days we are writing code in MIT App Inventor, reading about DDoS attacks, arguing about whose job it is to provide internet access to all (or some), or working in teams to solve puzzles, practice sorting algorithms or create post-it art. We discuss the impact that Big Data has on our world, what happened to our privacy and what is double factor authentication among other topics. As an AP level class, we will build a digital portfolio to send to the College Board; read and write critically about data and algorithms; and prepare for the rigorous AP multiple choice test in the spring.")
     
     static let apcsa = ClassData(className: "AP Computer Science A: Java A&B", averageGrade: 100.0, Teacher: "Jenn Nelson", credits: 2, preR: "AP CSP or Honors Algebra II or FST", description: "AP CS A: Java is a challenging course that prepares you for the AP CS A: Java exam offered in May. Most students who take Java intend to take (or have taken) Precalculus. This course requires deep thinkers who love to problem solve. Figuring out why algorithms work (or don't), anticipating challenges and celebrating when everything is successful make this a rewarding adventure in computing. AP CS A: Java is an ideal course before starting the calculus sequence. Increasing your logical thinking skills, revealing how algorithms function and making your thinking transparent will help you in future mathematics, science, and engineering courses. We work hard, tackle complex problems, and create inventive solutions.")
+    */
+    static let apstats = ClassData(className: "AP Statistics", averageGrade: 100.0, Teacher: "", credits: 2, preR: "Honors Algebra II OR FST", description: "Preparation for the AP exam will be provided in class and students are strongly encouraged to take the examination. Advanced Placement Statistics will introduce students to the major concepts and tools for collecting data, analyzing data, and drawing conclusions from data. The course follows four broad conceptual themes: Exploring Data: Observing patterns and departures from patterns; Planning a Study: Deciding what and how to measure; Anticipating Patterns: Producing models using probability and simulation; and Statistical Inference: Estimating parameters and testing hypotheses. Students are required to have a graphing calculator for this course (recommended Texas Instruments TI-89 or TI-84).", averageHW: 5)
     
-    static let apstats = ClassData(className: "AP Statistics", averageGrade: 100.0, Teacher: "", credits: 2, preR: "Honors Algebra II OR FST", description: "Preparation for the AP exam will be provided in class and students are strongly encouraged to take the examination. Advanced Placement Statistics will introduce students to the major concepts and tools for collecting data, analyzing data, and drawing conclusions from data. The course follows four broad conceptual themes: Exploring Data: Observing patterns and departures from patterns; Planning a Study: Deciding what and how to measure; Anticipating Patterns: Producing models using probability and simulation; and Statistical Inference: Estimating parameters and testing hypotheses. Students are required to have a graphing calculator for this course (recommended Texas Instruments TI-89 or TI-84).")
 }
 
 class Card{
