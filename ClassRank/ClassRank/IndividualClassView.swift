@@ -41,21 +41,10 @@ struct IndividualClassView: View {
     @State var showPopUp: Bool = false
     @State var showPrePopUp: Bool = false
     
-    
-    
-    
-
-    
+    @State var bigData = CloudDataViewModel()
     
     var body: some View {
         
-        
-        
-        let difficultLevel = setDifficulty(grade: currentClass.averageGrade)
-        let tipText: String = String(format: "%.1f", currentClass.averageGrade)
-        
-        
-    
         
         NavigationView{
             ScrollView{
@@ -85,11 +74,10 @@ struct IndividualClassView: View {
                                 Cards(txt: "Prerequisites", activity: "Tap for Info", sysimages: "gobackward", opacityVal: 0.9, cardIndex: 1, showPopUp: $showPopUp, showPrePopUp: $showPrePopUp)
                                     
                                 
-                                Cards(txt: "Difficulty", activity: difficultLevel, sysimages: "flame", opacityVal: 0.9, cardIndex: 2, showPopUp: .constant(false), showPrePopUp: .constant(false))
+                                Cards(txt: "Difficulty", activity: "difficultLevel", sysimages: "flame", opacityVal: 0.9, cardIndex: 2, showPopUp: .constant(false), showPrePopUp: .constant(false))
                                   
                             }
                         }.padding()
-                        
                         
                         
                         Spacer()
@@ -108,11 +96,23 @@ struct IndividualClassView: View {
 
                                 .padding()
                                 .disabled(false)
-                                Text("Average Grade: \(tipText)%")
+                                List{
+                                    ForEach(bigData.grades, id: \.self){ grade in
+                                        Text(grade.name)
+                                        Spacer()
+                                        Text(bigData.averageGrade(gradeList: grade.gradeList))
+                                            .onTapGesture {
+                                                bigData.updateGrades(grade: bigData.grades[0])
+                                            }
+                                      }//.onDelete(perform: vm.deleteItem )
+                                        
+                                    
+                                }
+                               /* Text("Average Grade: \(bigData.averageGrade(gradeList: bigData.grades[0].gradeList))%")
                                     .font(.system(size: 20))
                                     .fontWeight(.bold)
                                     .foregroundColor(isEditing ? .black : .red)
-                                    .padding()
+                                    .padding()*/
                                 
                                 Slider(value: $sliderHValue, in: 0...10){
                                     Text("Speed")
@@ -143,7 +143,7 @@ struct IndividualClassView: View {
 
                                 .padding()
                                 .disabled(true)
-                                Text("Average Grade: \(tipText)%")
+                                Text("Average Grade: \(bigData.averageGrade(gradeList: bigData.grades[0].gradeList))%")
                                     .font(.system(size: 20))
                                     .fontWeight(.bold)
                                     .foregroundColor(isEditing ? .blue : .red)

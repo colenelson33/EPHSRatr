@@ -126,7 +126,7 @@ struct ContentView: View {
                     //.padding(.top, 300)
                 Button(action: {
                 }) {
-                    NavigationLink(destination: TestData()) {
+                    NavigationLink(destination: CloudData()) {
                         Label {
                             Text("Login with iCloud")
                                 .foregroundColor(Color.iCloudBlue)

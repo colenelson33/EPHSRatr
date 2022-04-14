@@ -8,54 +8,56 @@
 import SwiftUI
 import CloudKit
 
-struct fruitModel: Hashable{
-    let name: String
-    let record: CKRecord
-    
-}
-
 struct gradeModel: Hashable{
     
-    let name: [Double]
+    let name: String
     let record: CKRecord
+    var gradeList: [Double]
+    var homeworkList: [Double]
     
     
 }
 
-class TestDataViewModel: ObservableObject{
+class CloudDataViewModel: ObservableObject{
     
     @Published var text: String = ""
-    @Published var fruits: [fruitModel] = []
-    //@Published var grades: [Double]
-    @Published var gradeArray: gradeModel
-//    @Published var grade: String = ""
+    @Published var grades: [gradeModel] = []
     
     init(){
         fetchItems()
     }
 
+    
+    
     func saveButtonPressed(){
-       /* guard !text.isEmpty else {
+       guard !text.isEmpty else {
             return
-        }*/
-        if let grade = Double(text){
-        addItem(name: grade)
+       }
+        if checkForDouble(grade: text) == 0.0{
+            
         }
-        
-       // averageGrade(val: grade)
     }
-   /* func fetchGrade(){
-        let predicate = NSPredicate(value: true)
-        let query = CKQuery(recordType: "Grade", predicate: predicate)
-        let queryOperation = CKQueryOperation(query: query)
+   
+    func fetchItems(){
         
-        var returnedGrades: [Double] = []
+        @AppStorage("className") var className: String = ""
+        let predicate = NSPredicate(format: "name = %@", argumentArray: [className])
+      //  let predicate = NSPredicate(value: true)
+        let query = CKQuery(recordType: "Class", predicate: predicate)
+        //query.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        let queryOperation = CKQueryOperation(query: query)
+        queryOperation.resultsLimit = 1
+        
+        var returnedItems: [gradeModel] = []
+        
         
         queryOperation.recordMatchedBlock = { (returnedRecordID, returnedResult) in
             switch returnedResult{
             case .success(let record):
-                guard let name = record["name"] as? Double else{ return }
-                returnedGrades.append(returnedResult)
+                guard let name = record["name"] as? String else{ return }
+                guard let gradeList = record["gradeList"] as? [Double] else { return }
+                guard let homeworkList = record["homeworkList"] as? [Double] else { return }
+                returnedItems.append(gradeModel(name: name, record: record, gradeList: gradeList, homeworkList: homeworkList))
                 
             case .failure(let error):
                 print("Record matched error: \(error)")
@@ -63,11 +65,18 @@ class TestDataViewModel: ObservableObject{
             
         }
         
+        queryOperation.queryResultBlock = { [weak self]returnedResult in
+            print(returnedResult)
+            DispatchQueue.main.async {
+                self?.grades = returnedItems
+            }
+            
+        }
         
-        
-    }*/
+        addOperations(operation: queryOperation)
+       }
     
-    func fetchItems2(){
+    /*func fetchItems2(){
         
         
         //let predicate = NSPredicate(format: "name = %@", argumentArray: ["Cocoanut"])
@@ -103,81 +112,29 @@ class TestDataViewModel: ObservableObject{
         }
         
         addOperations(operation: queryOperation)
-       }
-    
-    func fetchItems(){
-         
-         
-         let predicate = NSPredicate(value: true)
-         let query = CKQuery(recordType: "Grade", predicate: predicate)
-         let queryOperation = CKQueryOperation(query: query)
-         queryOperation.resultsLimit = 1
-         
-         
-         
-         
-         queryOperation.recordMatchedBlock = { (returnedRecordID, returnedResult) in
-             switch returnedResult{
-             case .success(let record):
-                 guard let name = record["gradeList"] as? [Double] else{
-                    return
-                 }
-                 var returnedItem = gradeModel(name: name, record: record)
-
-                 
-                
-                 
-             case .failure(let error):
-                 print("Record matched error: \(error)")
-                 return
-             }
-             
-
-         }
-         
-         queryOperation.queryResultBlock = { returnedResult in
-             print(returnedResult)
-             DispatchQueue.main.async {
-               //  self?.fetchItems()
-             }
-             
-         }
-         
-         addOperations(operation: queryOperation)
-        
-     }
-    
-    
-    
+       }*/
     
     func addOperations(operation: CKDatabaseOperation){
-        
-       
         CKContainer.default().publicCloudDatabase.add(operation)
-        
-        
     }
     
-    func updateItem(fruit: fruitModel){
-        let record = fruit.record
-        record["name"] = "Something else something else"
-        saveItem(record: record)
-        
-    }
-    
-    func updateGradeList(grade: gradeModel, newGrades: [Double]){
-        
+    func updateGrades(grade: gradeModel){
         let record = grade.record
-        record["gradeList"] = newGrades
+        var newList = grade.gradeList
+        newList.append(100)
+        print("ok")
+        record["gradeList"] = newList
+        saveItem(record: record, className: grade.name)
         
     }
     
-    
-    
-    private func addItem(name: Double){
+    func addItem(name: gradeModel){
+        
         let newFruit = CKRecord(recordType: "Grade")
-        newFruit["name"] = name
-        saveItem(record: newFruit)
+        newFruit["name"] = name.name
+        newFruit["gradeList"] = name.gradeList
+        newFruit["homeworkList"] = name.homeworkList
+        saveItem(record: name.record, className: name.name)
         
     }
     
@@ -194,13 +151,13 @@ class TestDataViewModel: ObservableObject{
         }
     }
     */
-    private func saveItem(record: CKRecord){
+     func saveItem(record: CKRecord, className: String){
         CKContainer.default().publicCloudDatabase.save(record) { [weak self] returnedRecord, returnedError in
             print(returnedRecord)
             print("Error: \(returnedError)")
             DispatchQueue.main.async {
                 self?.text = ""
-                self?.fetchItems()
+        //        self?.fetchItems(className: className)
             }
             
             
@@ -228,26 +185,47 @@ class TestDataViewModel: ObservableObject{
         }
     }
     
-    
+    func averageGrade(gradeList: [Double]) -> String{
+        var averageGrade: Double = 0.0
+        var count = 0.0
+        for grade in gradeList{
+            
+            averageGrade += grade
+            count+=1
+            }
+        let y = Double(round(100*(averageGrade/count))/100)
+        return String(y)
+       
+    }
+
 }
 
-struct TestData: View {
+
+
+
+struct CloudData: View {
     
-    @State private var vm = TestDataViewModel()
+    @State private var vm = CloudDataViewModel()
+
+    
     var body: some View {
     
+        
+
         NavigationView{
             VStack{
                 header
                 textField
                 button
                 List{
-                   // ForEach(vm.gradeArray.name, id: \.self){ grade in
-                     //   Text(grade.name)
-                            /*.onTapGesture {
-                                vm.updateItem(fruit: fruit)
-                            }*/
-                   // }//.onDelete(perform: vm.deleteItem )
+                    ForEach(vm.grades, id: \.self){ grade in
+                        Text(grade.name)
+                        Spacer()
+                        Text(vm.averageGrade(gradeList: grade.gradeList))
+                            .onTapGesture {
+                                vm.updateGrades(grade: vm.grades[0])
+                            }
+                      }//.onDelete(perform: vm.deleteItem )
                         
                     
                 }
@@ -262,11 +240,11 @@ struct TestData: View {
 
 struct TestData_Previews: PreviewProvider {
     static var previews: some View {
-        TestData()
+        CloudData()
     }
 }
 
-extension TestData{
+extension CloudData{
     
     private var header: some View{
         Text("CloudKit Crud 😏")

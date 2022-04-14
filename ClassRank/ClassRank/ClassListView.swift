@@ -18,6 +18,7 @@ struct ClassListView: View{
     
     var currentClass: ClassData
     
+    @AppStorage("className") var className: String = ""
 
     var body: some View{
         
@@ -25,16 +26,21 @@ struct ClassListView: View{
             
             
         List(GlobalVar.DepartmentList[departmentIndex]){ c in
-            NavigationLink(destination: IndividualClassView(currentClass: c, sliderGValue: currentClass.averageGrade, sliderHValue: currentClass.averageHW), label: {
+            NavigationLink(destination: IndividualClassView(currentClass: c, sliderGValue: 100, sliderHValue: 100), label: {
                     VStack{
                         //   Text(currentClass.averageGrade)
                         Text(c.className)
                             .fontWeight(.bold)
                             .padding()
-                            
-                            
+                            .onTapGesture {
+                                            
+                                            
+                                            className = c.className
+                                            print(className)
+                                        }
                     }
-                })
+                }
+            )
             }
         
                 
