@@ -22,13 +22,9 @@ class CloudDataViewModel: ObservableObject{
     
     @Published var text: String = ""
     @Published var grades: [gradeModel] = []
-    @AppStorage("className") var className: String = ""
-    @Published var classString = className
+    @Published var className: String = ""
+    @Published var hasClicked: Bool = false
     
-    init(){
-        fetchItems()
-    }
-
     
     
     func saveButtonPressed(){
@@ -44,7 +40,7 @@ class CloudDataViewModel: ObservableObject{
         
       //  @AppStorage("className") var className: String = ""
         
-        let predicate = NSPredicate(format: "name = %@", argumentArray: ["AP Microeconomics"])
+        let predicate = NSPredicate(format: "name = %@", argumentArray: [className])
       //  let predicate = NSPredicate(value: true)
         let query = CKQuery(recordType: "Class", predicate: predicate)
         //query.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]

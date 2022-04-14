@@ -31,6 +31,7 @@ struct IndividualClassView: View {
     @AppStorage("isLoggedIn") var loggedIn = true
     @AppStorage("isGuest") var isGuest = false
     @AppStorage("isDepartmentView") var isDepartmentView = true
+    @EnvironmentObject var bigData: CloudDataViewModel
     
     var currentClass: ClassData
     @State var sliderGValue: Double
@@ -40,8 +41,6 @@ struct IndividualClassView: View {
     @State private var isEditing = false
     @State var showPopUp: Bool = false
     @State var showPrePopUp: Bool = false
-    
-    @State var bigData = CloudDataViewModel()
     
     var body: some View {
         
@@ -139,7 +138,7 @@ struct IndividualClassView: View {
 
                                 .padding()
                                 .disabled(true)
-                                Text("Average Grade: )%")
+                                Text("Average Grade: \(bigData.averageGrade(gradeList: bigData.grades[0].gradeList))%")
                                     .font(.system(size: 20))
                                     .fontWeight(.bold)
                                     .foregroundColor(isEditing ? .blue : .red)

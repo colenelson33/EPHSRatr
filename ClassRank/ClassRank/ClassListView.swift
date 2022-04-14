@@ -15,6 +15,9 @@ struct ClassListView: View{
     @AppStorage("isDepartmentView") var isDepartmentView = false
     @AppStorage("departmentIndex") var departmentIndex = 0
     
+    @EnvironmentObject var bigData: CloudDataViewModel
+        
+    
     
     var currentClass: ClassData
     
@@ -33,15 +36,18 @@ struct ClassListView: View{
                             .fontWeight(.bold)
                             .padding()
                             .onTapGesture {
-                                            
-                                        @AppStorage("className") var className: String = ""
-                                            className = c.className
-                                            print(className)
-                                        }
-                    }
-                }
-            )
+                                bigData.className = c.className
+                                print("\(bigData.className)")
+                                bigData.hasClicked = true
+                                print("\(c.className)")
+                                bigData.fetchItems()
+                       }
+                                                            
+                    
             }
+        }
+        )
+    }
         
                 
             .listStyle(.insetGrouped)

@@ -45,6 +45,8 @@ struct GlobalVar{
     
     static var inGuestView: Bool = true
     
+    static var currentClass: String = ""
+    
     static var currentGrade: Double = 100.0
     
     static let DepartmentList = [ArtClasses, BusinessClasses, EnglishClasses, famCons, industrialTechClasses, MathClasses, MusicClasses, phyEdClasses, ScienceClasses, WorkExperienceClasses, WorldLanguageClasses]
