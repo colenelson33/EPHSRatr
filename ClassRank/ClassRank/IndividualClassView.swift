@@ -139,7 +139,7 @@ struct IndividualClassView: View {
 
                                 .padding()
                                 .disabled(true)
-                                Text("Average Grade: \(bigData.averageGrade(gradeList: bigData.grades[0].gradeList))%")
+                                Text("Average Grade: )%")
                                     .font(.system(size: 20))
                                     .fontWeight(.bold)
                                     .foregroundColor(isEditing ? .blue : .red)
