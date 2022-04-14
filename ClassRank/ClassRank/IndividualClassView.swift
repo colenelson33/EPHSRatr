@@ -15,7 +15,7 @@ func setDifficulty(grade: Double) -> String{
     
     var level = ""
     if grade < 79 {
-        level = "Maximum"
+        level = "Challenging"
     }else if grade > 90{
         level = "Easy"
     }else{
@@ -83,9 +83,13 @@ struct IndividualClassView: View {
                         Spacer()
                         VStack{
                             if(loggedIn == true) {
+                                Text("Class Grade")
+                                    .font(.system(size: 20))
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.red)
+                                
                                 Slider(value: $sliderGValue, in: 0...100){
                                 
-                                    Text("Speed")
                                 } minimumValueLabel: {
                                     Text("0")
                                 } maximumValueLabel: {
@@ -93,21 +97,13 @@ struct IndividualClassView: View {
                                 } onEditingChanged: { editing in
                                     isEditing = editing
                                 }
-
+                                Text("Grade: \(sliderGValue, specifier: "%.2f")")
+                                    .font(.system(size: 20))
+                                    .fontWeight(.bold)
+                                    .foregroundColor(isEditing ? .red : .black)
                                 .padding()
                                 .disabled(false)
-                                List{
-                                    ForEach(bigData.grades, id: \.self){ grade in
-                                        Text(grade.name)
-                                        Spacer()
-                                        Text(bigData.averageGrade(gradeList: grade.gradeList))
-                                            .onTapGesture {
-                                                bigData.updateGrades(grade: bigData.grades[0])
-                                            }
-                                      }//.onDelete(perform: vm.deleteItem )
-                                        
-                                    
-                                }
+                                
                                /* Text("Average Grade: \(bigData.averageGrade(gradeList: bigData.grades[0].gradeList))%")
                                     .font(.system(size: 20))
                                     .fontWeight(.bold)
