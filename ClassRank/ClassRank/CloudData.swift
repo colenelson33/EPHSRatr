@@ -41,6 +41,7 @@ class CloudDataViewModel: ObservableObject{
     func fetchItems(){
         
         @AppStorage("className") var className: String = ""
+        
         let predicate = NSPredicate(format: "name = %@", argumentArray: [className])
       //  let predicate = NSPredicate(value: true)
         let query = CKQuery(recordType: "Class", predicate: predicate)

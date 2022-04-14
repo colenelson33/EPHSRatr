@@ -18,7 +18,7 @@ struct ClassListView: View{
     
     var currentClass: ClassData
     
-    @AppStorage("className") var className: String = ""
+   
 
     var body: some View{
         
@@ -34,7 +34,7 @@ struct ClassListView: View{
                             .padding()
                             .onTapGesture {
                                             
-                                            
+                                        @AppStorage("className") var className: String = ""
                                             className = c.className
                                             print(className)
                                         }
