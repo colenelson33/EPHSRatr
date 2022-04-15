@@ -31,9 +31,12 @@ struct IndividualClassView: View {
     @AppStorage("isLoggedIn") var loggedIn = true
     @AppStorage("isGuest") var isGuest = false
     @AppStorage("isDepartmentView") var isDepartmentView = true
+    @AppStorage("e") var toggle: Bool = false
     @EnvironmentObject var bigData: CloudDataViewModel
     
-    var currentClass: ClassData
+    
+    @StateObject var currentClass: ClassData
+    
     @State var sliderGValue: Double
     @State var sliderHValue: Double
 
@@ -43,6 +46,8 @@ struct IndividualClassView: View {
     @State var showPrePopUp: Bool = false
     
     var body: some View {
+        
+        NavigationView{
         
             ScrollView{
             ZStack {
@@ -176,33 +181,35 @@ struct IndividualClassView: View {
 
             }
         
-        }
-            /*.toolbar{
-                            
-                            
-                            ToolbarItem(placement: .navigationBarTrailing){
-                                Button(action: {
-                                    withAnimation{
-                                    isGuest = false
-                                    loggedIn = false
-                                    isDepartmentView = true
-                                    }
-                                }) {
-                                    // NavigationLink(destination: ContentView()) {
-                                    Image(systemName: "house.circle")
-                                    
-                                    // }
+        }.toolbar{
+            
+            
+            ToolbarItem(placement: .navigationBarTrailing){
+                            Button(action: {
+                                withAnimation{
+                                isGuest = false
+                                loggedIn = false
+                                isDepartmentView = true
                                 }
+                            }) {
+                                // NavigationLink(destination: ContentView()) {
+                                Image(systemName: "house.circle")
+                                
+                                // }
                             }
-                ToolbarItem(placement: .navigationBarLeading){
-                    Button(action:  {
-                    }) {
-                        Image(systemName: "arrow.left")
-                    }
-
+                        }
+            ToolbarItem(placement: .navigationBarLeading){
+                Button(action:  {
+                    toggle.toggle()
+                }) {
+                    Image(systemName: "arrow.left")
                 }
-                            
-                        }*/
+
+            }
+                        
+                    }
+        }.navigationBarTitle(currentClass.className)
+        
     }
     
     

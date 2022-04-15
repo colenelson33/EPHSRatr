@@ -18,12 +18,19 @@ struct gradeModel: Hashable{
     
 }
 
+struct newGradeModel: Hashable{
+    let name: String
+    var gradeList: [Double]
+    var homeworkList: [Double]
+    
+}
+
 class CloudDataViewModel: ObservableObject{
     
     @Published var text: String = ""
     @Published var grades: [gradeModel] = []
     @Published var className: String = ""
-    @Published var hasClicked: Bool = false
+    @Published var classData = ClassData(className: "", Teacher: "", credits: 0, preR: "", description: "")
     
     
     
@@ -73,6 +80,12 @@ class CloudDataViewModel: ObservableObject{
         }
         
         addOperations(operation: queryOperation)
+        
+        if grades == []{
+            addItem(name: gradeModel(name: className, record: CKRecord(recordType: "Class"), gradeList: [], homeworkList: []))
+            self.fetchItems()
+        }
+        
        }
     
     /*func fetchItems2(){

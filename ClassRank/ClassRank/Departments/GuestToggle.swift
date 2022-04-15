@@ -19,7 +19,7 @@ struct GuestToggle: View {
             BlurryBackGroundView()
            
         }else{
-            ClassListView()
+            Toggle()
         }
     }
 }
