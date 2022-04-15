@@ -31,7 +31,6 @@ struct IndividualClassView: View {
     @AppStorage("isLoggedIn") var loggedIn = true
     @AppStorage("isGuest") var isGuest = false
     @AppStorage("isDepartmentView") var isDepartmentView = true
-    @AppStorage("individuals") var isIndivdual = false
     @EnvironmentObject var bigData: CloudDataViewModel
     
     var currentClass: ClassData
@@ -102,11 +101,11 @@ struct IndividualClassView: View {
                                 .padding()
                                 .disabled(false)
                                 
-                               /* Text("Average Grade: \(bigData.averageGrade(gradeList: bigData.grades[0].gradeList))%")
+                                Text("Average Grade: \(bigData.averageGrade(gradeList: bigData.grades[0].gradeList))%")
                                     .font(.system(size: 20))
                                     .fontWeight(.bold)
                                     .foregroundColor(isEditing ? .black : .red)
-                                    .padding()*/
+                                    .padding()
                                 
                                 Slider(value: $sliderHValue, in: 0...10){
                                     Text("Speed")
@@ -142,7 +141,7 @@ struct IndividualClassView: View {
                                     .fontWeight(.bold)
                                     .foregroundColor(isEditing ? .blue : .red)
                                     .padding()
-                                
+                               
                                 Slider(value: $sliderHValue, in: 0...10){
                                     Text("Speed")
                                 } minimumValueLabel: {
@@ -178,7 +177,7 @@ struct IndividualClassView: View {
             }
         
         }
-            .toolbar{
+            /*.toolbar{
                             
                             
                             ToolbarItem(placement: .navigationBarTrailing){
@@ -191,19 +190,19 @@ struct IndividualClassView: View {
                                 }) {
                                     // NavigationLink(destination: ContentView()) {
                                     Image(systemName: "house.circle")
+                                    
                                     // }
                                 }
                             }
                 ToolbarItem(placement: .navigationBarLeading){
                     Button(action:  {
-                        isIndivdual = false
                     }) {
                         Image(systemName: "arrow.left")
                     }
 
                 }
                             
-                        }
+                        }*/
     }
     
     
@@ -271,16 +270,16 @@ struct Cards: View{
     
 }
 
-struct IndividualClassView_Previews: PreviewProvider{
+/*struct IndividualClassView_Previews: PreviewProvider{
     
     
     static var previews: some View {
         
-        IndividualClassView(currentClass: GlobalVar.apstats, sliderGValue: 0.0, sliderHValue: 0.0)
+    //    IndividualClassView()
       //  Window(title: "Teacher Info", message: "Name: Jen Nelson", buttonText: "Ok", show: .constant(true))
     }
 }
-
+*/
 
 
 

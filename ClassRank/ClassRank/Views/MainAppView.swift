@@ -14,25 +14,31 @@ struct MainAppView: View {
     @AppStorage("isGuest") var isGuest = false
     @AppStorage("isDepartmentView") var isDepartmentView = true
     @StateObject var bigData = CloudDataViewModel()
+    @StateObject var index = ClassData(className: "", Teacher: "", credits: 0, preR: "", description: "")
+    
     
     var body: some View {
         if loggedIn{
             GuestToggle()
                 .preferredColorScheme(isDarkMode ? .dark : .light)
                 .environmentObject(bigData)
+                .environmentObject(index)
         } else if isGuest{
             GuestToggle()
                 .preferredColorScheme(isDarkMode ? .dark : .light)
                 .environmentObject(bigData)
+                .environmentObject(index)
         } else if isGuest == false{
             ContentView()
                 .preferredColorScheme(isDarkMode ? .dark : .light)
                 .environmentObject(bigData)
+                .environmentObject(index)
         }
         else{
             ContentView()
                 .preferredColorScheme(isDarkMode ? .dark : .light)
                 .environmentObject(bigData)
+                .environmentObject(index)
         }
         
     }

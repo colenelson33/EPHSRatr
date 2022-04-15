@@ -11,6 +11,7 @@ struct GuestToggle: View {
     
     @AppStorage("isDepartmentView") var isDepartmentView: Bool = false
     @AppStorage("departmentIndex") var departmentIndex: Int = 0
+    @AppStorage("in") var isIndividual = false
     
     var body: some View {
         

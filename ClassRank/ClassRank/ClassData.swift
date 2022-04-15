@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ClassData: Decodable, Identifiable {
+class ClassData: Decodable, Identifiable, ObservableObject {
     
     var className: String
     var Teacher: String?

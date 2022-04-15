@@ -14,91 +14,92 @@ struct ClassListView: View{
     @AppStorage("isGuest") var isGuest = false
     @AppStorage("isDepartmentView") var isDepartmentView = false
     @AppStorage("departmentIndex") var departmentIndex = 0
-    @AppStorage("individuals") var isIndividual = false
+    @AppStorage("in") var isIndividual: Bool = false
     
-    
+    @EnvironmentObject var index: ClassData
     @EnvironmentObject var bigData: CloudDataViewModel
-        
-
+    
+    
+    
     
     //var currentClass: ClassData
     
-   
-
+    func fetchStuff(c: ClassData){
+        
+        bigData.className = c.className
+        print("\(bigData.className)")
+        bigData.hasClicked = true
+        print("\(c.className)")
+        bigData.fetchItems()
+        
+        
+    }
+    
     var body: some View{
         
         
-        
-        if isIndividual == false{
-            ClassListView()
-            
-        }else{
-            IndividualClassView(currentClass: index, sliderGValue: 100, sliderHValue: 100)
-            
-        }
-            
-            
-        List(GlobalVar.DepartmentList[departmentIndex]){ c in
-            //NavigationLink(destination: IndividualClassView(currentClass: c, sliderGValue: 100, sliderHValue: 100), isActive: $isActive) {
-                    VStack{
-                        //   Text(currentClass.averageGrade)
+        NavigationView{
+            List(GlobalVar.DepartmentList[departmentIndex]){ c in
+                
+                
+                //NavigationLink(destination: IndividualClassView(currentClass: c, sliderGValue: 100, sliderHValue: 100), isActive: $isActive) {
+                
+                VStack{
+                    //   Text(currentClass.averageGrade)
+                    
+                    
+                    
+                    
+                    
+                    NavigationLink(destination: IndividualClassView(currentClass: c, sliderGValue: 100, sliderHValue: 100)){
                         
-                        Button {
-                            index = c
-                            print("bro come on")
-                            bigData.className = c.className
-                            print("\(bigData.className)")
-                            bigData.hasClicked = true
-                            print("\(c.className)")
-                            bigData.fetchItems()
-                            isIndividual = true
-                        
-                        } label: {
-                            Text(c.className)
+                        Text(c.className)
                             .fontWeight(.bold)
                             .padding()
                             .foregroundColor(.iCloudBlue)
-                        }
-
                             
-            }
-        
-        
-    }
-        
-                
-            .listStyle(.insetGrouped)
-            
-            .navigationTitle(Text("Class List"))
-            .navigationBarBackButtonHidden(false)
-            .toolbar{
-                        ToolbarItem(placement: .navigationBarLeading) {
-                            Button(action: {
-                                isDepartmentView = true
-                            }) {
-                                Image(systemName: "arrow.left")
-                                
-                            }
-                        }
                         
-                        ToolbarItem(placement: .navigationBarTrailing){
-                            Button(action: {
-                                isGuest = false
-                                loggedIn = false
-                            }) {
-                                // NavigationLink(destination: ContentView()) {
-                                Image(systemName: "house.circle")
-                                // }
-                            }
-                        }
+                    }.onTapGesture {
+                        self.fetchStuff(c: c)
+                    }
+                    
+                }
+            }
+            
+            
+            .listStyle(.insetGrouped)
+            .toolbar{
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        isDepartmentView = true
+                    }) {
+                        Image(systemName: "arrow.left")
                         
                     }
-            
+                }
+                
+                ToolbarItem(placement: .navigationBarTrailing){
+                    Button(action: {
+                        isGuest = false
+                        loggedIn = false
+                    }) {
+                        // NavigationLink(destination: ContentView()) {
+                        Image(systemName: "house.circle")
+                        // }
+                    }
+                }
+                
+            }
         }
-           
+        .navigationTitle(Text("Class List"))
+        .navigationBarBackButtonHidden(false)
+        
         
     }
-        
+    
+    
+}
+
 
 
 
