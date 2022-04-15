@@ -127,12 +127,13 @@ class CloudDataViewModel: ObservableObject{
         
     }
     
+    
     func addItem(name: gradeModel){
         
-        let newFruit = CKRecord(recordType: "Grade")
-        newFruit["name"] = name.name
-        newFruit["gradeList"] = name.gradeList
-        newFruit["homeworkList"] = name.homeworkList
+        let newClass = CKRecord(recordType: "Grade")
+        newClass["name"] = name.name
+        newClass["gradeList"] = name.gradeList
+        newClass["homeworkList"] = name.homeworkList
         saveItem(record: name.record, className: name.name)
         
     }

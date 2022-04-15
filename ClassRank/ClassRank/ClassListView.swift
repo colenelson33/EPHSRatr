@@ -14,39 +14,56 @@ struct ClassListView: View{
     @AppStorage("isGuest") var isGuest = false
     @AppStorage("isDepartmentView") var isDepartmentView = false
     @AppStorage("departmentIndex") var departmentIndex = 0
+    @AppStorage("individuals") var isIndividual = false
+    
     
     @EnvironmentObject var bigData: CloudDataViewModel
         
+
     
-    
-    var currentClass: ClassData
+    //var currentClass: ClassData
     
    
 
     var body: some View{
         
-        NavigationView{
+        
+        
+        if isIndividual == false{
+            ClassListView()
+            
+        }else{
+            IndividualClassView(currentClass: index, sliderGValue: 100, sliderHValue: 100)
+            
+        }
             
             
         List(GlobalVar.DepartmentList[departmentIndex]){ c in
-            NavigationLink(destination: IndividualClassView(currentClass: c, sliderGValue: 100, sliderHValue: 100), label: {
+            //NavigationLink(destination: IndividualClassView(currentClass: c, sliderGValue: 100, sliderHValue: 100), isActive: $isActive) {
                     VStack{
                         //   Text(currentClass.averageGrade)
-                        Text(c.className)
+                        
+                        Button {
+                            index = c
+                            print("bro come on")
+                            bigData.className = c.className
+                            print("\(bigData.className)")
+                            bigData.hasClicked = true
+                            print("\(c.className)")
+                            bigData.fetchItems()
+                            isIndividual = true
+                        
+                        } label: {
+                            Text(c.className)
                             .fontWeight(.bold)
                             .padding()
-                            .onTapGesture {
-                                bigData.className = c.className
-                                print("\(bigData.className)")
-                                bigData.hasClicked = true
-                                print("\(c.className)")
-                                bigData.fetchItems()
-                       }
-                                                            
-                    
+                            .foregroundColor(.iCloudBlue)
+                        }
+
+                            
             }
-        }
-        )
+        
+        
     }
         
                 
@@ -78,16 +95,11 @@ struct ClassListView: View{
                     }
             
         }
-            .navigationBarHidden(true)
            
-
-        
-     
-        
         
     }
         
 
-}
+
 
 

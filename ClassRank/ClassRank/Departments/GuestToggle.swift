@@ -18,7 +18,7 @@ struct GuestToggle: View {
             BlurryBackGroundView()
            
         }else{
-            ClassListView(currentClass: GlobalVar.apstats)
+            ClassListView()
         }
     }
 }

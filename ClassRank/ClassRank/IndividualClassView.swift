@@ -31,6 +31,7 @@ struct IndividualClassView: View {
     @AppStorage("isLoggedIn") var loggedIn = true
     @AppStorage("isGuest") var isGuest = false
     @AppStorage("isDepartmentView") var isDepartmentView = true
+    @AppStorage("individuals") var isIndivdual = false
     @EnvironmentObject var bigData: CloudDataViewModel
     
     var currentClass: ClassData
@@ -44,8 +45,6 @@ struct IndividualClassView: View {
     
     var body: some View {
         
-        
-        NavigationView{
             ScrollView{
             ZStack {
                 TeacherWindow(title: "Teacher Info", message: "Email: jennelson@edenpr.org", buttonText: "D O N E", show: $showPopUp)
@@ -178,13 +177,7 @@ struct IndividualClassView: View {
 
             }
         
-            .navigationBarHidden(true)
         }
-            
-         //  .navigationBarHidden(true)
-        }
-       
-        .navigationTitle(Text(""))
             .toolbar{
                             
                             
@@ -201,12 +194,16 @@ struct IndividualClassView: View {
                                     // }
                                 }
                             }
+                ToolbarItem(placement: .navigationBarLeading){
+                    Button(action:  {
+                        isIndivdual = false
+                    }) {
+                        Image(systemName: "arrow.left")
+                    }
+
+                }
                             
                         }
-    //       .navigationBarHidden(true)
-        .navigationBarBackButtonHidden(false)
-
-        
     }
     
     
