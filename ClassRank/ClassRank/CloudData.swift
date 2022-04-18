@@ -27,21 +27,10 @@ struct newGradeModel: Hashable{
 
 class CloudDataViewModel: ObservableObject{
     
-    @Published var text: String = ""
-    @Published var grades: [gradeModel] = []
+    @Published var grades: gradeModel = gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.0])
     @Published var className: String = ""
     @Published var classData = ClassData(className: "", Teacher: "", credits: 0, preR: "", description: "")
-    
-    
-    
-    func saveButtonPressed(){
-       guard !text.isEmpty else {
-            return
-       }
-        if checkForDouble(grade: text) == 0.0{
-            
-        }
-    }
+
    
     func fetchItems(){
         
@@ -54,7 +43,7 @@ class CloudDataViewModel: ObservableObject{
         let queryOperation = CKQueryOperation(query: query)
         queryOperation.resultsLimit = 1
         
-        var returnedItems: [gradeModel] = []
+        var returnedItems: gradeModel = gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.0])
         
         
         queryOperation.recordMatchedBlock = { (returnedRecordID, returnedResult) in
@@ -63,7 +52,7 @@ class CloudDataViewModel: ObservableObject{
                 guard let name = record["name"] as? String else{ return }
                 guard let gradeList = record["gradeList"] as? [Double] else { return }
                 guard let homeworkList = record["homeworkList"] as? [Double] else { return }
-                returnedItems.append(gradeModel(name: name, record: record, gradeList: gradeList, homeworkList: homeworkList))
+                returnedItems = gradeModel(name: name, record: record, gradeList: gradeList, homeworkList: homeworkList)
                 
             case .failure(let error):
                 print("Record matched error: \(error)")
@@ -76,78 +65,74 @@ class CloudDataViewModel: ObservableObject{
             DispatchQueue.main.async {
                 self?.grades = returnedItems
             }
-            
         }
+        
+    
         
         addOperations(operation: queryOperation)
         
-        if grades == []{
-            addItem(name: gradeModel(name: className, record: CKRecord(recordType: "Class"), gradeList: [], homeworkList: []))
-            self.fetchItems()
-        }
+        
         
        }
-    
-    /*func fetchItems2(){
-        
-        
-        //let predicate = NSPredicate(format: "name = %@", argumentArray: ["Cocoanut"])
-        let predicate = NSPredicate(value: true)
-        let query = CKQuery(recordType: "fruits", predicate: predicate)
-        query.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-        let queryOperation = CKQueryOperation(query: query)
-        queryOperation.resultsLimit = 5
-        
-        var returnedItems: [fruitModel] = []
-        
-        
-        queryOperation.recordMatchedBlock = { (returnedRecordID, returnedResult) in
-            switch returnedResult{
-            case .success(let record):
-                guard let name = record["name"] as? String else{
-                    return
-                }
-                returnedItems.append(fruitModel(name: name, record: record))
-                
-            case .failure(let error):
-                print("Record matched error: \(error)")
-            }
-            
-        }
-        
-        queryOperation.queryResultBlock = { [weak self]returnedResult in
-            print(returnedResult)
-            DispatchQueue.main.async {
-                self?.fruits = returnedItems
-            }
-            
-        }
-        
-        addOperations(operation: queryOperation)
-       }*/
     
     func addOperations(operation: CKDatabaseOperation){
         CKContainer.default().publicCloudDatabase.add(operation)
     }
     
-    func updateGrades(grade: gradeModel){
+    func updateGrades(grade: gradeModel, num: Double){
+        if grade.gradeList == [0.0]{
+            let record = grade.record
+            print("ok")
+            record["gradeList"] = [num]
+            saveItem(record: record)
+            
+        }else{
+        
         let record = grade.record
         var newList = grade.gradeList
-        newList.append(100)
-        print("ok")
+        newList.append(num)
         record["gradeList"] = newList
-        saveItem(record: record, className: grade.name)
+        saveItem(record: record)
+        }
+        
+    }
+    
+    func updateHomework(grade: gradeModel, num: Double){
+        if grade.homeworkList == [0.0] || grade.homeworkList == [0.1]{
+            let record = grade.record
+            print("ok")
+            record["homeworkList"] = [num]
+            saveItem(record: record)
+            
+        }else{
+        
+        let record = grade.record
+        var newList = grade.homeworkList
+        newList.append(num)
+        record["homeworkList"] = newList
+        saveItem(record: record)
+        }
         
     }
     
     
-    func addItem(name: gradeModel){
+    func addItem(name: String, num: Double){
         
-        let newClass = CKRecord(recordType: "Grade")
-        newClass["name"] = name.name
-        newClass["gradeList"] = name.gradeList
-        newClass["homeworkList"] = name.homeworkList
-        saveItem(record: name.record, className: name.name)
+        let newClass = CKRecord(recordType: "Class")
+        newClass["name"] = name
+        newClass["gradeList"] = [num]
+        newClass["homeworkList"] = [0.1]
+        saveItem(record: newClass)
+        
+    }
+    
+    func addItemHW(name: String, num: Double){
+        
+        let newClass = CKRecord(recordType: "Class")
+        newClass["name"] = name
+        newClass["gradeList"] = [0.0]
+        newClass["homeworkList"] = [num]
+        saveItem(record: newClass)
         
     }
     
@@ -164,13 +149,12 @@ class CloudDataViewModel: ObservableObject{
         }
     }
     */
-     func saveItem(record: CKRecord, className: String){
+     func saveItem(record: CKRecord){
         CKContainer.default().publicCloudDatabase.save(record) { [weak self] returnedRecord, returnedError in
             print(returnedRecord)
             print("Error: \(returnedError)")
             DispatchQueue.main.async {
-                self?.text = ""
-        //        self?.fetchItems(className: className)
+                self?.fetchItems()
             }
             
             
@@ -228,20 +212,18 @@ struct CloudData: View {
         NavigationView{
             VStack{
                 header
-                textField
+               
                 button
                 List{
-                    ForEach(vm.grades, id: \.self){ grade in
-                        Text(grade.name)
+                    
+                    Text(vm.grades.name)
                         Spacer()
-                        Text(vm.averageGrade(gradeList: grade.gradeList))
-                            .onTapGesture {
-                                vm.updateGrades(grade: vm.grades[0])
-                            }
+                    Text(vm.averageGrade(gradeList: vm.grades.gradeList))
+                            
                       }//.onDelete(perform: vm.deleteItem )
                         
                     
-                }
+                
                .listStyle(.plain)
             }
             .padding()
@@ -263,19 +245,11 @@ extension CloudData{
         Text("CloudKit Crud 😏")
             .font(.headline)
     }
-    private var textField: some View{
-        TextField("Add Something", text: $vm.text)
-            .padding(.leading)
-            .frame(height: 55)
-            .background(.gray)
-            .cornerRadius(10)
-            .opacity(0.4)
-            .padding()
-    }
+   
     
     private var button: some View{
         Button{
-            vm.saveButtonPressed()
+         //   vm.saveButtonPressed()
         } label: {
             Text("Add")
                 .frame(height: 55)

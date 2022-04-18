@@ -31,7 +31,7 @@ struct IndividualClassView: View {
     @AppStorage("isLoggedIn") var loggedIn = true
     @AppStorage("isGuest") var isGuest = false
     @AppStorage("isDepartmentView") var isDepartmentView = true
-    @AppStorage("e") var toggle: Bool = false
+    @AppStorage("z") var toggle: Bool = false
     @EnvironmentObject var bigData: CloudDataViewModel
     
     
@@ -60,8 +60,8 @@ struct IndividualClassView: View {
                     
                     VStack{
                         Spacer()
-                        Text(currentClass.className)
-                            .font(.title)
+                        
+                           
                         Text(currentClass.description)
                             .font(.subheadline)
                             .padding()
@@ -85,12 +85,8 @@ struct IndividualClassView: View {
                         Spacer()
                         VStack{
                             if(loggedIn == true) {
-                                Text("Class Grade")
-                                    .font(.system(size: 20))
-                                    .fontWeight(.bold)
-                                    .foregroundColor(.red)
                                 
-                                Slider(value: $sliderGValue, in: 0...100){
+                                Slider(value: $sliderGValue, in: 0.01...100){
                                 
                                 } minimumValueLabel: {
                                     Text("0")
@@ -102,15 +98,63 @@ struct IndividualClassView: View {
                                 Text("Grade: \(sliderGValue, specifier: "%.2f")")
                                     .font(.system(size: 20))
                                     .fontWeight(.bold)
-                                    .foregroundColor(isEditing ? .red : .black)
+                                    .foregroundColor(isEditing ? .red : Color.iCloudBlue)
                                 .padding()
                                 .disabled(false)
+                              
+                                HStack{
+                                    
+                                    Spacer()
+                                    
+                                    if bigData.grades.gradeList != [0.0]{
+                                        Text("Average Grade: \(bigData.averageGrade(gradeList: bigData.grades.gradeList))%")
+                                            .font(.system(size: 20))
+                                            .fontWeight(.bold)
+                                            .foregroundColor(.red)
+                                            .padding()
+                                    }else{
+                                        
+                                        Text("No grades inputted yet")
+                                            .font(.system(size: 20))
+                                            .fontWeight(.bold)
+                                            .foregroundColor(isEditing ? .blue : .red)
+                                            .padding()
+                                    }
                                 
-                                Text("Average Grade: \(bigData.averageGrade(gradeList: bigData.grades[0].gradeList))%")
-                                    .font(.system(size: 20))
-                                    .fontWeight(.bold)
-                                    .foregroundColor(isEditing ? .black : .red)
-                                    .padding()
+                                    Spacer()
+                                    Button {
+                                        
+                                        //check to see if class object has already been created, if not then add a new one with the grade slider value
+                                        //if class has been made, then update the grade record
+                                        
+                                            
+                                            bigData.fetchItems()
+                                        
+                                        if bigData.grades.gradeList == [0.0] && bigData.grades.homeworkList == [0.0]{
+                                            bigData.addItem(name: currentClass.className, num: sliderGValue)
+                                            bigData.classData = currentClass
+                                            bigData.className = currentClass.className
+                                            bigData.fetchItems()
+                                        }else{
+                                            bigData.updateGrades(grade: bigData.grades, num: sliderGValue)
+                                            bigData.classData = currentClass
+                                            bigData.className = currentClass.className
+                                            bigData.fetchItems()
+                                        }
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                    } label: {
+                                        Text("Upload Grade")
+                                    }
+                                    Spacer()
+
+                                    
+                                }
+                                Spacer()
                                 
                                 Slider(value: $sliderHValue, in: 0...10){
                                     Text("Speed")
@@ -121,13 +165,57 @@ struct IndividualClassView: View {
                                 } onEditingChanged: { editing in
                                     isEditing = editing
                                 }
-                                .padding()
-                                .disabled(false)
-                                Text("Homework Per Night")
+                                Text("Homework per Night: \(sliderHValue, specifier: "%.2f")")
                                     .font(.system(size: 20))
                                     .fontWeight(.bold)
-                                    .foregroundColor(isEditing ? .black : .red)
-                                    .padding()
+                                    .foregroundColor(isEditing ? .red : Color.iCloudBlue)
+                                .padding()
+                                .disabled(false)
+                                HStack{
+                                    Spacer()
+                             
+                                    
+                                    if bigData.grades.homeworkList == [0.0] || bigData.grades.homeworkList == [1.0]{
+                                        
+                                        
+                                        Text("No homework inputted yet")
+                                            .font(.system(size: 20))
+                                            .fontWeight(.bold)
+                                            .foregroundColor(isEditing ? .blue : .red)
+                                            .padding()
+                                    }else{
+                                        
+                                        Text("Average Homework per Night: \(bigData.averageGrade(gradeList: bigData.grades.homeworkList)) hrs")
+                                            .font(.system(size: 20))
+                                            .fontWeight(.bold)
+                                            .foregroundColor(.red)
+                                            .padding()
+                                    }
+                                    
+                                    Spacer()
+                                Button {
+                                    //check to see if class object has already been created, if not then add a new one with the homework slider value
+                                    //if class has been made, then update the homework record
+                                    bigData.fetchItems()
+                                
+                                if bigData.grades.gradeList == [0.0] && bigData.grades.homeworkList == [0.0]{
+                                    bigData.addItemHW(name: currentClass.className, num: sliderHValue)
+                                    bigData.classData = currentClass
+                                    bigData.className = currentClass.className
+                                    bigData.fetchItems()
+                                }else{
+                                    bigData.updateHomework(grade: bigData.grades, num: sliderHValue)
+                                    bigData.classData = currentClass
+                                    bigData.className = currentClass.className
+                                    bigData.fetchItems()
+                                }
+                                    
+                                        
+                                } label: {
+                                    Text("Upload Grade")
+                                }
+                                    Spacer()
+                                }
                             } else {
                                 Slider(value: $sliderGValue, in: 0...100){
                                     Text("Speed")
@@ -141,11 +229,20 @@ struct IndividualClassView: View {
 
                                 .padding()
                                 .disabled(true)
-                                Text("Average Grade: \(bigData.averageGrade(gradeList: bigData.grades[0].gradeList))%")
-                                    .font(.system(size: 20))
-                                    .fontWeight(.bold)
-                                    .foregroundColor(isEditing ? .blue : .red)
-                                    .padding()
+                                if bigData.grades.gradeList != [0.0]{
+                                    Text("Average Grade: \(bigData.averageGrade(gradeList: bigData.grades.gradeList))%")
+                                        .font(.system(size: 20))
+                                        .fontWeight(.bold)
+                                        .foregroundColor(.red)
+                                        .padding()
+                                    
+                                }else{
+                                    Text("No grades inputted yet")
+                                        .font(.system(size: 20))
+                                        .fontWeight(.bold)
+                                        .foregroundColor(isEditing ? .blue : .red)
+                                        .padding()
+                                }
                                
                                 Slider(value: $sliderHValue, in: 0...10){
                                     Text("Speed")
@@ -158,11 +255,23 @@ struct IndividualClassView: View {
                                 }
                                 .padding()
                                 .disabled(true)
-                                Text("Homework Per Night")
-                                    .font(.system(size: 20))
-                                    .fontWeight(.bold)
-                                    .foregroundColor(isEditing ? .blue : .red)
-                                    .padding()
+                              
+                                if bigData.grades.homeworkList == [0.0] || bigData.grades.homeworkList == [1.0]{
+                                    
+                                    
+                                    Text("No homework inputted yet")
+                                        .font(.system(size: 20))
+                                        .fontWeight(.bold)
+                                        .foregroundColor(isEditing ? .blue : .red)
+                                        .padding()
+                                }else{
+                                    
+                                    Text("Average Homework per Night: \(bigData.averageGrade(gradeList: bigData.grades.homeworkList))%")
+                                        .font(.system(size: 20))
+                                        .fontWeight(.bold)
+                                        .foregroundColor(.red)
+                                        .padding()
+                                }
                             }
                             
                             
@@ -181,7 +290,8 @@ struct IndividualClassView: View {
 
             }
         
-        }.toolbar{
+        }        .navigationBarTitle(currentClass.className)
+                .toolbar{
             
             
             ToolbarItem(placement: .navigationBarTrailing){
@@ -208,7 +318,8 @@ struct IndividualClassView: View {
             }
                         
                     }
-        }.navigationBarTitle(currentClass.className)
+        }
+            .navigationBarHidden(false)
         
     }
     

@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import CloudKit
 
 struct ClassListView: View{
     
@@ -14,7 +15,7 @@ struct ClassListView: View{
     @AppStorage("isGuest") var isGuest = false
     @AppStorage("isDepartmentView") var isDepartmentView = false
     @AppStorage("departmentIndex") var departmentIndex = 0
-    @AppStorage("e") var toggle: Bool = false
+    @AppStorage("z") var toggle: Bool = false
   
     
     
@@ -41,19 +42,22 @@ struct ClassListView: View{
                     .padding()
                     .foregroundColor(.iCloudBlue)
                     .onTapGesture {
+                        
+                        
                         bigData.classData = c
                         bigData.className = c.className
-                        print("\(bigData.className)")
-                        print("\(c.className)")
                         bigData.fetchItems()
                         toggle.toggle()
+                       
+                        
+                        
                     }
 
             }
         
         }
         .toolbar{
-                        ToolbarItem(placement: .navigationBarLeading) {
+                ToolbarItem(placement: .navigationBarLeading) {
                             Button(action: {
                                 isDepartmentView = true
                             }) {

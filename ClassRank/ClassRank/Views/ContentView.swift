@@ -89,7 +89,6 @@ class CloudKitClassRank: ObservableObject{
 
 struct ContentView: View {
     
-    @StateObject private var dataRank = CloudKitClassRank()
     
     @AppStorage("isLoggedIn") var loggedIn = false
     
@@ -105,14 +104,7 @@ struct ContentView: View {
         NavigationView{
             VStack{
                
-                Text("Welcome back, \(dataRank.userName)")
-                    .font(.title)
-                    .foregroundColor(.red)
-                Text(dataRank.permissionStatus.description)
-                Text("is signed in: \(dataRank.isSignedInToiCloud.description.uppercased())")
-                Text(dataRank.error)
-               // UserImage()
-                Spacer()
+                
                 HelloText()
                 Spacer()
                 
@@ -126,7 +118,7 @@ struct ContentView: View {
                     //.padding(.top, 300)
                 Button(action: {
                 }) {
-                    NavigationLink(destination: CloudData()) {
+                    NavigationLink(destination: LoginView(username: "")) {
                         Label {
                             Text("Login with iCloud")
                                 .foregroundColor(Color.iCloudBlue)

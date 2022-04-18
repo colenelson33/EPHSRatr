@@ -15,6 +15,8 @@ struct LoginView: View {
     @State var errorMessage = ""
     @State var authenticationDidFail: Bool = false
     @State var authenticationDidSucceed: Bool = false
+    @StateObject private var dataRank = CloudKitClassRank()
+   
     
     var body: some View {
         
@@ -23,6 +25,19 @@ struct LoginView: View {
         ZStack {
             VStack{
                 
+                if dataRank.userName != ""{
+                Text("Welcome back, \(dataRank.userName)")
+                    .font(.title)
+                    .foregroundColor(.red)
+                }else{
+                Text("Welcome")
+                        .font(.title)
+                        .foregroundColor(.red)
+                    
+                }
+                Text(dataRank.permissionStatus.description)
+                Text("is signed in: \(dataRank.isSignedInToiCloud.description.uppercased())")
+                Text(dataRank.error)
                 //Label("Login", systemImage: /*@START_MENU_TOKEN@*/"42.circle"/*@END_MENU_TOKEN@*/)
                 
               UsernameTextField(username: $username)
