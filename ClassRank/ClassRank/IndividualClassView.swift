@@ -205,14 +205,16 @@ struct IndividualClassView: View {
                                     bigData.fetchItems()
                                 }else{
                                     bigData.updateHomework(grade: bigData.grades, num: sliderHValue)
+                                    
                                     bigData.classData = currentClass
                                     bigData.className = currentClass.className
                                     bigData.fetchItems()
+                                    //toggle.toggle()
                                 }
                                     
                                         
                                 } label: {
-                                    Text("Upload Grade")
+                                    Text("Upload HW")
                                 }
                                     Spacer()
                                 }
