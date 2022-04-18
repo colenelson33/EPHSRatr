@@ -11,6 +11,7 @@ struct LoginView: View {
     @AppStorage("isLoggedIn") var loggedIn = false
     @AppStorage("isGuest") var isGuest = false
     @AppStorage("isDepartmentView") var isDepartmentView = false
+    
     @State var username: String
     @State var errorMessage = ""
     @State var authenticationDidFail: Bool = false

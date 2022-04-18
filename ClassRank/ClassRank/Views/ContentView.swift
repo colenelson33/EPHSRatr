@@ -29,6 +29,7 @@ class CloudKitClassRank: ObservableObject{
                     self?.error = CloudKitError.iCloudAccountUnknown.rawValue
                 case .available:
                     self?.isSignedInToiCloud = true
+                    self?.iCloudLoggedIn = true
                 case .restricted:
                     self?.error = CloudKitError.iCLoudAccountRestricted.rawValue
                 case .noAccount:
