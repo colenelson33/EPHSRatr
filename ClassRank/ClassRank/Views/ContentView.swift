@@ -94,6 +94,7 @@ struct ContentView: View {
     @AppStorage("isLoggedIn") var loggedIn = false
     
     @AppStorage("isDarkMode") public var isDarkMode = false
+    @AppStorage("colorPallette") private var color = 0
     
     @AppStorage("isGuest") var isGuest = false
     @AppStorage("isDepartmentView") var isDepartmentView: Bool = true
@@ -193,11 +194,12 @@ struct UserImage: View {
 }
 
 struct GrowingButton: ButtonStyle {
+    @AppStorage("colorPallette") private var color = 0
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .padding()
             .frame(width: 300, height: 50)
-            .background(Color.red)
+            .background(GlobalVar.colorList[color])
             .foregroundColor(.white)
             .clipShape(Capsule())
             .scaleEffect(configuration.isPressed ? 1.2 : 1)

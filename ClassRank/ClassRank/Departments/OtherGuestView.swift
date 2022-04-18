@@ -13,6 +13,7 @@ struct BlurryBackGroundView: View {
     @AppStorage("isDepartmentView") var isDepartmentView: Bool = true
     @AppStorage("isGuest") var isGuest: Bool = false
     @AppStorage("isLoggedIn") var isLoggedIn: Bool = false
+    @AppStorage("colorPallette") private var color = 0
     @State var small = true
     @Namespace var namespace
     @State private var position: CardPosition = .small
@@ -38,7 +39,7 @@ struct BlurryBackGroundView: View {
             .toolbar{
                     ToolbarItem(placement: .navigationBarTrailing){
                         Image(systemName: "house.circle")
-                            .foregroundColor(.red)
+                            .foregroundColor(GlobalVar.colorList[color])
                             .onTapGesture{
                                 isDepartmentView = false
                                 isLoggedIn = false
@@ -124,6 +125,7 @@ enum CardPosition: CaseIterable {
 
 struct CardDetector: View {
     
+    @AppStorage("colorPallette") private var color = 0
     @AppStorage("isDepartmentView") var isDepartmentView = false
     @AppStorage("departmentIndex") var departmentIndex: Int = 0
     var p: ListData
@@ -138,7 +140,7 @@ struct CardDetector: View {
                     .padding()
                     .frame(maxWidth: .infinity)
                     .frame(height: 120)
-                    .background(.red)
+                    .background(GlobalVar.colorList[color])
                     .cornerRadius(10)
                     .padding(.vertical,6)
                     .onTapGesture{
@@ -160,7 +162,7 @@ struct CardDetector: View {
                     .padding()
                     .frame(maxWidth: .infinity)
                     .frame(height: 270)
-                    .background(.red)
+                    .background(GlobalVar.colorList[color])
                     .cornerRadius(10)
                     .padding(.vertical,6)
                     .onTapGesture{
