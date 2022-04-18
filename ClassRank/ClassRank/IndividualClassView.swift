@@ -95,14 +95,15 @@ struct IndividualClassView: View {
                                 } onEditingChanged: { editing in
                                     isEditing = editing
                                 }
+                                .accentColor(GlobalVar.colorList[color])
                                 .foregroundColor(GlobalVar.colorList[color])
                                 Text("Grade: \(sliderGValue, specifier: "%.2f")")
                                     .font(.system(size: 20))
                                     .fontWeight(.bold)
-                                    .foregroundColor(isEditing ? GlobalVar.colorList[color] : Color.iCloudBlue)
+                                    .foregroundColor(GlobalVar.colorList[color])
                                 .padding()
                                 .disabled(false)
-                              
+                               
                                 HStack{
                                     
                                     Spacer()
@@ -118,7 +119,7 @@ struct IndividualClassView: View {
                                         Text("No grades inputted yet")
                                             .font(.system(size: 20))
                                             .fontWeight(.bold)
-                                            .foregroundColor(isEditing ? .blue : .red)
+                                            .foregroundColor(GlobalVar.colorList[color])
                                             .padding()
                                     }
                                 
@@ -127,11 +128,13 @@ struct IndividualClassView: View {
                                         
                                         //check to see if class object has already been created, if not then add a new one with the grade slider value
                                         //if class has been made, then update the grade record
-                                        
+                                   //     Dispatch.main.asyncAfter(deadline: .now() + 5.0)
                                             
                                             bigData.fetchItems()
                                         
-                                        if bigData.grades.gradeList == [0.0] && bigData.grades.homeworkList == [0.0]{
+                                        if bigData.grades.gradeList == [0.0] &&
+                                            bigData.grades.homeworkList == [0.0]{
+                                            
                                             bigData.addItem(name: currentClass.className, num: sliderGValue)
                                             bigData.classData = currentClass
                                             bigData.className = currentClass.className
@@ -166,14 +169,16 @@ struct IndividualClassView: View {
                                 } onEditingChanged: { editing in
                                     isEditing = editing
                                 }
+                                .accentColor(GlobalVar.colorList[color])
                                 .foregroundColor(GlobalVar.colorList[color])
                                 Text("Homework per Night: \(sliderHValue, specifier: "%.2f")")
                                     .font(.system(size: 20))
                                     .fontWeight(.bold)
-                                    .foregroundColor(isEditing ? .red : Color.iCloudBlue)
+                                    .foregroundColor(GlobalVar.colorList[color])
                                 .padding()
                                 .disabled(false)
                                 .foregroundColor(GlobalVar.colorList[color])
+                                
                                 HStack{
                                     Spacer()
                              
@@ -184,7 +189,7 @@ struct IndividualClassView: View {
                                         Text("No homework inputted yet")
                                             .font(.system(size: 20))
                                             .fontWeight(.bold)
-                                            .foregroundColor(isEditing ? .blue : .red)
+                                            .foregroundColor(GlobalVar.colorList[color])
                                             .padding()
                                     }else{
                                         
@@ -232,7 +237,7 @@ struct IndividualClassView: View {
                                     isEditing = editing
                                 }
                                 .foregroundColor(GlobalVar.colorList[color])
-
+                                .accentColor(GlobalVar.colorList[color])
                                 .padding()
                                 .disabled(true)
                                 if bigData.grades.gradeList != [0.0]{
@@ -246,7 +251,7 @@ struct IndividualClassView: View {
                                     Text("No grades inputted yet")
                                         .font(.system(size: 20))
                                         .fontWeight(.bold)
-                                        .foregroundColor(isEditing ? .blue : .red)
+                                        .foregroundColor(GlobalVar.colorList[color])
                                         .padding()
                                 }
                                
@@ -259,6 +264,7 @@ struct IndividualClassView: View {
                                 } onEditingChanged: { editing in
                                     isEditing = editing
                                 }
+                                .accentColor(GlobalVar.colorList[color])
                                 .foregroundColor(GlobalVar.colorList[color])
                                 .padding()
                                 .disabled(true)
@@ -269,7 +275,7 @@ struct IndividualClassView: View {
                                     Text("No homework inputted yet")
                                         .font(.system(size: 20))
                                         .fontWeight(.bold)
-                                        .foregroundColor(isEditing ? .blue : .red)
+                                        .foregroundColor(GlobalVar.colorList[color])
                                         .padding()
                                 }else{
                                     
@@ -307,6 +313,7 @@ struct IndividualClassView: View {
                                 isGuest = false
                                 loggedIn = false
                                 isDepartmentView = true
+                                    toggle.toggle()
                                 }
                             }) {
                                 // NavigationLink(destination: ContentView()) {

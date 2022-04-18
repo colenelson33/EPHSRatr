@@ -35,6 +35,7 @@ struct ClassListView: View{
         NavigationView{
         
         List{
+            .listRowBackground(Color.pink)
             ForEach(GlobalVar.DepartmentList[departmentIndex]){ c in
                 
                 HStack{
@@ -72,7 +73,7 @@ struct ClassListView: View{
 
             }
             }
-        
+            
         }
         .toolbar{
                 ToolbarItem(placement: .navigationBarLeading) {

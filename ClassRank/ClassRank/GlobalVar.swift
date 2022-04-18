@@ -35,7 +35,7 @@ var data = [
     ListData(title: "English", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.EnglishClasses.count, Image: "book.closed",Color: Color.red, percentage: 0.10, departmentIndex: 2),
     ListData(title: "Family & Consumer Sciences", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.famCons.count, Image: "person.3",Color: Color.red, percentage: 0.45, departmentIndex: 3),
     ListData(title: "Industrial Technology", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.industrialTechClasses.count, Image: "airplane.departure",Color: Color.red, percentage: 0.86, departmentIndex: 4),
-    ListData(title: "Math", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.MathClasses.count, Image: "x.squareroot",Color: Color.red, percentage: 0.30, departmentIndex: 5),
+    ListData(title: "Math", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.MathClasses.count, Image: "math", Color: Color.red, percentage: 0.30, departmentIndex: 5),
     ListData(title: "Music", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.MusicClasses.count, Image: "music.note",Color: Color.red, percentage: 0.25, departmentIndex: 6),
     ListData(title: "Phy Ed/Health", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.phyEdClasses.count, Image: "bandage",Color: Color.red, percentage: 0.10, departmentIndex: 7),
     ListData(title: "Science", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.ScienceClasses.count, Image: "leaf",Color: Color.red, percentage: 0.45, departmentIndex: 8),
