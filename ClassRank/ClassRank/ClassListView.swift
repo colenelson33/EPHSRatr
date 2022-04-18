@@ -36,23 +36,40 @@ struct ClassListView: View{
         List{
             ForEach(GlobalVar.DepartmentList[departmentIndex]){ c in
                 
-            
+                HStack{
+                    
+                    Text(bigData.averageGrade(gradeList: bigData.grades.gradeList)+"%")
+                        .font(.system(size: 10.0))
+                        .frame(width: 30, height: 30, alignment: .center)
+                        .padding()
+                        .overlay(
+                            Circle()
+                            .stroke(Color.red, lineWidth: 2)
+                            .padding(6)
+                        )
+                        Spacer()
+                    
                 Text(c.className)
-                    .fontWeight(.bold)
+                    
                     .padding()
-                    .foregroundColor(.iCloudBlue)
+                    .foregroundColor(.red)
                     .onTapGesture {
-                        
-                        
                         bigData.classData = c
                         bigData.className = c.className
                         bigData.fetchItems()
                         toggle.toggle()
-                       
-                        
-                        
                     }
+                    
+                    Spacer()
+                    
+                Image(systemName: "flame")
+                        .resizable()
+                        .frame(width: 20, height: 30)
+                        .foregroundColor(.red)
+                    
+                        .padding()
 
+            }
             }
         
         }
@@ -93,4 +110,8 @@ struct ClassListView: View{
 
 }
 
-
+struct ClassListView_Previews: PreviewProvider {
+    static var previews: some View {
+        ClassListView()
+    }
+}
