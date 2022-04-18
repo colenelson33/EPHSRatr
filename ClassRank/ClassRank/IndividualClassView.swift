@@ -27,7 +27,7 @@ func setDifficulty(grade: Double) -> String{
 struct IndividualClassView: View {
     
     
-    
+    @AppStorage("colorPallette") private var color = 0
     @AppStorage("isLoggedIn") var loggedIn = true
     @AppStorage("isGuest") var isGuest = false
     @AppStorage("isDepartmentView") var isDepartmentView = true
@@ -95,10 +95,11 @@ struct IndividualClassView: View {
                                 } onEditingChanged: { editing in
                                     isEditing = editing
                                 }
+                                .foregroundColor(GlobalVar.colorList[color])
                                 Text("Grade: \(sliderGValue, specifier: "%.2f")")
                                     .font(.system(size: 20))
                                     .fontWeight(.bold)
-                                    .foregroundColor(isEditing ? .red : Color.iCloudBlue)
+                                    .foregroundColor(isEditing ? GlobalVar.colorList[color] : Color.iCloudBlue)
                                 .padding()
                                 .disabled(false)
                               
@@ -110,7 +111,7 @@ struct IndividualClassView: View {
                                         Text("Average Grade: \(bigData.averageGrade(gradeList: bigData.grades.gradeList))%")
                                             .font(.system(size: 20))
                                             .fontWeight(.bold)
-                                            .foregroundColor(.red)
+                                            .foregroundColor(GlobalVar.colorList[color])
                                             .padding()
                                     }else{
                                         
@@ -165,12 +166,14 @@ struct IndividualClassView: View {
                                 } onEditingChanged: { editing in
                                     isEditing = editing
                                 }
+                                .foregroundColor(GlobalVar.colorList[color])
                                 Text("Homework per Night: \(sliderHValue, specifier: "%.2f")")
                                     .font(.system(size: 20))
                                     .fontWeight(.bold)
                                     .foregroundColor(isEditing ? .red : Color.iCloudBlue)
                                 .padding()
                                 .disabled(false)
+                                .foregroundColor(GlobalVar.colorList[color])
                                 HStack{
                                     Spacer()
                              
@@ -188,7 +191,7 @@ struct IndividualClassView: View {
                                         Text("Average Homework per Night: \(bigData.averageGrade(gradeList: bigData.grades.homeworkList)) hrs")
                                             .font(.system(size: 20))
                                             .fontWeight(.bold)
-                                            .foregroundColor(.red)
+                                            .foregroundColor(GlobalVar.colorList[color])
                                             .padding()
                                     }
                                     
@@ -228,6 +231,7 @@ struct IndividualClassView: View {
                                 } onEditingChanged: { editing in
                                     isEditing = editing
                                 }
+                                .foregroundColor(GlobalVar.colorList[color])
 
                                 .padding()
                                 .disabled(true)
@@ -235,7 +239,7 @@ struct IndividualClassView: View {
                                     Text("Average Grade: \(bigData.averageGrade(gradeList: bigData.grades.gradeList))%")
                                         .font(.system(size: 20))
                                         .fontWeight(.bold)
-                                        .foregroundColor(.red)
+                                        .foregroundColor(GlobalVar.colorList[color])
                                         .padding()
                                     
                                 }else{
@@ -255,6 +259,7 @@ struct IndividualClassView: View {
                                 } onEditingChanged: { editing in
                                     isEditing = editing
                                 }
+                                .foregroundColor(GlobalVar.colorList[color])
                                 .padding()
                                 .disabled(true)
                               
@@ -271,7 +276,7 @@ struct IndividualClassView: View {
                                     Text("Average Homework per Night: \(bigData.averageGrade(gradeList: bigData.grades.homeworkList))%")
                                         .font(.system(size: 20))
                                         .fontWeight(.bold)
-                                        .foregroundColor(.red)
+                                        .foregroundColor(GlobalVar.colorList[color])
                                         .padding()
                                 }
                             }
@@ -306,6 +311,7 @@ struct IndividualClassView: View {
                             }) {
                                 // NavigationLink(destination: ContentView()) {
                                 Image(systemName: "house.circle")
+                                    .foregroundColor(GlobalVar.colorList[color])
                                 
                                 // }
                             }
@@ -315,6 +321,7 @@ struct IndividualClassView: View {
                     toggle.toggle()
                 }) {
                     Image(systemName: "arrow.left")
+                        .foregroundColor(GlobalVar.colorList[color])
                 }
 
             }
@@ -337,6 +344,7 @@ struct Cards: View{
     @State var sysimages = ""
     @State var opacityVal : CGFloat = 0
     @State var cardIndex = 0
+    @AppStorage("colorPallette") private var color = 0
     
     @Binding var showPopUp: Bool
     @Binding var showPrePopUp: Bool
@@ -349,7 +357,7 @@ struct Cards: View{
             HStack{
                 ZStack{
                     RoundedRectangle(cornerRadius: 25)
-                        .foregroundColor(.red)
+                        .foregroundColor(GlobalVar.colorList[color])
                         .opacity(0.8)
                         .frame(width: 180, height: 250)
                         .onTapGesture {
@@ -407,6 +415,7 @@ struct TeacherWindow: View {
     var title: String
     var message: String
     var buttonText: String
+    @AppStorage("colorPallette") private var color = 0
     @Binding var show: Bool
 
     var body: some View {
@@ -447,7 +456,7 @@ struct TeacherWindow: View {
                     
                 }
                 .frame(width: 300, height: 600)
-                .background(Color(#colorLiteral(red: 1, green: 0, blue: 0, alpha: 1)))
+                .background(GlobalVar.colorList[color])
                 .cornerRadius(25)
                 
             }
@@ -461,6 +470,7 @@ struct PreWindow: View {
     var message: String
     var buttonText: String
     @Binding var show: Bool
+    @AppStorage("colorPallette") private var color = 0
 
     var body: some View {
         ZStack {
@@ -500,7 +510,7 @@ struct PreWindow: View {
                     
                 }
                 .frame(width: 300, height: 600)
-                .background(Color(#colorLiteral(red: 1, green: 0, blue: 0, alpha: 1)))
+                .background(GlobalVar.colorList[color])
                 .cornerRadius(25)
                 
             }

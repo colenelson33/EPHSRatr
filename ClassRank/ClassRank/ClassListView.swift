@@ -16,6 +16,7 @@ struct ClassListView: View{
     @AppStorage("isDepartmentView") var isDepartmentView = false
     @AppStorage("departmentIndex") var departmentIndex = 0
     @AppStorage("z") var toggle: Bool = false
+    @AppStorage("colorPallette") private var color = 0
   
     
     
@@ -44,7 +45,7 @@ struct ClassListView: View{
                         .padding()
                         .overlay(
                             Circle()
-                            .stroke(Color.red, lineWidth: 2)
+                            .stroke(GlobalVar.colorList[color], lineWidth: 2)
                             .padding(6)
                         )
                         Spacer()
@@ -52,7 +53,7 @@ struct ClassListView: View{
                 Text(c.className)
                     
                     .padding()
-                    .foregroundColor(.red)
+                    .foregroundColor(GlobalVar.colorList[color])
                     .onTapGesture {
                         bigData.classData = c
                         bigData.className = c.className
@@ -65,7 +66,7 @@ struct ClassListView: View{
                 Image(systemName: "flame")
                         .resizable()
                         .frame(width: 20, height: 30)
-                        .foregroundColor(.red)
+                        .foregroundColor(GlobalVar.colorList[color])
                     
                         .padding()
 
@@ -79,6 +80,7 @@ struct ClassListView: View{
                                 isDepartmentView = true
                             }) {
                                 Image(systemName: "arrow.left")
+                                    .foregroundColor(GlobalVar.colorList[color])
                                 
                             }
                         }
@@ -90,6 +92,7 @@ struct ClassListView: View{
                             }) {
                                 // NavigationLink(destination: ContentView()) {
                                 Image(systemName: "house.circle")
+                                    .foregroundColor(GlobalVar.colorList[color])
                                 // }
                             }
                         }

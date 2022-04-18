@@ -153,6 +153,7 @@ struct ContentView: View {
                     }) {
                         NavigationLink(destination: ModeSwitchView()) {
                             Image(systemName: "gear")
+                                .foregroundColor(GlobalVar.colorList[color])
                         }
                     }
                 }
