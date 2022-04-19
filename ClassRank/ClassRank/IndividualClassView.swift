@@ -92,7 +92,7 @@ struct IndividualClassView: View {
                                     Text("100")
                                 } onEditingChanged: { editing in
                                     isEditing = editing
-                                }
+                                
                     
                                     
                                 .padding(.top, 30)
@@ -106,6 +106,7 @@ struct IndividualClassView: View {
                                     .foregroundColor(GlobalVar.colorList[color])
                                     .padding(.bottom, 30)
                                 .disabled(hasUpload)
+                                }
                                 }.overlay(
                                     RoundedRectangle(cornerRadius: 25)
                                         .stroke(lineWidth: 2.0)
@@ -113,6 +114,7 @@ struct IndividualClassView: View {
                                         .padding()
                                     
                                     )
+                                
                                 HStack{
                                     
                                     Spacer()
@@ -259,7 +261,7 @@ struct IndividualClassView: View {
                                 }
                             } else {
                                 
-                                VStack{
+                            VStack{
                                 Slider(value: $sliderGValue, in: 0...100){
                                     Text("Speed")
                                 } minimumValueLabel: {
@@ -269,9 +271,11 @@ struct IndividualClassView: View {
                                 } onEditingChanged: { editing in
                                     isEditing = editing
                                 }
+                                .padding(.top, 30)
+                                .padding(.trailing, 30)
+                                .padding(.leading, 30)
                                 .foregroundColor(GlobalVar.colorList[color])
                                 .accentColor(GlobalVar.colorList[color])
-                                .padding(10)
                                 .disabled(true)
                                 if bigData.grades.gradeList != [0.0]{
                                     Text("Average Grade: \(bigData.averageGrade(gradeList: bigData.grades.gradeList))%")
@@ -305,23 +309,25 @@ struct IndividualClassView: View {
                                 } onEditingChanged: { editing in
                                     isEditing = editing
                                 }
+                                .padding(.top, 30)
+                                .padding(.trailing, 30)
+                                .padding(.leading, 30)
                                 .accentColor(GlobalVar.colorList[color])
                                 .foregroundColor(GlobalVar.colorList[color])
-                                .padding(10)
                                 .disabled(true)
                               
                                 if bigData.grades.homeworkList == [0.0] || bigData.grades.homeworkList == [1.0]{
                                     
                                     
                                     Text("No homework inputted yet")
-                                        .font(.system(size: 15))
+                                        .font(.system(size: 20))
                                         .fontWeight(.bold)
                                         .foregroundColor(GlobalVar.colorList[color])
                                         .padding()
                                 }else{
                                     
                                     Text("Average Homework per Night: \(bigData.averageGrade(gradeList: bigData.grades.homeworkList))%")
-                                        .font(.system(size: 15))
+                                        .font(.system(size: 20))
                                         .fontWeight(.bold)
                                         .foregroundColor(GlobalVar.colorList[color])
                                         .padding()
