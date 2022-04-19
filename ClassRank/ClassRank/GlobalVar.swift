@@ -21,7 +21,7 @@ struct ListData: Identifiable,Hashable {
 }
 extension Color {
     static let pinkColor = Color(red: 227 / 255, green: 133 / 255, blue: 180 / 255)
-    static let forestGreen = Color(red: 127 / 255, green: 145 / 255, blue: 114 / 255)
+    static let forestGreen = Color(red: 74 / 255, green: 103 / 255, blue: 65 / 255)
     static let purpleColor = Color(red: 123 / 255, green: 119 / 255, blue: 233 / 255)
     static let OrangeColor = Color(red: 240 / 255, green: 146 / 255, blue: 171 / 255)
     static let iCloudBlue = Color(red: 81 / 255, green: 160 / 255, blue: 213 / 255)

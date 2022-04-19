@@ -81,7 +81,7 @@ struct ModeSwitchView: View {
                     .tag(2)
                 Text("Purple Explosion")
                     .tag(3)
-                Text("Throw up Green")
+                Text("Forest Green")
                     .tag(4)
                 Text("Rusty Orange")
                     .tag(5)
