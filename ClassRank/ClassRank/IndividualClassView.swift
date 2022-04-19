@@ -32,6 +32,7 @@ struct IndividualClassView: View {
     @AppStorage("isGuest") var isGuest = false
     @AppStorage("isDepartmentView") var isDepartmentView = true
     @AppStorage("z") var toggle: Bool = false
+    @State var hasUpload: Bool = false
     @EnvironmentObject var bigData: CloudDataViewModel
     
     
@@ -65,23 +66,26 @@ struct IndividualClassView: View {
                         Spacer()
                         ScrollView(.horizontal, showsIndicators: false){
                             HStack(spacing: 12){
-                                Cards(txt: "Teacher(s)", activity: "Tap for info", sysimages: "figure.wave", opacityVal: 0.9, cardIndex: 0, showPopUp: $showPopUp, showPrePopUp: $showPrePopUp)
+                                
+                                Cards(txt: "Difficulty", activity: "difficultLevel", sysimages: "flame", opacityVal: 0.9, cardIndex: 2, showPopUp: .constant(false), showPrePopUp: .constant(false))
+                                
+                                Cards(txt: "Description", activity: "Tap for info", sysimages: "doc.text", opacityVal: 0.9, cardIndex: 0, showPopUp: $showPopUp, showPrePopUp: $showPrePopUp)
                                     
                                 Cards(txt: "Prerequisites", activity: "Tap for Info", sysimages: "gobackward", opacityVal: 0.9, cardIndex: 1, showPopUp: $showPopUp, showPrePopUp: $showPrePopUp)
                                     
-                                
-                                Cards(txt: "Difficulty", activity: "difficultLevel", sysimages: "flame", opacityVal: 0.9, cardIndex: 2, showPopUp: .constant(false), showPrePopUp: .constant(false))
-                                  
                             }
                         }.padding()
                         
                         
                         Spacer()
                         VStack{
+                            
+                            
                             if(loggedIn == true) {
                                 
+                                VStack{
                                 Slider(value: $sliderGValue, in: 0.01...100){
-                                
+                                    
                                 } minimumValueLabel: {
                                     Text("0")
                                 } maximumValueLabel: {
@@ -89,36 +93,40 @@ struct IndividualClassView: View {
                                 } onEditingChanged: { editing in
                                     isEditing = editing
                                 }
-                                .overlay(
-                                RoundedRectangle(cornerRadius: 25)
-                                    .stroke(lineWidth: 2.0)
-                                    .foregroundColor(GlobalVar.colorList[color])
-                                
-                                )
-                                .padding(10)
+                    
+                                    
+                                .padding(.top, 30)
+                                .padding(.trailing, 30)
+                                .padding(.leading, 30)
                                 .accentColor(GlobalVar.colorList[color])
                                 .foregroundColor(GlobalVar.colorList[color])
                                 Text("Grade: \(sliderGValue, specifier: "%.2f")")
-                                    .font(.system(size: 15))
+                                    .font(.system(size: 20))
                                     .fontWeight(.bold)
                                     .foregroundColor(GlobalVar.colorList[color])
-                                .padding()
-                                .disabled(false)
-                               
+                                    .padding(.bottom, 30)
+                                .disabled(hasUpload)
+                                }.overlay(
+                                    RoundedRectangle(cornerRadius: 25)
+                                        .stroke(lineWidth: 2.0)
+                                        .foregroundColor(GlobalVar.colorList[color])
+                                        .padding()
+                                    
+                                    )
                                 HStack{
                                     
                                     Spacer()
                                     
                                     if bigData.grades.gradeList != [0.0]{
                                         Text("Average Grade: \(bigData.averageGrade(gradeList: bigData.grades.gradeList))%")
-                                            .font(.system(size: 15))
+                                            .font(.system(size: 20))
                                             .fontWeight(.bold)
                                             .foregroundColor(GlobalVar.colorList[color])
                                             .padding()
                                     }else{
                                         
                                         Text("No grades inputted yet")
-                                            .font(.system(size: 15))
+                                            .font(.system(size: 20))
                                             .fontWeight(.bold)
                                             .foregroundColor(GlobalVar.colorList[color])
                                             .padding()
@@ -126,11 +134,13 @@ struct IndividualClassView: View {
                                 
                                     Spacer()
                                     Button {
+                                        @AppStorage(currentClass.className) var gradeUploaded: Bool = false
                                         
                                         //check to see if class object has already been created, if not then add a new one with the grade slider value
                                         //if class has been made, then update the grade record
                                    //     Dispatch.main.asyncAfter(deadline: .now() + 5.0)
-                                            
+                                         
+                                        if gradeUploaded == false{
                                             bigData.fetchItems()
                                         
                                         if bigData.grades.gradeList == [0.0] &&
@@ -147,22 +157,31 @@ struct IndividualClassView: View {
                                             bigData.fetchItems()
                                         }
                                         
-                                        
-                                        
+                                        }
+                                        hasUpload = true
+                                        gradeUploaded = true
                                         
                                         
                                         
                                     } label: {
-                                        Text("Upload Grade")
+                                        
+                                        
+                                    
+                                        Image(systemName: "icloud.and.arrow.up")
+                                            .resizable()
+                                            .frame(width: 30, height: 30)
+                                            .scaledToFill()
                                             .foregroundColor(GlobalVar.colorList[color])
+                                            
+                                        
                                     }
                                     Spacer()
 
                                     
                                 }
                                 Spacer()
-                                
-                                Slider(value: $sliderHValue, in: 0...10){
+                                VStack{
+                                Slider(value: $sliderHValue, in: 0...5, step: 0.25){
                                     Text("Speed")
                                 } minimumValueLabel: {
                                     Text("0")
@@ -171,17 +190,25 @@ struct IndividualClassView: View {
                                 } onEditingChanged: { editing in
                                     isEditing = editing
                                 }
-                                .padding(10)
+                                .padding(.top, 30)
+                                .padding(.trailing, 30)
+                                .padding(.leading, 30)
                                 .accentColor(GlobalVar.colorList[color])
                                 .foregroundColor(GlobalVar.colorList[color])
-                                Text("Homework per Night: \(sliderHValue, specifier: "%.2f")")
-                                    .font(.system(size: 15))
-                                    .fontWeight(.bold)
-                                    .foregroundColor(GlobalVar.colorList[color])
-                                .padding()
+                                Text("Homework: \(sliderHValue, specifier: "%.2f") hours")
+                                        .font(.system(size: 20))
+                                        .fontWeight(.bold)
+                                        .foregroundColor(GlobalVar.colorList[color])
+                                        .padding(.bottom, 30)
                                 .disabled(false)
                                 .foregroundColor(GlobalVar.colorList[color])
-                                
+                                }.overlay(
+                                    RoundedRectangle(cornerRadius: 25)
+                                        .stroke(lineWidth: 2.0)
+                                        .foregroundColor(GlobalVar.colorList[color])
+                                        .padding()
+                                    
+                                    )
                                 HStack{
                                     Spacer()
                              
@@ -231,6 +258,8 @@ struct IndividualClassView: View {
                                     Spacer()
                                 }
                             } else {
+                                
+                                VStack{
                                 Slider(value: $sliderGValue, in: 0...100){
                                     Text("Speed")
                                 } minimumValueLabel: {
@@ -246,19 +275,27 @@ struct IndividualClassView: View {
                                 .disabled(true)
                                 if bigData.grades.gradeList != [0.0]{
                                     Text("Average Grade: \(bigData.averageGrade(gradeList: bigData.grades.gradeList))%")
-                                        .font(.system(size: 15))
+                                        .font(.system(size: 20))
                                         .fontWeight(.bold)
                                         .foregroundColor(GlobalVar.colorList[color])
-                                        .padding()
+                                        .padding(.bottom, 30)
                                     
                                 }else{
                                     Text("No grades inputted yet")
-                                        .font(.system(size: 15))
+                                        .font(.system(size: 20))
                                         .fontWeight(.bold)
                                         .foregroundColor(GlobalVar.colorList[color])
-                                        .padding()
+                                        .padding(.bottom, 30)
                                 }
+                                }.overlay(
+                                    RoundedRectangle(cornerRadius: 25)
+                                        .stroke(lineWidth: 2.0)
+                                        .foregroundColor(GlobalVar.colorList[color])
+                                        .padding()
+                                    
+                                    )
                                
+                                VStack{
                                 Slider(value: $sliderHValue, in: 0...10){
                                     Text("Speed")
                                 } minimumValueLabel: {
@@ -289,6 +326,13 @@ struct IndividualClassView: View {
                                         .foregroundColor(GlobalVar.colorList[color])
                                         .padding()
                                 }
+                                }.overlay(
+                                    RoundedRectangle(cornerRadius: 25)
+                                        .stroke(lineWidth: 2.0)
+                                        .foregroundColor(GlobalVar.colorList[color])
+                                        .padding()
+                                    
+                                    )
                             }
                             
                             
@@ -444,12 +488,13 @@ struct TeacherWindow: View {
                         .font(Font.system(size: 23, weight: .semibold))
                         .foregroundColor(Color.white)
                     Spacer()
-
+                    ScrollView{
                     Text(message)
-                        .multilineTextAlignment(.center)
+                        .multilineTextAlignment(.leading)
                         .font(Font.system(size: 16, weight: .semibold))
                         .padding(EdgeInsets(top: 20, leading: 25, bottom: 20, trailing: 25))
                         .foregroundColor(Color.white)
+                    }
                     Spacer()
                     Button(action: {
                         // Dismiss the PopUp
