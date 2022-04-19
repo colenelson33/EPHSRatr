@@ -51,21 +51,15 @@ struct IndividualClassView: View {
         
             ScrollView{
             ZStack {
-                TeacherWindow(title: "Teacher Info", message: "Email: jennelson@edenpr.org", buttonText: "D O N E", show: $showPopUp)
+                TeacherWindow(title: "Description", message: currentClass.description, buttonText: "Done", show: $showPopUp)
                     .zIndex(100.0)
                 
-                PreWindow(title: "Prerequisites", message: currentClass.prerequisite, buttonText: "D O N E", show: $showPrePopUp)
+                PreWindow(title: "Prerequisites", message: currentClass.prerequisite, buttonText: "Done", show: $showPrePopUp)
                     .zIndex(100.0)
                 VStack{
                     
                     VStack{
-                        Spacer()
                         
-                           
-                        Text(currentClass.description)
-                            .font(.subheadline)
-                            .padding()
-                        Spacer()
                         //Text("Teacher(s): \(currentClass.Teacher)")
                         //.font(.title2)
                         Spacer()
@@ -95,6 +89,12 @@ struct IndividualClassView: View {
                                 } onEditingChanged: { editing in
                                     isEditing = editing
                                 }
+                                .overlay(
+                                RoundedRectangle(cornerRadius: 25)
+                                    .stroke(lineWidth: 2.0)
+                                    .foregroundColor(GlobalVar.colorList[color])
+                                
+                                )
                                 .padding(10)
                                 .accentColor(GlobalVar.colorList[color])
                                 .foregroundColor(GlobalVar.colorList[color])
