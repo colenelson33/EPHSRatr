@@ -8,6 +8,8 @@
 import SwiftUI
 import UIKit
 
+
+
 struct BlurryBackGroundView: View {
     
     @AppStorage("isDepartmentView") var isDepartmentView: Bool = true
@@ -57,6 +59,7 @@ extension Color {
 }
 
 struct blurTags: View {
+    @AppStorage("colorPallette") private var color = 0
     var tags: Array<String>
     let namespace: Namespace.ID
     var body: some View{
@@ -64,7 +67,7 @@ struct blurTags: View {
             ForEach(tags, id: \.self){ tag in
                 Text("\(tag)")
                     .fontWeight(.semibold)
-                    .foregroundColor(.subtextColor)
+                    .foregroundColor(GlobalVar.colorList[color])
                     .font(.caption)
                 
                 
@@ -75,6 +78,7 @@ struct blurTags: View {
 }
 
 struct smallcardView: View {
+    @AppStorage("colorPallette") private var color = 0
     
     @AppStorage("isDepartmentView") var isDepartmentView = false
     @AppStorage("departmentIndex") var departmentIndex: Int = 0
@@ -94,11 +98,11 @@ struct smallcardView: View {
                     
                     VStack(alignment: .leading) {
                         Text("Classes Available: \(p.classesNum)")
-                            .foregroundColor(Color.textColor)
+                            .foregroundColor(GlobalVar.colorList[color])
                             .matchedGeometryEffect(id: "classNum", in: namespace)
                         Spacer()
                         Text(p.title)
-                            .foregroundColor(Color.textColor)
+                            .foregroundColor(GlobalVar.colorList[color])
                             .matchedGeometryEffect(id: "title", in: namespace)
                             .font(.title3)
                             
@@ -140,7 +144,7 @@ struct CardDetector: View {
                     .padding()
                     .frame(maxWidth: .infinity)
                     .frame(height: 120)
-                    .background(GlobalVar.colorList[color])
+                    .background(Color.darkGray)
                     .cornerRadius(10)
                     .padding(.vertical,6)
                     .onTapGesture{
@@ -162,7 +166,7 @@ struct CardDetector: View {
                     .padding()
                     .frame(maxWidth: .infinity)
                     .frame(height: 270)
-                    .background(GlobalVar.colorList[color])
+                    .background(Color.darkGray)
                     .cornerRadius(10)
                     .padding(.vertical,6)
                     .onTapGesture{
@@ -183,6 +187,7 @@ struct CardDetector: View {
 }
 
 struct bigcardView: View {
+    @AppStorage("colorPallette") private var color = 0
     var p: ListData
     let namespace: Namespace.ID
     var body: some View {
@@ -212,13 +217,13 @@ struct bigcardView: View {
                 VStack(alignment: .leading) {
                     HStack {
                         Text("Classes Available: \(p.classesNum)")
-                            .foregroundColor(Color.textColor)
+                            .foregroundColor(GlobalVar.colorList[color])
                             .matchedGeometryEffect(id: "classNum", in: namespace)
                     }
                     
                     Spacer()
                     Text(p.title)
-                        .foregroundColor(Color.textColor)
+                        .foregroundColor(GlobalVar.colorList[color])
                         .matchedGeometryEffect(id: "title", in: namespace)
                         .font(.largeTitle)
                     Spacer()

@@ -25,8 +25,10 @@ extension Color {
     static let purpleColor = Color(red: 123 / 255, green: 119 / 255, blue: 233 / 255)
     static let OrangeColor = Color(red: 240 / 255, green: 146 / 255, blue: 171 / 255)
     static let iCloudBlue = Color(red: 81 / 255, green: 160 / 255, blue: 213 / 255)
-    static let varunPurple = Color(red: 180 / 255, green: 68 / 255, blue: 228 / 255)
+    static let varunPurple = Color(red: 190 / 255, green: 79 / 255, blue: 238 / 255)
     static let lightBlue = Color(red: 223 / 255, green: 235 / 255, blue: 251 / 255)
+    static let darkGray = Color(red: 36 / 255, green: 37 / 255, blue: 38 / 255)
+    static let navy = Color(red: 2 / 255, green: 64 / 255, blue: 125 / 255)
 }
 
 var data = [

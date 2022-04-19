@@ -16,22 +16,62 @@ struct ModeSwitchView: View {
     
     var body: some View {
         NavigationView{
+            
+            
         VStack{
             Spacer()
-            Text("Display Modes")
-                .font(.largeTitle)
-            Picker("Mode", selection: $isDarkMode){
-                Text("Light")
-                    .tag(false)
-                Text("Dark")
-                    .tag(true)
-            }.pickerStyle(.segmented)
-                .padding()
-            Spacer()
+            HStack{
+                
+                Text("Display Mode")
+                    .font(.system(size: 30))
+                    .padding()
+                if !isDarkMode{
+                    Image(systemName: "cloud.sun")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 80, height: 80)
+                        .padding()
+                        .onTapGesture {
+                            withAnimation{
+                            isDarkMode.toggle()
+                            }
+                        }
+                    
+                }else{
+                Image(systemName: "moon.stars")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 80, height: 80)
+                        .padding()
+                        .foregroundColor(Color.navy)
+                        .onTapGesture {
+                            withAnimation{
+                            isDarkMode.toggle()
+                            }
+                        }
+                    
+                }
+                
+                
+            }
+            
+           Spacer()
             
             //[Color.iCloudBlue, Color.red, Color.pinkColor, Color.varunPurple, Color.forestGreen, Color.OrangeColor]
+            
+            VStack{
+                HStack{
             Text("Color Options")
-                .font(.largeTitle)
+                .font(.system(size: 30))
+                .padding()
+                Image(systemName: "paintpalette")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 80, height: 80)
+                    .padding()
+                    .foregroundColor(GlobalVar.colorList[color])
+
+                }
             Picker("Scheme", selection: $color){
                 Text("Icy Blue")
                     .tag(0)
@@ -48,6 +88,9 @@ struct ModeSwitchView: View {
                 
                 
             }.pickerStyle(.inline)
+                    .padding()
+                
+            }
             Spacer()
         }.navigationBarHidden(true)
         }
@@ -61,6 +104,7 @@ struct ModeSwitchView: View {
                 }) {
                     NavigationLink(destination: ContentView()) {
                         Image(systemName: "chevron.backward")
+                            .foregroundColor(GlobalVar.colorList[color])
                     }
                 }
             }

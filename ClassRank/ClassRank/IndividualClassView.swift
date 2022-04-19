@@ -98,7 +98,7 @@ struct IndividualClassView: View {
                                 .accentColor(GlobalVar.colorList[color])
                                 .foregroundColor(GlobalVar.colorList[color])
                                 Text("Grade: \(sliderGValue, specifier: "%.2f")")
-                                    .font(.system(size: 20))
+                                    .font(.system(size: 15))
                                     .fontWeight(.bold)
                                     .foregroundColor(GlobalVar.colorList[color])
                                 .padding()
@@ -110,14 +110,14 @@ struct IndividualClassView: View {
                                     
                                     if bigData.grades.gradeList != [0.0]{
                                         Text("Average Grade: \(bigData.averageGrade(gradeList: bigData.grades.gradeList))%")
-                                            .font(.system(size: 20))
+                                            .font(.system(size: 15))
                                             .fontWeight(.bold)
                                             .foregroundColor(GlobalVar.colorList[color])
                                             .padding()
                                     }else{
                                         
                                         Text("No grades inputted yet")
-                                            .font(.system(size: 20))
+                                            .font(.system(size: 15))
                                             .fontWeight(.bold)
                                             .foregroundColor(GlobalVar.colorList[color])
                                             .padding()
@@ -153,6 +153,7 @@ struct IndividualClassView: View {
                                         
                                     } label: {
                                         Text("Upload Grade")
+                                            .foregroundColor(GlobalVar.colorList[color])
                                     }
                                     Spacer()
 
@@ -172,7 +173,7 @@ struct IndividualClassView: View {
                                 .accentColor(GlobalVar.colorList[color])
                                 .foregroundColor(GlobalVar.colorList[color])
                                 Text("Homework per Night: \(sliderHValue, specifier: "%.2f")")
-                                    .font(.system(size: 20))
+                                    .font(.system(size: 15))
                                     .fontWeight(.bold)
                                     .foregroundColor(GlobalVar.colorList[color])
                                 .padding()
@@ -187,14 +188,14 @@ struct IndividualClassView: View {
                                         
                                         
                                         Text("No homework inputted yet")
-                                            .font(.system(size: 20))
+                                            .font(.system(size: 15))
                                             .fontWeight(.bold)
                                             .foregroundColor(GlobalVar.colorList[color])
                                             .padding()
                                     }else{
                                         
                                         Text("Average Homework per Night: \(bigData.averageGrade(gradeList: bigData.grades.homeworkList)) hrs")
-                                            .font(.system(size: 20))
+                                            .font(.system(size: 15))
                                             .fontWeight(.bold)
                                             .foregroundColor(GlobalVar.colorList[color])
                                             .padding()
@@ -223,6 +224,7 @@ struct IndividualClassView: View {
                                         
                                 } label: {
                                     Text("Upload HW")
+                                        .foregroundColor(GlobalVar.colorList[color])
                                 }
                                     Spacer()
                                 }
@@ -242,14 +244,14 @@ struct IndividualClassView: View {
                                 .disabled(true)
                                 if bigData.grades.gradeList != [0.0]{
                                     Text("Average Grade: \(bigData.averageGrade(gradeList: bigData.grades.gradeList))%")
-                                        .font(.system(size: 20))
+                                        .font(.system(size: 15))
                                         .fontWeight(.bold)
                                         .foregroundColor(GlobalVar.colorList[color])
                                         .padding()
                                     
                                 }else{
                                     Text("No grades inputted yet")
-                                        .font(.system(size: 20))
+                                        .font(.system(size: 15))
                                         .fontWeight(.bold)
                                         .foregroundColor(GlobalVar.colorList[color])
                                         .padding()
@@ -266,21 +268,21 @@ struct IndividualClassView: View {
                                 }
                                 .accentColor(GlobalVar.colorList[color])
                                 .foregroundColor(GlobalVar.colorList[color])
-                                .padding()
+                                .padding(100)
                                 .disabled(true)
                               
                                 if bigData.grades.homeworkList == [0.0] || bigData.grades.homeworkList == [1.0]{
                                     
                                     
                                     Text("No homework inputted yet")
-                                        .font(.system(size: 20))
+                                        .font(.system(size: 15))
                                         .fontWeight(.bold)
                                         .foregroundColor(GlobalVar.colorList[color])
                                         .padding()
                                 }else{
                                     
                                     Text("Average Homework per Night: \(bigData.averageGrade(gradeList: bigData.grades.homeworkList))%")
-                                        .font(.system(size: 20))
+                                        .font(.system(size: 15))
                                         .fontWeight(.bold)
                                         .foregroundColor(GlobalVar.colorList[color])
                                         .padding()
