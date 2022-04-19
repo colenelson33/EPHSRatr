@@ -95,6 +95,7 @@ struct IndividualClassView: View {
                                 } onEditingChanged: { editing in
                                     isEditing = editing
                                 }
+                                .padding(10)
                                 .accentColor(GlobalVar.colorList[color])
                                 .foregroundColor(GlobalVar.colorList[color])
                                 Text("Grade: \(sliderGValue, specifier: "%.2f")")
@@ -170,6 +171,7 @@ struct IndividualClassView: View {
                                 } onEditingChanged: { editing in
                                     isEditing = editing
                                 }
+                                .padding(10)
                                 .accentColor(GlobalVar.colorList[color])
                                 .foregroundColor(GlobalVar.colorList[color])
                                 Text("Homework per Night: \(sliderHValue, specifier: "%.2f")")
@@ -240,7 +242,7 @@ struct IndividualClassView: View {
                                 }
                                 .foregroundColor(GlobalVar.colorList[color])
                                 .accentColor(GlobalVar.colorList[color])
-                                .padding()
+                                .padding(10)
                                 .disabled(true)
                                 if bigData.grades.gradeList != [0.0]{
                                     Text("Average Grade: \(bigData.averageGrade(gradeList: bigData.grades.gradeList))%")
@@ -268,7 +270,7 @@ struct IndividualClassView: View {
                                 }
                                 .accentColor(GlobalVar.colorList[color])
                                 .foregroundColor(GlobalVar.colorList[color])
-                                .padding(100)
+                                .padding(10)
                                 .disabled(true)
                               
                                 if bigData.grades.homeworkList == [0.0] || bigData.grades.homeworkList == [1.0]{
