@@ -88,13 +88,14 @@ struct smallcardView: View {
         GeometryReader { g in
             VStack(alignment: .leading) {
                 HStack {
-                    Image(systemName: p.Image)
+                    Image(systemName: p.symbol)
                         .resizable()
                         .scaledToFill()
-                        .frame(width: 80, height: 80)
-                        .cornerRadius(10)
+                        .frame(width: 40, height: 40)
+                        .foregroundColor(GlobalVar.colorList[color])
+                        //.cornerRadius(10)
                         .matchedGeometryEffect(id: "image", in: namespace)
-                    
+                        .padding()
                     VStack(alignment: .leading) {
                         Text("Classes Available: \(p.classesNum)")
                             .foregroundColor(GlobalVar.colorList[color])
