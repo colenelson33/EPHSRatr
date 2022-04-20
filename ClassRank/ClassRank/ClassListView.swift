@@ -57,7 +57,7 @@ struct ClassListView: View{
                     
                     
                 //   let grade = setText(class1: c, name: c.className)
-                    Text("\(setText(class1: c, name: c.className))%")
+                    Text("0%")
                         .font(.system(size: 10))
                         .frame(width: 40, height: 40, alignment: .center)
                         .padding()
