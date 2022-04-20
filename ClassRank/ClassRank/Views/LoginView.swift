@@ -17,6 +17,7 @@ struct LoginView: View {
     @State var authenticationDidFail: Bool = false
     @State var authenticationDidSucceed: Bool = false
     @StateObject private var dataRank = CloudKitClassRank()
+    @AppStorage("colorPallette") private var color = 0
    
     
     var body: some View {
@@ -29,16 +30,16 @@ struct LoginView: View {
                 if dataRank.userName != ""{
                 Text("Welcome back, \(dataRank.userName)")
                     .font(.title)
-                    .foregroundColor(.red)
+                    .foregroundColor(GlobalVar.colorList[color])
                 }else{
                 Text("Welcome")
                         .font(.title)
-                        .foregroundColor(.red)
+                        .foregroundColor(GlobalVar.colorList[color])
                     
                 }
-                Text(dataRank.permissionStatus.description)
-                Text("is signed in: \(dataRank.isSignedInToiCloud.description.uppercased())")
-                Text(dataRank.error)
+              //  Text(dataRank.permissionStatus.description)
+               // Text("is signed in: \(dataRank.isSignedInToiCloud.description.uppercased())")
+           //     Text(dataRank.error)
                 //Label("Login", systemImage: /*@START_MENU_TOKEN@*/"42.circle"/*@END_MENU_TOKEN@*/)
                 
               UsernameTextField(username: $username)

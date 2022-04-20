@@ -22,7 +22,17 @@ struct ClassListView: View{
     
     @EnvironmentObject var bigData: CloudDataViewModel
     
-    
+    func setText(class1: ClassData, name: String, CKData: CloudDataViewModel) -> String{
+        
+        CKData.className = name
+        CKData.classData = class1
+        CKData.fetchItems()
+        let grade = CKData.averageGrade(gradeList: CKData.grades.gradeList)
+        print(grade)
+                             
+        return grade
+                                        
+    }
     
     
     //var currentClass: ClassData
@@ -40,9 +50,11 @@ struct ClassListView: View{
                 
                 HStack{
                     
-                    Text(bigData.averageGrade(gradeList: bigData.grades.gradeList)+"%")
-                        .font(.system(size: 10.0))
-                        .frame(width: 30, height: 30, alignment: .center)
+                    
+                   // let grade = setText(class1: c, name: c.className, CKData: bigData)
+                    Text("0%")
+                        .font(.system(size: 20))
+                        .frame(width: 40, height: 40, alignment: .center)
                         .padding()
                         .overlay(
                             Circle()
@@ -64,12 +76,14 @@ struct ClassListView: View{
                     
                     Spacer()
                     
-                Image(systemName: "flame")
+                Image(systemName: "arrow.right")
                         .resizable()
-                        .frame(width: 20, height: 30)
+                        .frame(width: 20, height: 20)
                         .foregroundColor(GlobalVar.colorList[color])
-                    
                         .padding()
+                        .onTapGesture {
+                            toggle.toggle()
+                        }
 
             }
             } //.listRowBackground(Color.pink)

@@ -38,6 +38,7 @@ struct IndividualClassView: View {
     
     @StateObject var currentClass: ClassData
     
+    @State var canTap: Bool = true
     @State var sliderGValue: Double
     @State var sliderHValue: Double
 
@@ -61,13 +62,14 @@ struct IndividualClassView: View {
                     
                     VStack{
                         
+                        
                         //Text("Teacher(s): \(currentClass.Teacher)")
                         //.font(.title2)
                         Spacer()
                         ScrollView(.horizontal, showsIndicators: false){
                             HStack(spacing: 12){
                                 
-                                Cards(txt: "Difficulty", activity: "difficultLevel", sysimages: "flame", opacityVal: 0.9, cardIndex: 2, showPopUp: .constant(false), showPrePopUp: .constant(false))
+                                Cards(txt: "Difficulty", activity: setDifficulty(grade: Double(bigData.averageGrade(gradeList: bigData.grades.gradeList))!), sysimages: "flame", opacityVal: 0.9, cardIndex: 2, showPopUp: .constant(false), showPrePopUp: .constant(false))
                                 
                                 Cards(txt: "Description", activity: "Tap for info", sysimages: "doc.text", opacityVal: 0.9, cardIndex: 0, showPopUp: $showPopUp, showPrePopUp: $showPrePopUp)
                                     
@@ -81,9 +83,11 @@ struct IndividualClassView: View {
                         VStack{
                             
                             
+                            
                             if(loggedIn == true) {
                                 
                                 VStack{
+                                    VStack{
                                 Slider(value: $sliderGValue, in: 0.01...100){
                                     
                                 } minimumValueLabel: {
@@ -91,31 +95,30 @@ struct IndividualClassView: View {
                                 } maximumValueLabel: {
                                     Text("100")
                                 } onEditingChanged: { editing in
-                                    isEditing = editing
-                                
-                    
-                                    
+                                    isEditing = editing }
+                                .disabled(hasUpload)
                                 .padding(.top, 30)
                                 .padding(.trailing, 30)
                                 .padding(.leading, 30)
                                 .accentColor(GlobalVar.colorList[color])
                                 .foregroundColor(GlobalVar.colorList[color])
-                                Text("Grade: \(sliderGValue, specifier: "%.2f")")
-                                    .font(.system(size: 20))
-                                    .fontWeight(.bold)
-                                    .foregroundColor(GlobalVar.colorList[color])
-                                    .padding(.bottom, 30)
-                                .disabled(hasUpload)
-                                }
-                                }.overlay(
-                                    RoundedRectangle(cornerRadius: 25)
-                                        .stroke(lineWidth: 2.0)
-                                        .foregroundColor(GlobalVar.colorList[color])
-                                        .padding()
-                                    
+                                        
+                                        Text("Grade: \(sliderGValue, specifier: "%.2f")")
+                                            .font(.system(size: 20))
+                                            .fontWeight(.bold)
+                                            .foregroundColor(GlobalVar.colorList[color])
+                                            .padding(.bottom, 30)
+                                            
+                                        
+                                    }
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 25)
+                                            .stroke(lineWidth: 2.0)
+                                            .foregroundColor(GlobalVar.colorList[color])
+                                            .padding()
+                                        
                                     )
-                                
-                                HStack{
+                                    HStack{
                                     
                                     Spacer()
                                     
@@ -136,32 +139,46 @@ struct IndividualClassView: View {
                                 
                                     Spacer()
                                     Button {
+                                        
+                                        
                                         @AppStorage(currentClass.className) var gradeUploaded: Bool = false
                                         
                                         //check to see if class object has already been created, if not then add a new one with the grade slider value
                                         //if class has been made, then update the grade record
-                                   //     Dispatch.main.asyncAfter(deadline: .now() + 5.0)
+                                       
                                          
-                                        if gradeUploaded == false{
+                                        if gradeUploaded == false || canTap{
+                                            gradeUploaded = true
+                                            hasUpload = true
+                                            canTap.toggle()
                                             bigData.fetchItems()
-                                        
+                                    
                                         if bigData.grades.gradeList == [0.0] &&
                                             bigData.grades.homeworkList == [0.0]{
                                             
                                             bigData.addItem(name: currentClass.className, num: sliderGValue)
                                             bigData.classData = currentClass
                                             bigData.className = currentClass.className
-                                            bigData.fetchItems()
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0){
+                                                self.bigData.fetchItems()
+                                                canTap = true
+
+                                            }
                                         }else{
                                             bigData.updateGrades(grade: bigData.grades, num: sliderGValue)
                                             bigData.classData = currentClass
                                             bigData.className = currentClass.className
-                                            bigData.fetchItems()
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0){
+                                                self.bigData.fetchItems()
+                                                canTap = true
+                                                print(canTap)
+
+                                            }
+                                        }
+                                            
+                                            
                                         }
                                         
-                                        }
-                                        hasUpload = true
-                                        gradeUploaded = true
                                         
                                         
                                         
@@ -175,8 +192,9 @@ struct IndividualClassView: View {
                                             .scaledToFill()
                                             .foregroundColor(GlobalVar.colorList[color])
                                             
+                                            
                                         
-                                    }
+                                    }.disabled(hasUpload)
                                     Spacer()
 
                                     
@@ -188,7 +206,7 @@ struct IndividualClassView: View {
                                 } minimumValueLabel: {
                                     Text("0")
                                 } maximumValueLabel: {
-                                    Text("10")
+                                    Text("5")
                                 } onEditingChanged: { editing in
                                     isEditing = editing
                                 }
@@ -203,7 +221,7 @@ struct IndividualClassView: View {
                                         .foregroundColor(GlobalVar.colorList[color])
                                         .padding(.bottom, 30)
                                 .disabled(false)
-                                .foregroundColor(GlobalVar.colorList[color])
+                               
                                 }.overlay(
                                     RoundedRectangle(cornerRadius: 25)
                                         .stroke(lineWidth: 2.0)
@@ -234,24 +252,40 @@ struct IndividualClassView: View {
                                     
                                     Spacer()
                                 Button {
+                                    
+                                    @AppStorage("\(currentClass.className)HW") var hwUploaded: Bool = false
                                     //check to see if class object has already been created, if not then add a new one with the homework slider value
                                     //if class has been made, then update the homework record
-                                    bigData.fetchItems()
-                                
+                                    
+                                    if !hwUploaded || canTap{
+                                        print(hwUploaded)
+                                        hwUploaded = true
+                                        hasUpload = true
+                                        canTap = false
                                 if bigData.grades.gradeList == [0.0] && bigData.grades.homeworkList == [0.0]{
                                     bigData.addItemHW(name: currentClass.className, num: sliderHValue)
                                     bigData.classData = currentClass
                                     bigData.className = currentClass.className
-                                    bigData.fetchItems()
+                                  
+                                    
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0){
+                                        self.bigData.fetchItems()
+                                        canTap = true
+                                    }
                                 }else{
                                     bigData.updateHomework(grade: bigData.grades, num: sliderHValue)
                                     
                                     bigData.classData = currentClass
                                     bigData.className = currentClass.className
-                                    bigData.fetchItems()
-                                    //toggle.toggle()
-                                }
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0){
+                                        self.bigData.fetchItems()
+                                        canTap = true
+                                    }
                                     
+                              
+                                }
+                                        hwUploaded = true
+                                    }
                                         
                                 } label: {
                                     Text("Upload HW")
@@ -259,6 +293,8 @@ struct IndividualClassView: View {
                                 }
                                     Spacer()
                                 }
+                            }
+                            
                             } else {
                                 
                             VStack{
@@ -370,11 +406,11 @@ struct IndividualClassView: View {
                                     toggle.toggle()
                                 }
                             }) {
-                                // NavigationLink(destination: ContentView()) {
+                            
                                 Image(systemName: "house.circle")
                                     .foregroundColor(GlobalVar.colorList[color])
                                 
-                                // }
+                               
                             }
                         }
             ToolbarItem(placement: .navigationBarLeading){
