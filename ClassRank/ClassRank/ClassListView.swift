@@ -22,15 +22,20 @@ struct ClassListView: View{
     
     @EnvironmentObject var bigData: CloudDataViewModel
     
-    func setText(class1: ClassData, name: String, CKData: CloudDataViewModel) -> String{
+    func setText(class1: ClassData, name: String) -> String{
         
-        CKData.className = name
-        CKData.classData = class1
-        CKData.fetchItems()
-        let grade = CKData.averageGrade(gradeList: CKData.grades.gradeList)
-        print(grade)
-                             
-        return grade
+    
+        
+        var grade = "0.0"
+        DispatchQueue.main.async{
+            self.bigData.className = name
+            self.bigData.classData = class1
+            self.bigData.fetchItems()
+            
+            grade = bigData.averageGrade(gradeList: bigData.grades.gradeList)
+            print(grade)
+        }
+       return grade
                                         
     }
     
@@ -51,9 +56,9 @@ struct ClassListView: View{
                 HStack{
                     
                     
-                   // let grade = setText(class1: c, name: c.className, CKData: bigData)
-                    Text("0%")
-                        .font(.system(size: 20))
+                //   let grade = setText(class1: c, name: c.className)
+                    Text("\(setText(class1: c, name: c.className))%")
+                        .font(.system(size: 10))
                         .frame(width: 40, height: 40, alignment: .center)
                         .padding()
                         .overlay(

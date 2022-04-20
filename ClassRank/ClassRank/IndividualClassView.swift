@@ -318,14 +318,14 @@ struct IndividualClassView: View {
                                         .font(.system(size: 20))
                                         .fontWeight(.bold)
                                         .foregroundColor(GlobalVar.colorList[color])
-                                        .padding(.bottom, 30)
+                                        .padding(.bottom, 40)
                                     
                                 }else{
                                     Text("No grades inputted yet")
                                         .font(.system(size: 20))
                                         .fontWeight(.bold)
                                         .foregroundColor(GlobalVar.colorList[color])
-                                        .padding(.bottom, 30)
+                                        .padding(.bottom, 40)
                                 }
                                 }.overlay(
                                     RoundedRectangle(cornerRadius: 25)
@@ -359,14 +359,14 @@ struct IndividualClassView: View {
                                         .font(.system(size: 20))
                                         .fontWeight(.bold)
                                         .foregroundColor(GlobalVar.colorList[color])
-                                        .padding()
+                                        .padding(.bottom, 40)
                                 }else{
                                     
                                     Text("Average Homework per Night: \(bigData.averageGrade(gradeList: bigData.grades.homeworkList))%")
                                         .font(.system(size: 20))
                                         .fontWeight(.bold)
                                         .foregroundColor(GlobalVar.colorList[color])
-                                        .padding()
+                                        .padding(.bottom, 40)
                                 }
                                 }.overlay(
                                     RoundedRectangle(cornerRadius: 25)
