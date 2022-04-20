@@ -31,7 +31,6 @@ struct BlurryBackGroundView: View {
                 VStack {
                     ForEach(data, id: \.self) { p in
                         
-                        
                         CardDetector(p:p, position: self.position)
                         
                     }
@@ -89,7 +88,7 @@ struct smallcardView: View {
         GeometryReader { g in
             VStack(alignment: .leading) {
                 HStack {
-                    Image(p.Image)
+                    Image(systemName: p.Image)
                         .resizable()
                         .scaledToFill()
                         .frame(width: 80, height: 80)

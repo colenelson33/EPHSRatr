@@ -15,6 +15,7 @@ struct ListData: Identifiable,Hashable {
     var teacherList: Array<String>
     var classesNum: Int
     var Image: String
+    var symbol: String
     var Color: Color
     var percentage: GLfloat
     var departmentIndex: Int
@@ -32,18 +33,18 @@ extension Color {
 }
 
 var data = [
-    ListData(title: "Art", teacherList: ["Amanda Budde", "Nancy Gallas", "Christopher True"], classesNum: GlobalVar.ArtClasses.count, Image: "paintbrush",Color: Color.red, percentage: 0.30, departmentIndex: 0),
-    ListData(title: "Business & Marketing", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.BusinessClasses.count, Image: "dollarsign.circle",Color: Color.red, percentage: 0.25, departmentIndex: 1),
-    ListData(title: "English", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.EnglishClasses.count, Image: "book.closed",Color: Color.red, percentage: 0.10, departmentIndex: 2),
-    ListData(title: "Family & Consumer Sciences", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.famCons.count, Image: "person.3",Color: Color.red, percentage: 0.45, departmentIndex: 3),
-    ListData(title: "Industrial Technology", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.industrialTechClasses.count, Image: "airplane.departure",Color: Color.red, percentage: 0.86, departmentIndex: 4),
-    ListData(title: "Math", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.MathClasses.count, Image: "math", Color: Color.red, percentage: 0.30, departmentIndex: 5),
-    ListData(title: "Music", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.MusicClasses.count, Image: "music.note",Color: Color.red, percentage: 0.25, departmentIndex: 6),
-    ListData(title: "Phy Ed/Health", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.phyEdClasses.count, Image: "bandage",Color: Color.red, percentage: 0.10, departmentIndex: 7),
-    ListData(title: "Science", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.ScienceClasses.count, Image: "leaf",Color: Color.red, percentage: 0.45, departmentIndex: 8),
-    ListData(title: "Social Studies", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.SocialClasses.count, Image: "globe", Color: Color.red, percentage: 0.86, departmentIndex: 9),
-    ListData(title: "Work Experience", teacherList: ["This", "That", "More"], classesNum: GlobalVar.WorkExperienceClasses.count, Image: "person.text.rectangle", Color: Color.red, percentage: 0.22, departmentIndex: 10),
-    ListData(title: "World Language", teacherList: ["This", "That", "More"], classesNum: GlobalVar.WorldLanguageClasses.count, Image: "globe.europe.africa", Color: Color.red, percentage: 0.22, departmentIndex: 11)
+    ListData(title: "Art", teacherList: ["Amanda Budde", "Nancy Gallas", "Christopher True"], classesNum: GlobalVar.ArtClasses.count, Image: "paintbrush", symbol: "", Color: Color.red, percentage: 0.30, departmentIndex: 0),
+    ListData(title: "Business & Marketing", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.BusinessClasses.count, Image: "dollarsign.circle",symbol: "", Color: Color.red, percentage: 0.25, departmentIndex: 1),
+    ListData(title: "English", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.EnglishClasses.count, Image: "book.closed",symbol: "", Color: Color.red, percentage: 0.10, departmentIndex: 2),
+    ListData(title: "Family & Consumer Sciences", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.famCons.count, Image: "person.3",symbol: "", Color: Color.red, percentage: 0.45, departmentIndex: 3),
+    ListData(title: "Industrial Technology", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.industrialTechClasses.count, Image: "airplane.departure",symbol: "", Color: Color.red, percentage: 0.86, departmentIndex: 4),
+    ListData(title: "Math", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.MathClasses.count, Image: "math", symbol: "", Color: Color.red, percentage: 0.30, departmentIndex: 5),
+    ListData(title: "Music", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.MusicClasses.count, Image: "music.note",symbol: "", Color: Color.red, percentage: 0.25, departmentIndex: 6),
+    ListData(title: "Phy Ed/Health", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.phyEdClasses.count, Image: "bandage",symbol: "", Color: Color.red, percentage: 0.10, departmentIndex: 7),
+    ListData(title: "Science", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.ScienceClasses.count, Image: "leaf",symbol: "", Color: Color.red, percentage: 0.45, departmentIndex: 8),
+    ListData(title: "Social Studies", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.SocialClasses.count, Image: "globe", symbol: "", Color: Color.red, percentage: 0.86, departmentIndex: 9),
+    ListData(title: "Work Experience", teacherList: ["This", "That", "More"], classesNum: GlobalVar.WorkExperienceClasses.count, Image: "person.text.rectangle", symbol: "", Color: Color.red, percentage: 0.22, departmentIndex: 10),
+    ListData(title: "World Language", teacherList: ["This", "That", "More"], classesNum: GlobalVar.WorldLanguageClasses.count, Image: "globe.europe.africa", symbol: "", Color: Color.red, percentage: 0.22, departmentIndex: 11)
 ]
 
 struct GlobalVar{
