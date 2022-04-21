@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CloudKit
+import AuthenticationServices
 
 class CloudKitClassRank: ObservableObject{
     
@@ -98,7 +99,16 @@ struct ContentView: View {
     
     @AppStorage("isGuest") var isGuest = false
     @AppStorage("isDepartmentView") var isDepartmentView: Bool = true
+    @AppStorage("email") var email : String = ""
+    @AppStorage("firstName") var firstName : String = ""
+    @AppStorage("lastName") var lastName : String = ""
+    @AppStorage("userId") var userId : String = ""
     
+    
+    private var isSignedIn: Bool{
+        
+        !userId.isEmpty
+    }
     
     var body: some View {
         
@@ -108,6 +118,8 @@ struct ContentView: View {
                
                 
                 HelloText()
+                
+                
                 Spacer()
                 
                 Button(action: {
@@ -115,25 +127,23 @@ struct ContentView: View {
                     isGuest = true
                 }) {
                     Text("Continue as Guest")
+                        .fontWeight(.semibold)
+                        .font(.system(size: 18))
                 }
                 .buttonStyle(GrowingButton())
                     //.padding(.top, 300)
-                Button(action: {
-                }) {
-                    NavigationLink(destination: LoginView(username: "")) {
-                        Label {
-                            Text("Login with iCloud")
-                                .foregroundColor(Color.iCloudBlue)
-                        } icon: {
-                            Image(systemName: "icloud")
-                                .foregroundColor(Color.iCloudBlue)
-                        }
-                        
-                        
-                    }
+                if !isSignedIn{
+                
+                SignInButtonView()
+                        .padding(.bottom, 50)
+                
+                }else{
+                    
+                    
                     
                 }
-                .buttonStyle(GrowingWButton())
+                    
+                
                 
             }
             .toolbar{
@@ -148,7 +158,7 @@ struct ContentView: View {
                         .frame(width: 100, height: 30)
                         .padding([.top, .bottom], 30)
                 }
-                ToolbarItem(placement: .navigationBarTrailing){
+              /*  ToolbarItem(placement: .navigationBarTrailing){
                     Button(action: {
                     }) {
                         NavigationLink(destination: ModeSwitchView()) {
@@ -156,7 +166,7 @@ struct ContentView: View {
                                 .foregroundColor(GlobalVar.colorList[color])
                         }
                     }
-                }
+                }*/
                 
             }
         }
@@ -220,5 +230,72 @@ struct GrowingWButton: ButtonStyle {
             .scaleEffect(configuration.isPressed ? 1.2 : 1)
             .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
     }
+}
+
+struct SignInButtonView: View{
+    
+    @AppStorage("isDarkMode") public var isDarkMode = false
+    @AppStorage("email") var email : String = ""
+    @AppStorage("firstName") var firstName : String = ""
+    @AppStorage("lastName") var lastName : String = ""
+    @AppStorage("userId") var userId : String = ""
+    
+    var body: some View{
+        
+
+        SignInWithAppleButton(.continue) { request in
+            
+            request.requestedScopes = [.email, .fullName]
+            
+            
+        } onCompletion: { result in
+            
+            switch result{
+            case .success(let auth):
+                switch auth.credential{
+                case let credential as ASAuthorizationAppleIDCredential:
+                    
+                    //User ID
+                    let userId = credential.user
+                    //User Info
+                    
+                    let email = credential.email
+                    let firstName = credential.fullName?.givenName
+                    let lastName = credential.fullName?.familyName
+                    
+                    self.userId = userId
+                    self.email = email ?? ""
+                    self.firstName = firstName ?? ""
+                    self.lastName = lastName ?? ""
+
+                    
+                default:
+                    break
+                    
+                }
+                
+                
+            case.failure(let error):
+                print(error)
+                
+                
+            }
+            
+            
+        }
+        .signInWithAppleButtonStyle(
+            isDarkMode == true ? .white : .black
+        
+        )
+        .frame(width: 300, height: 50)
+        .clipShape(Capsule())
+        
+        
+        
+        
+        
+    }
+    
+    
 }
 
