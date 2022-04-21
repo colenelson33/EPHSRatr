@@ -194,6 +194,18 @@ class CloudDataViewModel: ObservableObject{
         return String(y)
        
     }
+    
+    func averageGradeDouble(gradeList: [Double]) -> Double{
+        var averageGrade: Double = 0.0
+        var count = 0.0
+        for grade in gradeList{
+            
+            averageGrade += grade
+            count+=1
+            }
+        return Double(round(100*(averageGrade/count))/100)
+        
+    }
 
 }
 

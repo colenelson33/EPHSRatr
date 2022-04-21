@@ -53,7 +53,7 @@ struct MainAppView: View {
                     .preferredColorScheme(isDarkMode ? .dark : .light)
                     .environmentObject(bigData)
             }else if guestViewMode == 2{
-                ClassListView()
+                Toggle()
                     .preferredColorScheme(isDarkMode ? .dark : .light)
                     .environmentObject(bigData)
             }

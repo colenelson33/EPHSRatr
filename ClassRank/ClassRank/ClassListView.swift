@@ -14,6 +14,8 @@ struct ClassListView: View{
     @AppStorage("departmentIndex") var departmentIndex = 0
     @AppStorage("individualView") var toggle: Bool = false
     @AppStorage("colorPallette") private var color = 0
+    @AppStorage("ViewMode") var viewMode = 0
+    @AppStorage("guestViewMode") var guestViewMode = 0
   
     
     
@@ -70,10 +72,15 @@ struct ClassListView: View{
                     .padding()
                     .foregroundColor(GlobalVar.colorList[color])
                     .onTapGesture {
-                        bigData.classData = c
-                        bigData.className = c.className
-                        bigData.fetchItems()
-                        toggle.toggle()
+                        
+                        DispatchQueue.main.async {
+                            bigData.classData = c
+                            bigData.className = c.className
+                            bigData.fetchItems()
+                        }
+                        
+                        toggle = true
+                    
                     }
                     
                     Spacer()
@@ -84,17 +91,28 @@ struct ClassListView: View{
                         .foregroundColor(GlobalVar.colorList[color])
                         .padding()
                         .onTapGesture {
-                            toggle.toggle()
+                           
+                            DispatchQueue.main.async {
+                                bigData.classData = c
+                                bigData.className = c.className
+                                bigData.fetchItems()
+                            }
+                           
+                            
+                            toggle = true
                         }
 
             }
-            } //.listRowBackground(Color.pink)
+            }
             
         }
         .toolbar{
                 ToolbarItem(placement: .navigationBarLeading) {
                             Button(action: {
-                               // isDepartmentView = true
+                                
+                                viewMode = 0
+                                guestViewMode = 1
+                                
                             }) {
                                 Image(systemName: "arrow.left")
                                     .foregroundColor(GlobalVar.colorList[color])
@@ -102,17 +120,17 @@ struct ClassListView: View{
                             }
                         }
                         
-                        ToolbarItem(placement: .navigationBarTrailing){
+                       /* ToolbarItem(placement: .navigationBarTrailing){
                             Button(action: {
                                 isGuest = false
-                          //      loggedIn = false
+                                loggedIn = false
                             }) {
                                 // NavigationLink(destination: ContentView()) {
                                 Image(systemName: "house.circle")
                                     .foregroundColor(GlobalVar.colorList[color])
                                 // }
                             }
-                        }
+                        }*/
                         
                         
             }

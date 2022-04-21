@@ -29,7 +29,7 @@ struct IndividualClassView: View {
     
     @AppStorage("colorPallette") private var color = 0
  
-    @AppStorage("z") var toggle: Bool = false
+    @AppStorage("individualView") var toggle: Bool = false
     @State var hasUpload: Bool = false
     @EnvironmentObject var bigData: CloudDataViewModel
     
@@ -44,6 +44,14 @@ struct IndividualClassView: View {
     @State private var isEditing = false
     @State var showPopUp: Bool = false
     @State var showPrePopUp: Bool = false
+    
+    @AppStorage("userId") var userId : String = ""
+    
+    
+    private var isSignedIn: Bool{
+        
+        !userId.isEmpty
+    }
     
     var body: some View {
         
@@ -82,7 +90,7 @@ struct IndividualClassView: View {
                             
                             
                             
-                            if(loggedIn == true) {
+                            if isSignedIn {
                                 
                                 VStack{
                                     VStack{
@@ -334,12 +342,12 @@ struct IndividualClassView: View {
                                     )
                                
                                 VStack{
-                                Slider(value: $sliderHValue, in: 0...10){
+                                Slider(value: $sliderHValue, in: 0...5){
                                     Text("Speed")
                                 } minimumValueLabel: {
                                     Text("0")
                                 } maximumValueLabel: {
-                                    Text("10")
+                                    Text("5")
                                 } onEditingChanged: { editing in
                                     isEditing = editing
                                 }
@@ -413,7 +421,8 @@ struct IndividualClassView: View {
                         }*/
             ToolbarItem(placement: .navigationBarLeading){
                 Button(action:  {
-                    toggle.toggle()
+                    toggle = false
+                    
                 }) {
                     Image(systemName: "arrow.left")
                         .foregroundColor(GlobalVar.colorList[color])

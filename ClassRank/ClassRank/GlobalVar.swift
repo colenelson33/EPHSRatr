@@ -33,18 +33,18 @@ extension Color {
 }
 
 var data = [
-    ListData(title: "Art", teacherList: ["Amanda Budde", "Nancy Gallas", "Christopher True"], classesNum: GlobalVar.ArtClasses.count, Image: "", symbol: "paintbrush", Color: Color.red, percentage: 0.30, departmentIndex: 0),
-    ListData(title: "Business & Marketing", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.BusinessClasses.count, Image: "",symbol: "dollarsign.circle", Color: Color.red, percentage: 0.25, departmentIndex: 1),
-    ListData(title: "English", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.EnglishClasses.count, Image: "",symbol: "book.closed", Color: Color.red, percentage: 0.10, departmentIndex: 2),
-    ListData(title: "Family & Consumer Sciences", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.famCons.count, Image: "",symbol: "person.3", Color: Color.red, percentage: 0.45, departmentIndex: 3),
-    ListData(title: "Industrial Technology", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.industrialTechClasses.count, Image: "",symbol: "airplane.departure", Color: Color.red, percentage: 0.86, departmentIndex: 4),
+    ListData(title: "Art", teacherList: ["Amanda Budde", "Nancy Gallas", "Christopher True"], classesNum: GlobalVar.ArtClasses.count, Image: "art", symbol: "paintbrush", Color: Color.red, percentage: 0.30, departmentIndex: 0),
+    ListData(title: "Business & Marketing", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.BusinessClasses.count, Image: "business",symbol: "dollarsign.circle", Color: Color.red, percentage: 0.25, departmentIndex: 1),
+    ListData(title: "English", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.EnglishClasses.count, Image: "english",symbol: "book.closed", Color: Color.red, percentage: 0.10, departmentIndex: 2),
+    ListData(title: "Family & Consumer Sciences", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.famCons.count, Image: "facs",symbol: "person.3", Color: Color.red, percentage: 0.45, departmentIndex: 3),
+    ListData(title: "Industrial Technology", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.industrialTechClasses.count, Image: "woodshop",symbol: "airplane.departure", Color: Color.red, percentage: 0.86, departmentIndex: 4),
     ListData(title: "Math", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.MathClasses.count, Image: "math", symbol: "x.squareroot", Color: Color.red, percentage: 0.30, departmentIndex: 5),
-    ListData(title: "Music", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.MusicClasses.count, Image: "",symbol: "music.note", Color: Color.red, percentage: 0.25, departmentIndex: 6),
-    ListData(title: "Phy Ed/Health", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.phyEdClasses.count, Image: "",symbol: "bandage", Color: Color.red, percentage: 0.10, departmentIndex: 7),
-    ListData(title: "Science", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.ScienceClasses.count, Image: "",symbol: "leaf", Color: Color.red, percentage: 0.45, departmentIndex: 8),
-    ListData(title: "Social Studies", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.SocialClasses.count, Image: "", symbol: "globe", Color: Color.red, percentage: 0.86, departmentIndex: 9),
-    ListData(title: "Work Experience", teacherList: ["This", "That", "More"], classesNum: GlobalVar.WorkExperienceClasses.count, Image: "", symbol: "person.text.rectangle", Color: Color.red, percentage: 0.22, departmentIndex: 10),
-    ListData(title: "World Language", teacherList: ["This", "That", "More"], classesNum: GlobalVar.WorldLanguageClasses.count, Image: "", symbol: "globe.europe.africa", Color: Color.red, percentage: 0.22, departmentIndex: 11)
+    ListData(title: "Music", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.MusicClasses.count, Image: "music",symbol: "music.note", Color: Color.red, percentage: 0.25, departmentIndex: 6),
+    ListData(title: "Phy Ed/Health", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.phyEdClasses.count, Image: "gym",symbol: "bandage", Color: Color.red, percentage: 0.10, departmentIndex: 7),
+    ListData(title: "Science", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.ScienceClasses.count, Image: "science",symbol: "leaf", Color: Color.red, percentage: 0.45, departmentIndex: 8),
+    ListData(title: "Social Studies", teacherList: ["iOS","SwiftUI", "Xcode"], classesNum: GlobalVar.SocialClasses.count, Image: "socialstudies", symbol: "globe", Color: Color.red, percentage: 0.86, departmentIndex: 9),
+    ListData(title: "Work Experience", teacherList: ["This", "That", "More"], classesNum: GlobalVar.WorkExperienceClasses.count, Image: "perch", symbol: "person.text.rectangle", Color: Color.red, percentage: 0.22, departmentIndex: 10),
+    ListData(title: "World Language", teacherList: ["This", "That", "More"], classesNum: GlobalVar.WorldLanguageClasses.count, Image: "language", symbol: "globe.europe.africa", Color: Color.red, percentage: 0.22, departmentIndex: 11)
 ]
 
 struct GlobalVar{

@@ -13,11 +13,15 @@ struct Toggle: View {
     
     var body: some View {
         
-        if !toggle{
+        if toggle == false{
             ClassListView()
         }else{
             
-            IndividualClassView(currentClass: bigData.classData, sliderGValue: 100, sliderHValue: 10)
+             let gSlider = bigData.averageGradeDouble(gradeList: bigData.grades.gradeList)
+            
+             let hSlider = bigData.averageGradeDouble(gradeList: bigData.grades.homeworkList)
+            
+            IndividualClassView(currentClass: bigData.classData, sliderGValue: gSlider, sliderHValue: hSlider)
             
         }
         

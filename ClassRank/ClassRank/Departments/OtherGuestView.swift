@@ -39,11 +39,13 @@ struct MainDepartmentView: View {
                 }
             }
             .toolbar{
+                
                    ToolbarItem(placement: .navigationBarLeading){
                         Image(systemName: "house.circle")
                             .foregroundColor(GlobalVar.colorList[color])
                             .onTapGesture{
                                 userId = ""
+                                guestViewMode = 0
                             }
                     }
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -138,8 +140,9 @@ enum CardPosition: CaseIterable {
 struct CardDetector: View {
     
     @AppStorage("colorPallette") private var color = 0
-    @AppStorage("isDepartmentView") var isDepartmentView = false
     @AppStorage("departmentIndex") var departmentIndex: Int = 0
+    @AppStorage("ViewMode") var viewMode = 0
+    @AppStorage("guestViewMode") var guestViewMode = 0
     var p: ListData
     @State var position: CardPosition
     @Namespace var namespace
@@ -157,7 +160,8 @@ struct CardDetector: View {
                     .padding(.vertical,6)
                     .onTapGesture{
                         withAnimation{
-                            isDepartmentView = false
+                            viewMode = 1
+                            guestViewMode = 2
                             departmentIndex = p.departmentIndex
                         }
                     }
@@ -179,7 +183,8 @@ struct CardDetector: View {
                     .padding(.vertical,6)
                     .onTapGesture{
                         withAnimation{
-                            isDepartmentView = false
+                            viewMode = 1
+                            guestViewMode = 2
                             departmentIndex = p.departmentIndex
                         }
                     }
