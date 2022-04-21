@@ -10,12 +10,13 @@ import UIKit
 
 
 
-struct BlurryBackGroundView: View {
+struct MainDepartmentView: View {
     
-    @AppStorage("isDepartmentView") var isDepartmentView: Bool = true
-    @AppStorage("isGuest") var isGuest: Bool = false
+    @AppStorage("ViewMode") var viewMode = 0
+    @AppStorage("guestViewMode") var guestViewMode = 0
     @AppStorage("iCloudLoggedIn") var iCloudLoggedIn: Bool = false
     @AppStorage("colorPallette") private var color = 0
+    @AppStorage("userId") var userId : String = ""
     @State var small = true
     @Namespace var namespace
     @State private var position: CardPosition = .small
@@ -38,13 +39,11 @@ struct BlurryBackGroundView: View {
                 }
             }
             .toolbar{
-                    ToolbarItem(placement: .navigationBarLeading){
+                   ToolbarItem(placement: .navigationBarLeading){
                         Image(systemName: "house.circle")
                             .foregroundColor(GlobalVar.colorList[color])
                             .onTapGesture{
-                                isDepartmentView = false
-                           //     iCloudLoggedIn = false
-                                isGuest = false
+                                userId = ""
                             }
                     }
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -267,6 +266,6 @@ struct BlurView: UIViewRepresentable{
 
 struct OtherGuestView_Previews: PreviewProvider {
     static var previews: some View {
-        BlurryBackGroundView()
+        MainDepartmentView()
     }
 }

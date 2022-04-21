@@ -9,14 +9,15 @@ import SwiftUI
 
 struct GuestToggle: View {
     
-    @AppStorage("isDepartmentView") var isDepartmentView: Bool = false
-    @AppStorage("departmentIndex") var departmentIndex: Int = 0
-    @AppStorage("in") var isIndividual = false
+    @AppStorage("") var isDepartmentView: Bool = false
+    @AppStorage("") var departmentIndex: Int = 0
+    @AppStorage("") var isIndividual = false
     
     var body: some View {
         
         if isDepartmentView{
-            BlurryBackGroundView()
+            
+            MainDepartmentView()
            
         }else{
             Toggle()

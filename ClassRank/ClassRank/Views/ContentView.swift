@@ -92,13 +92,12 @@ class CloudKitClassRank: ObservableObject{
 struct ContentView: View {
     
     
-    @AppStorage("isLoggedIn") var loggedIn = false
+    @AppStorage("ViewMode") var viewMode = 0
+    @AppStorage("guestViewMode") var guestViewMode = 0
     
     @AppStorage("isDarkMode") public var isDarkMode = false
     @AppStorage("colorPallette") private var color = 0
     
-    @AppStorage("isGuest") var isGuest = false
-    @AppStorage("isDepartmentView") var isDepartmentView: Bool = true
     @AppStorage("email") var email : String = ""
     @AppStorage("firstName") var firstName : String = ""
     @AppStorage("lastName") var lastName : String = ""
@@ -123,8 +122,7 @@ struct ContentView: View {
                 Spacer()
                 
                 Button(action: {
-                    isDepartmentView = true
-                    isGuest = true
+                    guestViewMode = 1
                 }) {
                     Text("Continue as Guest")
                         .fontWeight(.semibold)
@@ -132,11 +130,11 @@ struct ContentView: View {
                 }
                 .buttonStyle(GrowingButton())
                     //.padding(.top, 300)
-              //  if !isSignedIn{
+            if !isSignedIn{
                 
                 SignInButtonView()
                         .padding(.bottom, 50)
-            
+            }
                 
                 
             }

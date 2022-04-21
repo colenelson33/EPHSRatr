@@ -28,9 +28,7 @@ struct IndividualClassView: View {
     
     
     @AppStorage("colorPallette") private var color = 0
-    @AppStorage("isLoggedIn") var loggedIn = true
-    @AppStorage("isGuest") var isGuest = false
-    @AppStorage("isDepartmentView") var isDepartmentView = true
+ 
     @AppStorage("z") var toggle: Bool = false
     @State var hasUpload: Bool = false
     @EnvironmentObject var bigData: CloudDataViewModel

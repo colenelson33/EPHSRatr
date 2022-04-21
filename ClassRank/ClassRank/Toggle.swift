@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct Toggle: View {
-    @AppStorage("z") var toggle: Bool = true
+    @AppStorage("individualView") var toggle: Bool = false
     @EnvironmentObject var bigData: CloudDataViewModel
     
     var body: some View {
         
-        if toggle{
+        if !toggle{
             ClassListView()
         }else{
             

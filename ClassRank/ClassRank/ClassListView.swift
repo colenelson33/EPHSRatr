@@ -11,10 +11,8 @@ import CloudKit
 
 struct ClassListView: View{
 
-    @AppStorage("isGuest") var isGuest = false
-    @AppStorage("isDepartmentView") var isDepartmentView = false
     @AppStorage("departmentIndex") var departmentIndex = 0
-    @AppStorage("z") var toggle: Bool = false
+    @AppStorage("individualView") var toggle: Bool = false
     @AppStorage("colorPallette") private var color = 0
   
     
@@ -96,7 +94,7 @@ struct ClassListView: View{
         .toolbar{
                 ToolbarItem(placement: .navigationBarLeading) {
                             Button(action: {
-                                isDepartmentView = true
+                               // isDepartmentView = true
                             }) {
                                 Image(systemName: "arrow.left")
                                     .foregroundColor(GlobalVar.colorList[color])
