@@ -24,7 +24,7 @@ extension Color {
     static let pinkColor = Color(red: 227 / 255, green: 133 / 255, blue: 180 / 255)
     static let forestGreen = Color(red: 74 / 255, green: 103 / 255, blue: 65 / 255)
     static let purpleColor = Color(red: 123 / 255, green: 119 / 255, blue: 233 / 255)
-    static let OrangeColor = Color(red: 240 / 255, green: 146 / 255, blue: 171 / 255)
+    static let OrangeColor = Color(red: 204 / 255, green: 85 / 255, blue: 0 / 255)
     static let iCloudBlue = Color(red: 81 / 255, green: 160 / 255, blue: 213 / 255)
     static let varunPurple = Color(red: 190 / 255, green: 79 / 255, blue: 238 / 255)
     static let lightBlue = Color(red: 223 / 255, green: 235 / 255, blue: 251 / 255)
@@ -49,7 +49,7 @@ var data = [
 
 struct GlobalVar{
     
-    static var colorList = [Color.iCloudBlue, Color.red, Color.pinkColor, Color.varunPurple, Color.forestGreen, Color.OrangeColor]
+    static var colorList = [Color.red, Color.iCloudBlue, Color.pinkColor, Color.varunPurple, Color.forestGreen, Color.OrangeColor]
     
     static var inGuestView: Bool = true
     

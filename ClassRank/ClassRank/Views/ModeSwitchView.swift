@@ -73,18 +73,51 @@ struct ModeSwitchView: View {
 
                 }
             Picker("Scheme", selection: $color){
-                Text("Icy Blue")
-                    .tag(0)
-                Text("Eagle Red")
-                    .tag(1)
-                Text("Pretty in Pink")
-                    .tag(2)
-                Text("Purple Explosion")
-                    .tag(3)
-                Text("Forest Green")
-                    .tag(4)
-                Text("Rusty Orange")
-                    .tag(5)
+                HStack{
+                    Text("Eagle Red")
+                        
+                        
+                    
+                }.tag(0)
+                
+                HStack{
+                    Text("Icy Blue")
+                        
+                        .padding(53.5)
+                    Image(systemName: "star.fill")
+                        .foregroundColor(.yellow)
+                }.tag(1)
+                HStack{
+                    Text("Pretty in Pink")
+                        
+                        .padding(30)
+                    Image(systemName: "star.fill")
+                        .foregroundColor(.yellow)
+                }.tag(2)
+                HStack{
+                    Text("Purple Explosion")
+                        
+                        .padding(15)
+                    Image(systemName: "star.fill")
+                        .foregroundColor(.yellow)
+                }.tag(3)
+                HStack{
+                    Text("Forest Green")
+                        
+                        .padding(33)
+                    Image(systemName: "star.fill")
+                        .foregroundColor(.yellow)
+                }.tag(4)
+                HStack{
+                    Text("Rusty Orange")
+                        
+                        .padding(30)
+                    Image(systemName: "star.fill")
+                        .foregroundColor(.yellow)
+                }.tag(5)
+                
+                
+                
                 
                 
             }.pickerStyle(.inline)
@@ -92,24 +125,40 @@ struct ModeSwitchView: View {
                 
             }
             Spacer()
+            
+            Button(action: {
+                
+                
+            }) {
+                Text("Purchase Colors")
+                    .font(.headline)
+                    .frame(width: 250, height: 80)
+                    .background(GlobalVar.colorList[color])
+                    .cornerRadius(30.0)
+                    .foregroundColor(.white)
+            }
+            
+            Spacer()
+            
+            
         }.navigationBarHidden(true)
         }
-        .navigationBarBackButtonHidden(true)
+        .navigationBarBackButtonHidden(false)
         
-        .toolbar{
+     /*   .toolbar{
             
             ToolbarItem(placement: .navigationBarLeading) {
                 
                 Button(action: {
                 }) {
-                    NavigationLink(destination: ContentView()) {
+                    NavigationLink(destination: OtherGuestView()) {
                         Image(systemName: "chevron.backward")
                             .foregroundColor(GlobalVar.colorList[color])
                     }
                 }
             }
             
-        }
+        }*/
     }
 }
 

@@ -397,7 +397,7 @@ struct IndividualClassView: View {
                 .toolbar{
             
             
-            ToolbarItem(placement: .navigationBarTrailing){
+         /*   ToolbarItem(placement: .navigationBarTrailing){
                             Button(action: {
                                 withAnimation{
                                 isGuest = false
@@ -412,7 +412,7 @@ struct IndividualClassView: View {
                                 
                                
                             }
-                        }
+                        }*/
             ToolbarItem(placement: .navigationBarLeading){
                 Button(action:  {
                     toggle.toggle()

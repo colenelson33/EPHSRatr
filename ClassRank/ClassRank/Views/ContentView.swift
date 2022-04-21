@@ -132,17 +132,11 @@ struct ContentView: View {
                 }
                 .buttonStyle(GrowingButton())
                     //.padding(.top, 300)
-                if !isSignedIn{
+              //  if !isSignedIn{
                 
                 SignInButtonView()
                         .padding(.bottom, 50)
-                
-                }else{
-                    
-                    
-                    
-                }
-                    
+            
                 
                 
             }
@@ -239,6 +233,7 @@ struct SignInButtonView: View{
     @AppStorage("firstName") var firstName : String = ""
     @AppStorage("lastName") var lastName : String = ""
     @AppStorage("userId") var userId : String = ""
+    @AppStorage("iCloudLoggedIn") var iCloudLoggedIn: Bool = false
     
     var body: some View{
         
@@ -267,6 +262,7 @@ struct SignInButtonView: View{
                     self.email = email ?? ""
                     self.firstName = firstName ?? ""
                     self.lastName = lastName ?? ""
+                    self.iCloudLoggedIn = true
 
                     
                 default:

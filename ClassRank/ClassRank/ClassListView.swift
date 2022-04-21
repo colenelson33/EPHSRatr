@@ -10,8 +10,7 @@ import SwiftUI
 import CloudKit
 
 struct ClassListView: View{
-    
-    @AppStorage("isLoggedIn") var loggedIn = false
+
     @AppStorage("isGuest") var isGuest = false
     @AppStorage("isDepartmentView") var isDepartmentView = false
     @AppStorage("departmentIndex") var departmentIndex = 0
@@ -108,7 +107,7 @@ struct ClassListView: View{
                         ToolbarItem(placement: .navigationBarTrailing){
                             Button(action: {
                                 isGuest = false
-                                loggedIn = false
+                          //      loggedIn = false
                             }) {
                                 // NavigationLink(destination: ContentView()) {
                                 Image(systemName: "house.circle")

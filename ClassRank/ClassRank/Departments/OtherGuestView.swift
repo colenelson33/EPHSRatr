@@ -14,7 +14,7 @@ struct BlurryBackGroundView: View {
     
     @AppStorage("isDepartmentView") var isDepartmentView: Bool = true
     @AppStorage("isGuest") var isGuest: Bool = false
-    @AppStorage("isLoggedIn") var isLoggedIn: Bool = false
+    @AppStorage("iCloudLoggedIn") var iCloudLoggedIn: Bool = false
     @AppStorage("colorPallette") private var color = 0
     @State var small = true
     @Namespace var namespace
@@ -38,15 +38,22 @@ struct BlurryBackGroundView: View {
                 }
             }
             .toolbar{
-                    ToolbarItem(placement: .navigationBarTrailing){
+                    ToolbarItem(placement: .navigationBarLeading){
                         Image(systemName: "house.circle")
                             .foregroundColor(GlobalVar.colorList[color])
                             .onTapGesture{
                                 isDepartmentView = false
-                                isLoggedIn = false
+                           //     iCloudLoggedIn = false
                                 isGuest = false
                             }
                     }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink(destination: ModeSwitchView()) {
+                        Image(systemName: "gear")
+                            .foregroundColor(GlobalVar.colorList[color])
+                    }
+                    
+                }
                 }
                 .navigationTitle("Departments")
         }
@@ -83,8 +90,10 @@ struct smallcardView: View {
     @AppStorage("departmentIndex") var departmentIndex: Int = 0
     var p: ListData
     let namespace: Namespace.ID
-    
+
     var body: some View {
+        
+        
         GeometryReader { g in
             VStack(alignment: .leading) {
                 HStack {

@@ -10,7 +10,7 @@ import SwiftUI
 struct MainAppView: View {
     
     @AppStorage("isDarkMode") private var isDarkMode = false
-    //@AppStorage("isLoggedIn") var loggedIn = false
+
     @AppStorage("isGuest") var isGuest = false
     @AppStorage("isDepartmentView") var isDepartmentView = true
     @StateObject var bigData = CloudDataViewModel()
