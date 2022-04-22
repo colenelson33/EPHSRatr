@@ -74,14 +74,7 @@ struct GlobalVar{
     static let MusicClasses = [apstats, apstats, apstats]
     
     static let phyEdClasses = [apstats, apstats, apstats]
-    
-    static let ScienceClasses = [apstats, apstats, apstats]
-    
-    static let SocialClasses = [apstats, apstats, apstats]
-    
-    static let WorkExperienceClasses = [apstats, apstats, apstats]
-    
-    static let WorldLanguageClasses = [apstats, apstats, apstats]
+  
     
     
     

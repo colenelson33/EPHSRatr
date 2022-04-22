@@ -25,4 +25,20 @@ class ClassData: Decodable, Identifiable, ObservableObject {
     }
 }
 
+extension GlobalVar{
+    
+    
+    static let ScienceClasses = [apstats, apstats, apstats]
+    
+    static let 
+    
+    static let SocialClasses = [apstats, apstats, apstats]
+    
+    static let WorkExperienceClasses = [apstats, apstats, apstats]
+    
+    static let WorldLanguageClasses = [apstats, apstats, apstats]
+    
+    
+}
+
 
