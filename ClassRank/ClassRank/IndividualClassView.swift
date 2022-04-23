@@ -147,19 +147,20 @@ struct IndividualClassView: View {
                                     Button {
                                         
                                         
-                                        @AppStorage(currentClass.className) var gradeUploaded: Bool = false
+                      
                                         
                                         //check to see if class object has already been created, if not then add a new one with the grade slider value
                                         //if class has been made, then update the grade record
                                        
-                                         
-                                        if gradeUploaded == false || canTap{
-                                            gradeUploaded = true
-                                            hasUpload = true
-                                            canTap.toggle()
-                                            bigData.fetchItems()
+                                        bigData.updateGrades(grade: bigData.grades, num: sliderGValue)
+                                        bigData.classData = currentClass
+                                        bigData.className = currentClass.className
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0){
+                                            self.bigData.fetchItems()
+                                        }
+                            
                                     
-                                        if bigData.grades.gradeList == [0.0] &&
+                                     /*   if bigData.grades.gradeList == [0.0] &&
                                             bigData.grades.homeworkList == [0.0]{
                                             
                                             bigData.addItem(name: currentClass.className, num: sliderGValue)
@@ -182,8 +183,8 @@ struct IndividualClassView: View {
                                             }
                                         }
                                             
-                                            
-                                        }
+                                   */
+                                        
                                         
                                         
                                         
@@ -243,14 +244,14 @@ struct IndividualClassView: View {
                                         
                                         
                                         Text("No homework inputted yet")
-                                            .font(.system(size: 15))
+                                            .font(.system(size: 20))
                                             .fontWeight(.bold)
                                             .foregroundColor(GlobalVar.colorList[color])
                                             .padding()
                                     }else{
                                         
-                                        Text("Average Homework per Night: \(bigData.averageGrade(gradeList: bigData.grades.homeworkList)) hrs")
-                                            .font(.system(size: 15))
+                                        Text("Avg homework per night: \(bigData.averageGrade(gradeList: bigData.grades.homeworkList)) hrs")
+                                            .font(.system(size: 20))
                                             .fontWeight(.bold)
                                             .foregroundColor(GlobalVar.colorList[color])
                                             .padding()
@@ -259,16 +260,17 @@ struct IndividualClassView: View {
                                     Spacer()
                                 Button {
                                     
-                                    @AppStorage("\(currentClass.className)HW") var hwUploaded: Bool = false
+    
                                     //check to see if class object has already been created, if not then add a new one with the homework slider value
                                     //if class has been made, then update the homework record
+                                    bigData.updateHomework(grade: bigData.grades, num: sliderHValue)
+                                    bigData.classData = currentClass
+                                    bigData.className = currentClass.className
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0){
+                                        self.bigData.fetchItems()
+                                    }
                                     
-                                    if !hwUploaded || canTap{
-                                        print(hwUploaded)
-                                        hwUploaded = true
-                                        hasUpload = true
-                                        canTap = false
-                                if bigData.grades.gradeList == [0.0] && bigData.grades.homeworkList == [0.0]{
+                              /*  if bigData.grades.gradeList == [0.0] && bigData.grades.homeworkList == [0.0]{
                                     bigData.addItemHW(name: currentClass.className, num: sliderHValue)
                                     bigData.classData = currentClass
                                     bigData.className = currentClass.className
@@ -289,12 +291,15 @@ struct IndividualClassView: View {
                                     }
                                     
                               
-                                }
-                                        hwUploaded = true
-                                    }
+                                }*/
+                         
+                                    
                                         
                                 } label: {
-                                    Text("Upload HW")
+                                    Image(systemName: "icloud.and.arrow.up")
+                                        .resizable()
+                                        .frame(width: 30, height: 30)
+                                        .scaledToFill()
                                         .foregroundColor(GlobalVar.colorList[color])
                                 }
                                     Spacer()

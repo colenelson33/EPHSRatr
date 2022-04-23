@@ -14,6 +14,7 @@ struct gradeModel: Hashable{
     let record: CKRecord
     var gradeList: [Double]
     var homeworkList: [Double]
+    var prerequisites: String
     
     
 }
@@ -27,7 +28,7 @@ struct newGradeModel: Hashable{
 
 class CloudDataViewModel: ObservableObject{
     
-    @Published var grades: gradeModel = gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.0])
+    @Published var grades: gradeModel = gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.0], prerequisites: "")
     @Published var className: String = ""
     @Published var classData = ClassData(className: "", Teacher: "", credits: 0, preR: "", description: "")
 
@@ -43,7 +44,7 @@ class CloudDataViewModel: ObservableObject{
         let queryOperation = CKQueryOperation(query: query)
         queryOperation.resultsLimit = 1
         
-        var returnedItems: gradeModel = gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.0])
+        var returnedItems: gradeModel = gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.0], prerequisites: "")
         
         
         queryOperation.recordMatchedBlock = { (returnedRecordID, returnedResult) in
@@ -52,7 +53,8 @@ class CloudDataViewModel: ObservableObject{
                 guard let name = record["name"] as? String else{ return }
                 guard let gradeList = record["gradeList"] as? [Double] else { return }
                 guard let homeworkList = record["homeworkList"] as? [Double] else { return }
-                returnedItems = gradeModel(name: name, record: record, gradeList: gradeList, homeworkList: homeworkList)
+                guard let prerequisites = record["prerequisites"] as? String else { return }
+                returnedItems = gradeModel(name: name, record: record, gradeList: gradeList, homeworkList: homeworkList, prerequisites: prerequisites)
                 
             case .failure(let error):
                 print("Record matched error: \(error)")
@@ -136,23 +138,23 @@ class CloudDataViewModel: ObservableObject{
         
     }
     
-   /* private func addIndividualGrade(grade: Double){
-        CKContainer.default().publicCloudDatabase.save(grade){ [weak self]
-            returnedGrade, returnedError in
-            print(returnedGrade)
-            print("Error: \(returnedError)")
-            DispatchQueue.main.async {
-                self?.text = ""
-                self?.fetchGrade()
-            }
-            
-        }
+    func addClass(name: String, prerequisites: String){
+        let newClass = CKRecord(recordType: "Class")
+        newClass["name"] = name
+        newClass["prerequisites"] = prerequisites
+        newClass["homeworkList"] = [0.0]
+        newClass["gradeList"] = [0.0]
+        saveItem(record: newClass)
+        
+        
+        
     }
-    */
+    
+
      func saveItem(record: CKRecord){
         CKContainer.default().publicCloudDatabase.save(record) { [weak self] returnedRecord, returnedError in
-            print(returnedRecord)
-            print("Error: \(returnedError)")
+         //   print(returnedRecord)
+         //   print("Error: \(returnedError)")
             DispatchQueue.main.async {
                 self?.fetchItems()
             }
@@ -173,14 +175,7 @@ class CloudDataViewModel: ObservableObject{
             
         }
     }*/
-    
-    private func checkForDouble(grade: String) -> Double{
-        if let newGrade = Double(grade){
-            return newGrade
-        }else{
-            return 0.0
-        }
-    }
+
     
     func averageGrade(gradeList: [Double]) -> String{
         var averageGrade: Double = 0.0

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class ClassData: Decodable, Identifiable, ObservableObject {
     
@@ -23,6 +24,12 @@ class ClassData: Decodable, Identifiable, ObservableObject {
         self.prerequisite = preR
         self.description = description
     }
+}
+
+extension Color {
+    
+    static let offWhite = Color(red: 243 / 255, green: 243 / 255, blue: 243 / 255)
+    
 }
 
 extension GlobalVar{

@@ -49,6 +49,23 @@ struct ClassListView: View{
         NavigationView{
         
         
+         /*   Button {
+                for eachDepartment in GlobalVar.DepartmentList{
+                    for eachClass in eachDepartment{
+                        
+                        bigData.addClass(name: eachClass.className, prerequisites: eachClass.prerequisite)
+                        
+                        
+                        
+                    }
+                    
+                    
+                }
+            } label: {
+                Text("toast ur computer")
+            }
+
+ */
             List{
             ForEach(GlobalVar.DepartmentList[departmentIndex]){ c in
                 
