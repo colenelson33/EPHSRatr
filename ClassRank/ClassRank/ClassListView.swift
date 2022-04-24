@@ -16,6 +16,7 @@ struct ClassListView: View{
     @AppStorage("colorPallette") private var color = 0
     @AppStorage("ViewMode") var viewMode = 0
     @AppStorage("guestViewMode") var guestViewMode = 0
+    @AppStorage("userId") var userId : String = ""
   
     
     
@@ -49,11 +50,11 @@ struct ClassListView: View{
         NavigationView{
         
         
-         /*   Button {
+          /*  Button {
                 for eachDepartment in GlobalVar.DepartmentList{
                     for eachClass in eachDepartment{
                         
-                        bigData.addClass(name: eachClass.className, prerequisites: eachClass.prerequisite)
+                        bigData.addClass(name: eachClass.className, prerequisites: eachClass.prerequisite, description: eachClass.description)
                         
                         
                         
@@ -64,8 +65,8 @@ struct ClassListView: View{
             } label: {
                 Text("toast ur computer")
             }
-
- */
+*/
+ 
             List{
             ForEach(GlobalVar.DepartmentList[departmentIndex]){ c in
                 
@@ -74,7 +75,7 @@ struct ClassListView: View{
                     
                 //   let grade = setText(class1: c, name: c.className)
                     Text("0%")
-                        .font(.system(size: 10))
+                        .font(.system(size: 16))
                         .frame(width: 40, height: 40, alignment: .center)
                         .padding()
                         .overlay(
@@ -90,9 +91,11 @@ struct ClassListView: View{
                     .foregroundColor(GlobalVar.colorList[color])
                     .onTapGesture {
                         
+                        bigData.classData = c
+                        bigData.className = c.className
+                        
                         DispatchQueue.main.async {
-                            bigData.classData = c
-                            bigData.className = c.className
+                         
                             bigData.fetchItems()
                         }
                         
@@ -108,10 +111,12 @@ struct ClassListView: View{
                         .foregroundColor(GlobalVar.colorList[color])
                         .padding()
                         .onTapGesture {
-                           
+                            
+                            bigData.classData = c
+                            bigData.className = c.className
+                            
                             DispatchQueue.main.async {
-                                bigData.classData = c
-                                bigData.className = c.className
+                                
                                 bigData.fetchItems()
                             }
                            

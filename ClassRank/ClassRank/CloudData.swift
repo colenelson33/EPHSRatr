@@ -15,6 +15,8 @@ struct gradeModel: Hashable{
     var gradeList: [Double]
     var homeworkList: [Double]
     var prerequisites: String
+    var description: String
+//    var userId: String
     
     
 }
@@ -28,7 +30,9 @@ struct newGradeModel: Hashable{
 
 class CloudDataViewModel: ObservableObject{
     
-    @Published var grades: gradeModel = gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.0], prerequisites: "")
+    @Published var grades: gradeModel = gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.01], homeworkList: [0.0], prerequisites: "", description: "")
+                                                   
+  //, description: "", userId: "")
     @Published var className: String = ""
     @Published var classData = ClassData(className: "", Teacher: "", credits: 0, preR: "", description: "")
 
@@ -44,7 +48,8 @@ class CloudDataViewModel: ObservableObject{
         let queryOperation = CKQueryOperation(query: query)
         queryOperation.resultsLimit = 1
         
-        var returnedItems: gradeModel = gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.0], prerequisites: "")
+        var returnedItems: gradeModel = gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.01], homeworkList: [0.0], prerequisites: "", description: "")
+                                                   //, description: "", userId: "")
         
         
         queryOperation.recordMatchedBlock = { (returnedRecordID, returnedResult) in
@@ -54,7 +59,10 @@ class CloudDataViewModel: ObservableObject{
                 guard let gradeList = record["gradeList"] as? [Double] else { return }
                 guard let homeworkList = record["homeworkList"] as? [Double] else { return }
                 guard let prerequisites = record["prerequisites"] as? String else { return }
-                returnedItems = gradeModel(name: name, record: record, gradeList: gradeList, homeworkList: homeworkList, prerequisites: prerequisites)
+                guard let description = record["description"] as? String else{ return }
+             //   guard let userId = record["userID"] as? String else{ return }
+                returnedItems = gradeModel(name: name, record: record, gradeList: gradeList, homeworkList: homeworkList, prerequisites: prerequisites, description: description)
+                                           //, description: desciption, userId: userId)
                 
             case .failure(let error):
                 print("Record matched error: \(error)")
@@ -86,13 +94,17 @@ class CloudDataViewModel: ObservableObject{
             let record = grade.record
             print("ok")
             record["gradeList"] = [num]
+      //      record["userID"] = [userId]
             saveItem(record: record)
             
         }else{
         
         let record = grade.record
         var newList = grade.gradeList
+     //   var newUserList = grade.userId
         newList.append(num)
+      //  newUserList.append(userId)
+       // record["userID"] = newUserList
         record["gradeList"] = newList
         saveItem(record: record)
         }
@@ -100,18 +112,22 @@ class CloudDataViewModel: ObservableObject{
     }
     
     func updateHomework(grade: gradeModel, num: Double){
-        if grade.homeworkList == [0.0] || grade.homeworkList == [0.1]{
+        if grade.homeworkList == [0.01]{
             let record = grade.record
             print("ok")
             record["homeworkList"] = [num]
+          //  record["userID"] = [userId]
             saveItem(record: record)
             
         }else{
         
         let record = grade.record
         var newList = grade.homeworkList
+     //   var newUserList = grade.userId
+     //   newUserList.append(userId)
         newList.append(num)
         record["homeworkList"] = newList
+       // record["userID"] = newUserList
         saveItem(record: record)
         }
         
@@ -138,12 +154,14 @@ class CloudDataViewModel: ObservableObject{
         
     }
     
-    func addClass(name: String, prerequisites: String){
+    func addClass(name: String, prerequisites: String, description: String){
         let newClass = CKRecord(recordType: "Class")
         newClass["name"] = name
         newClass["prerequisites"] = prerequisites
+     //   newClass["description"] = description
         newClass["homeworkList"] = [0.0]
-        newClass["gradeList"] = [0.0]
+        newClass["gradeList"] = [0.01]
+      //  newClass["userID"] = userId
         saveItem(record: newClass)
         
         

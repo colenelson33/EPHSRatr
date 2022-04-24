@@ -59,10 +59,10 @@ struct IndividualClassView: View {
         
             ScrollView{
             ZStack {
-                TeacherWindow(title: "Description", message: currentClass.description, buttonText: "Done", show: $showPopUp)
+                TeacherWindow(title: "Description", message: bigData.grades.description, buttonText: "Done", show: $showPopUp)
                     .zIndex(100.0)
                 
-                PreWindow(title: "Prerequisites", message: currentClass.prerequisite, buttonText: "Done", show: $showPrePopUp)
+                PreWindow(title: "Prerequisites", message: bigData.grades.prerequisites, buttonText: "Done", show: $showPrePopUp)
                     .zIndex(100.0)
                 VStack{
                     
@@ -208,7 +208,7 @@ struct IndividualClassView: View {
                                 }
                                 Spacer()
                                 VStack{
-                                Slider(value: $sliderHValue, in: 0...5, step: 0.25){
+                                    Slider(value: $sliderHValue, in: 0...5, step: 0.25){
                                     Text("Speed")
                                 } minimumValueLabel: {
                                     Text("0")
@@ -324,7 +324,7 @@ struct IndividualClassView: View {
                                 .foregroundColor(GlobalVar.colorList[color])
                                 .accentColor(GlobalVar.colorList[color])
                                 .disabled(true)
-                                if bigData.grades.gradeList != [0.0]{
+                                if bigData.grades.gradeList != [0.01]{
                                     Text("Average Grade: \(bigData.averageGrade(gradeList: bigData.grades.gradeList))%")
                                         .font(.system(size: 20))
                                         .fontWeight(.bold)
