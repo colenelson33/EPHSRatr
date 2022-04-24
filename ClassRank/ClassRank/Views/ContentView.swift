@@ -114,7 +114,8 @@ struct ContentView: View {
        
         NavigationView{
             VStack{
-               
+                
+
                 
                 HelloText()
                 
@@ -123,6 +124,7 @@ struct ContentView: View {
                 
                 Button(action: {
                     guestViewMode = 1
+                    userId = "no nil"
                 }) {
                     Text("Continue as Guest")
                         .fontWeight(.semibold)

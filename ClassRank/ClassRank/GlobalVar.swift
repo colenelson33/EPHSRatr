@@ -57,8 +57,8 @@ struct GlobalVar{
     
     static var currentGrade: Double = 100.0
     
-    static let DepartmentList = [ArtClasses, BusinessClasses, EnglishClasses, famCons, industrialTechClasses, MathClasses, MusicClasses, phyEdClasses, ScienceClasses, WorkExperienceClasses, WorldLanguageClasses]
-  
+    static let DepartmentList = [ArtClasses, BusinessClasses, EnglishClasses, famCons, industrialTechClasses, MathClasses, MusicClasses, phyEdClasses, ScienceClasses, SocialClasses, WorkExperienceClasses, WorldLanguageClasses]
+    
     static let ArtClasses = [APStudioD, APStudioDP, APStudioSC, AdvancedCeramics, ceramics1, ceramics2, DigitalArt, DigitalArt2, Drawing, Drawing2, jewelry, painting1, painting2, sculpture, sculpture2, studioArt, ]
     
     static let BusinessClasses = [IntroToTechSkinny, Accounting, AdvancedAccounting, AdvancedMarketing, APEconomics, APMicro, BusinessInnovations, BusinessIntroduction, BusinessIntroductionSpanishEdition, BusinessLawEthics, Careers910, Careers1112, Entrepreneurship, FinanceInvesting, IntroductionToTechnology, IntroductionToTechnologyBlended,IntroductionToTechnologySkills, Keyboarding, MarketingStrategies, PersonalFinancialManagement, SeniorInternProgram, SpreadsheetsAndDatabases]

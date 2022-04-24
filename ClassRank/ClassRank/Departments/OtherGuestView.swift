@@ -12,6 +12,8 @@ import UIKit
 
 struct MainDepartmentView: View {
     
+    
+    @AppStorage("isDarkMode") public var isDarkMode = false
     @AppStorage("ViewMode") var viewMode = 0
     @AppStorage("guestViewMode") var guestViewMode = 0
     @AppStorage("iCloudLoggedIn") var iCloudLoggedIn: Bool = false
@@ -136,6 +138,20 @@ enum CardPosition: CaseIterable {
 }
 
 
+func colorFunc() -> Color{
+    
+    @AppStorage("isDarkMode") var isDarkMode = false
+    if isDarkMode{
+        let bColor = Color.darkGray
+        return bColor
+    }else{
+        let bColor = Color.offWhite
+        return bColor
+    }
+   
+    
+}
+
 
 struct CardDetector: View {
     
@@ -143,10 +159,13 @@ struct CardDetector: View {
     @AppStorage("departmentIndex") var departmentIndex: Int = 0
     @AppStorage("ViewMode") var viewMode = 0
     @AppStorage("guestViewMode") var guestViewMode = 0
+    @AppStorage("isDarkMode") public var isDarkMode = false
     var p: ListData
     @State var position: CardPosition
     @Namespace var namespace
+    let bColor = colorFunc()
     var body: some View {
+        
         
             Group {
                 switch position {
@@ -155,7 +174,7 @@ struct CardDetector: View {
                     .padding()
                     .frame(maxWidth: .infinity)
                     .frame(height: 120)
-                    .background(Color.darkGray)
+                    .background(bColor)
                     .cornerRadius(10)
                     .padding(.vertical,6)
                     .onTapGesture{
@@ -178,7 +197,7 @@ struct CardDetector: View {
                     .padding()
                     .frame(maxWidth: .infinity)
                     .frame(height: 270)
-                    .background(Color.darkGray)
+                    .background(bColor)
                     .cornerRadius(10)
                     .padding(.vertical,6)
                     .onTapGesture{
