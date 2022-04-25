@@ -31,7 +31,7 @@ struct newGradeModel: Hashable{
 
 class CloudDataViewModel: ObservableObject{
     
-    @Published var grades: gradeModel = gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.01], homeworkList: [0.0], prerequisites: "", description: "", department: "")
+    @Published var grades: gradeModel = gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.01], prerequisites: "", description: "", department: "")
                                                    
   //, description: "", userId: "")
     @Published var className: String = ""
@@ -49,7 +49,7 @@ class CloudDataViewModel: ObservableObject{
         let queryOperation = CKQueryOperation(query: query)
         queryOperation.resultsLimit = 1
         
-        var returnedItems: gradeModel = gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.01], homeworkList: [0.0], prerequisites: "", description: "", department: "")
+        var returnedItems: gradeModel = gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.01], prerequisites: "", description: "", department: "")
                                                    //, description: "", userId: "")
         
         
@@ -162,8 +162,8 @@ class CloudDataViewModel: ObservableObject{
         newClass["prerequisites"] = prerequisites
         newClass["description"] = description
         newClass["department"] = department
-        newClass["homeworkList"] = [0.0]
-        newClass["gradeList"] = [0.01]
+        newClass["homeworkList"] = [0.01]
+        newClass["gradeList"] = [0.0]
       //  newClass["userID"] = userId
         saveItem(record: newClass)
         
