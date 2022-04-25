@@ -56,7 +56,7 @@ struct ClassListView: View{
             ForEach(GlobalVar.DepartmentList[departmentIndex]){ c in
                 
                 HStack{
-                    Button {
+                   /* Button {
                         
                         let departmentList = ["Art", "Business", "English", "Facs", "Tech Ed", "Math", "Music", "PhyEd/Health", "Science", "Social Studies", "Work", "World Language" ]
                         var count = 0
@@ -76,7 +76,7 @@ struct ClassListView: View{
                      } label: {
                          Text("toast ur computer")
                      }
-                    Spacer()
+                    Spacer()*/
                     
                 //   let grade = setText(class1: c, name: c.className)
                     Text("0%")

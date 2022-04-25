@@ -221,6 +221,7 @@ struct CardDetector: View {
 struct bigcardView: View {
     @AppStorage("colorPallette") private var color = 0
     var p: ListData
+    
     let namespace: Namespace.ID
     var body: some View {
         VStack(alignment: .leading) {
@@ -236,8 +237,7 @@ struct bigcardView: View {
                         }
                 }*/
                     
-                
-                
+               
                 Image(p.Image)
                     .resizable()
                     .scaledToFill()

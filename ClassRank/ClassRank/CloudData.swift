@@ -31,12 +31,117 @@ struct newGradeModel: Hashable{
 
 class CloudDataViewModel: ObservableObject{
     
+    @Published var classList: [gradeModel] = [gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.01], prerequisites: "", description: "", department: "")]
+    
     @Published var grades: gradeModel = gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.01], prerequisites: "", description: "", department: "")
                                                    
-  //, description: "", userId: "")
+
     @Published var className: String = ""
     @Published var classData = ClassData(className: "", Teacher: "", credits: 0, preR: "", description: "")
+    
+  //  let departmentList = ["Art", "Business", "English", "Facs", "Tech Ed", "Math", "Music", "PhyEd/Health", "Science", "Social Studies", "Work", "World Language" ]
+    
+    @Published var ArtClasses: [gradeModel] = [gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.01], prerequisites: "", description: "", department: "")]
+    
+    @Published var BusinessClasses: [gradeModel] = [gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.01], prerequisites: "", description: "", department: "")]
+    
+    @Published var EnglishClasses: [gradeModel] = [gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.01], prerequisites: "", description: "", department: "")]
+    @Published var FacsClasses: [gradeModel] = [gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.01], prerequisites: "", description: "", department: "")]
+    
+    @Published var TechEdClasses: [gradeModel] = [gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.01], prerequisites: "", description: "", department: "")]
+    
+    @Published var MathClasses: [gradeModel] = [gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.01], prerequisites: "", description: "", department: "")]
+    
+    @Published var MusicClasses: [gradeModel] = [gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.01], prerequisites: "", description: "", department: "")]
+    
+    @Published var PhyEdClasses: [gradeModel] = [gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.01], prerequisites: "", description: "", department: "")]
+    
+    @Published var ScienceClasses: [gradeModel] = [gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.01], prerequisites: "", description: "", department: "")]
+    
+    @Published var SSClasses: [gradeModel] = [gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.01], prerequisites: "", description: "", department: "")]
+    
+    @Published var WorkClasses: [gradeModel] = [gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.01], prerequisites: "", description: "", department: "")]
+    
+    @Published var LanguageClasses: [gradeModel] = [gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.01], prerequisites: "", description: "", department: "")]
+    
+    @Published var OtherClasses: [gradeModel] = [gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.01], prerequisites: "", description: "", department: "")]
+    
+    
 
+    
+    func fetchAllItems(){
+      
+        
+          let predicate = NSPredicate(value: true)
+          let query = CKQuery(recordType: "Class", predicate: predicate)
+          let queryOperation = CKQueryOperation(query: query)
+          
+          var returnedItems: [gradeModel] = [gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.01], prerequisites: "", description: "", department: "")]
+                                    
+          
+          queryOperation.recordMatchedBlock = { (returnedRecordID, returnedResult) in
+              switch returnedResult{
+              case .success(let record):
+                  guard let name = record["name"] as? String else{ return }
+                  guard let gradeList = record["gradeList"] as? [Double] else { return }
+                  guard let homeworkList = record["homeworkList"] as? [Double] else { return }
+                  guard let prerequisites = record["prerequisites"] as? String else { return }
+                  guard let description = record["description"] as? String else{ return }
+                  guard let department = record["department"] as? String else{return}
+               //   guard let userId = record["userID"] as? String else{ return }
+                  returnedItems.append(gradeModel(name: name, record: record, gradeList: gradeList, homeworkList: homeworkList, prerequisites: prerequisites, description: description, department: department))
+              case .failure(let error):
+                  print("Record matched error: \(error)")
+              }
+              
+          }
+          
+          queryOperation.queryResultBlock = { [weak self]returnedResult in
+              print(returnedResult)
+              DispatchQueue.main.async {
+                  self?.classList = returnedItems
+              }
+          }
+        //  let departmentList = ["Art", "Business", "English", "Facs", "Tech Ed", "Math", "Music", "PhyEd/Health", "Science", "Social Studies", "Work", "World Language" ]
+        for eachClass in classList{
+            if eachClass.department == "Art"{
+                ArtClasses.append(eachClass)
+            }else if eachClass.department == "Business"{
+                BusinessClasses.append(eachClass)
+            }else if eachClass.department == "English"{
+                EnglishClasses.append(eachClass)
+            }else if eachClass.department == "Facs"{
+                FacsClasses.append(eachClass)
+            }else if eachClass.department == "Tech Ed"{
+                TechEdClasses.append(eachClass)
+            }else if eachClass.department == "Math"{
+                MathClasses.append(eachClass)
+            }else if eachClass.department == "Music"{
+                MusicClasses.append(eachClass)
+            }else if eachClass.department == "PhyEd/Health"{
+                PhyEdClasses.append(eachClass)
+            }else if eachClass.department == "Science"{
+                ScienceClasses.append(eachClass)
+            }else if eachClass.department == "Social Studies"{
+                SSClasses.append(eachClass)
+            }else if eachClass.department == "Work"{
+                WorkClasses.append(eachClass)
+            }else if eachClass.department == "World Language"{
+                LanguageClasses.append(eachClass)
+            }else{
+                OtherClasses.append(eachClass)
+            }
+            
+            
+        }
+          
+      
+          
+          addOperations(operation: queryOperation)
+          
+          
+          
+         }
    
     func fetchItems(){
         
