@@ -156,12 +156,12 @@ class CloudDataViewModel: ObservableObject{
         
     }
     
-    func addClass(name: String, prerequisites: String, description: String){
+    func addClass(name: String, prerequisites: String, description: String, department: String){
         let newClass = CKRecord(recordType: "Class")
         newClass["name"] = name
         newClass["prerequisites"] = prerequisites
         newClass["description"] = description
-        newClass["department"] = "Math"
+        newClass["department"] = department
         newClass["homeworkList"] = [0.0]
         newClass["gradeList"] = [0.01]
       //  newClass["userID"] = userId

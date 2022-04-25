@@ -57,19 +57,19 @@ struct ClassListView: View{
                 
                 HStack{
                     Button {
-                     /*    for eachDepartment in GlobalVar.DepartmentList{
+                        
+                        let departmentList = ["Art", "Business", "English", "Facs", "Tech Ed", "Math", "Music", "PhyEd/Health", "Science", "Social Studies", "Work", "World Language" ]
+                        var count = 0
+                         for eachDepartment in
+                                GlobalVar.DepartmentList{
+                             
                              for eachClass in eachDepartment{
                                  
-                                 bigData.addClass(name: eachClass.className, prerequisites: eachClass.prerequisite, description: eachClass.description)
+                                 bigData.addClass(name: eachClass.className, prerequisites: eachClass.prerequisite, description: eachClass.description, department: departmentList[count])
                                  print("class added")
                       }
-                      }
-                      
-                      */
-                        bigData.addClass(name: "ayo", prerequisites: "none", description: "fun class!")
-                                 
-                                 
-                             
+                             count+=1
+                    }
                              
                              
                          
