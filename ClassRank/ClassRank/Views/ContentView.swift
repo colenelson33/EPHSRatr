@@ -94,7 +94,7 @@ struct ContentView: View {
     
     @AppStorage("ViewMode") var viewMode = 0
     @AppStorage("guestViewMode") var guestViewMode = 0
-    
+    @EnvironmentObject var bigData: CloudDataViewModel
     @AppStorage("isDarkMode") public var isDarkMode = false
     @AppStorage("colorPallette") private var color = 0
     
@@ -123,8 +123,10 @@ struct ContentView: View {
                 Spacer()
                 
                 Button(action: {
+                    bigData.initFunc()
                     guestViewMode = 1
                     userId = "no nil"
+                    
                 }) {
                     Text("Continue as Guest")
                         .fontWeight(.semibold)

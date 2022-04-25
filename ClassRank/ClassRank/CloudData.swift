@@ -29,6 +29,12 @@ struct newGradeModel: Hashable{
     
 }
 
+extension GlobalVar{
+    
+    static var Departments: [[gradeModel]] = [[]]
+    
+}
+
 class CloudDataViewModel: ObservableObject{
     
     @Published var classList: [gradeModel] = [gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.01], prerequisites: "", description: "", department: "")]
@@ -60,13 +66,51 @@ class CloudDataViewModel: ObservableObject{
     
     @Published var SSClasses: [gradeModel] = [gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.01], prerequisites: "", description: "", department: "")]
     
-    @Published var WorkClasses: [gradeModel] = [gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.01], prerequisites: "", description: "", department: "")]
+    @Published var WorkClasses: [gradeModel] = [gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0, 50], homeworkList: [0.01], prerequisites: "", description: "", department: "")]
     
-    @Published var LanguageClasses: [gradeModel] = [gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.01], prerequisites: "", description: "", department: "")]
+    @Published var LanguageClasses: [gradeModel] = [gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0, 100], homeworkList: [0.01], prerequisites: "", description: "", department: "")]
     
     @Published var OtherClasses: [gradeModel] = [gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.01], prerequisites: "", description: "", department: "")]
     
     
+    func initFunc(){
+        
+        fetchAllItems()
+        for eachClass in classList{
+            if eachClass.department == "Art"{
+                self.ArtClasses.append(eachClass)
+                print("appended")
+            }else if eachClass.department == "Business"{
+                self.BusinessClasses.append(eachClass)
+            }else if eachClass.department == "English"{
+                self.EnglishClasses.append(eachClass)
+            }else if eachClass.department == "Facs"{
+                self.FacsClasses.append(eachClass)
+            }else if eachClass.department == "Tech Ed"{
+                self.TechEdClasses.append(eachClass)
+            }else if eachClass.department == "Math"{
+                self.MathClasses.append(eachClass)
+            }else if eachClass.department == "Music"{
+                self.MusicClasses.append(eachClass)
+            }else if eachClass.department == "PhyEd/Health"{
+                self.PhyEdClasses.append(eachClass)
+            }else if eachClass.department == "Science"{
+                self.ScienceClasses.append(eachClass)
+            }else if eachClass.department == "Social Studies"{
+                self.SSClasses.append(eachClass)
+            }else if eachClass.department == "Work"{
+                self.WorkClasses.append(eachClass)
+            }else if eachClass.department == "World Language"{
+                self.LanguageClasses.append(eachClass)
+            }else{
+                self.OtherClasses.append(eachClass)
+            }
+            
+            
+        }
+        GlobalVar.Departments = [ArtClasses, BusinessClasses, EnglishClasses, FacsClasses, TechEdClasses, MathClasses, MusicClasses, PhyEdClasses, ScienceClasses, SSClasses, WorkClasses, LanguageClasses]
+        
+    }
 
     
     func fetchAllItems(){
@@ -103,37 +147,7 @@ class CloudDataViewModel: ObservableObject{
               }
           }
         //  let departmentList = ["Art", "Business", "English", "Facs", "Tech Ed", "Math", "Music", "PhyEd/Health", "Science", "Social Studies", "Work", "World Language" ]
-        for eachClass in classList{
-            if eachClass.department == "Art"{
-                ArtClasses.append(eachClass)
-            }else if eachClass.department == "Business"{
-                BusinessClasses.append(eachClass)
-            }else if eachClass.department == "English"{
-                EnglishClasses.append(eachClass)
-            }else if eachClass.department == "Facs"{
-                FacsClasses.append(eachClass)
-            }else if eachClass.department == "Tech Ed"{
-                TechEdClasses.append(eachClass)
-            }else if eachClass.department == "Math"{
-                MathClasses.append(eachClass)
-            }else if eachClass.department == "Music"{
-                MusicClasses.append(eachClass)
-            }else if eachClass.department == "PhyEd/Health"{
-                PhyEdClasses.append(eachClass)
-            }else if eachClass.department == "Science"{
-                ScienceClasses.append(eachClass)
-            }else if eachClass.department == "Social Studies"{
-                SSClasses.append(eachClass)
-            }else if eachClass.department == "Work"{
-                WorkClasses.append(eachClass)
-            }else if eachClass.department == "World Language"{
-                LanguageClasses.append(eachClass)
-            }else{
-                OtherClasses.append(eachClass)
-            }
-            
-            
-        }
+        
           
       
           

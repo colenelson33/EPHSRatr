@@ -50,10 +50,10 @@ struct ClassListView: View{
         NavigationView{
         
         
-           
+           //GlobalVar.Departments[departmentIndex]
  
             List{
-            ForEach(GlobalVar.DepartmentList[departmentIndex]){ c in
+                ForEach(bigData.classList, id: \.self){ c in
                 
                 HStack{
                    /* Button {
@@ -79,7 +79,7 @@ struct ClassListView: View{
                     Spacer()*/
                     
                 //   let grade = setText(class1: c, name: c.className)
-                    Text("0%")
+                    Text("\(bigData.averageGrade(gradeList: c.gradeList))%")
                         .font(.system(size: 16))
                         .frame(width: 40, height: 40, alignment: .center)
                         .padding()
@@ -90,14 +90,14 @@ struct ClassListView: View{
                         )
                         
                     
-                Text(c.className)
+                Text(c.name)
                     
                     .padding()
                     .foregroundColor(GlobalVar.colorList[color])
                     .onTapGesture {
                         
-                        bigData.classData = c
-                        bigData.className = c.className
+                    //    bigData.classData = c
+                        bigData.className = c.name
                         
                         DispatchQueue.main.async {
                          
@@ -117,8 +117,8 @@ struct ClassListView: View{
                         .padding()
                         .onTapGesture {
                             
-                            bigData.classData = c
-                            bigData.className = c.className
+                   //         bigData.classData = c
+                            bigData.className = c.name
                             
                             DispatchQueue.main.async {
                                 
