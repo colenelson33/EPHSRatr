@@ -16,6 +16,7 @@ struct gradeModel: Hashable{
     var homeworkList: [Double]
     var prerequisites: String
     var description: String
+    var department: String
 //    var userId: String
     
     
@@ -30,7 +31,7 @@ struct newGradeModel: Hashable{
 
 class CloudDataViewModel: ObservableObject{
     
-    @Published var grades: gradeModel = gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.01], homeworkList: [0.0], prerequisites: "", description: "")
+    @Published var grades: gradeModel = gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.01], homeworkList: [0.0], prerequisites: "", description: "", department: "")
                                                    
   //, description: "", userId: "")
     @Published var className: String = ""
@@ -48,7 +49,7 @@ class CloudDataViewModel: ObservableObject{
         let queryOperation = CKQueryOperation(query: query)
         queryOperation.resultsLimit = 1
         
-        var returnedItems: gradeModel = gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.01], homeworkList: [0.0], prerequisites: "", description: "")
+        var returnedItems: gradeModel = gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.01], homeworkList: [0.0], prerequisites: "", description: "", department: "")
                                                    //, description: "", userId: "")
         
         
@@ -60,8 +61,9 @@ class CloudDataViewModel: ObservableObject{
                 guard let homeworkList = record["homeworkList"] as? [Double] else { return }
                 guard let prerequisites = record["prerequisites"] as? String else { return }
                 guard let description = record["description"] as? String else{ return }
+                guard let department = record["department"] as? String else{return}
              //   guard let userId = record["userID"] as? String else{ return }
-                returnedItems = gradeModel(name: name, record: record, gradeList: gradeList, homeworkList: homeworkList, prerequisites: prerequisites, description: description)
+                returnedItems = gradeModel(name: name, record: record, gradeList: gradeList, homeworkList: homeworkList, prerequisites: prerequisites, description: description, department: department)
                                            //, description: desciption, userId: userId)
                 
             case .failure(let error):
@@ -158,7 +160,8 @@ class CloudDataViewModel: ObservableObject{
         let newClass = CKRecord(recordType: "Class")
         newClass["name"] = name
         newClass["prerequisites"] = prerequisites
-     //   newClass["description"] = description
+        newClass["description"] = description
+        newClass["department"] = "Math"
         newClass["homeworkList"] = [0.0]
         newClass["gradeList"] = [0.01]
       //  newClass["userID"] = userId
@@ -171,7 +174,7 @@ class CloudDataViewModel: ObservableObject{
 
      func saveItem(record: CKRecord){
         CKContainer.default().publicCloudDatabase.save(record) { [weak self] returnedRecord, returnedError in
-         //   print(returnedRecord)
+            print(returnedRecord)
          //   print("Error: \(returnedError)")
             DispatchQueue.main.async {
                 self?.fetchItems()

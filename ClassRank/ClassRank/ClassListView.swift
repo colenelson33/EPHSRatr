@@ -50,28 +50,33 @@ struct ClassListView: View{
         NavigationView{
         
         
-          /*  Button {
-                for eachDepartment in GlobalVar.DepartmentList{
-                    for eachClass in eachDepartment{
-                        
-                        bigData.addClass(name: eachClass.className, prerequisites: eachClass.prerequisite, description: eachClass.description)
-                        
-                        
-                        
-                    }
-                    
-                    
-                }
-            } label: {
-                Text("toast ur computer")
-            }
-*/
+           
  
             List{
             ForEach(GlobalVar.DepartmentList[departmentIndex]){ c in
                 
                 HStack{
-                    
+                    Button {
+                     /*    for eachDepartment in GlobalVar.DepartmentList{
+                             for eachClass in eachDepartment{
+                                 
+                                 bigData.addClass(name: eachClass.className, prerequisites: eachClass.prerequisite, description: eachClass.description)
+                                 print("class added")
+                      }
+                      }
+                      
+                      */
+                        bigData.addClass(name: "ayo", prerequisites: "none", description: "fun class!")
+                                 
+                                 
+                             
+                             
+                             
+                         
+                     } label: {
+                         Text("toast ur computer")
+                     }
+                    Spacer()
                     
                 //   let grade = setText(class1: c, name: c.className)
                     Text("0%")
