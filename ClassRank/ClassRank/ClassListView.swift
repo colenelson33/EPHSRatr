@@ -51,7 +51,7 @@ struct ClassListView: View{
         
         
            //GlobalVar.Departments[departmentIndex]
-           /* Button {
+            Button {
                 
                 let departmentList = ["Art", "Business", "English", "Facs", "Tech Ed", "Math", "Music", "PhyEd/Health", "Science", "Social Studies", "Work", "World Language" ]
                 var count = 0
@@ -70,7 +70,7 @@ struct ClassListView: View{
                  
              } label: {
                  Text("toast ur computer")
-             }*/
+             }
             List{
                 
                 let departments = [bigData.ArtClasses, bigData.BusinessClasses, bigData.EnglishClasses, bigData.FacsClasses, bigData.TechEdClasses, bigData.MathClasses, bigData.MusicClasses, bigData.PhyEdClasses, bigData.ScienceClasses, bigData.SSClasses, bigData.WorkClasses, bigData.LanguageClasses ]
