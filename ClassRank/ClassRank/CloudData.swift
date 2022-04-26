@@ -72,51 +72,484 @@ class CloudDataViewModel: ObservableObject{
     
     @Published var OtherClasses: [gradeModel] = [gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.01], prerequisites: "", description: "", department: "")]
     
+    @Published var Departments: [[gradeModel]] = [[gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.01], prerequisites: "", description: "", department: "")]]
+    
+    
+    init(){
+        
+        initFunc()
+    }
     
     func initFunc(){
         
-        fetchAllItems()
-        for eachClass in classList{
-            if eachClass.department == "Art"{
-                self.ArtClasses.append(eachClass)
-                print("appended")
-            }else if eachClass.department == "Business"{
-                self.BusinessClasses.append(eachClass)
-            }else if eachClass.department == "English"{
-                self.EnglishClasses.append(eachClass)
-            }else if eachClass.department == "Facs"{
-                self.FacsClasses.append(eachClass)
-            }else if eachClass.department == "Tech Ed"{
-                self.TechEdClasses.append(eachClass)
-            }else if eachClass.department == "Math"{
-                self.MathClasses.append(eachClass)
-            }else if eachClass.department == "Music"{
-                self.MusicClasses.append(eachClass)
-            }else if eachClass.department == "PhyEd/Health"{
-                self.PhyEdClasses.append(eachClass)
-            }else if eachClass.department == "Science"{
-                self.ScienceClasses.append(eachClass)
-            }else if eachClass.department == "Social Studies"{
-                self.SSClasses.append(eachClass)
-            }else if eachClass.department == "Work"{
-                self.WorkClasses.append(eachClass)
-            }else if eachClass.department == "World Language"{
-                self.LanguageClasses.append(eachClass)
-            }else{
-                self.OtherClasses.append(eachClass)
-            }
+        fetchArtClasses()
+        fetchBusinessClasses()
+        fetchFacsClasses()
+        fetchEnglishClasses()
+        fetchTechClasses()
+        fetchMathClasses()
+        fetchMusicClasses()
+        fetchPEClasses()
+        fetchScienceClasses()
+        fetchSSClasses()
+        fetchWorkClasses()
+        fetchLanguageClasses()
+        
+    //    Departments.append(ArtClasses)
             
-            
-        }
-        GlobalVar.Departments = [ArtClasses, BusinessClasses, EnglishClasses, FacsClasses, TechEdClasses, MathClasses, MusicClasses, PhyEdClasses, ScienceClasses, SSClasses, WorkClasses, LanguageClasses]
+       // GlobalVar.Departments = [ArtClasses, BusinessClasses, EnglishClasses, FacsClasses, TechEdClasses, MathClasses, MusicClasses, PhyEdClasses, ScienceClasses, SSClasses, WorkClasses, LanguageClasses]
+      //  print(GlobalVar.Departments[3])
         
     }
+    
+    func fetchBusinessClasses(){
+          let predicate = NSPredicate(format: "department = %@", argumentArray: ["Business"])
+          let query = CKQuery(recordType: "Class", predicate: predicate)
+          let queryOperation = CKQueryOperation(query: query)
+          
+          var returnedItems: [gradeModel] = [gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.01], prerequisites: "", description: "", department: "")]
+                                    
+          
+          queryOperation.recordMatchedBlock = { (returnedRecordID, returnedResult) in
+              switch returnedResult{
+              case .success(let record):
+                  guard let name = record["name"] as? String else{ return }
+                  guard let gradeList = record["gradeList"] as? [Double] else { return }
+                  guard let homeworkList = record["homeworkList"] as? [Double] else { return }
+                  guard let prerequisites = record["prerequisites"] as? String else { return }
+                  guard let description = record["description"] as? String else{ return }
+                  guard let department = record["department"] as? String else{return}
+                  returnedItems.append(gradeModel(name: name, record: record, gradeList: gradeList, homeworkList: homeworkList, prerequisites: prerequisites, description: description, department: department))
+                  case .failure(let error):
+                      print("Record matched error: \(error)")
+                  }
+              
+          }
+          
+          queryOperation.queryResultBlock = { [weak self]returnedResult in
+              print(returnedResult)
+              DispatchQueue.main.async {
+                  self?.BusinessClasses = returnedItems
+                  self?.BusinessClasses.remove(at: 0)
+              }
+          }
+        //  let departmentList = ["Art", "Business", "English", "Facs", "Tech Ed", "Math", "Music", "PhyEd/Health", "Science", "Social Studies", "Work", "World Language" ]
+        
+          addOperations(operation: queryOperation)
+         }
+
+    func fetchEnglishClasses(){
+          let predicate = NSPredicate(format: "department = %@", argumentArray: ["English"])
+          let query = CKQuery(recordType: "Class", predicate: predicate)
+          let queryOperation = CKQueryOperation(query: query)
+          
+          var returnedItems: [gradeModel] = [gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.01], prerequisites: "", description: "", department: "")]
+                                    
+          
+          queryOperation.recordMatchedBlock = { (returnedRecordID, returnedResult) in
+              switch returnedResult{
+              case .success(let record):
+                  guard let name = record["name"] as? String else{ return }
+                  guard let gradeList = record["gradeList"] as? [Double] else { return }
+                  guard let homeworkList = record["homeworkList"] as? [Double] else { return }
+                  guard let prerequisites = record["prerequisites"] as? String else { return }
+                  guard let description = record["description"] as? String else{ return }
+                  guard let department = record["department"] as? String else{return}
+                  returnedItems.append(gradeModel(name: name, record: record, gradeList: gradeList, homeworkList: homeworkList, prerequisites: prerequisites, description: description, department: department))
+                  case .failure(let error):
+                      print("Record matched error: \(error)")
+                  }
+              
+          }
+          
+          queryOperation.queryResultBlock = { [weak self]returnedResult in
+              print(returnedResult)
+              DispatchQueue.main.async {
+                  self?.EnglishClasses = returnedItems
+                  self?.EnglishClasses.remove(at: 0)
+              }
+          }
+        //  let departmentList = ["Art", "Business", "English", "Facs", "Tech Ed", "Math", "Music", "PhyEd/Health", "Science", "Social Studies", "Work", "World Language" ]
+        
+          
+          addOperations(operation: queryOperation)
+         }
+
+    func fetchFacsClasses(){
+          let predicate = NSPredicate(format: "department = %@", argumentArray: ["Facs"])
+          let query = CKQuery(recordType: "Class", predicate: predicate)
+          let queryOperation = CKQueryOperation(query: query)
+          
+          var returnedItems: [gradeModel] = [gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.01], prerequisites: "", description: "", department: "")]
+                                    
+          
+          queryOperation.recordMatchedBlock = { (returnedRecordID, returnedResult) in
+              switch returnedResult{
+              case .success(let record):
+                  guard let name = record["name"] as? String else{ return }
+                  guard let gradeList = record["gradeList"] as? [Double] else { return }
+                  guard let homeworkList = record["homeworkList"] as? [Double] else { return }
+                  guard let prerequisites = record["prerequisites"] as? String else { return }
+                  guard let description = record["description"] as? String else{ return }
+                  guard let department = record["department"] as? String else{return}
+                  returnedItems.append(gradeModel(name: name, record: record, gradeList: gradeList, homeworkList: homeworkList, prerequisites: prerequisites, description: description, department: department))
+                  case .failure(let error):
+                      print("Record matched error: \(error)")
+                  }
+              
+          }
+          
+          queryOperation.queryResultBlock = { [weak self]returnedResult in
+              print(returnedResult)
+              DispatchQueue.main.async {
+                  self?.FacsClasses = returnedItems
+                  self?.FacsClasses.remove(at: 0)
+              }
+          }
+        //  let departmentList = ["Art", "Business", "English", "Facs", "Tech Ed", "Math", "Music", "PhyEd/Health", "Science", "Social Studies", "Work", "World Language" ]
+        
+          
+          addOperations(operation: queryOperation)
+         }
+
+    func fetchTechClasses(){
+          let predicate = NSPredicate(format: "department = %@", argumentArray: ["Tech Ed"])
+          let query = CKQuery(recordType: "Class", predicate: predicate)
+          let queryOperation = CKQueryOperation(query: query)
+          
+          var returnedItems: [gradeModel] = [gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.01], prerequisites: "", description: "", department: "")]
+                                    
+          
+          queryOperation.recordMatchedBlock = { (returnedRecordID, returnedResult) in
+              switch returnedResult{
+              case .success(let record):
+                  guard let name = record["name"] as? String else{ return }
+                  guard let gradeList = record["gradeList"] as? [Double] else { return }
+                  guard let homeworkList = record["homeworkList"] as? [Double] else { return }
+                  guard let prerequisites = record["prerequisites"] as? String else { return }
+                  guard let description = record["description"] as? String else{ return }
+                  guard let department = record["department"] as? String else{return}
+                  returnedItems.append(gradeModel(name: name, record: record, gradeList: gradeList, homeworkList: homeworkList, prerequisites: prerequisites, description: description, department: department))
+                  case .failure(let error):
+                      print("Record matched error: \(error)")
+                  }
+              
+          }
+          
+          queryOperation.queryResultBlock = { [weak self]returnedResult in
+              print(returnedResult)
+              DispatchQueue.main.async {
+                  self?.TechEdClasses = returnedItems
+                  self?.TechEdClasses.remove(at: 0)
+              }
+          }
+        //  let departmentList = ["Art", "Business", "English", "Facs", "Tech Ed", "Math", "Music", "PhyEd/Health", "Science", "Social Studies", "Work", "World Language" ]
+        
+          
+          addOperations(operation: queryOperation)
+         }
+
+    func fetchMathClasses(){
+          let predicate = NSPredicate(format: "department = %@", argumentArray: ["Math"])
+          let query = CKQuery(recordType: "Class", predicate: predicate)
+          let queryOperation = CKQueryOperation(query: query)
+          
+          var returnedItems: [gradeModel] = [gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.01], prerequisites: "", description: "", department: "")]
+                                    
+          
+          queryOperation.recordMatchedBlock = { (returnedRecordID, returnedResult) in
+              switch returnedResult{
+              case .success(let record):
+                  guard let name = record["name"] as? String else{ return }
+                  guard let gradeList = record["gradeList"] as? [Double] else { return }
+                  guard let homeworkList = record["homeworkList"] as? [Double] else { return }
+                  guard let prerequisites = record["prerequisites"] as? String else { return }
+                  guard let description = record["description"] as? String else{ return }
+                  guard let department = record["department"] as? String else{return}
+                  returnedItems.append(gradeModel(name: name, record: record, gradeList: gradeList, homeworkList: homeworkList, prerequisites: prerequisites, description: description, department: department))
+                  case .failure(let error):
+                      print("Record matched error: \(error)")
+                  }
+              
+          }
+          
+          queryOperation.queryResultBlock = { [weak self]returnedResult in
+              print(returnedResult)
+              DispatchQueue.main.async {
+                  self?.MathClasses = returnedItems
+                  self?.MathClasses.remove(at: 0)
+              }
+          }
+        //  let departmentList = ["Art", "Business", "English", "Facs", "Tech Ed", "Math", "Music", "PhyEd/Health", "Science", "Social Studies", "Work", "World Language" ]
+        
+          
+          addOperations(operation: queryOperation)
+         }
+
+    func fetchMusicClasses(){
+          let predicate = NSPredicate(format: "department = %@", argumentArray: ["Music"])
+          let query = CKQuery(recordType: "Class", predicate: predicate)
+          let queryOperation = CKQueryOperation(query: query)
+          
+          var returnedItems: [gradeModel] = [gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.01], prerequisites: "", description: "", department: "")]
+                                    
+          
+          queryOperation.recordMatchedBlock = { (returnedRecordID, returnedResult) in
+              switch returnedResult{
+              case .success(let record):
+                  guard let name = record["name"] as? String else{ return }
+                  guard let gradeList = record["gradeList"] as? [Double] else { return }
+                  guard let homeworkList = record["homeworkList"] as? [Double] else { return }
+                  guard let prerequisites = record["prerequisites"] as? String else { return }
+                  guard let description = record["description"] as? String else{ return }
+                  guard let department = record["department"] as? String else{return}
+                  returnedItems.append(gradeModel(name: name, record: record, gradeList: gradeList, homeworkList: homeworkList, prerequisites: prerequisites, description: description, department: department))
+                  case .failure(let error):
+                      print("Record matched error: \(error)")
+                  }
+              
+          }
+          
+          queryOperation.queryResultBlock = { [weak self]returnedResult in
+              print(returnedResult)
+              DispatchQueue.main.async {
+                  self?.MusicClasses = returnedItems
+                  self?.MusicClasses.remove(at: 0)
+              }
+          }
+        //  let departmentList = ["Art", "Business", "English", "Facs", "Tech Ed", "Math", "Music", "PhyEd/Health", "Science", "Social Studies", "Work", "World Language" ]
+        
+          
+          addOperations(operation: queryOperation)
+         }
+
+    func fetchPEClasses(){
+          let predicate = NSPredicate(format: "department = %@", argumentArray: ["PhyEd/Health"])
+          let query = CKQuery(recordType: "Class", predicate: predicate)
+          let queryOperation = CKQueryOperation(query: query)
+          
+          var returnedItems: [gradeModel] = [gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.01], prerequisites: "", description: "", department: "")]
+                                    
+          
+          queryOperation.recordMatchedBlock = { (returnedRecordID, returnedResult) in
+              switch returnedResult{
+              case .success(let record):
+                  guard let name = record["name"] as? String else{ return }
+                  guard let gradeList = record["gradeList"] as? [Double] else { return }
+                  guard let homeworkList = record["homeworkList"] as? [Double] else { return }
+                  guard let prerequisites = record["prerequisites"] as? String else { return }
+                  guard let description = record["description"] as? String else{ return }
+                  guard let department = record["department"] as? String else{return}
+                  returnedItems.append(gradeModel(name: name, record: record, gradeList: gradeList, homeworkList: homeworkList, prerequisites: prerequisites, description: description, department: department))
+                  case .failure(let error):
+                      print("Record matched error: \(error)")
+                  }
+              
+          }
+          
+          queryOperation.queryResultBlock = { [weak self]returnedResult in
+              print(returnedResult)
+              DispatchQueue.main.async {
+                  self?.PhyEdClasses = returnedItems
+                  self?.PhyEdClasses.remove(at: 0)
+              }
+          }
+        //  let departmentList = ["Art", "Business", "English", "Facs", "Tech Ed", "Math", "Music", "PhyEd/Health", "Science", "Social Studies", "Work", "World Language" ]
+        
+          
+          addOperations(operation: queryOperation)
+         }
+
+    func fetchScienceClasses(){
+          let predicate = NSPredicate(format: "department = %@", argumentArray: ["Science"])
+          let query = CKQuery(recordType: "Class", predicate: predicate)
+          let queryOperation = CKQueryOperation(query: query)
+          
+          var returnedItems: [gradeModel] = [gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.01], prerequisites: "", description: "", department: "")]
+                                    
+          
+          queryOperation.recordMatchedBlock = { (returnedRecordID, returnedResult) in
+              switch returnedResult{
+              case .success(let record):
+                  guard let name = record["name"] as? String else{ return }
+                  guard let gradeList = record["gradeList"] as? [Double] else { return }
+                  guard let homeworkList = record["homeworkList"] as? [Double] else { return }
+                  guard let prerequisites = record["prerequisites"] as? String else { return }
+                  guard let description = record["description"] as? String else{ return }
+                  guard let department = record["department"] as? String else{return}
+                  returnedItems.append(gradeModel(name: name, record: record, gradeList: gradeList, homeworkList: homeworkList, prerequisites: prerequisites, description: description, department: department))
+                  case .failure(let error):
+                      print("Record matched error: \(error)")
+                  }
+              
+          }
+          
+          queryOperation.queryResultBlock = { [weak self]returnedResult in
+              print(returnedResult)
+              DispatchQueue.main.async {
+                  self?.ScienceClasses = returnedItems
+                  self?.ScienceClasses.remove(at: 0)
+              }
+          }
+        //  let departmentList = ["Art", "Business", "English", "Facs", "Tech Ed", "Math", "Music", "PhyEd/Health", "Science", "Social Studies", "Work", "World Language" ]
+        
+          
+          addOperations(operation: queryOperation)
+         }
+
+    func fetchSSClasses(){
+          let predicate = NSPredicate(format: "department = %@", argumentArray: ["Social Studies"])
+          let query = CKQuery(recordType: "Class", predicate: predicate)
+          let queryOperation = CKQueryOperation(query: query)
+          
+          var returnedItems: [gradeModel] = [gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.01], prerequisites: "", description: "", department: "")]
+                                    
+          
+          queryOperation.recordMatchedBlock = { (returnedRecordID, returnedResult) in
+              switch returnedResult{
+              case .success(let record):
+                  guard let name = record["name"] as? String else{ return }
+                  guard let gradeList = record["gradeList"] as? [Double] else { return }
+                  guard let homeworkList = record["homeworkList"] as? [Double] else { return }
+                  guard let prerequisites = record["prerequisites"] as? String else { return }
+                  guard let description = record["description"] as? String else{ return }
+                  guard let department = record["department"] as? String else{return}
+                  returnedItems.append(gradeModel(name: name, record: record, gradeList: gradeList, homeworkList: homeworkList, prerequisites: prerequisites, description: description, department: department))
+                  case .failure(let error):
+                      print("Record matched error: \(error)")
+                  }
+              
+          }
+          
+          queryOperation.queryResultBlock = { [weak self]returnedResult in
+              print(returnedResult)
+              DispatchQueue.main.async {
+                  self?.SSClasses = returnedItems
+                  self?.SSClasses.remove(at: 0)
+              }
+          }
+        //  let departmentList = ["Art", "Business", "English", "Facs", "Tech Ed", "Math", "Music", "PhyEd/Health", "Science", "Social Studies", "Work", "World Language" ]
+        
+          
+          addOperations(operation: queryOperation)
+         }
+
+    func fetchWorkClasses(){
+          let predicate = NSPredicate(format: "department = %@", argumentArray: ["Work"])
+          let query = CKQuery(recordType: "Class", predicate: predicate)
+          let queryOperation = CKQueryOperation(query: query)
+          
+          var returnedItems: [gradeModel] = [gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.01], prerequisites: "", description: "", department: "")]
+                                    
+          
+          queryOperation.recordMatchedBlock = { (returnedRecordID, returnedResult) in
+              switch returnedResult{
+              case .success(let record):
+                  guard let name = record["name"] as? String else{ return }
+                  guard let gradeList = record["gradeList"] as? [Double] else { return }
+                  guard let homeworkList = record["homeworkList"] as? [Double] else { return }
+                  guard let prerequisites = record["prerequisites"] as? String else { return }
+                  guard let description = record["description"] as? String else{ return }
+                  guard let department = record["department"] as? String else{return}
+                  returnedItems.append(gradeModel(name: name, record: record, gradeList: gradeList, homeworkList: homeworkList, prerequisites: prerequisites, description: description, department: department))
+                  case .failure(let error):
+                      print("Record matched error: \(error)")
+                  }
+              
+          }
+          
+          queryOperation.queryResultBlock = { [weak self]returnedResult in
+              print(returnedResult)
+              DispatchQueue.main.async {
+                  self?.WorkClasses = returnedItems
+                  self?.WorkClasses.remove(at: 0)
+              }
+          }
+        //  let departmentList = ["Art", "Business", "English", "Facs", "Tech Ed", "Math", "Music", "PhyEd/Health", "Science", "Social Studies", "Work", "World Language" ]
+        
+          
+          addOperations(operation: queryOperation)
+         }
+
+    func fetchLanguageClasses(){
+          let predicate = NSPredicate(format: "department = %@", argumentArray: ["World Language"])
+          let query = CKQuery(recordType: "Class", predicate: predicate)
+          let queryOperation = CKQueryOperation(query: query)
+          
+          var returnedItems: [gradeModel] = [gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.01], prerequisites: "", description: "", department: "")]
+                                    
+          
+          queryOperation.recordMatchedBlock = { (returnedRecordID, returnedResult) in
+              switch returnedResult{
+              case .success(let record):
+                  guard let name = record["name"] as? String else{ return }
+                  guard let gradeList = record["gradeList"] as? [Double] else { return }
+                  guard let homeworkList = record["homeworkList"] as? [Double] else { return }
+                  guard let prerequisites = record["prerequisites"] as? String else { return }
+                  guard let description = record["description"] as? String else{ return }
+                  guard let department = record["department"] as? String else{return}
+                  returnedItems.append(gradeModel(name: name, record: record, gradeList: gradeList, homeworkList: homeworkList, prerequisites: prerequisites, description: description, department: department))
+                  case .failure(let error):
+                      print("Record matched error: \(error)")
+                  }
+              
+          }
+          
+          queryOperation.queryResultBlock = { [weak self]returnedResult in
+              print(returnedResult)
+              DispatchQueue.main.async {
+                  self?.LanguageClasses = returnedItems
+                  self?.LanguageClasses.remove(at: 0)
+              }
+          }
+        //  let departmentList = ["Art", "Business", "English", "Facs", "Tech Ed", "Math", "Music", "PhyEd/Health", "Science", "Social Studies", "Work", "World Language" ]
+        
+          
+          addOperations(operation: queryOperation)
+         }
+    
+    func fetchArtClasses(){
+          let predicate = NSPredicate(format: "department = %@", argumentArray: ["Art"])
+          let query = CKQuery(recordType: "Class", predicate: predicate)
+          let queryOperation = CKQueryOperation(query: query)
+          
+          var returnedItems: [gradeModel] = [gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.01], prerequisites: "", description: "", department: "")]
+                                    
+          
+          queryOperation.recordMatchedBlock = { (returnedRecordID, returnedResult) in
+              switch returnedResult{
+              case .success(let record):
+                  guard let name = record["name"] as? String else{ return }
+                  guard let gradeList = record["gradeList"] as? [Double] else { return }
+                  guard let homeworkList = record["homeworkList"] as? [Double] else { return }
+                  guard let prerequisites = record["prerequisites"] as? String else { return }
+                  guard let description = record["description"] as? String else{ return }
+                  guard let department = record["department"] as? String else{return}
+                  returnedItems.append(gradeModel(name: name, record: record, gradeList: gradeList, homeworkList: homeworkList, prerequisites: prerequisites, description: description, department: department))
+                  case .failure(let error):
+                      print("Record matched error: \(error)")
+                  }
+              
+          }
+          
+          queryOperation.queryResultBlock = { [weak self]returnedResult in
+              print(returnedResult)
+              DispatchQueue.main.async {
+                  self?.ArtClasses = returnedItems
+                  self?.ArtClasses.remove(at: 0)
+              }
+          }
+        //  let departmentList = ["Art", "Business", "English", "Facs", "Tech Ed", "Math", "Music", "PhyEd/Health", "Science", "Social Studies", "Work", "World Language" ]
+        
+          
+          addOperations(operation: queryOperation)
+         }
 
     
     func fetchAllItems(){
       
-        
-          let predicate = NSPredicate(value: true)
+        let predicate = NSPredicate(format: "department = %@", argumentArray: ["Art"])
+       //   let predicate = NSPredicate(value: true)
           let query = CKQuery(recordType: "Class", predicate: predicate)
           let queryOperation = CKQueryOperation(query: query)
           
@@ -330,6 +763,19 @@ class CloudDataViewModel: ObservableObject{
        
     }
     
+    func averageGradeRounded(gradeList: [Double]) -> String{
+        var averageGrade: Double = 0.0
+        var count = 0.0
+        for grade in gradeList{
+            
+            averageGrade += grade
+            count+=1
+            }
+        let y = Double(round(1*(averageGrade/count))/1)
+        return String(y)
+       
+    }
+    
     func averageGradeDouble(gradeList: [Double]) -> Double{
         var averageGrade: Double = 0.0
         var count = 0.0
@@ -410,3 +856,5 @@ extension CloudData{
     }
     
 }
+
+

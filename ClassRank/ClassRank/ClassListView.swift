@@ -53,7 +53,7 @@ struct ClassListView: View{
            //GlobalVar.Departments[departmentIndex]
  
             List{
-                ForEach(bigData.classList, id: \.self){ c in
+                ForEach(bigData.ArtClasses, id: \.self){ c in
                 
                 HStack{
                    /* Button {
@@ -79,9 +79,10 @@ struct ClassListView: View{
                     Spacer()*/
                     
                 //   let grade = setText(class1: c, name: c.className)
-                    Text("\(bigData.averageGrade(gradeList: c.gradeList))%")
-                        .font(.system(size: 16))
-                        .frame(width: 40, height: 40, alignment: .center)
+                   // Text("\(bigData.averageGradeRounded(gradeList: c.gradeList))%")
+                    Text("\(bigData.averageGradeRounded(gradeList: c.gradeList))%")
+                    .font(.system(size: 14))
+                        .frame(width: 50, height: 50, alignment: .center)
                         .padding()
                         .overlay(
                             Circle()
