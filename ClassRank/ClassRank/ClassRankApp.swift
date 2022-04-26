@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct ClassRankApp: App {
+    @StateObject var envObj = GlobalVariables()
     var body: some Scene {
+        
         WindowGroup {
-          MainAppView()
+            
+            MainAppView().environmentObject(envObj)
             //GuestToggle()
            // TestData()
         }

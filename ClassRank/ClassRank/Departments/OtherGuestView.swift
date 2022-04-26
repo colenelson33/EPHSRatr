@@ -23,14 +23,32 @@ struct MainDepartmentView: View {
     @State var small = true
     @Namespace var namespace
     @State private var position: CardPosition = .small
+    @State var indexSelection: Int = 0
+    @EnvironmentObject var index: GlobalVariables
     
     var body: some View {
         
         NavigationView{
             
             
-            
+                
+            ZStack{
+                
+                VStack{
+                    TabView(selection: $index.indexClicked){
+                        FirstPage().tag(0)
+                        SecondPage().tag(1)
+                        ThirdPage().tag(2)
+                        FourthPage().tag(3)
+                        
+                    }
+                    .tabViewStyle(PageTabViewStyle())
+                }.zIndex(100)
+                .onChange(of: index.indexClicked){ x in
+                    print("Changed \(x)")
+                }
             ScrollView {
+<<<<<<< Updated upstream
                 if ck.userName != ""{
                     Text("Welcome back, \(ck.userName)")
                 }else{
@@ -39,6 +57,15 @@ struct MainDepartmentView: View {
                 if ck.permissionStatus == false{
                     Text("Accept permissions")
                 }
+=======
+                
+                
+              
+                    
+                    
+                    
+                
+>>>>>>> Stashed changes
                 VStack {
                     ForEach(data, id: \.self) { p in
                         
@@ -48,6 +75,8 @@ struct MainDepartmentView: View {
                     
                 }
             }
+        }
+            
             .toolbar{
                 
                    ToolbarItem(placement: .navigationBarLeading){
@@ -70,6 +99,7 @@ struct MainDepartmentView: View {
         }
     }
 }
+
 extension Color {
     static let textColor = Color(red: 235 / 255, green: 235 / 255, blue: 235 / 255)
     static let subtextColor = Color(red: 199 / 255, green: 199 / 255, blue: 199 / 255)
