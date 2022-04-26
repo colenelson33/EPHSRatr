@@ -68,9 +68,7 @@ struct IndividualClassView: View {
                     
                     VStack{
                         
-                        
-                        //Text("Teacher(s): \(currentClass.Teacher)")
-                        //.font(.title2)
+                  
                         Spacer()
                         ScrollView(.horizontal, showsIndicators: false){
                             HStack(spacing: 12){
@@ -159,34 +157,6 @@ struct IndividualClassView: View {
                                             self.bigData.fetchItems()
                                         }
                             
-                                    
-                                     /*   if bigData.grades.gradeList == [0.0] &&
-                                            bigData.grades.homeworkList == [0.0]{
-                                            
-                                            bigData.addItem(name: currentClass.className, num: sliderGValue)
-                                            bigData.classData = currentClass
-                                            bigData.className = currentClass.className
-                                            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0){
-                                                self.bigData.fetchItems()
-                                                canTap = true
-
-                                            }
-                                        }else{
-                                            bigData.updateGrades(grade: bigData.grades, num: sliderGValue)
-                                            bigData.classData = currentClass
-                                            bigData.className = currentClass.className
-                                            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0){
-                                                self.bigData.fetchItems()
-                                                canTap = true
-                                                print(canTap)
-
-                                            }
-                                        }
-                                            
-                                   */
-                                        
-                                        
-                                        
                                         
                                         
                                     } label: {
@@ -240,7 +210,7 @@ struct IndividualClassView: View {
                                     Spacer()
                              
                                     
-                                    if bigData.grades.homeworkList == [0.0] || bigData.grades.homeworkList == [1.0]{
+                                    if bigData.grades.homeworkList == [0.01] {
                                         
                                         
                                         Text("No homework inputted yet")
@@ -270,28 +240,7 @@ struct IndividualClassView: View {
                                         self.bigData.fetchItems()
                                     }
                                     
-                              /*  if bigData.grades.gradeList == [0.0] && bigData.grades.homeworkList == [0.0]{
-                                    bigData.addItemHW(name: currentClass.className, num: sliderHValue)
-                                    bigData.classData = currentClass
-                                    bigData.className = currentClass.className
-                                  
-                                    
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0){
-                                        self.bigData.fetchItems()
-                                        canTap = true
-                                    }
-                                }else{
-                                    bigData.updateHomework(grade: bigData.grades, num: sliderHValue)
-                                    
-                                    bigData.classData = currentClass
-                                    bigData.className = currentClass.className
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0){
-                                        self.bigData.fetchItems()
-                                        canTap = true
-                                    }
-                                    
-                              
-                                }*/
+
                          
                                     
                                         
@@ -324,7 +273,7 @@ struct IndividualClassView: View {
                                 .foregroundColor(GlobalVar.colorList[color])
                                 .accentColor(GlobalVar.colorList[color])
                                 .disabled(true)
-                                if bigData.grades.gradeList != [0.01]{
+                                if bigData.grades.gradeList != [0.0]{
                                     Text("Average Grade: \(bigData.averageGrade(gradeList: bigData.grades.gradeList))%")
                                         .font(.system(size: 20))
                                         .fontWeight(.bold)
@@ -363,7 +312,7 @@ struct IndividualClassView: View {
                                 .foregroundColor(GlobalVar.colorList[color])
                                 .disabled(true)
                               
-                                if bigData.grades.homeworkList == [0.0] || bigData.grades.homeworkList == [1.0]{
+                                if bigData.grades.homeworkList == [0.01] {
                                     
                                     
                                     Text("No homework inputted yet")
@@ -404,7 +353,8 @@ struct IndividualClassView: View {
 
             }
         
-        }        .navigationBarTitle(currentClass.className)
+            }.navigationBarHidden(false)
+            .navigationBarTitle(currentClass.className)
                 .toolbar{
             
             

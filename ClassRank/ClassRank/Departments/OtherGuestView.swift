@@ -12,7 +12,8 @@ import UIKit
 
 struct MainDepartmentView: View {
     
-    
+    @StateObject private var ck = CloudKitClassRank()
+    @EnvironmentObject var bigData: CloudDataViewModel
     @AppStorage("isDarkMode") public var isDarkMode = false
     @AppStorage("ViewMode") var viewMode = 0
     @AppStorage("guestViewMode") var guestViewMode = 0
@@ -30,7 +31,14 @@ struct MainDepartmentView: View {
             
             
             ScrollView {
-                
+                if ck.userName != ""{
+                    Text("Welcome back, \(ck.userName)")
+                }else{
+                    Text("Welcome")
+                }
+                if ck.permissionStatus == false{
+                    Text("Accept permissions")
+                }
                 VStack {
                     ForEach(data, id: \.self) { p in
                         

@@ -74,12 +74,6 @@ class CloudDataViewModel: ObservableObject{
     
     @Published var Departments: [[gradeModel]] = [[gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.01], prerequisites: "", description: "", department: "")]]
     
-    
-    init(){
-        
-        initFunc()
-    }
-    
     func initFunc(){
         
         fetchArtClasses()
@@ -648,16 +642,16 @@ class CloudDataViewModel: ObservableObject{
             let record = grade.record
             print("ok")
             record["gradeList"] = [num]
-      //      record["userID"] = [userId]
+          //  record["userID"] = [userId]
             saveItem(record: record)
             
         }else{
         
         let record = grade.record
         var newList = grade.gradeList
-     //   var newUserList = grade.userId
+       // var newUserList = grade.userId
         newList.append(num)
-      //  newUserList.append(userId)
+     //   newUserList.append(userId)
        // record["userID"] = newUserList
         record["gradeList"] = newList
         saveItem(record: record)
@@ -693,7 +687,7 @@ class CloudDataViewModel: ObservableObject{
         let newClass = CKRecord(recordType: "Class")
         newClass["name"] = name
         newClass["gradeList"] = [num]
-        newClass["homeworkList"] = [0.1]
+        newClass["homeworkList"] = [0.01]
         saveItem(record: newClass)
         
     }

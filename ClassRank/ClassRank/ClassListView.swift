@@ -51,35 +51,38 @@ struct ClassListView: View{
         
         
            //GlobalVar.Departments[departmentIndex]
- 
-            List{
-                ForEach(bigData.ArtClasses, id: \.self){ c in
+           /* Button {
                 
-                HStack{
-                   /* Button {
-                        
-                        let departmentList = ["Art", "Business", "English", "Facs", "Tech Ed", "Math", "Music", "PhyEd/Health", "Science", "Social Studies", "Work", "World Language" ]
-                        var count = 0
-                         for eachDepartment in
-                                GlobalVar.DepartmentList{
-                             
-                             for eachClass in eachDepartment{
-                                 
-                                 bigData.addClass(name: eachClass.className, prerequisites: eachClass.prerequisite, description: eachClass.description, department: departmentList[count])
-                                 print("class added")
-                      }
-                             count+=1
-                    }
-                             
-                             
+                let departmentList = ["Art", "Business", "English", "Facs", "Tech Ed", "Math", "Music", "PhyEd/Health", "Science", "Social Studies", "Work", "World Language" ]
+                var count = 0
+                 for eachDepartment in
+                        GlobalVar.DepartmentList{
+                     
+                     for eachClass in eachDepartment{
                          
-                     } label: {
-                         Text("toast ur computer")
-                     }
-                    Spacer()*/
+                         bigData.addClass(name: eachClass.className, prerequisites: eachClass.prerequisite, description: eachClass.description, department: departmentList[count])
+                         print("class added")
+              }
+                     count+=1
+            }
+                     
+                     
+                 
+             } label: {
+                 Text("toast ur computer")
+             }*/
+            List{
+                
+                let departments = [bigData.ArtClasses, bigData.BusinessClasses, bigData.EnglishClasses, bigData.FacsClasses, bigData.TechEdClasses, bigData.MathClasses, bigData.MusicClasses, bigData.PhyEdClasses, bigData.ScienceClasses, bigData.SSClasses, bigData.WorkClasses, bigData.LanguageClasses ]
+                
+                //bigData.ArtClasses, id: \.self
+                ForEach(departments[departmentIndex], id: \.self){ c in
+                
                     
-                //   let grade = setText(class1: c, name: c.className)
-                   // Text("\(bigData.averageGradeRounded(gradeList: c.gradeList))%")
+                HStack{
+                    
+                   
+                    
                     Text("\(bigData.averageGradeRounded(gradeList: c.gradeList))%")
                     .font(.system(size: 14))
                         .frame(width: 50, height: 50, alignment: .center)
@@ -97,7 +100,7 @@ struct ClassListView: View{
                     .foregroundColor(GlobalVar.colorList[color])
                     .onTapGesture {
                         
-                    //    bigData.classData = c
+                   
                         bigData.className = c.name
                         
                         DispatchQueue.main.async {
@@ -118,7 +121,7 @@ struct ClassListView: View{
                         .padding()
                         .onTapGesture {
                             
-                   //         bigData.classData = c
+                  
                             bigData.className = c.name
                             
                             DispatchQueue.main.async {
