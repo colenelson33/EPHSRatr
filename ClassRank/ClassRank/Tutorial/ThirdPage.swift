@@ -24,26 +24,16 @@ struct ThirdPage: View {
                 }
             }
             
-            Text("Third Screen.").font(.title).fontWeight(.bold).foregroundColor(Color(red: 0.0, green: 0.4392156862745098, blue: 0.7529411764705882, opacity: 1.0)).padding(.bottom)
+            Text("Third Screen.").font(.title).fontWeight(.bold).foregroundColor(.red).padding(.bottom)
             Text("Nulla Lorem mollit cupidatat irure. Laborum magna nulla duis ullamco cillum dolor. Voluptate exercitation incididunt aliquip deserunt reprehenderit elit laborum.").padding([.leading, .trailing], 40)
             
-            HStack{
-                Spacer()
-
-                progressCircle(enterColor: gray)
-                progressCircle(enterColor: gray)
-                progressCircle(enterColor: darkBlue)
-                progressCircle(enterColor: gray)
-                
-                Spacer()
-            }.padding(20)
             HStack{
                 Button(action: {
                     clickedIndex.indexClicked = 3
                 }){
-                Text("Skip").foregroundColor(Color(red: 0.035, green: 0.098, blue: 0.159)).bold()
+                    Text("Skip").bold()
                 }
-                Image(systemName: "arrow.right").foregroundColor(Color(red: 0.0, green: 0.4392156862745098, blue: 0.7529411764705882, opacity: 1.0))
+                Image(systemName: "arrow.right").foregroundColor(.red)
             }.padding()
         }
     }

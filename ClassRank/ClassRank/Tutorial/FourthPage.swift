@@ -24,19 +24,10 @@ struct FourthPage: View {
                 }
             }
             
-            Text("End of Tutorial.").font(.title).fontWeight(.bold).foregroundColor(Color(red: 0.0, green: 0.4392156862745098, blue: 0.7529411764705882, opacity: 1.0)).padding(.bottom)
+            Text("End of Tutorial.").font(.title).fontWeight(.bold).foregroundColor(.red).padding(.bottom)
             Text("Nulla Lorem mollit cupidatat irure. Laborum magna nulla duis ullamco cillum dolor. Voluptate exercitation incididunt aliquip deserunt reprehenderit elit laborum.").padding([.leading, .trailing], 40)
             
-            HStack{
-                Spacer()
-                
-                progressCircle(enterColor: gray)
-                progressCircle(enterColor: gray)
-                progressCircle(enterColor: gray)
-                progressCircle(enterColor: darkBlue)
-                
-                Spacer()
-            }.padding(20)
+            
             HStack{
                 Button(action: {
                     clickedIndex.indexClicked = 3
@@ -49,9 +40,9 @@ struct FourthPage: View {
                     
                     
                 }){
-                    Text("Done").foregroundColor(Color(red: 0.035, green: 0.098, blue: 0.159)).bold()
+                    Text("Done").bold()
                 }
-                Image(systemName: "arrow.right").foregroundColor(Color(red: 0.0, green: 0.4392156862745098, blue: 0.7529411764705882, opacity: 1.0))
+                Image(systemName: "arrow.right").foregroundColor(.red)
             }.padding()
         }
     }

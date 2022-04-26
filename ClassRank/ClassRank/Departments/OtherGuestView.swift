@@ -34,20 +34,7 @@ struct MainDepartmentView: View {
                 
             ZStack{
                 
-                VStack{
-                    TabView(selection: $index.indexClicked){
-                        FirstPage().tag(0)
-                        SecondPage().tag(1)
-                        ThirdPage().tag(2)
-                        FourthPage().tag(3)
-                        
-                    }
-                    .tabViewStyle(PageTabViewStyle())
-                    
-                }.zIndex(100)
-                .onChange(of: index.indexClicked){ x in
-                    print("Changed \(x)")
-                }
+                
             ScrollView {
 
                 if ck.userName != ""{
@@ -76,8 +63,26 @@ struct MainDepartmentView: View {
                     
                 }
             }
+               
         }
-            
+            .sheet(isPresented: $index.isPresented, content: {
+                VStack{
+                    TabView(selection: $index.indexClicked){
+                        FirstPage().tag(0)
+                        SecondPage().tag(1)
+                        ThirdPage().tag(2)
+                        FourthPage().tag(3)
+                        
+                    }
+                    .tabViewStyle(PageTabViewStyle())
+                    
+                   
+                    
+                }
+                .onChange(of: index.indexClicked){ x in
+                    print("Changed \(x)")
+                }.zIndex(100)
+            })
             .toolbar{
                 
                    ToolbarItem(placement: .navigationBarLeading){

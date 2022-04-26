@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2355A2522816F99F002B8FA0 /* FirstPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2355A2512816F99F002B8FA0 /* FirstPage.swift */; };
-		2355A2542816FA7C002B8FA0 /* progressCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2355A2532816FA7C002B8FA0 /* progressCircle.swift */; };
 		2355A2582816FCF3002B8FA0 /* globvars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2355A2572816FCF3002B8FA0 /* globvars.swift */; };
 		2355A25A2816FDBB002B8FA0 /* SecondPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2355A2592816FDBB002B8FA0 /* SecondPage.swift */; };
 		2355A25C2816FDCD002B8FA0 /* ThirdPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2355A25B2816FDCC002B8FA0 /* ThirdPage.swift */; };
@@ -34,7 +33,6 @@
 
 /* Begin PBXFileReference section */
 		2355A2512816F99F002B8FA0 /* FirstPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstPage.swift; sourceTree = "<group>"; };
-		2355A2532816FA7C002B8FA0 /* progressCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = progressCircle.swift; sourceTree = "<group>"; };
 		2355A2572816FCF3002B8FA0 /* globvars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = globvars.swift; sourceTree = "<group>"; };
 		2355A2592816FDBB002B8FA0 /* SecondPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondPage.swift; sourceTree = "<group>"; };
 		2355A25B2816FDCC002B8FA0 /* ThirdPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPage.swift; sourceTree = "<group>"; };
@@ -80,7 +78,6 @@
 				2355A2592816FDBB002B8FA0 /* SecondPage.swift */,
 				2355A25B2816FDCC002B8FA0 /* ThirdPage.swift */,
 				2355A25D2816FDDC002B8FA0 /* FourthPage.swift */,
-				2355A2532816FA7C002B8FA0 /* progressCircle.swift */,
 				2355A2572816FCF3002B8FA0 /* globvars.swift */,
 			);
 			path = Tutorial;
@@ -228,7 +225,6 @@
 				C8F7D4FA2804F00D006E38FF /* ModeSwitchView.swift in Sources */,
 				C8F7D4F82804F007006E38FF /* MainAppView.swift in Sources */,
 				2355A2522816F99F002B8FA0 /* FirstPage.swift in Sources */,
-				2355A2542816FA7C002B8FA0 /* progressCircle.swift in Sources */,
 				2355A25A2816FDBB002B8FA0 /* SecondPage.swift in Sources */,
 				C8F7D4F42804EFDC006E38FF /* ContentView.swift in Sources */,
 				C87843092804EF6E00873D3B /* CloudData.swift in Sources */,

@@ -32,32 +32,19 @@ struct FirstPage: View {
                 }
             }
             
-            Text("Welcome to ClassRate.").font(.title).fontWeight(.bold).foregroundColor(Color(red: 0.0, green: 0.4392156862745098, blue: 0.7529411764705882, opacity: 1.0)).padding(.bottom).font(Font.custom("AvenirLTStd-Black", size: 17))
-            Text("Nulla Lorem mollit cupidatat irure. Laborum magna nulla duis ullamco cillum dolor. Voluptate exercitation incididunt aliquip deserunt reprehenderit elit laborum.").padding([.leading, .trailing], 40)
+            Text("Welcome to ClassRate.").font(.title).fontWeight(.bold).foregroundColor(.red).padding(.bottom).font(Font.custom("AvenirLTStd-Black", size: 17))
+            Text("To get started, navigate through the departments to choose your desired class").padding([.leading, .trailing], 40)
             
-            HStack{
-                Spacer()
-//
-//                Circle().frame(width: 15, height: 15).foregroundColor(Color(red: 0.0, green: 0.4392156862745098, blue: 0.7529411764705882, opacity: 1.0)).padding(8)
-//                Circle().frame(width: 15, height: 15).foregroundColor(Color(red: 0.8980392156862745, green: 0.8980392156862745, blue: 0.8980392156862745)).padding(8)
-//                Circle().frame(width: 15, height: 15).foregroundColor(Color(red: 0.8980392156862745, green: 0.8980392156862745, blue: 0.8980392156862745)).padding(8)
-//                Circle().frame(width: 15, height: 15).foregroundColor(Color(red: 0.8980392156862745, green: 0.8980392156862745, blue: 0.8980392156862745)).padding(8)
-                progressCircle(enterColor: darkBlue)
-                progressCircle(enterColor: gray)
-                progressCircle(enterColor: gray)
-                progressCircle(enterColor: gray)
                 
-                Spacer()
-            }.padding(20)
             HStack{
                 Button(action: {
                     clickedIndex.indexClicked = 3
                 }){
-                Text("Skip").foregroundColor(Color(red: 0.035, green: 0.098, blue: 0.159)).bold()
+                    Text("Skip").bold()
                 }
-                Image(systemName: "arrow.right").foregroundColor(Color(red: 0.0, green: 0.4392156862745098, blue: 0.7529411764705882, opacity: 1.0))
+                Image(systemName: "arrow.right").foregroundColor(.red)
             }.padding()
-        }
+        }.multilineTextAlignment(.center)
     }
 
 }

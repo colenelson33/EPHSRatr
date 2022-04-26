@@ -16,6 +16,7 @@ class CloudKitClassRank: ObservableObject{
     @Published var error: String = ""
     @Published var userName: String = ""
     @Published var permissionStatus: Bool = false
+ 
     init(){
         getICloudStatus()
         requestPermission()
@@ -102,7 +103,7 @@ struct ContentView: View {
     @AppStorage("firstName") var firstName : String = ""
     @AppStorage("lastName") var lastName : String = ""
     @AppStorage("userId") var userId : String = ""
-    
+    @EnvironmentObject var globalVariables: GlobalVariables
     
     private var isSignedIn: Bool{
         
@@ -127,6 +128,7 @@ struct ContentView: View {
                     bigData.initFunc()
                     guestViewMode = 1
                     userId = "no nil"
+                    globalVariables.isPresented = true
                     
                 }) {
                     Text("Continue as Guest")

@@ -11,7 +11,7 @@ import SwiftUI
 class GlobalVariables: ObservableObject{
     @Published var indexClicked: Int = 0
 
-
+    @Published var isPresented: Bool = false
     
     
     @Published var tutorialSkipped: Bool = false
