@@ -36,7 +36,7 @@ struct FourthPage: View {
                     clickedIndex.tutorialSkipped = true
                    
                     UserDefaults.standard.set(true, forKey: "hasDoneTut")
-                 
+                    clickedIndex.isPresented = false
                     
                     
                 }){
