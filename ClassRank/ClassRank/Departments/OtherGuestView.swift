@@ -43,12 +43,13 @@ struct MainDepartmentView: View {
                         
                     }
                     .tabViewStyle(PageTabViewStyle())
+                    
                 }.zIndex(100)
                 .onChange(of: index.indexClicked){ x in
                     print("Changed \(x)")
                 }
             ScrollView {
-<<<<<<< Updated upstream
+
                 if ck.userName != ""{
                     Text("Welcome back, \(ck.userName)")
                 }else{
@@ -57,7 +58,7 @@ struct MainDepartmentView: View {
                 if ck.permissionStatus == false{
                     Text("Accept permissions")
                 }
-=======
+
                 
                 
               
@@ -65,7 +66,7 @@ struct MainDepartmentView: View {
                     
                     
                 
->>>>>>> Stashed changes
+
                 VStack {
                     ForEach(data, id: \.self) { p in
                         
