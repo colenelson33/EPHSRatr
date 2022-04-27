@@ -38,7 +38,7 @@ struct ThirdPage: View {
                 Image(systemName: "arrow.right")
                     .foregroundColor(GlobalVar.colorList[color])
             }.padding()*/
-        }
+        }.multilineTextAlignment(.center)
     }
 }
 

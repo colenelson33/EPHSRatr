@@ -72,6 +72,9 @@ struct MainDepartmentView: View {
                         SecondPage().tag(1)
                         ThirdPage().tag(2)
                         FourthPage().tag(3)
+                        FifthPage().tag(4)
+                        SixthPage().tag(5)
+                        SeventhPage().tag(6)
                         
                     }
                     .tabViewStyle(PageTabViewStyle())

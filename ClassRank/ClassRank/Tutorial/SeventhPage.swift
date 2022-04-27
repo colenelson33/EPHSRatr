@@ -31,7 +31,7 @@ struct SeventhPage: View {
             
             HStack{
                 Button(action: {
-                    clickedIndex.indexClicked = 3
+                    clickedIndex.indexClicked = 6
                     //Test API Here
                     
                     clickedIndex.tutorialSkipped = true
@@ -45,7 +45,7 @@ struct SeventhPage: View {
                 }
                 Image(systemName: "arrow.right").foregroundColor(.red)
             }.padding()
-        }
+        }.multilineTextAlignment(.center)
     }
     
     

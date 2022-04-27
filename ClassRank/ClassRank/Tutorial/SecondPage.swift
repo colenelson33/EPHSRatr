@@ -36,7 +36,7 @@ struct SecondPage: View {
                 }
                 Image(systemName: "arrow.right").foregroundColor(.red)
             }.padding()*/
-        }
+        }.multilineTextAlignment(.center)
     }
 }
 
