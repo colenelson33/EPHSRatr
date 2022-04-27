@@ -25,8 +25,13 @@ struct SeventhPage: View {
                 }
             }
             
-            Text("End of Tutorial.").font(.title).fontWeight(.bold).foregroundColor(.red).padding(.bottom)
-            Text("Access the settings for more color options.").padding([.leading, .trailing], 40)
+            Text("End of Tutorial.")
+                .font(.title)
+                .fontWeight(.bold)
+                .foregroundColor(GlobalVar.colorList[color])
+                .padding(.bottom)
+            Text("Access the settings for more color options.")
+                .padding([.leading, .trailing], 40)
             
             
             HStack{
@@ -43,7 +48,7 @@ struct SeventhPage: View {
                 }){
                     Text("Done").bold()
                 }
-                Image(systemName: "arrow.right").foregroundColor(.red)
+                //Image(systemName: "arrow.right").foregroundColor(.red)
             }.padding()
         }.multilineTextAlignment(.center)
     }

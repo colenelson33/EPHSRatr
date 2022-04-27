@@ -25,8 +25,13 @@ struct ThirdPage: View {
                 }
             }
             
-            Text("Third Screen.").font(.title).fontWeight(.bold).foregroundColor(.red).padding(.bottom)
-            Text("Tap on the cards to learn more").padding([.leading, .trailing], 40)
+            Text("More Information")
+                .font(.title)
+                .fontWeight(.bold)
+                .foregroundColor(GlobalVar.colorList[color])
+                .padding(.bottom)
+            Text("Tap on the cards to learn more")
+                .padding([.leading, .trailing], 40)
             
           /*  HStack{
                 Button(action: {

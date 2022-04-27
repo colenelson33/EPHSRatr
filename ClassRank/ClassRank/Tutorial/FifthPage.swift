@@ -25,8 +25,13 @@ struct FifthPage: View {
                 }
             }
             
-            Text("End of Tutorial.").font(.title).fontWeight(.bold).foregroundColor(.red).padding(.bottom)
-            Text("Continue with Apple for the ability to input grades, homework, and personal insights on each class. The more information you are able to provide, the more accurate representation each class will have").padding([.leading, .trailing], 40)
+            Text("Login")
+                .font(.title)
+                .fontWeight(.bold)
+                .foregroundColor(GlobalVar.colorList[color])
+                .padding(.bottom)
+            Text("Continue with Apple for the ability to input grades, homework, and personal insights on each class. The more information you are able to provide, the more accurate representation each class will have")
+                .padding([.leading, .trailing], 40)
             
             
             /*HStack{

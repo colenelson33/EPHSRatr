@@ -25,8 +25,13 @@ struct FourthPage: View {
                 }
             }
             
-            Text("End of Tutorial.").font(.title).fontWeight(.bold).foregroundColor(.red).padding(.bottom)
-            Text("The average grade is indicated to the left of the upload button").padding([.leading, .trailing], 40)
+            Text("Average Grade")
+                .font(.title)
+                .fontWeight(.bold)
+                .foregroundColor(GlobalVar.colorList[color])
+                .padding(.bottom)
+            Text("The average grade is indicated to the left of the upload button")
+                .padding([.leading, .trailing], 40)
             
             
            /* HStack{

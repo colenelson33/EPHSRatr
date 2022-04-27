@@ -25,8 +25,13 @@ struct SixthPage: View {
                 }
             }
             
-            Text("Upload Grades").font(.title).fontWeight(.bold).foregroundColor(.red).padding(.bottom)
-            Text("Once logged in, move the slider to the grade that you recieved in the class and tap the upload button. The same can be done with the homework slider.").padding([.leading, .trailing], 40)
+            Text("Upload Grades")
+                .font(.title)
+                .fontWeight(.bold)
+                .foregroundColor(GlobalVar.colorList[color])
+                .padding(.bottom)
+            Text("Once logged in, move the slider to the grade that you recieved in the class and tap the upload button. The same can be done with the homework slider.")
+                .padding([.leading, .trailing], 40)
             
             
            /* HStack{

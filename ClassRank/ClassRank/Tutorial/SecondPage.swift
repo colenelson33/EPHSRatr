@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SecondPage: View {
     @EnvironmentObject var clickedIndex: GlobalVariables
-    
+    @AppStorage("colorPallette") private var color = 0
     @State var darkBlue = Color(red: 0.0, green: 0.4392156862745098, blue: 0.7529411764705882, opacity: 1.0)
     @State var gray = Color(red: 0.8980392156862745, green: 0.8980392156862745, blue: 0.8980392156862745)
     
@@ -24,8 +24,13 @@ struct SecondPage: View {
                 }
             }
             
-            Text("Class Details").font(.title).fontWeight(.bold).foregroundColor(.red).padding(.bottom)
-            Text("The number in the circle indicates the average grade for each class").padding([.leading, .trailing], 40)
+            Text("Class Details")
+                .font(.title)
+                .fontWeight(.bold)
+                .foregroundColor(GlobalVar.colorList[color])
+                .padding(.bottom)
+            Text("The number in the circle indicates the average grade for each class")
+                .padding([.leading, .trailing], 40)
             
             
            /* HStack{
