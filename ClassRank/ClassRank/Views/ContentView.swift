@@ -105,6 +105,8 @@ struct ContentView: View {
     @AppStorage("userId") var userId : String = ""
     @EnvironmentObject var globalVariables: GlobalVariables
     
+    @State private var animationAmount = 1.0
+    
     private var isSignedIn: Bool{
         
         !userId.isEmpty
@@ -116,6 +118,29 @@ struct ContentView: View {
         NavigationView{
             VStack{
                 
+                /*Button("Tap Me") {
+                    // animationAmount += 1
+                }
+                .padding(50)
+                .background(.red)
+                .foregroundColor(.white)
+                .clipShape(Circle())
+                .overlay(
+                    Circle()
+                        .stroke(.red)
+                        .scaleEffect(animationAmount)
+                        .opacity(2 - animationAmount)
+                        .animation(
+                            .easeInOut(duration: 1)
+                                .repeatForever(autoreverses: false),
+                            value: animationAmount
+                        )
+                )
+                .onAppear {
+                    animationAmount = 2
+                }*/
+            //    Given how little work that involves, it creates a remarkably attractive effect!
+
 
                 
                 HelloText()

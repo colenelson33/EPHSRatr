@@ -135,6 +135,7 @@ struct smallcardView: View {
     @EnvironmentObject var bigData: CloudDataViewModel
     @AppStorage("isDepartmentView") var isDepartmentView = false
     @AppStorage("departmentIndex") var departmentIndex: Int = 0
+    @State private var animationAmount = 1.0
     var p: ListData
     let namespace: Namespace.ID
 
@@ -150,6 +151,7 @@ struct smallcardView: View {
                         .resizable()
                         .scaledToFill()
                         .frame(width: 40, height: 40)
+                        
                         .foregroundColor(GlobalVar.colorList[color])
                         //.cornerRadius(10)
                         .matchedGeometryEffect(id: "image", in: namespace)
