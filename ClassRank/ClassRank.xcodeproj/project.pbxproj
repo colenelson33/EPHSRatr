@@ -13,6 +13,9 @@
 		2355A25C2816FDCD002B8FA0 /* ThirdPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2355A25B2816FDCC002B8FA0 /* ThirdPage.swift */; };
 		2355A25E2816FDDC002B8FA0 /* FourthPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2355A25D2816FDDC002B8FA0 /* FourthPage.swift */; };
 		2371F76427F4E37B00D6EDCA /* ClassJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = 2371F76327F4E37B00D6EDCA /* ClassJSON.json */; };
+		23BD6769281998F500AB92ED /* FifthPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BD6768281998F500AB92ED /* FifthPage.swift */; };
+		23BD676B2819991200AB92ED /* SixthPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BD676A2819991200AB92ED /* SixthPage.swift */; };
+		23BD676D2819992300AB92ED /* SeventhPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BD676C2819992300AB92ED /* SeventhPage.swift */; };
 		5E02761927F110D8009E96A4 /* ClassRankApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E02761827F110D8009E96A4 /* ClassRankApp.swift */; };
 		5E02761D27F110DB009E96A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E02761C27F110DB009E96A4 /* Assets.xcassets */; };
 		5E02762027F110DB009E96A4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E02761F27F110DB009E96A4 /* Preview Assets.xcassets */; };
@@ -38,6 +41,9 @@
 		2355A25B2816FDCC002B8FA0 /* ThirdPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPage.swift; sourceTree = "<group>"; };
 		2355A25D2816FDDC002B8FA0 /* FourthPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourthPage.swift; sourceTree = "<group>"; };
 		2371F76327F4E37B00D6EDCA /* ClassJSON.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ClassJSON.json; sourceTree = "<group>"; };
+		23BD6768281998F500AB92ED /* FifthPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FifthPage.swift; sourceTree = "<group>"; };
+		23BD676A2819991200AB92ED /* SixthPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SixthPage.swift; sourceTree = "<group>"; };
+		23BD676C2819992300AB92ED /* SeventhPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeventhPage.swift; sourceTree = "<group>"; };
 		5E02761527F110D8009E96A4 /* ClassRate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClassRate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E02761827F110D8009E96A4 /* ClassRankApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassRankApp.swift; sourceTree = "<group>"; };
 		5E02761C27F110DB009E96A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -78,6 +84,9 @@
 				2355A2592816FDBB002B8FA0 /* SecondPage.swift */,
 				2355A25B2816FDCC002B8FA0 /* ThirdPage.swift */,
 				2355A25D2816FDDC002B8FA0 /* FourthPage.swift */,
+				23BD6768281998F500AB92ED /* FifthPage.swift */,
+				23BD676A2819991200AB92ED /* SixthPage.swift */,
+				23BD676C2819992300AB92ED /* SeventhPage.swift */,
 				2355A2572816FCF3002B8FA0 /* globvars.swift */,
 			);
 			path = Tutorial;
@@ -224,6 +233,7 @@
 				5E02762D27F24744009E96A4 /* GuestView.swift in Sources */,
 				C8F7D4FA2804F00D006E38FF /* ModeSwitchView.swift in Sources */,
 				C8F7D4F82804F007006E38FF /* MainAppView.swift in Sources */,
+				23BD6769281998F500AB92ED /* FifthPage.swift in Sources */,
 				2355A2522816F99F002B8FA0 /* FirstPage.swift in Sources */,
 				2355A25A2816FDBB002B8FA0 /* SecondPage.swift in Sources */,
 				C8F7D4F42804EFDC006E38FF /* ContentView.swift in Sources */,
@@ -235,7 +245,9 @@
 				C8F7D4F62804F001006E38FF /* LoginView.swift in Sources */,
 				5E150A9F27F55EF300B7943D /* GlobalVar.swift in Sources */,
 				5E02761927F110D8009E96A4 /* ClassRankApp.swift in Sources */,
+				23BD676B2819991200AB92ED /* SixthPage.swift in Sources */,
 				2355A25E2816FDDC002B8FA0 /* FourthPage.swift in Sources */,
+				23BD676D2819992300AB92ED /* SeventhPage.swift in Sources */,
 				5EA6CB4A28011F5C00AF6D80 /* OtherGuestView.swift in Sources */,
 				5E150AA127F63C4100B7943D /* IndividualClassView.swift in Sources */,
 				5E02763127F3E081009E96A4 /* ClassData.swift in Sources */,

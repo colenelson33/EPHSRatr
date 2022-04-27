@@ -29,7 +29,7 @@ struct FourthPage: View {
             Text("The average grade is indicated to the left of the upload button").padding([.leading, .trailing], 40)
             
             
-            HStack{
+           /* HStack{
                 Button(action: {
                     clickedIndex.indexClicked = 3
                     //Test API Here
@@ -44,7 +44,7 @@ struct FourthPage: View {
                     Text("Done").bold()
                 }
                 Image(systemName: "arrow.right").foregroundColor(.red)
-            }.padding()
+            }.padding()*/
         }
     }
     

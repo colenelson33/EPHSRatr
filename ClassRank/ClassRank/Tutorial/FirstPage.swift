@@ -45,7 +45,7 @@ struct FirstPage: View {
                 .padding([.leading, .trailing], 40)
             
                 
-            HStack{
+           /* HStack{
                 Button(action: {
                     clickedIndex.indexClicked = 3
                 }){
@@ -53,7 +53,7 @@ struct FirstPage: View {
                 }
                 Image(systemName: "arrow.right")
                     .foregroundColor(GlobalVar.colorList[color])
-            }.padding()
+            }.padding()*/
         }.multilineTextAlignment(.center)
     }
 
