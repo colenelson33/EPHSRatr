@@ -132,13 +132,15 @@ struct blurTags: View {
 
 struct smallcardView: View {
     @AppStorage("colorPallette") private var color = 0
-    
+    @EnvironmentObject var bigData: CloudDataViewModel
     @AppStorage("isDepartmentView") var isDepartmentView = false
     @AppStorage("departmentIndex") var departmentIndex: Int = 0
     var p: ListData
     let namespace: Namespace.ID
 
     var body: some View {
+        
+        let departments = [bigData.ArtClasses, bigData.BusinessClasses, bigData.EnglishClasses, bigData.FacsClasses, bigData.TechEdClasses, bigData.MathClasses, bigData.MusicClasses, bigData.PhyEdClasses, bigData.ScienceClasses, bigData.SSClasses, bigData.WorkClasses, bigData.LanguageClasses ]
         
         
         GeometryReader { g in
@@ -153,7 +155,7 @@ struct smallcardView: View {
                         .matchedGeometryEffect(id: "image", in: namespace)
                         .padding()
                     VStack(alignment: .leading) {
-                        Text("Classes Available: \(GlobalVar.Departments[p.departmentIndex].count)")
+                        Text("Classes Available: \(departments[p.departmentIndex].count)")
                             .foregroundColor(GlobalVar.colorList[color])
                             .matchedGeometryEffect(id: "classNum", in: namespace)
                         Spacer()

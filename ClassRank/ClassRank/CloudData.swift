@@ -726,9 +726,9 @@ class CloudDataViewModel: ObservableObject{
         CKContainer.default().publicCloudDatabase.save(record) { [weak self] returnedRecord, returnedError in
             print(returnedRecord)
          //   print("Error: \(returnedError)")
-          //  DispatchQueue.main.async {
-            //    self?.fetchItems()
-           // }
+            DispatchQueue.main.async {
+               self?.fetchItems()
+            }
             
             
         }
