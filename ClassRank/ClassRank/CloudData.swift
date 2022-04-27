@@ -43,7 +43,7 @@ class CloudDataViewModel: ObservableObject{
                                                    
 
     @Published var className: String = ""
-    @Published var classData = ClassData(className: "", Teacher: "", credits: 0, preR: "", description: "")
+    //@Published var classData = ClassData(className: "", Teacher: "", credits: 0, preR: "", description: "")
     
   //  let departmentList = ["Art", "Business", "English", "Facs", "Tech Ed", "Math", "Music", "PhyEd/Health", "Science", "Social Studies", "Work", "World Language" ]
     
@@ -74,6 +74,10 @@ class CloudDataViewModel: ObservableObject{
     
     @Published var Departments: [[gradeModel]] = [[gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.01], prerequisites: "", description: "", department: "")]]
     
+    init(){
+        initFunc()
+    }
+    
     func initFunc(){
         
         fetchArtClasses()
@@ -91,7 +95,7 @@ class CloudDataViewModel: ObservableObject{
         
     //    Departments.append(ArtClasses)
             
-       // GlobalVar.Departments = [ArtClasses, BusinessClasses, EnglishClasses, FacsClasses, TechEdClasses, MathClasses, MusicClasses, PhyEdClasses, ScienceClasses, SSClasses, WorkClasses, LanguageClasses]
+       GlobalVar.Departments = [ArtClasses, BusinessClasses, EnglishClasses, FacsClasses, TechEdClasses, MathClasses, MusicClasses, PhyEdClasses, ScienceClasses, SSClasses, WorkClasses, LanguageClasses]
       //  print(GlobalVar.Departments[3])
         
     }
@@ -620,7 +624,7 @@ class CloudDataViewModel: ObservableObject{
         
         queryOperation.queryResultBlock = { [weak self]returnedResult in
             print(returnedResult)
-            DispatchQueue.main.async {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self?.grades = returnedItems
             }
         }
@@ -722,9 +726,9 @@ class CloudDataViewModel: ObservableObject{
         CKContainer.default().publicCloudDatabase.save(record) { [weak self] returnedRecord, returnedError in
             print(returnedRecord)
          //   print("Error: \(returnedError)")
-            DispatchQueue.main.async {
-                self?.fetchItems()
-            }
+          //  DispatchQueue.main.async {
+            //    self?.fetchItems()
+           // }
             
             
         }

@@ -21,7 +21,7 @@ struct Toggle: View {
             
              let hSlider = bigData.averageGradeDouble(gradeList: bigData.grades.homeworkList)
             
-            IndividualClassView(currentClass: bigData.classData, sliderGValue: gSlider, sliderHValue: hSlider)
+            IndividualClassView(sliderGValue: gSlider, sliderHValue: hSlider)
             
         }
         

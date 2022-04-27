@@ -34,8 +34,6 @@ struct IndividualClassView: View {
     @EnvironmentObject var bigData: CloudDataViewModel
     
     
-    @StateObject var currentClass: ClassData
-    
     @State var canTap: Bool = true
     @State var sliderGValue: Double
     @State var sliderHValue: Double
@@ -68,7 +66,9 @@ struct IndividualClassView: View {
                     
                     VStack{
                         
-                  
+                        Text(bigData.grades.name)
+                            .fontWeight(.bold)
+                            .font(.system(size: 25))
                         Spacer()
                         ScrollView(.horizontal, showsIndicators: false){
                             HStack(spacing: 12){
@@ -96,8 +96,10 @@ struct IndividualClassView: View {
                                     
                                 } minimumValueLabel: {
                                     Text("0")
+                                        .font(.system(size: 20))
                                 } maximumValueLabel: {
                                     Text("100")
+                                        .font(.system(size: 20))
                                 } onEditingChanged: { editing in
                                     isEditing = editing }
                                 .disabled(hasUpload)
@@ -151,9 +153,8 @@ struct IndividualClassView: View {
                                         //if class has been made, then update the grade record
                                        
                                         bigData.updateGrades(grade: bigData.grades, num: sliderGValue)
-                                        bigData.classData = currentClass
-                                        bigData.className = currentClass.className
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0){
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0){
+                                          //  self.bigData.initFunc()
                                             self.bigData.fetchItems()
                                         }
                             
@@ -182,8 +183,10 @@ struct IndividualClassView: View {
                                     Text("Speed")
                                 } minimumValueLabel: {
                                     Text("0")
+                                        .font(.system(size: 20))
                                 } maximumValueLabel: {
                                     Text("5")
+                                        .font(.system(size: 20))
                                 } onEditingChanged: { editing in
                                     isEditing = editing
                                 }
@@ -234,9 +237,7 @@ struct IndividualClassView: View {
                                     //check to see if class object has already been created, if not then add a new one with the homework slider value
                                     //if class has been made, then update the homework record
                                     bigData.updateHomework(grade: bigData.grades, num: sliderHValue)
-                                    bigData.classData = currentClass
-                                    bigData.className = currentClass.className
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0){
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0){
                                         self.bigData.fetchItems()
                                     }
                                     
@@ -262,8 +263,10 @@ struct IndividualClassView: View {
                                     Text("Speed")
                                 } minimumValueLabel: {
                                     Text("0")
+                                        .font(.system(size: 20))
                                 } maximumValueLabel: {
                                     Text("100")
+                                        .font(.system(size: 20))
                                 } onEditingChanged: { editing in
                                     isEditing = editing
                                 }
@@ -300,8 +303,10 @@ struct IndividualClassView: View {
                                     Text("Speed")
                                 } minimumValueLabel: {
                                     Text("0")
+                                        .font(.system(size: 20))
                                 } maximumValueLabel: {
                                     Text("5")
+                                        .font(.system(size: 20))
                                 } onEditingChanged: { editing in
                                     isEditing = editing
                                 }
@@ -347,14 +352,16 @@ struct IndividualClassView: View {
                     }
                     
                     
-                    Spacer()
+                   
                 }
-                
+               // .navigationBarHidden(true)
 
             }
-        
-            }.navigationBarHidden(false)
-            .navigationBarTitle(currentClass.className)
+          
+    
+            
+            }
+                
                 .toolbar{
             
             

@@ -153,7 +153,7 @@ struct smallcardView: View {
                         .matchedGeometryEffect(id: "image", in: namespace)
                         .padding()
                     VStack(alignment: .leading) {
-                        Text("Classes Available: \(p.classesNum)")
+                        Text("Classes Available: \(GlobalVar.Departments[p.departmentIndex].count)")
                             .foregroundColor(GlobalVar.colorList[color])
                             .matchedGeometryEffect(id: "classNum", in: namespace)
                         Spacer()
@@ -223,9 +223,10 @@ struct CardDetector: View {
                     .padding(.vertical,6)
                     .onTapGesture{
                         withAnimation{
+                            departmentIndex = p.departmentIndex
                             viewMode = 1
                             guestViewMode = 2
-                            departmentIndex = p.departmentIndex
+                           
                         }
                     }
                     .onLongPressGesture {
@@ -264,6 +265,7 @@ struct CardDetector: View {
 
 struct bigcardView: View {
     @AppStorage("colorPallette") private var color = 0
+    @EnvironmentObject var bigData: CloudDataViewModel
     var p: ListData
     
     let namespace: Namespace.ID
@@ -281,7 +283,8 @@ struct bigcardView: View {
                         }
                 }*/
                     
-               
+                let departments = [bigData.ArtClasses, bigData.BusinessClasses, bigData.EnglishClasses, bigData.FacsClasses, bigData.TechEdClasses, bigData.MathClasses, bigData.MusicClasses, bigData.PhyEdClasses, bigData.ScienceClasses, bigData.SSClasses, bigData.WorkClasses, bigData.LanguageClasses ]
+                
                 Image(p.Image)
                     .resizable()
                     .scaledToFill()
@@ -292,7 +295,7 @@ struct bigcardView: View {
                 Spacer()
                 VStack(alignment: .leading) {
                     HStack {
-                        Text("Classes Available: \(p.classesNum)")
+                        Text("Classes Available: \(departments[p.departmentIndex].count)")
                             .foregroundColor(GlobalVar.colorList[color])
                             .matchedGeometryEffect(id: "classNum", in: namespace)
                     }

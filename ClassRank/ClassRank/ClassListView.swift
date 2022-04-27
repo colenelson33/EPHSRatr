@@ -22,22 +22,6 @@ struct ClassListView: View{
     
     @EnvironmentObject var bigData: CloudDataViewModel
     
-    func setText(class1: ClassData, name: String) -> String{
-        
-    
-        
-        var grade = "0.0"
-        DispatchQueue.main.async{
-            self.bigData.className = name
-            self.bigData.classData = class1
-            self.bigData.fetchItems()
-            
-            grade = bigData.averageGrade(gradeList: bigData.grades.gradeList)
-            print(grade)
-        }
-       return grade
-                                        
-    }
     
     
     //var currentClass: ClassData
@@ -167,6 +151,7 @@ struct ClassListView: View{
             }
             .listStyle(.insetGrouped)
             .navigationTitle("Class List")
+            .lineLimit(-1)
         }
         
         .navigationBarHidden(false)

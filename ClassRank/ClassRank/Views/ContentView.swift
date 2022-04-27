@@ -125,7 +125,7 @@ struct ContentView: View {
                 
                 Button(action: {
                
-                    bigData.initFunc()
+                   // bigData.initFunc()
                     guestViewMode = 1
                     userId = "no nil"
                     globalVariables.isPresented = true
