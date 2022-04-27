@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct FourthPage: View {
+    @AppStorage("colorPallette") private var color = 0
     @EnvironmentObject var clickedIndex: GlobalVariables
     
     @State var darkBlue = Color(red: 0.0, green: 0.4392156862745098, blue: 0.7529411764705882, opacity: 1.0)

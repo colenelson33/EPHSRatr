@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ThirdPage: View {
+    @AppStorage("colorPallette") private var color = 0
     @EnvironmentObject var clickedIndex: GlobalVariables
     
     @State var darkBlue = Color(red: 0.0, green: 0.4392156862745098, blue: 0.7529411764705882, opacity: 1.0)
@@ -25,15 +26,17 @@ struct ThirdPage: View {
             }
             
             Text("Third Screen.").font(.title).fontWeight(.bold).foregroundColor(.red).padding(.bottom)
-            Text("Nulla Lorem mollit cupidatat irure. Laborum magna nulla duis ullamco cillum dolor. Voluptate exercitation incididunt aliquip deserunt reprehenderit elit laborum.").padding([.leading, .trailing], 40)
+            Text("Continue with Apple for the ability to input grades, homework, and personal insights on each class. The more information you are able to provide, the more accurate representation each class will have.").padding([.leading, .trailing], 40)
             
             HStack{
                 Button(action: {
                     clickedIndex.indexClicked = 3
                 }){
                     Text("Skip").bold()
+                        .foregroundColor(GlobalVar.colorList[color])
                 }
-                Image(systemName: "arrow.right").foregroundColor(.red)
+                Image(systemName: "arrow.right")
+                    .foregroundColor(GlobalVar.colorList[color])
             }.padding()
         }
     }
