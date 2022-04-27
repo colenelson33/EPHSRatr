@@ -26,7 +26,7 @@ struct ThirdPage: View {
             }
             
             Text("Third Screen.").font(.title).fontWeight(.bold).foregroundColor(.red).padding(.bottom)
-            Text("Continue with Apple for the ability to input grades, homework, and personal insights on each class. The more information you are able to provide, the more accurate representation each class will have.").padding([.leading, .trailing], 40)
+            Text("Tap on the cards to learn more").padding([.leading, .trailing], 40)
             
             HStack{
                 Button(action: {

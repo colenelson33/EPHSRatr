@@ -25,7 +25,7 @@ struct SecondPage: View {
             }
             
             Text("Class Details").font(.title).fontWeight(.bold).foregroundColor(.red).padding(.bottom)
-            Text("Click on the cards to see more information.").padding([.leading, .trailing], 40)
+            Text("The number in the circle indicates the average grade for each class").padding([.leading, .trailing], 40)
             
             
             HStack{
