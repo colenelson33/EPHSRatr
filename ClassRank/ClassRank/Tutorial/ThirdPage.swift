@@ -17,12 +17,11 @@ struct ThirdPage: View {
     var body: some View {
         VStack{
             ZStack{
-                Rectangle().aspectRatio(1, contentMode: .fit).cornerRadius(5).padding(50).shadow(color: Color.black.opacity(0.5), radius: 2, x: 0, y: 5).cornerRadius(5).foregroundColor(Color(red: 0.8666666666666667, green: 0.9176470588235294, blue: 0.9529411764705882)).overlay{
-                    
-                    Image(systemName: "photo").resizable()
-                        .foregroundColor(Color.gray).frame(width: 50, height: 50).padding().aspectRatio(1.0, contentMode: .fit)
-                    //Probably add image ilogo here
-                }
+                Image("slide3")
+                    .resizable()
+                    .scaledToFill()
+                    .padding()
+                    .aspectRatio(1.0, contentMode: .fit)
             }
             
             Text("More Information")

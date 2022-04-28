@@ -66,10 +66,8 @@ struct IndividualClassView: View {
                     
                     VStack{
                         
-                        Text(bigData.grades.name)
-                            .fontWeight(.bold)
-                            .font(.system(size: 25))
-                        Spacer()
+                        
+                       // Spacer()
                         ScrollView(.horizontal, showsIndicators: false){
                             HStack(spacing: 12){
                                 
@@ -365,22 +363,11 @@ struct IndividualClassView: View {
                 .toolbar{
             
             
-         /*   ToolbarItem(placement: .navigationBarTrailing){
-                            Button(action: {
-                                withAnimation{
-                                isGuest = false
-                                loggedIn = false
-                                isDepartmentView = true
-                                    toggle.toggle()
-                                }
-                            }) {
-                            
-                                Image(systemName: "house.circle")
-                                    .foregroundColor(GlobalVar.colorList[color])
-                                
-                               
-                            }
-                        }*/
+                    ToolbarItem(placement: .navigationBarTrailing){
+                        Text(bigData.grades.name)
+                            .fontWeight(.bold)
+                            .font(.system(size: 15))
+                        }
             ToolbarItem(placement: .navigationBarLeading){
                 Button(action:  {
                     toggle = false

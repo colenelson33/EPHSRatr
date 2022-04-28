@@ -37,7 +37,7 @@ struct MainDepartmentView: View {
                 
             ScrollView {
 
-                if ck.userName != ""{
+             /*   if ck.userName != ""{
                     Text("Welcome back, \(ck.userName)")
                 }else{
                     Text("Welcome")
@@ -47,7 +47,7 @@ struct MainDepartmentView: View {
                 }
 
                 
-                
+              */
               
                     
                     
