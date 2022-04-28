@@ -10,7 +10,7 @@ import SwiftUI
 struct SeventhPage: View {
     @AppStorage("colorPallette") private var color = 0
     @EnvironmentObject var clickedIndex: GlobalVariables
-    
+    @AppStorage("tutorial") private var tutorial = true
     @State var darkBlue = Color(red: 0.0, green: 0.4392156862745098, blue: 0.7529411764705882, opacity: 1.0)
     @State var gray = Color(red: 0.8980392156862745, green: 0.8980392156862745, blue: 0.8980392156862745)
     
@@ -42,7 +42,7 @@ struct SeventhPage: View {
                    
                     UserDefaults.standard.set(true, forKey: "hasDoneTut")
                     clickedIndex.isPresented = false
-                    
+                    tutorial = false
                     
                 }){
                     Text("Done").bold()

@@ -25,6 +25,7 @@ struct MainDepartmentView: View {
     @State private var position: CardPosition = .small
     @State var indexSelection: Int = 0
     @EnvironmentObject var index: GlobalVariables
+    @AppStorage("tutorial") private var tutorial = true
     
     var body: some View {
         
@@ -64,7 +65,15 @@ struct MainDepartmentView: View {
                 }
             }
                
-        }
+            }.onAppear{
+                if !tutorial{
+                    index.isPresented = false
+                } else {
+                    index.isPresented = true
+                }
+            }
+          
+            
             .sheet(isPresented: $index.isPresented, content: {
                 VStack{
                     TabView(selection: $index.indexClicked){
