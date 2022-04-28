@@ -785,6 +785,7 @@ class CloudDataViewModel: ObservableObject{
         return Double(round(100*(averageGrade/count))/100)
         
     }
+    
 
 }
 

@@ -152,7 +152,7 @@ struct ContentView: View {
                
                    // bigData.initFunc()
                     guestViewMode = 1
-                    userId = "no nil"
+                   // userId = "no nil"
                     globalVariables.isPresented = true
                     
                 }) {
