@@ -150,7 +150,7 @@ struct ContentView: View {
                 
                 Button(action: {
                
-                   // bigData.initFunc()
+                    bigData.initFunc()
                     guestViewMode = 1
                    // userId = "no nil"
                     globalVariables.isPresented = true
@@ -293,7 +293,7 @@ struct SignInButtonView: View{
                     self.firstName = firstName ?? ""
                     self.lastName = lastName ?? ""
                     self.iCloudLoggedIn = true
-
+                    GlobalVar.email = email ?? ""
                     
                 default:
                     break

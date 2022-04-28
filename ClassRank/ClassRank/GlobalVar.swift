@@ -49,6 +49,8 @@ var data = [
 
 struct GlobalVar{
     
+    static var email = ""
+    
     static var colorList = [Color.red, Color.iCloudBlue, Color.pinkColor, Color.varunPurple, Color.forestGreen, Color.OrangeColor]
     
     static var inGuestView: Bool = true
