@@ -6,11 +6,115 @@
 //
 
 import SwiftUI
+import StoreKit
+
+//Fetch products
+//Purchase product
+//Update UI / Product state
+
+class ViewModel: ObservableObject{
+    
+    @Published var products: [Product] = []
+    @Published var purchasedIDs: [String] = []
+    
+    func fetchProducts(){
+        async{
+            do{
+                let products = try await Product.products(for: ["ephs2022.classrater.colorPurchase"])
+                
+                
+                DispatchQueue.main.async{
+                    print(products)
+                    self.products = products
+                    
+                }
+                if let product = products.first{
+                    await isPurchased(product: product)
+                }
+                
+            }
+            catch{
+                print(error)
+            }
+        }
+        
+        
+    }
+    
+    func isPurchased(product: Product) async {
+      
+            
+                guard let state = await product.currentEntitlement else{return}
+                
+                switch state {
+                case.verified(let transaction):
+                //    print(transaction.productID)
+                    DispatchQueue.main.async {
+                        self.purchasedIDs.append(transaction.productID)
+                    }
+                    
+                case.unverified(_):
+                    break
+                }
+            
+        
+            
+        
+        
+    }
+    
+    func purchase(){
+        async{
+            
+            guard let product = products.first else { return }
+            do{
+                let result = try await product.purchase()
+                switch result {
+                    
+                    
+                    
+                    
+                case .success(let verification):
+                    switch verification{
+                    case.verified(let transaction):
+                        print(transaction.productID)
+                        DispatchQueue.main.async {
+                            self.purchasedIDs.append(transaction.productID)
+                        }
+                        
+                    case.unverified(_):
+                        break
+                        
+                    }
+                case .userCancelled:
+                    break
+                case .pending:
+                    break
+                @unknown default:
+                    break
+                }
+                }
+            catch{
+                print(error)
+                
+            }
+            
+        }
+    }
+    
+}
+
 
 struct ModeSwitchView: View {
     
+    @StateObject var viewModel = ViewModel()
+    
+    
+    
     @AppStorage("isDarkMode") private var isDarkMode = false
     @AppStorage("colorPallette") private var color = 0
+    
+    public static let ColorPurchase = "ephs2022.classrater.colorPurchase"
     
     
     
@@ -126,23 +230,38 @@ struct ModeSwitchView: View {
             }
             Spacer()
             
-            Button(action: {
-                
-                
-            }) {
-                Text("Purchase Colors")
+            
+            
+          //  if let product = viewModel.products.first{
+            Text(viewModel.purchasedIDs.isEmpty ? "Purchase Premium Colors" : "Purchased")
                     .font(.headline)
-                    .frame(width: 250, height: 80)
-                    .background(GlobalVar.colorList[color])
-                    .cornerRadius(30.0)
-                    .foregroundColor(.white)
-            }
+                Button(action: {
+                    
+                    if viewModel.purchasedIDs.isEmpty{
+                    viewModel.purchase()
+                    }
+                    
+                }) {
+                    Text("$0.99")
+                        .font(.headline)
+                        .frame(width: 100, height: 30)
+                        .background(GlobalVar.colorList[color])
+                        .cornerRadius(20)
+                        .foregroundColor(.white)
+                }
+        //    }
+            
             
             Spacer()
             
             
-        }.navigationBarHidden(true)
+        }.onAppear{
+            viewModel.fetchProducts()
+        
         }
+        .navigationBarHidden(true)
+        }
+        
         .navigationBarBackButtonHidden(false)
         
      /*   .toolbar{

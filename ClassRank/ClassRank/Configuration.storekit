@@ -1,0 +1,33 @@
+{
+  "identifier" : "A8171B0F",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : true,
+      "internalID" : "D60C4EA2",
+      "localizations" : [
+        {
+          "description" : "Cop these dope ass colors",
+          "displayName" : "Colors Cop",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "ephs2022.classrater.colorPurchase",
+      "referenceName" : "Premium Colors Purchase",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 1,
+    "minor" : 1
+  }
+}
