@@ -56,28 +56,7 @@ struct MainDepartmentView: View {
                 
 
                 VStack {
-                    if GlobalVar.email == "colenelson1210@gmail.com"{
-                    Button {
-                        
-                        let departmentList = ["Art", "Business", "English", "Facs", "Tech Ed", "Math", "Music", "PhyEd/Health", "Science", "Social Studies", "Work", "World Language" ]
-                        var count = 0
-                        for eachDepartment in
-                                GlobalVar.DepartmentList{
-                            
-                            for eachClass in eachDepartment{
-                                
-                                bigData.addClass(name: eachClass.className, prerequisites: eachClass.prerequisite, description: eachClass.description, department: departmentList[count])
-                                print("class added")
-                            }
-                            count+=1
-                        }
-                        
-                        
-                        
-                    } label: {
-                        Text("toast ur computer")
-                    }
-                    }
+                    
                     ForEach(data, id: \.self) { p in
                         
                         CardDetector(p:p, position: self.position)

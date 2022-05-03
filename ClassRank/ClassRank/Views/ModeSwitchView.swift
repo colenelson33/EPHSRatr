@@ -110,7 +110,7 @@ struct ModeSwitchView: View {
     @StateObject var viewModel = ViewModel()
     
     
-    
+    @EnvironmentObject var bigData: CloudDataViewModel
     @AppStorage("isDarkMode") private var isDarkMode = false
     @AppStorage("colorPallette") private var color = 0
     
@@ -174,6 +174,32 @@ struct ModeSwitchView: View {
                     .frame(width: 80, height: 80)
                     .padding()
                     .foregroundColor(GlobalVar.colorList[color])
+                    .onTapGesture{
+                       
+                       
+                            
+                            let departmentList = ["Art", "Business", "English", "Facs", "Tech Ed", "Math", "Music", "PhyEd/Health", "Science", "Social Studies", "Work", "World Language" ]
+                            var count = 0
+                            for eachDepartment in
+                                    GlobalVar.DepartmentList{
+                                
+                                for eachClass in eachDepartment{
+                                    
+                                    bigData.addClass(name: eachClass.className, prerequisites: eachClass.prerequisite, description: eachClass.description, department: departmentList[count])
+                                    print("class added")
+                                }
+                                count+=1
+                            }
+                            
+                            
+                            
+                       
+                        
+                        
+                        
+                        
+                        
+                    }
 
                 }
             Picker("Scheme", selection: $color){
