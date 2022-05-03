@@ -294,6 +294,8 @@ struct SignInButtonView: View{
                     self.lastName = lastName ?? ""
                     self.iCloudLoggedIn = true
                     GlobalVar.email = email ?? ""
+                    print(GlobalVar.email)
+                    print(self.email)
                     
                 default:
                     break
