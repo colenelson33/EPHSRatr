@@ -20,7 +20,7 @@ class ViewModel: ObservableObject{
     func fetchProducts(){
         async{
             do{
-                let products = try await Product.products(for: ["ephs2022.classrater.colorPurchase"])
+                let products = try await Product.products(for: ["ephs2022.classrater.colorPurchase1"])
                 
                 
                 DispatchQueue.main.async{
@@ -251,6 +251,7 @@ struct ModeSwitchView: View {
                 
                 
             }.pickerStyle(.inline)
+                    .disabled(viewModel.purchasedIDs.isEmpty)
                     .padding()
                 
             }
