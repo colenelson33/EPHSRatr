@@ -114,7 +114,7 @@ struct ModeSwitchView: View {
     @AppStorage("isDarkMode") private var isDarkMode = false
     @AppStorage("colorPallette") private var color = 0
     
-    public static let ColorPurchase = "ephs2022.classrater.colorPurchase"
+    public static let ColorPurchase = "ephs2022.classrater.colorPurchase1"
     
     
     
