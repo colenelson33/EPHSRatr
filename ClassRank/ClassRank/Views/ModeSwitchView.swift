@@ -260,7 +260,7 @@ struct ModeSwitchView: View {
             
             
           //  if let product = viewModel.products.first{
-            Text(viewModel.purchasedIDs.isEmpty ? "Purchase Premium Colors" : "Purchased")
+            Text(viewModel.purchasedIDs.isEmpty ? "Purchase Premium Colors" : "")
                     .font(.headline)
                 Button(action: {
                     
@@ -269,7 +269,7 @@ struct ModeSwitchView: View {
                     }
                     
                 }) {
-                    Text("$0.99")
+                    Text(viewModel.purchasedIDs.isEmpty ? "$0.99" : "Purchased")
                         .font(.headline)
                         .frame(width: 100, height: 30)
                         .background(GlobalVar.colorList[color])
