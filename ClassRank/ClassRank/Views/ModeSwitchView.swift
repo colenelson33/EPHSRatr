@@ -20,7 +20,7 @@ class ViewModel: ObservableObject{
     func fetchProducts(){
         async{
             do{
-                let products = try await Product.products(for: ["ephs2022.classrater.colorPurchase1"])
+                let products = try await Product.products(for: ["ephs2022.classrater.colorPurchase"])
                 
                 
                 DispatchQueue.main.async{
@@ -114,7 +114,7 @@ struct ModeSwitchView: View {
     @AppStorage("isDarkMode") private var isDarkMode = true
     @AppStorage("colorPallette") private var color = 0
     
-    public static let ColorPurchase = "ephs2022.classrater.colorPurchase1"
+    public static let ColorPurchase = "ephs2022.classrater.colorPurchase"
     
     
     
