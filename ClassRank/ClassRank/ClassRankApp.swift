@@ -14,7 +14,7 @@ struct ClassRankApp: App {
         
         WindowGroup {
             
-          //  MainAppView().environmentObject(envObj)
+            MainAppView().environmentObject(envObj)
           //  PremiumBackground()
      //       ModeSwitchView()
             
