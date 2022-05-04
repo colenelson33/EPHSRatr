@@ -123,7 +123,7 @@ struct ModeSwitchView: View {
     var body: some View {
         NavigationView{
             
-            ZStack{
+     /*       ZStack{
                 
              
              
@@ -134,7 +134,7 @@ struct ModeSwitchView: View {
                             withAnimation(.linear(duration: 5.0).repeatForever(autoreverses: true)) {
                                 self.progress = 1.0
                             }
-                        }
+                        }*/
                 
         VStack{
             Spacer()
@@ -188,7 +188,7 @@ struct ModeSwitchView: View {
                     .frame(width: 80, height: 80)
                     .padding()
                     .foregroundColor(GlobalVar.colorList[color])
-                    .onTapGesture{
+                /*    .onTapGesture{
                        
                        
                             
@@ -213,7 +213,7 @@ struct ModeSwitchView: View {
                         
                         
                         
-                    }
+                    }*/
 
                 }
             Picker("Scheme", selection: $color){
@@ -300,7 +300,7 @@ struct ModeSwitchView: View {
             viewModel.fetchProducts()
         
         }
-            }
+     //       }
         .navigationBarHidden(true)
         }
         
