@@ -111,7 +111,7 @@ struct ModeSwitchView: View {
     
     
     @EnvironmentObject var bigData: CloudDataViewModel
-    @AppStorage("isDarkMode") private var isDarkMode = false
+    @AppStorage("isDarkMode") private var isDarkMode = true
     @AppStorage("colorPallette") private var color = 0
     
     public static let ColorPurchase = "ephs2022.classrater.colorPurchase1"

@@ -15,8 +15,7 @@ struct ClassRankApp: App {
         WindowGroup {
             
             MainAppView().environmentObject(envObj)
-            //GuestToggle()
-           // TestData()
+            
         }
     }
 }
