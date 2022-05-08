@@ -9,6 +9,8 @@ import SwiftUI
 
 struct AdminView: View {
     @EnvironmentObject var bigData: CloudDataViewModel
+    @AppStorage("colorPallette") private var color = 0
+    
     var body: some View {
         Button{
             
@@ -35,7 +37,22 @@ struct AdminView: View {
         } label: {
             Text("Add All Courses. Please only do this action once")
             
-        }
+            
+        }.buttonStyle(GrowingButton)
+    }
+}
+
+struct GrowingButton: ButtonStyle {
+    @AppStorage("colorPallette") private var color = 0
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .padding()
+            .frame(width: 300, height: 50)
+            .background(GlobalVar.colorList[color])
+            .foregroundColor(.white)
+            .clipShape(Capsule())
+            .scaleEffect(configuration.isPressed ? 1.2 : 1)
+            .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
     }
 }
 
