@@ -12,9 +12,11 @@ struct LoginView: View {
     @AppStorage("isGuest") var isGuest = false
     @AppStorage("isDepartmentView") var isDepartmentView = false
     
+    @AppStorage("isAdmin") var isAdmin = false
+    
     @State var username: String
     @State var errorMessage = ""
-    @State var authenticationDidFail: Bool = false
+
     @State var authenticationDidSucceed: Bool = false
     @StateObject private var dataRank = CloudKitClassRank()
     @AppStorage("colorPallette") private var color = 0
@@ -44,32 +46,19 @@ struct LoginView: View {
                 
               UsernameTextField(username: $username)
               //  UsernameTextField()
-                if authenticationDidFail {
-                    Text("Not a valid Student ID.")
-                        .foregroundColor(.red)
-                        .offset(y: -10)
-                }
-                if authenticationDidSucceed {
-                    //Text("Login succeeded!")
-                    Button(action: {
-                        loggedIn = true
-                        isDepartmentView = true
-                    }) {
-                        Text("Continue")
-                            .font(.headline)
-                            .frame(width: 250, height: 80)
-                            .background(Color.iCloudBlue)
-                            .cornerRadius(30.0)
-                            .foregroundColor(.white)
-                    }
+                
+                if authenticationDidSucceed{
+                    
+                    Text("Login succeeded, go back to add or delete classes")
                 }
                 
                 
                 Button {
-                    
-                    authenticationDidFail = checkUserFailed(user: username)
-                    authenticationDidSucceed = checkUser(user: username)
-                    
+                   
+                    if checkUser() {
+                        
+                        isAdmin = true
+                    }
                     
                     
                 } label: {
@@ -87,43 +76,18 @@ struct LoginView: View {
         
     }
 }
-}
-
-func checkUser(user: String) -> Bool{
-    let trimmedUser = user.trimmingCharacters(in: .whitespacesAndNewlines)
-    let sub = trimmedUser.prefix(3)
-  //  print(sub)
-    for ch in trimmedUser{
-        if ch.isLetter {
+    
+    func checkUser() -> Bool{
+        if username != "Apcsp272"{
             return false
         }
+        authenticationDidSucceed = true
+        return true
+        
     }
-    if trimmedUser.count != 8{
-                    return false
-                }else if sub == "903" || sub == "604" {
-                    return true
-                }
-
-    return false
 }
 
-func checkUserFailed(user: String) -> Bool{
-    let trimmedUser = user.trimmingCharacters(in: .whitespacesAndNewlines)
-    let sub = trimmedUser.prefix(3)
-  //  print(sub)
-    for ch in trimmedUser{
-        if ch.isLetter {
-            return true
-        }
-    }
-    if trimmedUser.count != 8{
-                    return true
-                }else if sub == "903" || sub == "604" {
-                    return false
-                }
 
-    return false
-}
 
 
 struct LoginView_Previews: PreviewProvider {
@@ -137,7 +101,7 @@ struct UsernameTextField : View {
 
 @Binding var username: String
 var body: some View {
-return TextField("Student ID", text: $username)
+return TextField("Password", text: $username)
             .padding()
          //   .background(lightGreyColor)
             .cornerRadius(5.0)

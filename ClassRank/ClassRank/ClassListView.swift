@@ -103,6 +103,12 @@ struct ClassListView: View{
             }
             
         }
+            .refreshable{
+                bigData.initFunc()
+                bigData.fetchItems()
+                
+                
+            }
         .toolbar{
                 ToolbarItem(placement: .navigationBarLeading) {
                             Button(action: {

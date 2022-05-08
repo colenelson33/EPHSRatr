@@ -8,9 +8,21 @@
 import SwiftUI
 import UIKit
 
-
+struct SearchView: View{
+    var body: some View{
+        Text("hello")
+        
+        
+    }
+    
+    
+}
 
 struct MainDepartmentView: View {
+    
+    @State private var searchText = ""
+    
+    @AppStorage("isAdmin") var isAdmin = false
     
     @StateObject private var ck = CloudKitClassRank()
     @EnvironmentObject var bigData: CloudDataViewModel
@@ -27,14 +39,63 @@ struct MainDepartmentView: View {
     @EnvironmentObject var index: GlobalVariables
     @AppStorage("tutorial") private var tutorial = true
     
+    @AppStorage("departmentIndex") var departmentIndex: Int = 0
+    @AppStorage("individualView") var toggle: Bool = false
+    
+    func nameList(classList: [gradeModel]) -> [String]{
+        var list: [String] = []
+        for eachClass in classList{
+            list.append(eachClass.name)
+            
+        }
+        
+        return list
+    }
+    
+    var searchResults: [String] {
+        let names = nameList(classList: bigData.classList)
+            if searchText.isEmpty {
+                return names
+            } else {
+                return names.filter { $0.contains(searchText) }
+            }
+        }
+    
     var body: some View {
+        
         
         NavigationView{
             
-            
+           
                 
             ZStack{
                 
+                if searchText != ""{
+                List{
+                    ForEach(searchResults, id: \.self) { name in
+                        
+                        Text(name)
+                            .onTapGesture {
+                                
+                           
+                                bigData.className = name
+                                
+                                DispatchQueue.main.async {
+                                 
+                                    bigData.fetchItems()
+                                }
+                                
+                                viewMode = 1
+                                guestViewMode = 2
+                                departmentIndex = 1
+                                toggle = true
+                            
+                            }
+                        
+                    }
+                  
+                }.zIndex(100)
+                }
                 
             ScrollView {
 
@@ -73,39 +134,37 @@ struct MainDepartmentView: View {
                     index.isPresented = true
                 }
             }
-          
-            
             .sheet(isPresented: $index.isPresented, content: {
-                VStack{
-                    TabView(selection: $index.indexClicked){
-                        FirstPage().tag(0)
-                        SecondPage().tag(1)
-                        ThirdPage().tag(2)
-                        FourthPage().tag(3)
-                        FifthPage().tag(4)
-                        SixthPage().tag(5)
-                        SeventhPage().tag(6)
-                        
-                    }
-                    .tabViewStyle(PageTabViewStyle())
-                    
-                   
-                    
-                }
-                .onChange(of: index.indexClicked){ x in
-                    print("Changed \(x)")
-                }.zIndex(100)
-            })
+                            VStack{
+                                TabView(selection: $index.indexClicked){
+                                    FirstPage().tag(0)
+                                    SecondPage().tag(1)
+                                    ThirdPage().tag(2)
+                                    FourthPage().tag(3)
+                                    FifthPage().tag(4)
+                                    SixthPage().tag(5)
+                                    SeventhPage().tag(6)
+                                    
+                                }
+                                .tabViewStyle(PageTabViewStyle())
+                                
+                               
+                                
+                            }
+                            .onChange(of: index.indexClicked){ x in
+                                print("Changed \(x)")
+                            }.zIndex(100)
+                        })
             .toolbar{
                 
-                   ToolbarItem(placement: .navigationBarLeading){
-                        Image(systemName: "house.circle")
-                            .foregroundColor(GlobalVar.colorList[color])
-                            .onTapGesture{
-                                userId = ""
-                                guestViewMode = 0
-                            }
-                    }
+                ToolbarItem(placement: .navigationBarLeading){
+                    Image(systemName: "house.circle")
+                        .foregroundColor(GlobalVar.colorList[color])
+                        .onTapGesture{
+                            userId = ""
+                            guestViewMode = 0
+                        }
+                }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink(destination: ModeSwitchView()) {
                         Image(systemName: "gear")
@@ -113,8 +172,41 @@ struct MainDepartmentView: View {
                     }
                     
                 }
+                ToolbarItem(placement: .bottomBar){
+                
+                    
+                    if isAdmin == false{
+                        NavigationLink(destination: LoginView(username: "")) {
+                            Image(systemName: "plus")
+                                .foregroundColor(GlobalVar.colorList[color])
+                            
+                            
+                        }
+                    }else{
+                        
+                        NavigationLink(destination: AdminView()) {
+                            Image(systemName: "plus")
+                                .foregroundColor(GlobalVar.colorList[color])
+                            
+                            
+                        }
+                        
+                        
+                    }
                 }
-                .navigationTitle("Departments")
+                         }
+            .navigationTitle("Departments")
+                            .searchable(text: $searchText, prompt: "Look up a class")
+            
+            
+            
+                
+        }
+        .refreshable{
+            bigData.initFunc()
+            bigData.fetchItems()
+            
+            
         }
     }
 }

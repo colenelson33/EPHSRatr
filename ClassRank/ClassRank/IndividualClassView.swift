@@ -381,6 +381,12 @@ struct IndividualClassView: View {
                         
                     }
         }
+        .refreshable{
+            bigData.initFunc()
+            bigData.fetchItems()
+            
+            
+        }
             .navigationBarHidden(false)
         
     }

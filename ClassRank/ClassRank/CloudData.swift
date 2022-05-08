@@ -37,6 +37,8 @@ extension GlobalVar{
 
 class CloudDataViewModel: ObservableObject{
     
+    @Published var allNames: [String] = [""]
+    
     @Published var classList: [gradeModel] = [gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.01], prerequisites: "", description: "", department: "")]
     
     @Published var grades: gradeModel = gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.01], prerequisites: "", description: "", department: "")
@@ -93,12 +95,76 @@ class CloudDataViewModel: ObservableObject{
         fetchWorkClasses()
         fetchLanguageClasses()
         
+        fetchAllItems()
+        
+        var list: [String] = []
+        
+        for eachClass in classList{
+            list.append(eachClass.name)
+        }
+        self.allNames = list
+        
     //    Departments.append(ArtClasses)
             
       // GlobalVar.Departments = [ArtClasses, BusinessClasses, EnglishClasses, FacsClasses, TechEdClasses, MathClasses, MusicClasses, PhyEdClasses, ScienceClasses, SSClasses, WorkClasses, LanguageClasses]
       //  print(GlobalVar.Departments[3])
         
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    func fetchAllClassesNew(){
+          let predicate = NSPredicate(value: true)
+          let query = CKQuery(recordType: "Class", predicate: predicate)
+          let queryOperation = CKQueryOperation(query: query)
+          
+          var returnedItems: [gradeModel] = [gradeModel(name: "", record: CKRecord(recordType: "Class"), gradeList: [0.0], homeworkList: [0.01], prerequisites: "", description: "", department: "")]
+                                    
+          
+          queryOperation.recordMatchedBlock = { (returnedRecordID, returnedResult) in
+              switch returnedResult{
+              case .success(let record):
+                  guard let name = record["name"] as? String else{ return }
+                  guard let gradeList = record["gradeList"] as? [Double] else { return }
+                  guard let homeworkList = record["homeworkList"] as? [Double] else { return }
+                  guard let prerequisites = record["prerequisites"] as? String else { return }
+                  guard let description = record["description"] as? String else{ return }
+                  guard let department = record["department"] as? String else{return}
+                  returnedItems.append(gradeModel(name: name, record: record, gradeList: gradeList, homeworkList: homeworkList, prerequisites: prerequisites, description: description, department: department))
+                  case .failure(let error):
+                      print("Record matched error: \(error)")
+                  }
+              
+          }
+          
+          queryOperation.queryResultBlock = { [weak self]returnedResult in
+              print(returnedResult)
+              DispatchQueue.main.async {
+                  self?.BusinessClasses = returnedItems
+                  self?.BusinessClasses.remove(at: 0)
+              }
+          }
+        //  let departmentList = ["Art", "Business", "English", "Facs", "Tech Ed", "Math", "Music", "PhyEd/Health", "Science", "Social Studies", "Work", "World Language" ]
+        
+          addOperations(operation: queryOperation)
+         }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     func fetchBusinessClasses(){
           let predicate = NSPredicate(format: "department = %@", argumentArray: ["Business"])
@@ -546,8 +612,8 @@ class CloudDataViewModel: ObservableObject{
     
     func fetchAllItems(){
       
-        let predicate = NSPredicate(format: "department = %@", argumentArray: ["Art"])
-       //   let predicate = NSPredicate(value: true)
+      //  let predicate = NSPredicate(format: "department = %@", argumentArray: ["Art"])
+          let predicate = NSPredicate(value: true)
           let query = CKQuery(recordType: "Class", predicate: predicate)
           let queryOperation = CKQueryOperation(query: query)
           
