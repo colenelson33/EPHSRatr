@@ -38,23 +38,12 @@ struct AdminView: View {
             Text("Add All Courses. Please only do this action once")
             
             
-        }.buttonStyle(GrowingButton)
+        }
+        //.buttonStyle(GrowingButton)
     }
 }
 
-struct GrowingButton: ButtonStyle {
-    @AppStorage("colorPallette") private var color = 0
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .padding()
-            .frame(width: 300, height: 50)
-            .background(GlobalVar.colorList[color])
-            .foregroundColor(.white)
-            .clipShape(Capsule())
-            .scaleEffect(configuration.isPressed ? 1.2 : 1)
-            .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
-    }
-}
+
 
 struct AdminView_Previews: PreviewProvider {
     static var previews: some View {
