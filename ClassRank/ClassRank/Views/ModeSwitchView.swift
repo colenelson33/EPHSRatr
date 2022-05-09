@@ -292,10 +292,10 @@ struct ModeSwitchView: View {
                 }
         //    }
             
-            
+            Spacer()
             Spacer()
             
-            
+                
         }.onAppear{
             viewModel.fetchProducts()
         
