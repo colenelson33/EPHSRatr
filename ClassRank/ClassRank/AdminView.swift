@@ -17,9 +17,7 @@ struct AdminView: View {
         
         VStack{
             Button{
-                       
-                       
-                            
+                
                             let departmentList = ["Art", "Business", "English", "Facs", "Tech Ed", "Math", "Music", "PhyEd/Health", "Science", "Social Studies", "Work", "World Language" ]
                             var count = 0
                             for eachDepartment in
@@ -40,7 +38,6 @@ struct AdminView: View {
                         
                    } label: {
                        Text("Add All Courses. Please do not complete this action without approval.")
-                       
                    }
                    //.buttonStyle(GrowingButton)
         }.sheet(isPresented: $isPresented, content: {
@@ -64,8 +61,85 @@ struct AdminView: View {
 
 
 
-struct AdminView_Previews: PreviewProvider {
+struct addClassView_Previews: PreviewProvider {
     static var previews: some View {
-        AdminView()
+     //   addClassView()
+        
+        Menu(open: .constant(true))
     }
+}
+
+struct addClassView: View{
+    
+    @State var open = false
+    
+    var body: some View{
+        ZStack{
+            VStack{
+                HStack{
+                   Spacer()
+                    
+                    Button( action: {
+                        self.open.toggle()
+                    }){
+                        
+                        Image(systemName: "line.horizontal.3")
+                        imageScale(.large)
+                        
+                        
+                        
+                        
+                    }
+                    
+                }
+                Spacer()
+                
+            }.padding()
+            
+            
+            
+        }
+        
+    }
+    
+    
+}
+
+struct Menu: View {
+   
+    @Binding var open: Bool
+    var body: some View{
+        
+        
+        VStack{
+            
+            HStack{
+                
+                Image(systemName: "gear")
+                    .foregroundColor(.white)
+                    .font(.system(size: 24, weight: .heavy))
+                    .frame(width: 32, height: 32)
+                ZStack{
+                    
+                    
+                    
+                }
+            }
+            .padding(.top, 20)
+            
+            HStack{
+                
+                
+                Spacer()
+                
+                
+            }
+            Spacer()
+        }
+        .padding(.vertical, 30)
+        .background(LinearGradient(gradient: Gradient(colors: [.purple, .blue]), startPoint: .top, endPoint: .bottom))
+        .padding(.trailing, 80)
+        .edgesIgnoringSafeArea(.vertical)
+    }
+    
 }
