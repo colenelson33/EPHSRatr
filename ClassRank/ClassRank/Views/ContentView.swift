@@ -153,7 +153,6 @@ struct ContentView: View {
                
                     bigData.initFunc()
                     guestViewMode = 1
-                    userId = "no nil"
                     globalVariables.isPresented = true
                     
                 }) {
@@ -166,10 +165,10 @@ struct ContentView: View {
             if !isSignedIn{
                 
                 SignInButtonView()
-                        .padding(.bottom, 50)
+                        .padding(.bottom, 20)
             }
-                
-                
+                Text("Sign in to input grades and leave reviews")
+                    .padding(.bottom, 20)
             }
             .toolbar{
                 ToolbarItem(placement: .navigationBarLeading){
