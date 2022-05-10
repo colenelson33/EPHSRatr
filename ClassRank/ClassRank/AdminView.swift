@@ -39,8 +39,7 @@ struct AdminView: View {
                         
                         
                    } label: {
-                       Text("Add All Courses. Please only do this action once")
-                       
+                       Text("Add All Courses. Please do not complete this action without approval.")
                        
                    }
                    //.buttonStyle(GrowingButton)

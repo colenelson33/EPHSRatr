@@ -39,6 +39,7 @@ struct LoginView: View {
                         .foregroundColor(GlobalVar.colorList[color])
                     
                 }
+                Text("Login to be given admin rights")
               //  Text(dataRank.permissionStatus.description)
                // Text("is signed in: \(dataRank.isSignedInToiCloud.description.uppercased())")
            //     Text(dataRank.error)
