@@ -6,55 +6,70 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct AdminView: View {
     @EnvironmentObject var bigData: CloudDataViewModel
     @AppStorage("colorPallette") private var color = 0
     
-    @State var isPresented: Bool = false
+   // @State var isPresented: Bool = false
+    @State var open = false
+   
     
     var body: some View {
         
-        VStack{
-            Button{
-                
-                            let departmentList = ["Art", "Business", "English", "Facs", "Tech Ed", "Math", "Music", "PhyEd/Health", "Science", "Social Studies", "Work", "World Language" ]
-                            var count = 0
-                            for eachDepartment in
-                                    GlobalVar.DepartmentList{
-                                
-                                for eachClass in eachDepartment{
-                                    
-                                    bigData.addClass(name: eachClass.className, prerequisites: eachClass.prerequisite, description: eachClass.description, department: departmentList[count])
-                                    print("class added")
-                                }
-                                count+=1
-                            }
-                            
-                            
-                            
-                       
-                        
-                        
-                   } label: {
-                       Text("Add All Courses. Please do not complete this action without approval.")
-                   }
-                   //.buttonStyle(GrowingButton)
-        }.sheet(isPresented: $isPresented, content: {
+        ZStack{
             VStack{
-                TabView(){
-                    FirstPage()
-                        .onTapGesture {
-                            isPresented.toggle()
-                        }
+                HStack{
+                   Spacer()
+                    
+                    Button( action: {
+                        self.open.toggle()
+                    }){
+                        
+                        Image(systemName: "line.horizontal.3")
+                        imageScale(.large)
+                            .padding(.horizontal, 24)
+                        Button{
+                            
+                                        let departmentList = ["Art", "Business", "English", "Facs", "Tech Ed", "Math", "Music", "PhyEd/Health", "Science", "Social Studies", "Work", "World Language" ]
+                                        var count = 0
+                                        for eachDepartment in
+                                                GlobalVar.DepartmentList{
+                                            
+                                            for eachClass in eachDepartment{
+                                                
+                                                bigData.addClass(name: eachClass.className, prerequisites: eachClass.prerequisite, description: eachClass.description, department: departmentList[count])
+                                                print("class added")
+                                            }
+                                            count+=1
+                                        }
+                                        
+                                        
+                                        
+                                   
+                                    
+                                    
+                               } label: {
+                                   Text("Add All Courses. Please do not complete this action without approval.")
+                               }
+                               //.buttonStyle(GrowingButton)
+                        
+                     //   Circle()
+                       //     .stroke()
+                        
+                    }
+                    
                 }
-                .tabViewStyle(PageTabViewStyle())
+                Spacer()
                 
-               
-                
-            }.zIndex(100)
-            }
-        )
+            }.padding()
+            
+            Menu(open: $open)
+            
+        }
+        
+        
     }
     
 }
@@ -63,14 +78,14 @@ struct AdminView: View {
 
 struct addClassView_Previews: PreviewProvider {
     static var previews: some View {
-     //   addClassView()
+        addClassView()
         
-        Menu(open: .constant(true))
+    //    Menu(open: .constant(true))
     }
 }
 
 struct addClassView: View{
-    
+    @EnvironmentObject var bigData: CloudDataViewModel
     @State var open = false
     
     var body: some View{
@@ -85,9 +100,11 @@ struct addClassView: View{
                         
                         Image(systemName: "line.horizontal.3")
                         imageScale(.large)
+                            .padding(.horizontal, 24)
                         
                         
-                        
+                     //   Circle()
+                       //     .stroke()
                         
                     }
                     
@@ -96,7 +113,7 @@ struct addClassView: View{
                 
             }.padding()
             
-            
+            Menu(open: $open)
             
         }
         
@@ -120,8 +137,10 @@ struct Menu: View {
                     .font(.system(size: 24, weight: .heavy))
                     .frame(width: 32, height: 32)
                 ZStack{
-                    
-                    
+                    Image("math")
+                        .resizable()
+                        .frame(width: 60, height: 60)
+                        .clipShape(Circle())
                     
                 }
             }
@@ -139,6 +158,8 @@ struct Menu: View {
         .padding(.vertical, 30)
         .background(LinearGradient(gradient: Gradient(colors: [.purple, .blue]), startPoint: .top, endPoint: .bottom))
         .padding(.trailing, 80)
+        .offset(x: open ? 0 : -UIScreen.main.bounds.width)
+      //  .animation(.default)
         .edgesIgnoringSafeArea(.vertical)
     }
     

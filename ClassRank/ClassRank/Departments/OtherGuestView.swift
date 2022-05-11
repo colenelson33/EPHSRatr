@@ -175,6 +175,8 @@ struct MainDepartmentView: View {
                 ToolbarItem(placement: .bottomBar){
                 
                     
+                    
+                    
                     if isAdmin == false{
                         NavigationLink(destination: LoginView(username: "")) {
                             Image(systemName: "plus")
