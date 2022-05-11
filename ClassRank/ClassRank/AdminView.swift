@@ -20,16 +20,14 @@ struct AdminView: View {
         
         ZStack{
             VStack{
+                Text("add course")
+                    .onTapGesture {
+                        self.open.toggle()
+                    }
                 HStack{
                    Spacer()
                     
-                    Button( action: {
-                        self.open.toggle()
-                    }){
-                        
-                        Image(systemName: "line.horizontal.3")
-                        imageScale(.large)
-                            .padding(.horizontal, 24)
+                    
                         Button{
                             
                                         let departmentList = ["Art", "Business", "English", "Facs", "Tech Ed", "Math", "Music", "PhyEd/Health", "Science", "Social Studies", "Work", "World Language" ]
@@ -54,20 +52,18 @@ struct AdminView: View {
                                    Text("Add All Courses. Please do not complete this action without approval.")
                                }
                                //.buttonStyle(GrowingButton)
-                        
-                     //   Circle()
-                       //     .stroke()
-                        
-                    }
+                    
+                    
                     
                 }
                 Spacer()
                 
             }.padding()
             
-            Menu(open: $open)
+           Menu(open: $open)
             
         }
+        
         
         
     }
@@ -99,8 +95,9 @@ struct addClassView: View{
                     }){
                         
                         Image(systemName: "line.horizontal.3")
-                        imageScale(.large)
+                            .imageScale(.large)
                             .padding(.horizontal, 24)
+                            
                         
                         
                      //   Circle()
@@ -113,7 +110,7 @@ struct addClassView: View{
                 
             }.padding()
             
-            Menu(open: $open)
+           // Menu(open: $open)
             
         }
         
@@ -127,25 +124,32 @@ struct Menu: View {
     @Binding var open: Bool
     var body: some View{
         
-        
+        ZStack{
         VStack{
             
             HStack{
                 
-                Image(systemName: "gear")
+                Image(systemName: open ? "arrow.down": "plus")
+                
+          //4  y: open ? 80 : UIScreen.main.bounds.height * 3.0/5.0
+                
                     .foregroundColor(.white)
                     .font(.system(size: 24, weight: .heavy))
                     .frame(width: 32, height: 32)
+                    .onTapGesture {
+                        self.open.toggle()
+                    }
+                    
                 ZStack{
-                    Image("math")
-                        .resizable()
-                        .frame(width: 60, height: 60)
-                        .clipShape(Circle())
+                    Text("Cancel")
+                        .onTapGesture {
+                            self.open.toggle()
+                        }
                     
                 }
             }
-            .padding(.top, 20)
-            
+            .padding(.top, 40)
+         
             HStack{
                 
                 
@@ -155,12 +159,18 @@ struct Menu: View {
             }
             Spacer()
         }
-        .padding(.vertical, 30)
-        .background(LinearGradient(gradient: Gradient(colors: [.purple, .blue]), startPoint: .top, endPoint: .bottom))
-        .padding(.trailing, 80)
-        .offset(x: open ? 0 : -UIScreen.main.bounds.width)
-      //  .animation(.default)
-        .edgesIgnoringSafeArea(.vertical)
+                .padding(.vertical, 30)
+                .background(LinearGradient(gradient: Gradient(colors: [.purple, .blue]), startPoint: .top, endPoint: .bottom))
+                //.padding(.top, 80)
+                .offset(y: open ? 80 : UIScreen.main.bounds.height)
+                
+                .animation(.spring())
+                .edgesIgnoringSafeArea(.vertical)
+                .cornerRadius(20)
+            
+        }
+        
+        
     }
     
 }
