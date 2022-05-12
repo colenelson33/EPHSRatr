@@ -162,14 +162,15 @@ struct Menu: View {
                 ScrollView{
                 ForEach(departmentList, id: \.self){ c in
                       Text(c)
-                        .overlay(Capsule())
+                       .frame(alignment: .leading)
                        .cornerRadius(5)
                        .onTapGesture {
                            department = c
+                           
                        }
                 }
                
-                }.frame(width: 100, height: 30)
+                }.frame(width: 150, height: 50)
                 Spacer()
                 
             }
@@ -180,6 +181,10 @@ struct Menu: View {
                 print(className)
                 print(preR)
                 print(department)
+                bigData.addClass(name: className, prerequisites: preR, description: description, department: department)
+                DispatchQueue.main.async {
+                    bigData.initFunc()
+                }
            //     bigData.addClass(name: className, prerequisites: preR, description: description, department: "")
             }label:{
                 Text("Done")
