@@ -109,12 +109,17 @@ struct ModeSwitchView: View {
     
     @StateObject var viewModel = ViewModel()
     @State private var progress: CGFloat = 0
-                    let gradient1 = Gradient(colors: [.purple, .black])
-                    let gradient2 = Gradient(colors: [ .blue, .purple])
-    
+                   
     @EnvironmentObject var bigData: CloudDataViewModel
     @AppStorage("isDarkMode") private var isDarkMode = true
     @AppStorage("colorPallette") private var color = 0
+    @AppStorage("isAdmin") var isAdmin = false
+    @State var open = false
+    
+    @State var className: String
+    @State var department: String
+    @State var description: String
+    @State var preR: String
     
     public static let ColorPurchase = "ephs2022.classrater.colorPurchase"
     
@@ -122,20 +127,7 @@ struct ModeSwitchView: View {
     
     var body: some View {
         NavigationView{
-            
-     /*       ZStack{
-                
-             
-             
-                    Rectangle()
-                        .animatableGradient(fromGradient: gradient1, toGradient: gradient2, progress: progress)
-                        .ignoresSafeArea()
-                        .onAppear {
-                            withAnimation(.linear(duration: 5.0).repeatForever(autoreverses: true)) {
-                                self.progress = 1.0
-                            }
-                        }*/
-                
+            ZStack{
         VStack{
             Spacer()
             HStack{
@@ -293,13 +285,39 @@ struct ModeSwitchView: View {
         //    }
             
             Spacer()
-            Spacer()
+            
+            
+            if isAdmin == false{
+                NavigationLink(destination: LoginView(username: "")) {
+                    Text("Sign in as Admin")
+                        .foregroundColor(GlobalVar.colorList[color])
+                        .fontWeight(.semibold)
+                    
+                }
+            }else{
+                
+                    Text("Add a course")
+                    .fontWeight(.semibold)
+                    .foregroundColor(GlobalVar.colorList[color])
+                    .onTapGesture{
+                        self.open.toggle()
+                    }
+                        
+                    
+                    
+                
+                
+                
+            }
+
             
                 
         }.onAppear{
             viewModel.fetchProducts()
         
         }
+        Menu(open: $open, className: $className, description: $description, preR: $preR, department: $department)
+            }
      //       }
         .navigationBarHidden(true)
         }
@@ -323,8 +341,3 @@ struct ModeSwitchView: View {
     }
 }
 
-struct ModeSwitchView_Previews: PreviewProvider {
-    static var previews: some View {
-        ModeSwitchView()
-    }
-}

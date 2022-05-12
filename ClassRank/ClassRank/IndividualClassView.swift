@@ -32,7 +32,7 @@ struct IndividualClassView: View {
     @AppStorage("individualView") var toggle: Bool = false
     @State var hasUpload: Bool = false
     @EnvironmentObject var bigData: CloudDataViewModel
-    
+    @AppStorage("isAdmin") var isAdmin = false
     
     @State var canTap: Bool = true
     @State var sliderGValue: Double
@@ -42,6 +42,7 @@ struct IndividualClassView: View {
     @State private var isEditing = false
     @State var showPopUp: Bool = false
     @State var showPrePopUp: Bool = false
+    @State var isShowingAlert: Bool = false
     
     @AppStorage("userId") var userId : String = ""
     
@@ -363,7 +364,7 @@ struct IndividualClassView: View {
                 .toolbar{
             
             
-                    ToolbarItem(placement: .navigationBarTrailing){
+            ToolbarItem(placement: .navigationBarTrailing){
                         Text(bigData.grades.name)
                             .fontWeight(.bold)
                             .font(.system(size: 15))
@@ -378,7 +379,30 @@ struct IndividualClassView: View {
                 }
 
             }
+              
+                    ToolbarItem(placement: .bottomBar){
                         
+                        
+                        
+                    Button(action:  {
+                        
+                    //    bigData.deleteItem(record: bigData.grades.record)
+                        isShowingAlert = true
+                        print("tapped")
+                        
+                    }) {
+                        Image(systemName: isAdmin ? "trash" : "")
+                            .foregroundColor(GlobalVar.colorList[color])
+                    }
+                    .alert("Are you sure?", isPresented: $isShowingAlert){
+                        Button("Delete", role: .destructive){
+                            print("confirmed")
+                            bigData.deleteItem(record: bigData.grades.record)
+                        }
+                    }
+                    }
+                    
+                    
                     }
         }
         .refreshable{

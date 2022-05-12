@@ -26,16 +26,24 @@ struct AdminView: View {
         
         ZStack{
             VStack{
-                Text("add course")
+                Text("Click to Add Course")
+                    .font(.subheadline)
+                    .frame(width: 200, height: 50)
+                    .cornerRadius(20)
+                    .background(GlobalVar.colorList[color])
                     .onTapGesture {
+                        
                         print("toggle")
                         self.open.toggle()
                     }
-                HStack{
-                   Spacer()
+                
+                 Text("Make sure all the data is inputted directly, otherwise you will have to delete the course and create new one. Add about a paragraph for the description of the course and if their are no prerequisites, type in \"None\". Scroll through the list of departments and click on the one that is the closest match. To delete a course, go to its individual course page and click the trash icon, which should prompt you to delete it.")
+                    .frame(width: UIScreen.main.bounds.width - 30, height: UIScreen.main.bounds.height/2)
+                    .background(GlobalVar.colorList[color])
+                    .opacity(0.7)
+                Spacer()
                     
-                    
-                        Button{
+                    /*    Button{
                             
                                         let departmentList = ["Art", "Business", "English", "Facs", "Tech Ed", "Math", "Music", "PhyEd/Health", "Science", "Social Studies", "Work", "World Language" ]
                                         var count = 0
@@ -57,13 +65,9 @@ struct AdminView: View {
                                     
                                } label: {
                                    Text("Add All Courses. Please do not complete this action without approval.")
-                               }
+                               }*/
                                //.buttonStyle(GrowingButton)
-                    
-                    
-                    
-                }
-                Spacer()
+               
                 
             }.padding()
             
@@ -88,6 +92,7 @@ struct Menu_Previews: PreviewProvider {
 
 struct Menu: View {
     @EnvironmentObject var bigData: CloudDataViewModel
+    @AppStorage("colorPallette") private var color = 0
     @Binding var open: Bool
     @Binding var className: String
     @Binding var description: String
@@ -144,7 +149,7 @@ struct Menu: View {
                 
                 Text("Prerequisites")
                     .padding()
-                TextField("Prerequisites, input \"None\" for none.", text: $preR)
+                TextField("Prerequisites", text: $preR)
                     .lineLimit(5)
                     .padding()
                 .cornerRadius(5.0)
@@ -155,14 +160,15 @@ struct Menu: View {
             HStack{
                 
                 Text("Department: \(department)")
-                    .padding()
+           
                 .cornerRadius(5.0)
                 .padding()
                 let departmentList = ["Art", "Business", "English", "Facs", "Tech Ed", "Math", "Music", "PhyEd/Health", "Science", "Social Studies", "Work", "World Language" ]
+                Spacer()
                 ScrollView{
                 ForEach(departmentList, id: \.self){ c in
                       Text(c)
-                       .frame(alignment: .leading)
+                       
                        .cornerRadius(5)
                        .onTapGesture {
                            department = c
@@ -170,12 +176,12 @@ struct Menu: View {
                        }
                 }
                
-                }.frame(width: 150, height: 50)
+                }.frame(width: 150, height: 50, alignment: .leading)
                 Spacer()
                 
             }
             
-           // Spacer()
+            Spacer()
             Button {
                 print(description)
                 print(className)
@@ -185,6 +191,7 @@ struct Menu: View {
                 DispatchQueue.main.async {
                     bigData.initFunc()
                 }
+                self.open.toggle()
            //     bigData.addClass(name: className, prerequisites: preR, description: description, department: "")
             }label:{
                 Text("Done")
@@ -195,13 +202,13 @@ struct Menu: View {
            
         }
                 .padding(.vertical, 30)
-                .background(LinearGradient(gradient: Gradient(colors: [.purple, .blue]), startPoint: .top, endPoint: .bottom))
+                .background(GlobalVar.colorList[color])
+            //(LinearGradient(gradient: Gradient(colors: [.gray, .black]), startPoint: .top, endPoint: .bottom))
                 .offset(y: open ? 80 : UIScreen.main.bounds.height)
                 .animation(.spring())
                 .edgesIgnoringSafeArea(.vertical)
                 .cornerRadius(20)
-            
-        
+
         }
         
     }

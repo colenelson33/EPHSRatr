@@ -799,19 +799,15 @@ class CloudDataViewModel: ObservableObject{
             
         }
     }
-    /*func deleteItem(indexSet: IndexSet){
-        guard let index = indexSet.first else{ return }
-        let fruit = gradeArray[index]
-        let record = fruit.record
-        
+    func deleteItem(record: CKRecord){
+       
         CKContainer.default().publicCloudDatabase.delete(withRecordID: record.recordID) { [weak self] returnedRecordID, error in
             DispatchQueue.main.async {
-                self?.gradeArray.remove(at: index)
                 self?.fetchItems()
             }
             
         }
-    }*/
+    }
 
     
     func averageGrade(gradeList: [Double]) -> String{

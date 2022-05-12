@@ -166,13 +166,13 @@ struct MainDepartmentView: View {
                         }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: ModeSwitchView()) {
+                    NavigationLink(destination: ModeSwitchView(className: "", department: "", description: "", preR: "")) {
                         Image(systemName: "gear")
                             .foregroundColor(GlobalVar.colorList[color])
                     }
                     
                 }
-                ToolbarItem(placement: .bottomBar){
+            /*    ToolbarItem(placement: .bottomBar){
                 
                     
                     
@@ -195,7 +195,7 @@ struct MainDepartmentView: View {
                         
                         
                     }
-                }
+                }*/
                          }
             .navigationTitle("Departments")
                             .searchable(text: $searchText, prompt: "Look up a class")
