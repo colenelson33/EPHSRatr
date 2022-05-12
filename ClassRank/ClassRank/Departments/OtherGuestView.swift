@@ -186,7 +186,7 @@ struct MainDepartmentView: View {
                         }
                     }else{
                         
-                        NavigationLink(destination: AdminView()) {
+                        NavigationLink(destination: AdminView(className: "", department: "", description: "", preR: "")) {
                             Image(systemName: "plus")
                                 .foregroundColor(GlobalVar.colorList[color])
                             
