@@ -734,14 +734,14 @@ class CloudDataViewModel: ObservableObject{
             let record = grade.record
             print("ok")
             record["homeworkList"] = [num]
-          //  record["userID"] = [userId]
+         //   record["userID"] = userID
             saveItem(record: record)
             
         }else{
         
         let record = grade.record
         var newList = grade.homeworkList
-     //   var newUserList = grade.userId
+       // var newUserList = grade.userId
      //   newUserList.append(userId)
         newList.append(num)
         record["homeworkList"] = newList

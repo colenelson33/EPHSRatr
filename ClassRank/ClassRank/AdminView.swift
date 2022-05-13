@@ -93,6 +93,7 @@ struct Menu_Previews: PreviewProvider {
 struct Menu: View {
     @EnvironmentObject var bigData: CloudDataViewModel
     @AppStorage("colorPallette") private var color = 0
+    @State var isShowingAlert: Bool = false
     @Binding var open: Bool
     @Binding var className: String
     @Binding var description: String
@@ -157,7 +158,9 @@ struct Menu: View {
                 Spacer()
             
             }
+            
             HStack{
+                
                 
                 Text("Department: \(department)")
            
@@ -180,23 +183,41 @@ struct Menu: View {
                 Spacer()
                 
             }
+            if department == ""{
+            Text("Please selecet a department")
+            }
             
             Spacer()
+            if department != ""{
             Button {
                 print(description)
                 print(className)
                 print(preR)
                 print(department)
-                bigData.addClass(name: className, prerequisites: preR, description: description, department: department)
-                DispatchQueue.main.async {
-                    bigData.initFunc()
-                }
-                self.open.toggle()
+                self.isShowingAlert.toggle()
+                
            //     bigData.addClass(name: className, prerequisites: preR, description: description, department: "")
             }label:{
                 Text("Done")
                     .foregroundColor(.white)
+                    .font(.system(size: 20))
+                    .overlay(
+                        Capsule()
+                                .stroke(lineWidth: 2.0)
+                                .foregroundColor(.white)
+                                .padding()
+                    )
                 
+            }.alert("Course added", isPresented: $isShowingAlert){
+                Button("Done", role: .cancel){
+                    print("confirmed")
+                    bigData.addClass(name: className, prerequisites: preR, description: description, department: department)
+                    DispatchQueue.main.async {
+                        bigData.initFunc()
+                    }
+                    self.open.toggle()
+                }
+            }
             }
             Spacer()
            

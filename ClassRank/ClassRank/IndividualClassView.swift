@@ -85,7 +85,10 @@ struct IndividualClassView: View {
                             Spacer()
                             VStack{
                                 
-                                
+                                Text("Please only input one grade and one amount of homework.")
+                                    .fontWeight(.semibold)
+                                    .font(.system(size: 15))
+                                    .padding()
                                 
                                 if isSignedIn {
                                     
@@ -398,6 +401,7 @@ struct IndividualClassView: View {
                         Button("Delete", role: .destructive){
                             print("confirmed")
                             bigData.deleteItem(record: bigData.grades.record)
+                            toggle = false
                         }
                     }
                 }
