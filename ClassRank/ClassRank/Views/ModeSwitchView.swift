@@ -120,6 +120,9 @@ struct ModeSwitchView: View {
     @State var department: String
     @State var description: String
     @State var preR: String
+    @State var indexSelection: Int = 0
+    @EnvironmentObject var index: GlobalVariables
+    
     
     public static let ColorPurchase = "ephs2022.classrater.colorPurchase"
     
@@ -127,8 +130,14 @@ struct ModeSwitchView: View {
     
     var body: some View {
         NavigationView{
-            ZStack{
+    ZStack{
         VStack{
+            
+            
+              
+                
+            
+        
             Spacer()
             HStack{
                 
@@ -283,7 +292,7 @@ struct ModeSwitchView: View {
                         .foregroundColor(.white)
                 }
         //    }
-            
+        
             Spacer()
             
             
@@ -309,6 +318,7 @@ struct ModeSwitchView: View {
                 
                 
             }
+            
 
             
                 
@@ -324,20 +334,39 @@ struct ModeSwitchView: View {
         
         .navigationBarBackButtonHidden(false)
         
-     /*   .toolbar{
+        .toolbar{
             
-            ToolbarItem(placement: .navigationBarLeading) {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Image(systemName: "questionmark.circle.fill")
+                    .foregroundColor(GlobalVar.colorList[color])
+                    .onTapGesture{
+                        index.isPresented = true
+                        print("click")
+                    }.sheet(isPresented: $index.isPresented, content: {
+                        VStack{
+                            TabView(selection: $index.indexClicked){
+                                FirstPage().tag(0)
+                                SecondPage().tag(1)
+                                ThirdPage().tag(2)
+                                FourthPage().tag(3)
+                                FifthPage().tag(4)
+                                SixthPage().tag(5)
+                                SeventhPage().tag(6)
+                                
+                            }
+                            .tabViewStyle(PageTabViewStyle())
+                            
+                           
+                            
+                        }
+                        .onChange(of: index.indexClicked){ x in
+                            print("Changed \(x)")
+                        }.zIndex(100)
+                    })
                 
-                Button(action: {
-                }) {
-                    NavigationLink(destination: OtherGuestView()) {
-                        Image(systemName: "chevron.backward")
-                            .foregroundColor(GlobalVar.colorList[color])
-                    }
-                }
             }
             
-        }*/
+        }
     }
 }
 
