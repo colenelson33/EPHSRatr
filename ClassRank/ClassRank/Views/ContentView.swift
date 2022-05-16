@@ -165,9 +165,10 @@ struct ContentView: View {
             if !isSignedIn{
                 
                 SignInButtonView()
-                        .padding(.bottom, 20)
+                        .padding(.bottom, 5)
             }
                 Text("Sign in to input grades and leave reviews")
+                    .font(.system(size: 15))
                     .padding(.bottom, 20)
             }
             .toolbar{

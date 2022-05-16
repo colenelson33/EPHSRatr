@@ -256,7 +256,16 @@ struct IndividualClassView: View {
                                             }
                                             Spacer()
                                         }
+                                        
+                                       /* VStack{
+                                            HStack{
+                                                Text("Leave a review")
+                                            }
+                                            
+                                            
+                                        }*/
                                     }
+                                    
                                     
                                 } else {
                                     
