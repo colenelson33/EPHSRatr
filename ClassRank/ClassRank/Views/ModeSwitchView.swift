@@ -266,7 +266,8 @@ struct ModeSwitchView: View {
                 
                 
             }.pickerStyle(.inline)
-                    .disabled(viewModel.purchasedIDs.isEmpty)
+                    .disabled(viewModel.purchasedIDs.isEmpty && !isAdmin)
+                    
                     .padding()
                 
             }
