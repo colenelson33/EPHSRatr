@@ -122,7 +122,10 @@ struct ModeSwitchView: View {
     @State var preR: String
     @State var indexSelection: Int = 0
     @EnvironmentObject var index: GlobalVariables
-    
+    @State var isAnimating = false
+    let gradient1 = Gradient(colors: [.purple, .black])
+                        let gradient2 = Gradient(colors: [ .blue, .purple])
+                        let gradient3 = Gradient(colors: [ .red, .yellow])
     
     public static let ColorPurchase = "ephs2022.classrater.colorPurchase"
     
@@ -131,6 +134,11 @@ struct ModeSwitchView: View {
     var body: some View {
         NavigationView{
     ZStack{
+        
+        LinearGradient(gradient: gradient2, startPoint: isAnimating ? .topLeading : .bottomTrailing, endPoint: .bottomTrailing)
+        .ignoresSafeArea()
+        .animation(.linear(duration: 5).repeatForever(autoreverses: true), value: isAnimating)
+        
         VStack{
             
             
@@ -325,7 +333,7 @@ struct ModeSwitchView: View {
                 
         }.onAppear{
             viewModel.fetchProducts()
-        
+            isAnimating.toggle()
         }
         Menu(open: $open, className: $className, description: $description, preR: $preR, department: $department)
             }
