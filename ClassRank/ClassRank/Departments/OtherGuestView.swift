@@ -42,6 +42,9 @@ struct MainDepartmentView: View {
     @AppStorage("departmentIndex") var departmentIndex: Int = 0
     @AppStorage("individualView") var toggle: Bool = false
     
+    @State var isAnimating = false
+    @AppStorage("isGradient") var isGradient = false
+    
     func nameList(classList: [gradeModel]) -> [String]{
         var list: [String] = []
         for eachClass in classList{
@@ -69,6 +72,10 @@ struct MainDepartmentView: View {
            
                 
             ZStack{
+          //      let gradient2 = Gradient(colors: [ isDarkMode ? .black : .white, GlobalVar.colorList[color]])
+       //      isGradient ? LinearGradient(gradient: gradient2, startPoint: isAnimating ? .topLeading : .bottomTrailing, endPoint: .bottomTrailing)
+     //       .ignoresSafeArea()
+       //     .animation(.linear(duration: 5).repeatForever(autoreverses: true), value: isAnimating) : nil
                 
                 if searchText != ""{
                 List{

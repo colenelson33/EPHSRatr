@@ -119,6 +119,7 @@ struct Menu: View {
                     
                 ZStack{
                     Text("Cancel")
+                        .foregroundColor(.white)
                         .onTapGesture {
                             self.open.toggle()
                         }
@@ -129,6 +130,7 @@ struct Menu: View {
             HStack{
                 Text("Class Name")
                     .padding()
+                    .foregroundColor(.white)
                 Spacer()
                 TextField("Class Name", text: $className)
                 .cornerRadius(5.0)
@@ -140,6 +142,7 @@ struct Menu: View {
                 
                 Text("Description")
                     .padding()
+                    .foregroundColor(.white)
                 TextField("Description", text: $description)
                 .padding()
                 .cornerRadius(5.0)
@@ -150,9 +153,11 @@ struct Menu: View {
                 
                 Text("Prerequisites")
                     .padding()
+                    .foregroundColor(.white)
                 TextField("Prerequisites", text: $preR)
                     .lineLimit(5)
                     .padding()
+                  //  .foregroundColor(.white)
                 .cornerRadius(5.0)
                 .padding()
                 Spacer()
@@ -163,7 +168,7 @@ struct Menu: View {
                 
                 
                 Text("Department: \(department)")
-           
+                .foregroundColor(.white)
                 .cornerRadius(5.0)
                 .padding()
                 let departmentList = ["Art", "Business", "English", "Facs", "Tech Ed", "Math", "Music", "PhyEd/Health", "Science", "Social Studies", "Work", "World Language" ]
@@ -173,6 +178,7 @@ struct Menu: View {
                       Text(c)
                        
                        .cornerRadius(5)
+                       .foregroundColor(.white)
                        .onTapGesture {
                            department = c
                            
@@ -185,6 +191,7 @@ struct Menu: View {
             }
             if department == ""{
             Text("Please selecet a department")
+                    .foregroundColor(.white)
             }
             
             Spacer()

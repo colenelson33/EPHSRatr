@@ -114,6 +114,7 @@ struct ModeSwitchView: View {
     @AppStorage("isDarkMode") private var isDarkMode = true
     @AppStorage("colorPallette") private var color = 0
     @AppStorage("isAdmin") var isAdmin = false
+    
     @State var open = false
     
     @State var className: String
@@ -123,22 +124,21 @@ struct ModeSwitchView: View {
     @State var indexSelection: Int = 0
     @EnvironmentObject var index: GlobalVariables
     @State var isAnimating = false
-    let gradient1 = Gradient(colors: [.purple, .black])
-                        let gradient2 = Gradient(colors: [ .blue, .purple])
-                        let gradient3 = Gradient(colors: [ .red, .yellow])
+    @AppStorage("isGradient") var isGradient = false
+ 
     
     public static let ColorPurchase = "ephs2022.classrater.colorPurchase"
     
     
     
     var body: some View {
-        NavigationView{
-    ZStack{
-        
-        LinearGradient(gradient: gradient2, startPoint: isAnimating ? .topLeading : .bottomTrailing, endPoint: .bottomTrailing)
-        .ignoresSafeArea()
-        .animation(.linear(duration: 5).repeatForever(autoreverses: true), value: isAnimating)
-        
+    NavigationView{
+        ZStack{
+        //    let gradient2 = Gradient(colors: [ isDarkMode ? .black : .white, GlobalVar.colorList[color]])
+         //isGradient ? LinearGradient(gradient: gradient2, startPoint: isAnimating ? .topLeading : .bottomTrailing, endPoint: .bottomTrailing)
+        //.ignoresSafeArea()
+       // .animation(.linear(duration: 5).repeatForever(autoreverses: true), value: isAnimating) : nil
+            
         VStack{
             
             
@@ -224,6 +224,12 @@ struct ModeSwitchView: View {
                         
                     }*/
 
+                }
+                Button( action: {
+                    isGradient.toggle()
+                    isAnimating.toggle()
+                }){
+                    Text( isGradient ? "Turn off gradient mode" : "Turn on gradient mode")
                 }
             Picker("Scheme", selection: $color){
                 HStack{
