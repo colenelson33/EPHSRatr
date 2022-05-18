@@ -29,7 +29,7 @@ struct SeventhPage: View {
                 .fontWeight(.bold)
                 .foregroundColor(GlobalVar.colorList[color])
                 .padding(.bottom)
-            Text("Access the settings for more color options.")
+            Text("Access settings for more color options.")
                 .padding([.leading, .trailing], 40)
             
             

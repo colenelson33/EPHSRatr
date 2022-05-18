@@ -105,6 +105,8 @@ class ViewModel: ObservableObject{
 }
 
 
+
+
 struct ModeSwitchView: View {
     
     @StateObject var viewModel = ViewModel()
@@ -134,10 +136,14 @@ struct ModeSwitchView: View {
     var body: some View {
     NavigationView{
         ZStack{
-        //    let gradient2 = Gradient(colors: [ isDarkMode ? .black : .white, GlobalVar.colorList[color]])
-         //isGradient ? LinearGradient(gradient: gradient2, startPoint: isAnimating ? .topLeading : .bottomTrailing, endPoint: .bottomTrailing)
-        //.ignoresSafeArea()
-       // .animation(.linear(duration: 5).repeatForever(autoreverses: true), value: isAnimating) : nil
+       /*     let gradient2 = Gradient(colors: [ isDarkMode ? .black : .white, GlobalVar.colorList[color]])
+         isGradient ? LinearGradient(gradient: gradient2, startPoint: isAnimating ? .topLeading : .bottomTrailing, endPoint: .bottomTrailing)
+        .ignoresSafeArea()
+        .animation(.linear(duration: 25).repeatForever(autoreverses: true), value: isAnimating) : nil */
+            
+            
+            
+            
             
         VStack{
             
@@ -197,6 +203,10 @@ struct ModeSwitchView: View {
                     .frame(width: 80, height: 80)
                     .padding()
                     .foregroundColor(GlobalVar.colorList[color])
+                    .onTapGesture(count: 7) {
+                        isGradient.toggle()
+                        isAnimating.toggle()
+                    }
                 /*    .onTapGesture{
                        
                        
@@ -225,12 +235,12 @@ struct ModeSwitchView: View {
                     }*/
 
                 }
-                Button( action: {
+             /*   Button( action: {
                     isGradient.toggle()
                     isAnimating.toggle()
                 }){
                     Text( isGradient ? "Turn off gradient mode" : "Turn on gradient mode")
-                }
+                } */
             Picker("Scheme", selection: $color){
                 HStack{
                     Text("Eagle Red")
@@ -352,7 +362,7 @@ struct ModeSwitchView: View {
         .toolbar{
             
             ToolbarItem(placement: .navigationBarTrailing) {
-                Image(systemName: "questionmark.circle.fill")
+                Image(systemName: "questionmark.circle")
                     .foregroundColor(GlobalVar.colorList[color])
                     .onTapGesture{
                         index.isPresented = true

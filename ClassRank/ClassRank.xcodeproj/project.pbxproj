@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		23482ED028340131002B90B2 /* CloudBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23482ECF28340131002B90B2 /* CloudBackground.swift */; };
 		2355A2522816F99F002B8FA0 /* FirstPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2355A2512816F99F002B8FA0 /* FirstPage.swift */; };
 		2355A2582816FCF3002B8FA0 /* globvars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2355A2572816FCF3002B8FA0 /* globvars.swift */; };
 		2355A25A2816FDBB002B8FA0 /* SecondPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2355A2592816FDBB002B8FA0 /* SecondPage.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		23482ECF28340131002B90B2 /* CloudBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudBackground.swift; sourceTree = "<group>"; };
 		2355A2512816F99F002B8FA0 /* FirstPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstPage.swift; sourceTree = "<group>"; };
 		2355A2572816FCF3002B8FA0 /* globvars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = globvars.swift; sourceTree = "<group>"; };
 		2355A2592816FDBB002B8FA0 /* SecondPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondPage.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				C8F7D4F32804EFDC006E38FF /* ContentView.swift */,
 				C8F7D4F52804F001006E38FF /* LoginView.swift */,
 				C8F7D4F92804F00D006E38FF /* ModeSwitchView.swift */,
+				23482ECF28340131002B90B2 /* CloudBackground.swift */,
 				5E233FDE2822D0A10092AC5D /* PremiumBackground.swift */,
 				5EA556A3282037DB00C9EF61 /* Configuration.storekit */,
 				2355A2502816F964002B8FA0 /* Tutorial */,
@@ -245,6 +248,7 @@
 				2355A2522816F99F002B8FA0 /* FirstPage.swift in Sources */,
 				2355A25A2816FDBB002B8FA0 /* SecondPage.swift in Sources */,
 				C8F7D4F42804EFDC006E38FF /* ContentView.swift in Sources */,
+				23482ED028340131002B90B2 /* CloudBackground.swift in Sources */,
 				C87843092804EF6E00873D3B /* CloudData.swift in Sources */,
 				2355A25C2816FDCD002B8FA0 /* ThirdPage.swift in Sources */,
 				5E150A9B27F5599F00B7943D /* ClassListView.swift in Sources */,
