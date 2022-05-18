@@ -252,37 +252,37 @@ struct ModeSwitchView: View {
                 HStack{
                     Text("Icy Blue")
                         
-                        .padding(53.5)
-                    Image(systemName: "star.fill")
-                        .foregroundColor(.yellow)
+                //        .padding(53.5)
+         //           Image(systemName: "star.fill")
+           ///             .foregroundColor(.yellow)
                 }.tag(1)
                 HStack{
                     Text("Pretty in Pink")
                         
-                        .padding(30)
-                    Image(systemName: "star.fill")
-                        .foregroundColor(.yellow)
+          //              .padding(30)
+           //         Image(systemName: "star.fill")
+             //           .foregroundColor(.yellow)
                 }.tag(2)
                 HStack{
                     Text("Purple Explosion")
                         
-                        .padding(15)
-                    Image(systemName: "star.fill")
-                        .foregroundColor(.yellow)
+             //           .padding(15)
+           //         Image(systemName: "star.fill")
+             //           .foregroundColor(.yellow)
                 }.tag(3)
                 HStack{
                     Text("Forest Green")
                         
-                        .padding(33)
-                    Image(systemName: "star.fill")
-                        .foregroundColor(.yellow)
+            //            .padding(33)
+               //     Image(systemName: "star.fill")
+                 //       .foregroundColor(.yellow)
                 }.tag(4)
                 HStack{
                     Text("Rusty Orange")
                         
-                        .padding(30)
-                    Image(systemName: "star.fill")
-                        .foregroundColor(.yellow)
+              //          .padding(30)
+                //    Image(systemName: "star.fill")
+                //        .foregroundColor(.yellow)
                 }.tag(5)
                 
                 
@@ -290,7 +290,7 @@ struct ModeSwitchView: View {
                 
                 
             }.pickerStyle(.inline)
-                    .disabled(viewModel.purchasedIDs.isEmpty && !isAdmin)
+                  //  .disabled(viewModel.purchasedIDs.isEmpty && !isAdmin)
                     
                     .padding()
                 
@@ -300,7 +300,7 @@ struct ModeSwitchView: View {
             
             
           //  if let product = viewModel.products.first{
-            Text(viewModel.purchasedIDs.isEmpty ? "Purchase Premium Colors" : "")
+         /*   Text(viewModel.purchasedIDs.isEmpty ? "Purchase Premium Colors" : "")
                     .font(.headline)
                 Button(action: {
                     
@@ -315,10 +315,10 @@ struct ModeSwitchView: View {
                         .background(GlobalVar.colorList[color])
                         .cornerRadius(20)
                         .foregroundColor(.white)
-                }
+                }*/
         //    }
         
-            Spacer()
+        //    Spacer()
             
             
             if isAdmin == false{
