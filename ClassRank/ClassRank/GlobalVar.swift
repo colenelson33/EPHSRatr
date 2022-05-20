@@ -30,6 +30,10 @@ extension Color {
     static let lightBlue = Color(red: 223 / 255, green: 235 / 255, blue: 251 / 255)
     static let darkGray = Color(red: 36 / 255, green: 37 / 255, blue: 38 / 255)
     static let navy = Color(red: 2 / 255, green: 64 / 255, blue: 125 / 255)
+    static let gold = Color(red: 255 / 255, green: 223 / 255, blue: 0 / 255)
+    static let aquamarine = Color(red: 127 / 255, green: 255 / 255, blue: 212 / 255)
+    static let harlequin = Color(red: 63 / 255, green: 255 / 255, blue: 0 / 255)
+    static let mb = Color(red: 25 / 255, green: 25 / 255, blue: 112 / 255)
 }
 
 var data = [
@@ -51,7 +55,7 @@ struct GlobalVar{
     
     static var email = ""
     
-    static var colorList = [Color.red, Color.iCloudBlue, Color.pinkColor, Color.varunPurple, Color.forestGreen, Color.OrangeColor]
+    static var colorList = [Color.red, Color.iCloudBlue, Color.pinkColor, Color.varunPurple, Color.forestGreen, Color.OrangeColor, Color.gold, Color.aquamarine, Color.harlequin, Color.mb]
     
     static var inGuestView: Bool = true
     

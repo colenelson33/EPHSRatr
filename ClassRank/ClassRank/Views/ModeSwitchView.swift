@@ -284,6 +284,34 @@ struct ModeSwitchView: View {
                 //    Image(systemName: "star.fill")
                 //        .foregroundColor(.yellow)
                 }.tag(5)
+                HStack{
+                    Text("Glittery Gold")
+                        
+              //          .padding(30)
+                //    Image(systemName: "star.fill")
+                //        .foregroundColor(.yellow)
+                }.tag(6)
+                HStack{
+                    Text("Aquamarine")
+                        
+              //          .padding(30)
+                //    Image(systemName: "star.fill")
+                //        .foregroundColor(.yellow)
+                }.tag(7)
+                HStack{
+                    Text("Harlequin")
+                        
+              //          .padding(30)
+                //    Image(systemName: "star.fill")
+                //        .foregroundColor(.yellow)
+                }.tag(8)
+                HStack{
+                    Text("Midnight Blue")
+                        
+              //          .padding(30)
+                //    Image(systemName: "star.fill")
+                //        .foregroundColor(.yellow)
+                }.tag(9)
                 
                 
                 
