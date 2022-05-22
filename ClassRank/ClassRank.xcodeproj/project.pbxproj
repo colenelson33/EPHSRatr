@@ -30,6 +30,7 @@
 		5EA6CB4A28011F5C00AF6D80 /* OtherGuestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA6CB4928011F5C00AF6D80 /* OtherGuestView.swift */; };
 		5EB123CD2809C73100A0F094 /* Toggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB123CC2809C73100A0F094 /* Toggle.swift */; };
 		5EEC6D67282857A5002494AA /* AdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC6D66282857A5002494AA /* AdminView.swift */; };
+		5EFDAEA12835C1BC002EE971 /* Neomorphism.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFDAEA02835C1BC002EE971 /* Neomorphism.swift */; };
 		C87843092804EF6E00873D3B /* CloudData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87843082804EF6E00873D3B /* CloudData.swift */; };
 		C8F7D4F42804EFDC006E38FF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F7D4F32804EFDC006E38FF /* ContentView.swift */; };
 		C8F7D4F62804F001006E38FF /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F7D4F52804F001006E38FF /* LoginView.swift */; };
@@ -61,10 +62,10 @@
 		5E150A9E27F55EF300B7943D /* GlobalVar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVar.swift; sourceTree = "<group>"; };
 		5E150AA027F63C4100B7943D /* IndividualClassView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualClassView.swift; sourceTree = "<group>"; };
 		5E233FDE2822D0A10092AC5D /* PremiumBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumBackground.swift; sourceTree = "<group>"; };
-		5EA556A3282037DB00C9EF61 /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
 		5EA6CB4928011F5C00AF6D80 /* OtherGuestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherGuestView.swift; sourceTree = "<group>"; };
 		5EB123CC2809C73100A0F094 /* Toggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toggle.swift; sourceTree = "<group>"; };
 		5EEC6D66282857A5002494AA /* AdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminView.swift; sourceTree = "<group>"; };
+		5EFDAEA02835C1BC002EE971 /* Neomorphism.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Neomorphism.swift; sourceTree = "<group>"; };
 		C87843082804EF6E00873D3B /* CloudData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudData.swift; sourceTree = "<group>"; };
 		C8F7D4F32804EFDC006E38FF /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = Views/ContentView.swift; sourceTree = "<group>"; };
 		C8F7D4F52804F001006E38FF /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginView.swift; path = Views/LoginView.swift; sourceTree = "<group>"; };
@@ -119,19 +120,17 @@
 		5E02761727F110D8009E96A4 /* ClassRank */ = {
 			isa = PBXGroup;
 			children = (
+				5EA6CB4D28012FA500AF6D80 /* Departments */,
+				2355A2502816F964002B8FA0 /* Tutorial */,
+				5EFDAEA22835C1CE002EE971 /* Backgrounds */,
 				5E099EB02800D66000590998 /* Info.plist */,
 				5E099EAC2800D43600590998 /* ClassRank.entitlements */,
 				5E02761827F110D8009E96A4 /* ClassRankApp.swift */,
 				C8F7D4F32804EFDC006E38FF /* ContentView.swift */,
 				C8F7D4F52804F001006E38FF /* LoginView.swift */,
 				C8F7D4F92804F00D006E38FF /* ModeSwitchView.swift */,
-				23482ECF28340131002B90B2 /* CloudBackground.swift */,
-				5E233FDE2822D0A10092AC5D /* PremiumBackground.swift */,
-				5EA556A3282037DB00C9EF61 /* Configuration.storekit */,
-				2355A2502816F964002B8FA0 /* Tutorial */,
 				C8F7D4F72804F007006E38FF /* MainAppView.swift */,
 				5E02763027F3E081009E96A4 /* ClassData.swift */,
-				5EA6CB4D28012FA500AF6D80 /* Departments */,
 				5E150A9A27F5599F00B7943D /* ClassListView.swift */,
 				5EEC6D66282857A5002494AA /* AdminView.swift */,
 				5EB123CC2809C73100A0F094 /* Toggle.swift */,
@@ -168,6 +167,16 @@
 				5EA6CB4928011F5C00AF6D80 /* OtherGuestView.swift */,
 			);
 			path = Departments;
+			sourceTree = "<group>";
+		};
+		5EFDAEA22835C1CE002EE971 /* Backgrounds */ = {
+			isa = PBXGroup;
+			children = (
+				5EFDAEA02835C1BC002EE971 /* Neomorphism.swift */,
+				23482ECF28340131002B90B2 /* CloudBackground.swift */,
+				5E233FDE2822D0A10092AC5D /* PremiumBackground.swift */,
+			);
+			path = Backgrounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,6 +259,7 @@
 				C8F7D4F42804EFDC006E38FF /* ContentView.swift in Sources */,
 				23482ED028340131002B90B2 /* CloudBackground.swift in Sources */,
 				C87843092804EF6E00873D3B /* CloudData.swift in Sources */,
+				5EFDAEA12835C1BC002EE971 /* Neomorphism.swift in Sources */,
 				2355A25C2816FDCD002B8FA0 /* ThirdPage.swift in Sources */,
 				5E150A9B27F5599F00B7943D /* ClassListView.swift in Sources */,
 				5EB123CD2809C73100A0F094 /* Toggle.swift in Sources */,

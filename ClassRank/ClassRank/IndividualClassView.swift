@@ -24,7 +24,57 @@ func setDifficulty(grade: Double) -> String{
     return level
 }
 
+struct AddToSchedule: View {
+    @AppStorage("colorPallette") private var color = 0
+    @State var isShowingAlert: Bool = false
+    @Binding var open: Bool
+    
+    var body: some View{
+        
+        ZStack{
+        VStack{
+            
+            HStack{
+                
+                Image(systemName: "arrow.down")
+                
+          
+                    .foregroundColor(.white)
+                    .font(.system(size: 24, weight: .heavy))
+                    .frame(width: 32, height: 32)
+                    .onTapGesture {
+                        self.open.toggle()
+                    }
+                    
+                ZStack{
+                    Text("Cancel")
+                        .foregroundColor(.white)
+                        .onTapGesture {
+                            self.open.toggle()
+                        }
+                    
+                }
+            }
+            .padding(.top, 40)
+            
+            
+        }
+                .padding(.vertical, 30)
+                .background(GlobalVar.colorList[color])
+            //(LinearGradient(gradient: Gradient(colors: [.gray, .black]), startPoint: .top, endPoint: .bottom))
+                .offset(y: open ? 80 : UIScreen.main.bounds.height)
+                .animation(.spring())
+                .edgesIgnoringSafeArea(.vertical)
+                .cornerRadius(20)
+
+        }
+        
+    }
+    
+}
+
 struct IndividualClassView: View {
+    
     
     
     @AppStorage("colorPallette") private var color = 0
@@ -43,6 +93,8 @@ struct IndividualClassView: View {
     @State var showPopUp: Bool = false
     @State var showPrePopUp: Bool = false
     @State var isShowingAlert: Bool = false
+    
+    @State var addToSchedule: Bool = false
     
     @AppStorage("userId") var userId : String = ""
     
@@ -67,8 +119,18 @@ struct IndividualClassView: View {
                         
                         VStack{
                             
-                            
-                            // Spacer()
+                            HStack{
+                                Button(action:{
+                                    addToSchedule.toggle()
+                                    print("toggle")
+                                }){
+                            Text("Add to schedule")
+                                        .foregroundColor(.white)
+                                        .padding(.leading, 20)
+
+                                }
+                             Spacer()
+                            }
                             ScrollView(.horizontal, showsIndicators: false){
                                 HStack(spacing: 12){
                                     
@@ -365,12 +427,17 @@ struct IndividualClassView: View {
                         
                         
                     }
-                    // .navigationBarHidden(true)
-                    
+                    .onTapGesture(perform: {
+                        addToSchedule = false
+                    })
+                    .blur(radius: addToSchedule || showPopUp || showPrePopUp ? 20 : 0)
+                    ClassPopUp(open: $addToSchedule)
                 }
                 
                 
+               
                 
+                    
             }
             
             .toolbar{
@@ -415,6 +482,7 @@ struct IndividualClassView: View {
                     }
                 }
             }
+            
         }
         .refreshable{
             bigData.initFunc()
@@ -516,7 +584,6 @@ struct TeacherWindow: View {
         ZStack {
             if show {
                 // PopUp background color
-                Color.black.opacity(show ? 0.8 : 0).edgesIgnoringSafeArea(.all)
                 
                 // PopUp Window
                 VStack(alignment: .center, spacing: 0) {
@@ -571,7 +638,6 @@ struct PreWindow: View {
         ZStack {
             if show {
                 // PopUp background color
-                Color.black.opacity(show ? 0.8 : 0).edgesIgnoringSafeArea(.all)
                 
                 // PopUp Window
                 VStack(alignment: .center, spacing: 0) {

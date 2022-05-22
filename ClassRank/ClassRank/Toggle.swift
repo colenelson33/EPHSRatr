@@ -23,6 +23,7 @@ struct Toggle: View {
             
             IndividualClassView(sliderGValue: gSlider, sliderHValue: hSlider)
             
+            
         }
         
         

@@ -57,83 +57,84 @@ struct MainDepartmentView: View {
     
     var searchResults: [String] {
         let names = nameList(classList: bigData.classList)
-            if searchText.isEmpty {
-                return names
-            } else {
-                return names.filter { $0.contains(searchText) }
-            }
+        if searchText.isEmpty {
+            return names
+        } else {
+            return names.filter { $0.contains(searchText) }
         }
+    }
     
     var body: some View {
         
         
         NavigationView{
             
-           
-                
+            
+            
             ZStack{
-          //      let gradient2 = Gradient(colors: [ isDarkMode ? .black : .white, GlobalVar.colorList[color]])
-       //      isGradient ? LinearGradient(gradient: gradient2, startPoint: isAnimating ? .topLeading : .bottomTrailing, endPoint: .bottomTrailing)
-     //       .ignoresSafeArea()
-       //     .animation(.linear(duration: 5).repeatForever(autoreverses: true), value: isAnimating) : nil
+                //      let gradient2 = Gradient(colors: [ isDarkMode ? .black : .white, GlobalVar.colorList[color]])
+                //      isGradient ? LinearGradient(gradient: gradient2, startPoint: isAnimating ? .topLeading : .bottomTrailing, endPoint: .bottomTrailing)
+                //       .ignoresSafeArea()
+                //     .animation(.linear(duration: 5).repeatForever(autoreverses: true), value: isAnimating) : nil
                 
                 if searchText != ""{
-                List{
-                    ForEach(searchResults, id: \.self) { name in
-                        
-                        Text(name)
-                            .onTapGesture {
-                                
-                           
-                                bigData.className = name
-                                
-                                DispatchQueue.main.async {
-                                 
-                                    bigData.fetchItems()
-                                }
-                                
-                                viewMode = 1
-                                guestViewMode = 2
-                                departmentIndex = 1
-                                toggle = true
+                    List{
+                        ForEach(searchResults, id: \.self) { name in
                             
-                            }
+                            Text(name)
+                                .onTapGesture {
+                                    
+                                    
+                                    bigData.className = name
+                                    
+                                    DispatchQueue.main.async {
+                                        
+                                        bigData.fetchItems()
+                                    }
+                                    
+                                    viewMode = 1
+                                    guestViewMode = 2
+                                    departmentIndex = 1
+                                    toggle = true
+                                    
+                                }
+                            
+                        }
+                        
+                    }.zIndex(100)
+                }
+                
+                ScrollView {
+                    
+                    /*   if ck.userName != ""{
+                     Text("Welcome back, \(ck.userName)")
+                     }else{
+                     Text("Welcome")
+                     }
+                     if ck.permissionStatus == false{
+                     Text("Accept permissions")
+                     }
+                     
+                     
+                     */
+                    
+                    
+                    
+                    
+                    
+                    
+                    VStack {
+                      //  ScheduleDetector(position: self.position, p: data[1])
+                        
+                        ForEach(data, id: \.self) { p in
+                            
+                            CardDetector(p:p, position: self.position)
+                            
+                        }
                         
                     }
-                  
-                }.zIndex(100)
                 }
                 
-            ScrollView {
-
-             /*   if ck.userName != ""{
-                    Text("Welcome back, \(ck.userName)")
-                }else{
-                    Text("Welcome")
-                }
-                if ck.permissionStatus == false{
-                    Text("Accept permissions")
-                }
-
-                
-              */
-              
-                    
-                    
-                    
-                
-
-                VStack {
-                    
-                    ForEach(data, id: \.self) { p in
-                        
-                        CardDetector(p:p, position: self.position)
-                        
-                    }
-                    
-                }
-            }
-               
             }.onAppear{
                 if !tutorial{
                     index.isPresented = false
@@ -142,26 +143,26 @@ struct MainDepartmentView: View {
                 }
             }
             .sheet(isPresented: $index.isPresented, content: {
-                            VStack{
-                                TabView(selection: $index.indexClicked){
-                                    FirstPage().tag(0)
-                                    SecondPage().tag(1)
-                                    ThirdPage().tag(2)
-                                    FourthPage().tag(3)
-                                    FifthPage().tag(4)
-                                    SixthPage().tag(5)
-                                    SeventhPage().tag(6)
-                                    
-                                }
-                                .tabViewStyle(PageTabViewStyle())
-                                
-                               
-                                
-                            }
-                            .onChange(of: index.indexClicked){ x in
-                                print("Changed \(x)")
-                            }.zIndex(100)
-                        })
+                VStack{
+                    TabView(selection: $index.indexClicked){
+                        FirstPage().tag(0)
+                        SecondPage().tag(1)
+                        ThirdPage().tag(2)
+                        FourthPage().tag(3)
+                        FifthPage().tag(4)
+                        SixthPage().tag(5)
+                        SeventhPage().tag(6)
+                        
+                    }
+                    .tabViewStyle(PageTabViewStyle())
+                    
+                    
+                    
+                }
+                .onChange(of: index.indexClicked){ x in
+                    print("Changed \(x)")
+                }.zIndex(100)
+            })
             .toolbar{
                 
                 ToolbarItem(placement: .navigationBarLeading){
@@ -179,37 +180,37 @@ struct MainDepartmentView: View {
                     }
                     
                 }
-            /*    ToolbarItem(placement: .bottomBar){
-                
-                    
-                    
-                    
-                    if isAdmin == false{
-                        NavigationLink(destination: LoginView(username: "")) {
-                            Image(systemName: "plus")
-                                .foregroundColor(GlobalVar.colorList[color])
-                            
-                            
-                        }
-                    }else{
-                        
-                        NavigationLink(destination: AdminView(className: "", department: "", description: "", preR: "")) {
-                            Image(systemName: "plus")
-                                .foregroundColor(GlobalVar.colorList[color])
-                            
-                            
-                        }
-                        
-                        
-                    }
-                }*/
-                         }
+                /*    ToolbarItem(placement: .bottomBar){
+                 
+                 
+                 
+                 
+                 if isAdmin == false{
+                 NavigationLink(destination: LoginView(username: "")) {
+                 Image(systemName: "plus")
+                 .foregroundColor(GlobalVar.colorList[color])
+                 
+                 
+                 }
+                 }else{
+                 
+                 NavigationLink(destination: AdminView(className: "", department: "", description: "", preR: "")) {
+                 Image(systemName: "plus")
+                 .foregroundColor(GlobalVar.colorList[color])
+                 
+                 
+                 }
+                 
+                 
+                 }
+                 }*/
+            }
             .navigationTitle("Departments")
-                            .searchable(text: $searchText, prompt: "Look up a class")
+            .searchable(text: $searchText, prompt: "Look up a class")
             
             
             
-                
+            
         }
         .refreshable{
             bigData.initFunc()
@@ -252,7 +253,7 @@ struct smallcardView: View {
     @State private var animationAmount = 1.0
     var p: ListData
     let namespace: Namespace.ID
-
+    
     var body: some View {
         
         let departments = [bigData.ArtClasses, bigData.BusinessClasses, bigData.EnglishClasses, bigData.FacsClasses, bigData.TechEdClasses, bigData.MathClasses, bigData.MusicClasses, bigData.PhyEdClasses, bigData.ScienceClasses, bigData.SSClasses, bigData.WorkClasses, bigData.LanguageClasses ]
@@ -265,9 +266,9 @@ struct smallcardView: View {
                         .resizable()
                         .scaledToFill()
                         .frame(width: 40, height: 40)
-                        
+                    
                         .foregroundColor(GlobalVar.colorList[color])
-                        //.cornerRadius(10)
+                    //.cornerRadius(10)
                         .matchedGeometryEffect(id: "image", in: namespace)
                         .padding()
                     VStack(alignment: .leading) {
@@ -279,16 +280,16 @@ struct smallcardView: View {
                             .foregroundColor(GlobalVar.colorList[color])
                             .matchedGeometryEffect(id: "title", in: namespace)
                             .font(.title3)
-                            
+                        
                         Spacer()
                     }.padding(.leading)
-                 //   Spacer()
-                   /* VStack {
-                        Image(systemName: "ellipsis")
-                            .foregroundColor(Color.white)
-                            .matchedGeometryEffect(id: "ellipsis", in: namespace)
-                        Spacer()
-                    }*/
+                    //   Spacer()
+                    /* VStack {
+                     Image(systemName: "ellipsis")
+                     .foregroundColor(Color.white)
+                     .matchedGeometryEffect(id: "ellipsis", in: namespace)
+                     Spacer()
+                     }*/
                 }
             }
         }
@@ -310,7 +311,7 @@ func colorFunc() -> Color{
         let bColor = Color.offWhite
         return bColor
     }
-   
+    
     
 }
 
@@ -329,9 +330,9 @@ struct CardDetector: View {
     var body: some View {
         
         
-            Group {
-                switch position {
-                case .small:
+        Group {
+            switch position {
+            case .small:
                 smallcardView(p: p, namespace: namespace)
                     .padding()
                     .frame(maxWidth: .infinity)
@@ -344,7 +345,7 @@ struct CardDetector: View {
                             departmentIndex = p.departmentIndex
                             viewMode = 1
                             guestViewMode = 2
-                           
+                            
                         }
                     }
                     .onLongPressGesture {
@@ -353,9 +354,9 @@ struct CardDetector: View {
                             print("switch")
                         }
                     }
-                    
+                
                     .padding(.horizontal)
-                case .big:
+            case .big:
                 bigcardView(p: p, namespace: namespace)
                     .padding()
                     .frame(maxWidth: .infinity)
@@ -376,10 +377,143 @@ struct CardDetector: View {
                         }
                     }
                     .padding(.horizontal)
+            }
+        }
+    }
+}
+struct miniCardView: View{
+    
+    @AppStorage("colorPallette") private var color = 0
+    let namespace: Namespace.ID
+    @State private var animationAmount = 1.0
+    var body: some View{
+        
+        GeometryReader { g in
+            VStack(alignment: .leading){
+                HStack{
+                    
+                    Text("Access your current schedule")
+                        .foregroundColor(GlobalVar.colorList[color])
+                    //.cornerRadius(10)
+                        .matchedGeometryEffect(id: "schedule", in: namespace)
+                }
+                
+            }
+            
+            
+        }
+    }
+    
+}
+
+struct scheduleView: View{
+    
+    @State private var position: CardPosition = .small
+    @AppStorage("freshmanClasses") var freshman: [String] = []
+    @AppStorage("sophomoreClasses") var sophomore: [String] = []
+    @AppStorage("juniorClasses") var junior: [String] = []
+    @AppStorage("seniorClasses") var senior: [String] = []
+    
+    @AppStorage("colorPallette") private var color = 0
+    @State var gradeLevel = 0
+    @AppStorage("currentGradeLevel") var gradeLevelCurrent: Int = 0
+    @State var showGrades = false
+    let namespace: Namespace.ID
+    @State private var animationAmount = 1.0
+    let grades = ["Freshman", "Sophomore", "Junior", "Senior"]
+    var body: some View{
+        
+        GeometryReader { g in
+            ZStack{
+                VStack(alignment: .leading){
+                    
+                    HStack{
+                        Text("Schedule").font(.custom("Inter Regular", size: 40)).foregroundColor(GlobalVar.colorList[color])
+                            .padding()
+                        Spacer()
+                        Picker("Pick", selection: $gradeLevel){
+                            Text("9th")
+                                .tag(0)
+                            Text("10th")
+                                .tag(1)
+                            Text("11th")
+                                .tag(2)
+                            Text("12th")
+                                .tag(3)
+                            
+                        }
+                        .foregroundColor(GlobalVar.colorList[color])
+                        .padding(.horizontal)
+                    }
+                    .zIndex(200)
+                    HStack{
+                        Text("Class Name").font(.custom("Inter Regular", size: 25)).foregroundColor(GlobalVar.colorList[color])
+                            .padding()
+                        Spacer()
+                    }
+                    
+                    
+                    
+                    //Ceramics Mathematics
+                    HStack{
+                        VStack(alignment: .leading){
+                            
+                            var varList = [freshman, sophomore, junior, senior]
+                          
+                            
+                            
+                            List{
+                            
+                            ForEach(varList[gradeLevel], id: \.self){ className in
+                                    
+                                    Text(className).font(.custom("Inter Regular", size: 15)).foregroundColor(Color(#colorLiteral(red: 0.31, green: 0.31, blue: 0.31, alpha: 1)))
+                                        .zIndex(200)
+                                        .padding(.horizontal)
+                            
+                            }.onDelete(perform: delete)
+                            }
+                            //.onDelete(perform: delete)
+                            
+                            
+                        }
+                        Spacer()
+                    }
+                    
+                    
+                    Spacer()
+                }
+                VStack{
+                    Spacer()
+                HStack{
+                    Spacer()
+                    EditButton()
+                   // Text("Edit").font(.custom("Inter Regular", size: 20)).foregroundColor(.blue)
+                        .padding()
+                }
                 }
             }
         }
+    }
+    func delete(at offsets: IndexSet) {
+        
+        if gradeLevel == 0{
+            freshman.remove(atOffsets: offsets)
+        }
+        else if gradeLevel == 1{
+            sophomore.remove(atOffsets: offsets)
+        }
+        else if gradeLevel == 2{
+            junior.remove(atOffsets: offsets)
+        }
+        else if gradeLevel == 3{
+            senior.remove(atOffsets: offsets)
+        }
+    }
+    
 }
+
+
+
 
 struct bigcardView: View {
     @AppStorage("colorPallette") private var color = 0
@@ -392,15 +526,15 @@ struct bigcardView: View {
             VStack(alignment: .leading) {
                 
                 Spacer()
-               /* HStack{
-                    Text("Teachers: ")
-                        .foregroundColor(.white)
-                ForEach(p.teacherList, id: \.self){ teacher in
-                        Text("\(teacher), ")
-                        .foregroundColor(.white)
-                        }
-                }*/
-                    
+                /* HStack{
+                 Text("Teachers: ")
+                 .foregroundColor(.white)
+                 ForEach(p.teacherList, id: \.self){ teacher in
+                 Text("\(teacher), ")
+                 .foregroundColor(.white)
+                 }
+                 }*/
+                
                 let departments = [bigData.ArtClasses, bigData.BusinessClasses, bigData.EnglishClasses, bigData.FacsClasses, bigData.TechEdClasses, bigData.MathClasses, bigData.MusicClasses, bigData.PhyEdClasses, bigData.ScienceClasses, bigData.SSClasses, bigData.WorkClasses, bigData.LanguageClasses ]
                 
                 Image(p.Image)
@@ -426,7 +560,7 @@ struct bigcardView: View {
                     Spacer()
                 }
                 Spacer()
-
+                
             }
         }
     }
@@ -450,11 +584,75 @@ struct BlurView: UIViewRepresentable{
     }
     
     func updateUIView(_ uiView: UIView, context: UIViewRepresentableContext<BlurView>) {
-        }
     }
+}
 
 struct OtherGuestView_Previews: PreviewProvider {
     static var previews: some View {
         MainDepartmentView()
+    }
+}
+
+
+extension Array: RawRepresentable where Element: Codable {
+    public init?(rawValue: String) {
+        guard let data = rawValue.data(using: .utf8),
+              let result = try? JSONDecoder().decode([Element].self, from: data)
+        else {
+            return nil
+        }
+        self = result
+    }
+    
+    public var rawValue: String {
+        guard let data = try? JSONEncoder().encode(self),
+              let result = String(data: data, encoding: .utf8)
+        else {
+            return "[]"
+        }
+        return result
+    }
+}
+
+struct ScheduleDetector: View{
+    
+    @State var position: CardPosition
+    let bColor = colorFunc()
+    var p: ListData
+    @Namespace var namespace
+    var body: some View{
+        Group{
+            switch position{
+            case .small:
+                miniCardView(namespace: namespace)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 50)
+                    .background(bColor)
+                    .cornerRadius(10)
+                    .padding(.vertical,6)
+                    .onLongPressGesture {
+                        withAnimation {
+                            position = .big
+                            print("switch")
+                        }
+                    }
+                    .padding(.horizontal)
+            case .big:
+                scheduleView(namespace: namespace)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 700)
+                    .background(bColor)
+                    .cornerRadius(10)
+                    .padding(.vertical,6)
+                    .onLongPressGesture {
+                        withAnimation {
+                            position = .small
+                        }
+                    }
+                    .padding(.horizontal)
+            }
+        }
     }
 }

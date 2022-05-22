@@ -242,3 +242,87 @@ struct Menu: View {
     }
     
 }
+
+struct Menu2: View {
+    @EnvironmentObject var bigData: CloudDataViewModel
+    @AppStorage("colorPallette") private var color = 0
+    @State var isShowingAlert: Bool = false
+    @Binding var open: Bool
+    @State var gradeLevel = 0
+    
+    @AppStorage("freshmanClasses") var freshman: [String] = []
+    @AppStorage("sophomoreClasses") var sophomore: [String] = []
+    @AppStorage("juniorClasses") var junior: [String] = []
+    @AppStorage("seniorClasses") var senior: [String] = []
+    
+    var body: some View{
+        
+        ZStack{
+        VStack{
+            
+            HStack{
+                Spacer()
+                    
+                ZStack{
+                    Text("Cancel")
+                        .foregroundColor(.white)
+                        .onTapGesture {
+                            self.open.toggle()
+                        }
+                    
+                }
+                Spacer()
+            }
+            .padding()
+            VStack{
+                
+                Text("Add to Freshman Schedule")
+                    .onTapGesture {
+                        freshman.append(bigData.grades.name)
+                        self.open.toggle()
+                    }
+                Spacer()
+                Text("Add to Sophomore Schedule")
+                    .onTapGesture {
+                        sophomore.append(bigData.grades.name)
+                        self.open.toggle()
+                    }
+                Spacer()
+                Text("Add to Junior Schedule")
+                    .onTapGesture {
+                        junior.append(bigData.grades.name)
+                        self.open.toggle()
+                    }
+                Spacer()
+                Text("Add to Senior Schedule")
+                    .onTapGesture {
+                        senior.append(bigData.grades.name)
+                        self.open.toggle()
+                    }
+                Spacer()
+                
+            }
+            
+            
+            
+            Spacer()
+           
+        }
+        .frame(width: 300, height: 400)
+                .padding(.vertical, 30)
+                .background(Color.darkGray)
+               // .blur(radius: 20)
+                //.background(Color.darkGray)
+            //(LinearGradient(gradient: Gradient(colors: [.gray, .black]), startPoint: .top, endPoint: .bottom))
+                .offset(y: open ? 0 : UIScreen.main.bounds.height)
+                .animation(.default)
+                .edgesIgnoringSafeArea(.vertical)
+                .cornerRadius(25)
+                
+
+        }
+        
+    }
+    
+}
+
