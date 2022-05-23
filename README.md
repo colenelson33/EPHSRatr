@@ -35,8 +35,16 @@ Added a settings menu to reset tutorial and change color themes. There is now a 
 ![Screen Shot 2022-05-23 at 11 14 51 AM](https://user-images.githubusercontent.com/60491044/169862737-d9a34daf-3fcd-4517-a790-6328a7d0994c.png)
 
 
+# Version 0.8
+Tweaked the look of all the views.
 
-# Version 0.75
+![Screen Shot 2022-05-23 at 11 24 56 AM](https://user-images.githubusercontent.com/60491044/169864455-c3350712-85dc-469a-b293-35dce7453423.png)
+![Screen Shot 2022-05-23 at 11 25 26 AM](https://user-images.githubusercontent.com/60491044/169864640-1e8e1729-4f96-4925-a5a4-e82e450c6fe6.png)
+![Screen Shot 2022-05-23 at 11 26 00 AM](https://user-images.githubusercontent.com/60491044/169864977-f3e4a42e-eb1a-4dfa-af7f-75ac75c03ade.png)
+
+
+
+# Version 0.85
 Created an area for the user to add classes to their schedule to plan out their year.
 
 ![Screen Shot 2022-05-23 at 11 16 56 AM](https://user-images.githubusercontent.com/60491044/169863082-94fce478-3284-49b4-a5db-e229bc8ed98c.png)
@@ -44,7 +52,7 @@ Created an area for the user to add classes to their schedule to plan out their 
 
 
 
-# Version 0.8
+# Version 0.9
 Added a search bar to find desired classes without scrolling endlessly.
 
 ![Screen Shot 2022-05-23 at 11 18 23 AM](https://user-images.githubusercontent.com/60491044/169863326-4a5e9eaf-66b5-4937-b743-ba19a369f9d2.png)
