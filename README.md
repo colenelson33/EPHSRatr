@@ -2,7 +2,7 @@
 
 Privacy Policy: We will not be stealing your data.
 
-Created By: Cole Nelson and Varun Kollipara
+Created By: [Cole Nelson](https://github.com/colenelson33) and [Varun Kollipara](https://github.com/VarunKollipara)
 
 # Version 0.6
 ClassRate, utilizes XCode's SwiftUI to create an easy to maneuver and pleasing to the eye experience. This app takes in data from our high school's website, and turns it into a functional, informative app. Users are able to compare courses, look at difficulty, and check average grades and homework per night. Most importantly, the app is interactive. Users who log in, are able to input their own data from classes they have taken before, to make the data shown to everyone who has the app downloaded more precise. As more users begin to add their data, the more accurate the app becomes. 
