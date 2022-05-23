@@ -1,9 +1,10 @@
 # Class Rater
 
 Privacy Policy: We will not be stealing your data.
+Created By: Cole Nelson and Varun Kollipara
 
 # Version 0.6
-ClassRank (name is still up in the air), utilizes XCode's SwiftUI to create an easy to maneuver and pleasing to the eye experience. This app takes in data from our high school's website, and turns it into a functional, informative app. Users are able to compare courses, look at difficulty, and check average grades and homework per night. Most importantly, the app is interactive. Users who log in, are able to input their own data from classes they have taken before, to make the data shown to everyone who has the app downloaded more precise. As more users begin to add their data, the more accurate the app becomes. 
+ClassRate, utilizes XCode's SwiftUI to create an easy to maneuver and pleasing to the eye experience. This app takes in data from our high school's website, and turns it into a functional, informative app. Users are able to compare courses, look at difficulty, and check average grades and homework per night. Most importantly, the app is interactive. Users who log in, are able to input their own data from classes they have taken before, to make the data shown to everyone who has the app downloaded more precise. As more users begin to add their data, the more accurate the app becomes. 
 
 ![Screen Shot 2022-04-05 at 2 33 18 PM](https://user-images.githubusercontent.com/60491044/161835292-5474d556-b59d-4ef1-99ce-004bea08b96f.png)
 ![Screen Shot 2022-04-05 at 2 33 32 PM](https://user-images.githubusercontent.com/60491044/161835307-be580f98-b5bc-486a-bd89-9ba81ba3758f.png)
