@@ -1,6 +1,7 @@
 # Class Rater
 
 Privacy Policy: We will not be stealing your data.
+
 Created By: Cole Nelson and Varun Kollipara
 
 # Version 0.6
