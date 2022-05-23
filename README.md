@@ -1,4 +1,4 @@
-# Class Rater
+# Class Rate
 
 Privacy Policy: We will not be stealing your data.
 
