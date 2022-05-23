@@ -249,7 +249,7 @@ struct GrowingNewButton: ButtonStyle {
         configuration.label
         
             .frame(width: 250, height: 40)
-            .foregroundColor(.white)
+            .foregroundColor(GlobalVar.colorList[color])
         
             .overlay(Capsule(style: .continuous)
                         .stroke(GlobalVar.colorList[color], lineWidth: 3))

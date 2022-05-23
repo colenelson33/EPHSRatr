@@ -65,7 +65,7 @@ struct MainScheduleView: View{
                                     
                                    Text("No classes added yet, navigate to the course of your liking to get started creating a schedule")
                                         .font(.subheadline)
-                                        .foregroundColor(.white)
+                                        .foregroundColor(GlobalVar.colorList[color])
                                     
                                 }else{
                                 
