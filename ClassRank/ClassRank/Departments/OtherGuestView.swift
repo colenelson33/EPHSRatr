@@ -124,8 +124,31 @@ struct MainDepartmentView: View {
                     
                     
                     VStack {
-                      //  ScheduleDetector(position: self.position, p: data[1])
+                        HStack{
                         
+                            
+                            
+                          //  Spacer()
+                                    Button(action: {
+                                       
+                                    }){
+                                        NavigationLink {
+                                            MainScheduleView()
+                                        } label: {
+                                            Text("View your Schedule")
+                                                    .padding()
+                                        }
+
+                                    }
+                                    .buttonStyle(GrowingNewButton())
+                                    .padding()
+                                
+
+                            
+                                
+                            
+                            
+                        }
                         ForEach(data, id: \.self) { p in
                             
                             CardDetector(p:p, position: self.position)
@@ -406,111 +429,6 @@ struct miniCardView: View{
     
 }
 
-struct scheduleView: View{
-    
-    @State private var position: CardPosition = .small
-    @AppStorage("freshmanClasses") var freshman: [String] = []
-    @AppStorage("sophomoreClasses") var sophomore: [String] = []
-    @AppStorage("juniorClasses") var junior: [String] = []
-    @AppStorage("seniorClasses") var senior: [String] = []
-    
-    @AppStorage("colorPallette") private var color = 0
-    @State var gradeLevel = 0
-    @AppStorage("currentGradeLevel") var gradeLevelCurrent: Int = 0
-    @State var showGrades = false
-    let namespace: Namespace.ID
-    @State private var animationAmount = 1.0
-    let grades = ["Freshman", "Sophomore", "Junior", "Senior"]
-    var body: some View{
-        
-        GeometryReader { g in
-            ZStack{
-                VStack(alignment: .leading){
-                    
-                    HStack{
-                        Text("Schedule").font(.custom("Inter Regular", size: 40)).foregroundColor(GlobalVar.colorList[color])
-                            .padding()
-                        Spacer()
-                        Picker("Pick", selection: $gradeLevel){
-                            Text("9th")
-                                .tag(0)
-                            Text("10th")
-                                .tag(1)
-                            Text("11th")
-                                .tag(2)
-                            Text("12th")
-                                .tag(3)
-                            
-                        }
-                        .foregroundColor(GlobalVar.colorList[color])
-                        .padding(.horizontal)
-                    }
-                    .zIndex(200)
-                    HStack{
-                        Text("Class Name").font(.custom("Inter Regular", size: 25)).foregroundColor(GlobalVar.colorList[color])
-                            .padding()
-                        Spacer()
-                    }
-                    
-                    
-                    
-                    //Ceramics Mathematics
-                    HStack{
-                        VStack(alignment: .leading){
-                            
-                            var varList = [freshman, sophomore, junior, senior]
-                          
-                            
-                            
-                            List{
-                            
-                            ForEach(varList[gradeLevel], id: \.self){ className in
-                                    
-                                    Text(className).font(.custom("Inter Regular", size: 15)).foregroundColor(Color(#colorLiteral(red: 0.31, green: 0.31, blue: 0.31, alpha: 1)))
-                                        .zIndex(200)
-                                        .padding(.horizontal)
-                            
-                            }.onDelete(perform: delete)
-                            }
-                            //.onDelete(perform: delete)
-                            
-                            
-                        }
-                        Spacer()
-                    }
-                    
-                    
-                    Spacer()
-                }
-                VStack{
-                    Spacer()
-                HStack{
-                    Spacer()
-                    EditButton()
-                   // Text("Edit").font(.custom("Inter Regular", size: 20)).foregroundColor(.blue)
-                        .padding()
-                }
-                }
-            }
-        }
-    }
-    func delete(at offsets: IndexSet) {
-        
-        if gradeLevel == 0{
-            freshman.remove(atOffsets: offsets)
-        }
-        else if gradeLevel == 1{
-            sophomore.remove(atOffsets: offsets)
-        }
-        else if gradeLevel == 2{
-            junior.remove(atOffsets: offsets)
-        }
-        else if gradeLevel == 3{
-            senior.remove(atOffsets: offsets)
-        }
-    }
-    
-}
 
 
 
@@ -614,45 +532,3 @@ extension Array: RawRepresentable where Element: Codable {
     }
 }
 
-struct ScheduleDetector: View{
-    
-    @State var position: CardPosition
-    let bColor = colorFunc()
-    var p: ListData
-    @Namespace var namespace
-    var body: some View{
-        Group{
-            switch position{
-            case .small:
-                miniCardView(namespace: namespace)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 50)
-                    .background(bColor)
-                    .cornerRadius(10)
-                    .padding(.vertical,6)
-                    .onLongPressGesture {
-                        withAnimation {
-                            position = .big
-                            print("switch")
-                        }
-                    }
-                    .padding(.horizontal)
-            case .big:
-                scheduleView(namespace: namespace)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 700)
-                    .background(bColor)
-                    .cornerRadius(10)
-                    .padding(.vertical,6)
-                    .onLongPressGesture {
-                        withAnimation {
-                            position = .small
-                        }
-                    }
-                    .padding(.horizontal)
-            }
-        }
-    }
-}

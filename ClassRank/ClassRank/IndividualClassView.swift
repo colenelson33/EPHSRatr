@@ -446,7 +446,7 @@ struct IndividualClassView: View {
                 ToolbarItem(placement: .navigationBarTrailing){
                     Text(bigData.grades.name)
                         .fontWeight(.bold)
-                        .font(.system(size: 15))
+                        .font(.system(size: 20))
                 }
                 ToolbarItem(placement: .navigationBarLeading){
                     Button(action:  {

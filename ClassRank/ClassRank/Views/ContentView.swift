@@ -243,6 +243,21 @@ struct GrowingButton: ButtonStyle {
     }
 }
 
+struct GrowingNewButton: ButtonStyle {
+    @AppStorage("colorPallette") private var color = 0
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+        
+            .frame(width: 250, height: 40)
+            .foregroundColor(.white)
+        
+            .overlay(Capsule(style: .continuous)
+                        .stroke(GlobalVar.colorList[color], lineWidth: 3))
+            .scaleEffect(configuration.isPressed ? 1.2 : 1)
+            .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
+    }
+}
+
 struct GrowingWButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label

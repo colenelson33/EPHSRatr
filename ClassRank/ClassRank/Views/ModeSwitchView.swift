@@ -12,7 +12,7 @@ import StoreKit
 //Purchase product
 //Update UI / Product state
 
-class ViewModel: ObservableObject{
+/*class ViewModel: ObservableObject{
     
     @Published var products: [Product] = []
     @Published var purchasedIDs: [String] = []
@@ -102,14 +102,14 @@ class ViewModel: ObservableObject{
         }
     }
     
-}
+}*/
 
 
 
 
 struct ModeSwitchView: View {
     
-    @StateObject var viewModel = ViewModel()
+ //   @StateObject var viewModel = ViewModel()
     @State private var progress: CGFloat = 0
                    
     @EnvironmentObject var bigData: CloudDataViewModel
@@ -376,7 +376,7 @@ struct ModeSwitchView: View {
             
                 
         }.onAppear{
-            viewModel.fetchProducts()
+           // viewModel.fetchProducts()
             isAnimating.toggle()
         }
         Menu(open: $open, className: $className, description: $description, preR: $preR, department: $department)
