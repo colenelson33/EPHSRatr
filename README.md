@@ -61,3 +61,18 @@ Added a search bar to find desired classes without scrolling endlessly.
 
 
 
+# Version 1.0
+Class Rate is finally on the App Store!
+There is a new area to create a schedule to plan out your classes.
+
+![Screen Shot 2022-06-03 at 10 24 17 AM](https://user-images.githubusercontent.com/60491044/171884068-8038069e-35ef-4aea-bcb3-6a1681173206.png)
+
+
+
+# Version 1.1
+Added the functionality to go from the schedule straight to classes.
+Bug Fixes
+
+
+
+
