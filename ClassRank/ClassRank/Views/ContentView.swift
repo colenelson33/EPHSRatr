@@ -105,6 +105,7 @@ struct ContentView: View {
     @AppStorage("userId") var userId : String = ""
     @EnvironmentObject var globalVariables: GlobalVariables
     
+    @StateObject private var dataRank = CloudKitClassRank()
     @State private var animationAmount = 1.0
     
     private var isSignedIn: Bool{
@@ -195,6 +196,10 @@ struct ContentView: View {
                 
             }
         }
+        .onAppear{
+            dataRank.requestPermission()
+        
+        }
         .preferredColorScheme(isDarkMode ? .dark : .light)
         .navigationBarBackButtonHidden(false)
         .navigationBarHidden(true)
@@ -248,7 +253,7 @@ struct GrowingNewButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
         
-            .frame(width: 250, height: 40)
+            .frame(width: 240, height: 40)
             .foregroundColor(GlobalVar.colorList[color])
         
             .overlay(Capsule(style: .continuous)

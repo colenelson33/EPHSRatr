@@ -119,18 +119,7 @@ struct IndividualClassView: View {
                         
                         VStack{
                             
-                            HStack{
-                                Button(action:{
-                                    addToSchedule.toggle()
-                                    print("toggle")
-                                }){
-                            Text("Add to schedule")
-                                        .foregroundColor(.white)
-                                        .padding(.leading, 20)
-
-                                }
-                             Spacer()
-                            }
+                            
                             ScrollView(.horizontal, showsIndicators: false){
                                 HStack(spacing: 12){
                                     
@@ -146,11 +135,31 @@ struct IndividualClassView: View {
                             
                             Spacer()
                             VStack{
+                                HStack{
+                                    Button(action:{
+                                        showPrePopUp = false
+                                        showPopUp = false
+                                        addToSchedule.toggle()
+                                        print("toggle")
+                                    }){
+                                Text("Add to schedule")
+                                            .padding(8)
+                                            .background(GlobalVar.colorList[color])
+                                            .cornerRadius(15)
+                                            .foregroundColor(.white)
+                                            .padding(.leading, 20)
+
+                                    }
+                                 Spacer()
+                                    Text("Please only input one grade and one amount of homework.")
+                                        .fontWeight(.semibold)
+                                        .font(.system(size: 15))
+                                        .padding()
+                                }
                                 
-                                Text("Please only input one grade and one amount of homework.")
-                                    .fontWeight(.semibold)
-                                    .font(.system(size: 15))
-                                    .padding()
+                                
+                                
+                                
                                 
                                 if isSignedIn {
                                     

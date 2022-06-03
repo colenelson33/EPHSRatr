@@ -113,11 +113,14 @@ struct ModeSwitchView: View {
     @State private var progress: CGFloat = 0
                    
     @EnvironmentObject var bigData: CloudDataViewModel
-    @AppStorage("isDarkMode") private var isDarkMode = true
+    @AppStorage("isDarkMode") private var isDarkMode = false
     @AppStorage("colorPallette") private var color = 0
     @AppStorage("isAdmin") var isAdmin = false
     
     @State var open = false
+    @State var loginOpen = false
+    
+    @State var password: String
     
     @State var className: String
     @State var department: String
@@ -129,18 +132,16 @@ struct ModeSwitchView: View {
     @AppStorage("isGradient") var isGradient = false
  
     
-    public static let ColorPurchase = "ephs2022.classrater.colorPurchase"
-    
     
     
     var body: some View {
     NavigationView{
         ZStack{
-       /*     let gradient2 = Gradient(colors: [ isDarkMode ? .black : .white, GlobalVar.colorList[color]])
+      /*      let gradient2 = Gradient(colors: [ isDarkMode ? .black : .white, GlobalVar.colorList[color]])
          isGradient ? LinearGradient(gradient: gradient2, startPoint: isAnimating ? .topLeading : .bottomTrailing, endPoint: .bottomTrailing)
         .ignoresSafeArea()
-        .animation(.linear(duration: 25).repeatForever(autoreverses: true), value: isAnimating) : nil */
-            
+        .animation(.linear(duration: 25).repeatForever(autoreverses: true), value: isAnimating) : nil
+        */
             
             
             
@@ -350,12 +351,13 @@ struct ModeSwitchView: View {
             
             
             if isAdmin == false{
-                NavigationLink(destination: LoginView(username: "")) {
-                    Text("Sign in as Admin")
-                        .foregroundColor(GlobalVar.colorList[color])
-                        .fontWeight(.semibold)
-                    
-                }
+                Text("Login as Admin")
+                    .fontWeight(.semibold)
+                    .foregroundColor(GlobalVar.colorList[color])
+                    .onTapGesture{
+                        self.loginOpen.toggle()
+                    }
+                
             }else{
                 
                     Text("Add a course")
@@ -380,6 +382,7 @@ struct ModeSwitchView: View {
             isAnimating.toggle()
         }
         Menu(open: $open, className: $className, description: $description, preR: $preR, department: $department)
+            LoginView(open: $loginOpen,username: password)
             }
      //       }
         .navigationBarHidden(true)

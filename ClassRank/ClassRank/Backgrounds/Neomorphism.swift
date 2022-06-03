@@ -115,17 +115,18 @@ struct ClassPopUp: View{
                             self.open.toggle()
                         }
                         .foregroundColor(.white)
-                        .padding(.trailing, 30)
+                        .padding(.trailing, 60)
                         .ignoresSafeArea(.all)
                 }
                 
-                Text("Which grade do you want this course to be added to?").font(.custom("Inter Regular", size: 24)).foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
-                    .padding([.bottom, .trailing, .leading], 25)
+                Text("Which grade?").font(.custom("Inter Regular", size: 35)).foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
+                    .lineLimit(3)
+                    .padding([.bottom, .trailing, .leading], 35)
                 
             
             HStack{
                 
-                Spacer()
+            //    Spacer()
                 Button(action: {
                     freshman.append(bigData.grades.name)
                     self.open.toggle()
@@ -133,7 +134,7 @@ struct ClassPopUp: View{
                 }){
             Text("9th").font(.custom("Inter Regular", size: 24)).foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
                 }
-                Spacer()
+                //Spacer()
         //10th
                 Button(action:{
                     sophomore.append(bigData.grades.name)
@@ -141,7 +142,7 @@ struct ClassPopUp: View{
                 }){
             Text("10th").font(.custom("Inter Regular", size: 24)).foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
                 }
-                Spacer()
+              //  Spacer()
         //12th
                 Button( action: {
                     junior.append(bigData.grades.name)
@@ -149,7 +150,7 @@ struct ClassPopUp: View{
                 }){
             Text("11th").font(.custom("Inter Regular", size: 24)).foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
                 }
-                Spacer()
+          //      Spacer()
         //9th
                 Button(action: {
                     senior.append(bigData.grades.name)
@@ -157,7 +158,7 @@ struct ClassPopUp: View{
                 }){
             Text("12th").font(.custom("Inter Regular", size: 24)).foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
                 }
-                Spacer()
+            //    Spacer()
                     
         //Which grade do you want th...
             }
@@ -166,7 +167,7 @@ struct ClassPopUp: View{
             RoundedRectangle(cornerRadius: 25)
                 .fill(Color(#colorLiteral(red: 0.47083333134651184, green: 0.47083333134651184, blue: 0.47083333134651184, alpha: 0.9)))
             
-            .frame(width: 422, height: 234)
+            .frame(width: 300, height: 200)
         }
         
         .offset(y: open ? 0 : UIScreen.main.bounds.height)

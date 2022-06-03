@@ -14,6 +14,7 @@ struct LoginView: View {
     
     @AppStorage("isAdmin") var isAdmin = false
     
+    @Binding var open: Bool
     @State var username: String
     @State var errorMessage = ""
 
@@ -24,10 +25,11 @@ struct LoginView: View {
     
     var body: some View {
         
-        NavigationView{
+        
         
         ZStack {
             VStack{
+                Spacer()
                 
                 if dataRank.userName != ""{
                 Text("Welcome back, \(dataRank.userName)")
@@ -59,6 +61,7 @@ struct LoginView: View {
                     if checkUser() {
                         
                         isAdmin = true
+                        open = false
                     }
                     
                     
@@ -68,19 +71,27 @@ struct LoginView: View {
                 .buttonStyle(GrowingButton())
                 .padding(.top, 300)
                 
-                
+                Spacer()
             }
             .padding()
             .navigationBarBackButtonHidden(false)
         }
+        .padding(.vertical, 30)
+    //(LinearGradient(gradient: Gradient(colors: [.gray, .black]), startPoint: .top, endPoint: .bottom))
+        .background()
+        .offset(y: open ? 80 : UIScreen.main.bounds.height)
+        .animation(.spring())
+        .edgesIgnoringSafeArea(.vertical)
+        .cornerRadius(20)
         .navigationBarHidden(true)
         
-    }
+    
 }
     
     func checkUser() -> Bool{
         if username != "Apcsp272"{
             return false
+            
         }
         authenticationDidSucceed = true
         return true
@@ -91,11 +102,7 @@ struct LoginView: View {
 
 
 
-struct LoginView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginView(username: "")
-    }
-}
+
 
 struct UsernameTextField : View {
     

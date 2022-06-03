@@ -42,8 +42,19 @@ struct ClassListView: View{
                 let departments = [bigData.ArtClasses, bigData.BusinessClasses, bigData.EnglishClasses, bigData.FacsClasses, bigData.TechEdClasses, bigData.MathClasses, bigData.MusicClasses, bigData.PhyEdClasses, bigData.ScienceClasses, bigData.SSClasses, bigData.WorkClasses, bigData.LanguageClasses ]
                 
                 //bigData.ArtClasses, id: \.self
+                
+                if departments[departmentIndex].count == 0{
+                    
+                    Text("No classes yet")
+                        .font(.title)
+                        .padding()
+                    
+                    
+                }
+                
                 ForEach(departments[departmentIndex], id: \.self){ c in
                 
+
                     
                 HStack{
                     
@@ -99,6 +110,18 @@ struct ClassListView: View{
                             toggle = true
                         }
 
+            }.onTapGesture {
+                
+                
+                bigData.className = c.name
+                
+                DispatchQueue.main.async {
+                    
+                    bigData.fetchItems()
+                }
+               
+                
+                toggle = true
             }
             }
             

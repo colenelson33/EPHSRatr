@@ -29,6 +29,8 @@ struct MainDepartmentView: View {
     @AppStorage("isDarkMode") public var isDarkMode = false
     @AppStorage("ViewMode") var viewMode = 0
     @AppStorage("guestViewMode") var guestViewMode = 0
+    @AppStorage("departmentIndex") var departmentIndex: Int = 0
+    @AppStorage("individualView") var toggle: Bool = false
     @AppStorage("iCloudLoggedIn") var iCloudLoggedIn: Bool = false
     @AppStorage("colorPallette") private var color = 0
     @AppStorage("userId") var userId : String = ""
@@ -39,9 +41,9 @@ struct MainDepartmentView: View {
     @EnvironmentObject var index: GlobalVariables
     @AppStorage("tutorial") private var tutorial = true
     
-    @AppStorage("departmentIndex") var departmentIndex: Int = 0
-    @AppStorage("individualView") var toggle: Bool = false
     
+    
+    @StateObject private var dataRank = CloudKitClassRank()
     @State var isAnimating = false
     @AppStorage("isGradient") var isGradient = false
     
@@ -126,19 +128,39 @@ struct MainDepartmentView: View {
                     VStack {
                         HStack{
                         
-                            
+                          /*  if dataRank.userName != ""{
+                            Text("Welcome back, \(dataRank.userName)")
+                                .font(.title)
+                                .foregroundColor(GlobalVar.colorList[color])
+                            }else{
+                            Text("Welcome")
+                                    .font(.title)
+                                    .foregroundColor(GlobalVar.colorList[color])
+                                
+                            }*/
                             
                           //  Spacer()
                                     Button(action: {
                                        
                                     }){
+                                        
+                                        if dataRank.userName != ""{
                                         NavigationLink {
                                             MainScheduleView()
                                         } label: {
-                                            Text("View your Schedule")
+                                            Text("View \(dataRank.userName)'s Schedule")
                                                     .padding()
                                         }
-
+                                        }else{
+                                            NavigationLink {
+                                                MainScheduleView()
+                                            } label: {
+                                                Text("View Schedule")
+                                                        .padding()
+                                            }
+                                            
+                                            
+                                        }
                                     }
                                     .buttonStyle(GrowingNewButton())
                                     .padding()
@@ -159,6 +181,7 @@ struct MainDepartmentView: View {
                 }
                 
             }.onAppear{
+                
                 if !tutorial{
                     index.isPresented = false
                 } else {
@@ -188,16 +211,48 @@ struct MainDepartmentView: View {
             })
             .toolbar{
                 
+                
+                    
+                
                 ToolbarItem(placement: .navigationBarLeading){
                     Image(systemName: "house.circle")
                         .foregroundColor(GlobalVar.colorList[color])
                         .onTapGesture{
-                            userId = ""
-                            guestViewMode = 0
+                            
+                            if userId != ""{
+                            showAlert = true
+                            }else{
+                                userId = ""
+                                guestViewMode = 0
+                                
+                                
+                            }
+                            
+                        }
+                        .alert(isPresented: $showAlert) {
+                            Alert(
+                                        title: Text("Log Out"),
+                                        message: Text("Are you sure you want to sign out?"),
+                                        primaryButton: .default(
+                                            Text("Cancel"),
+                                            action: {showAlert = false
+                                            }
+                                        ),
+                                        secondaryButton: .destructive(
+                                            Text("Log Out"),
+                                            action: {
+                                                
+                                            userId = ""
+                                            guestViewMode = 0
+                                            }
+                                        )
+                                    )
                         }
                 }
+                
+            
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: ModeSwitchView(className: "", department: "", description: "", preR: "")) {
+                    NavigationLink(destination: ModeSwitchView(password: "", className: "", department: "", description: "", preR: "")) {
                         Image(systemName: "gear")
                             .foregroundColor(GlobalVar.colorList[color])
                     }
@@ -242,6 +297,8 @@ struct MainDepartmentView: View {
             
         }
     }
+    
+    @State private var showAlert = false
 }
 
 extension Color {
@@ -314,6 +371,10 @@ struct smallcardView: View {
                      Spacer()
                      }*/
                 }
+                
+                
+                
+                
             }
         }
     }

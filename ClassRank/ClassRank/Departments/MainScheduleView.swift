@@ -14,6 +14,12 @@ struct MainScheduleView: View{
     @AppStorage("juniorClasses") var junior: [String] = []
     @AppStorage("seniorClasses") var senior: [String] = []
     
+    @AppStorage("ViewMode") var viewMode = 0
+    @AppStorage("guestViewMode") var guestViewMode = 0
+    @AppStorage("departmentIndex") var departmentIndex: Int = 0
+    @AppStorage("individualView") var toggle: Bool = false
+    
+    @EnvironmentObject var bigData: CloudDataViewModel
     @AppStorage("colorPallette") private var color = 0
     @State var gradeLevel = 0
     @AppStorage("currentGradeLevel") var gradeLevelCurrent: Int = 0
@@ -30,14 +36,23 @@ struct MainScheduleView: View{
                         Text("Schedule").font(.custom("Inter Regular", size: 40)).foregroundColor(GlobalVar.colorList[color])
                             .padding()
                         Spacer()
+                        
                         Picker("Pick", selection: $gradeLevel){
                             Text("9th")
+                                .font(.system(size: 30))
+                                .foregroundColor(GlobalVar.colorList[color])
                                 .tag(0)
                             Text("10th")
+                                .font(.system(size: 30))
+                                .foregroundColor(GlobalVar.colorList[color])
                                 .tag(1)
                             Text("11th")
+                                .font(.system(size: 30))
+                                .foregroundColor(GlobalVar.colorList[color])
                                 .tag(2)
                             Text("12th")
+                                .font(.system(size: 30))
+                                .foregroundColor(GlobalVar.colorList[color])
                                 .tag(3)
                             
                         }
@@ -70,10 +85,33 @@ struct MainScheduleView: View{
                                 }else{
                                 
                             ForEach(varList[gradeLevel], id: \.self){ className in
-                                    
+                               
+                                
+                                HStack{
                                 Text(className).font(.custom("Inter Regular", size: 15)).foregroundColor(GlobalVar.colorList[color])
                                 .padding()
-                            
+                                
+                                    Spacer()
+                                    Image(systemName: "arrow.right")
+                                        .foregroundColor(GlobalVar.colorList[color])
+                                        .onTapGesture {
+                                            
+                                            
+                                            bigData.className = className
+                                            
+                                            DispatchQueue.main.async {
+                                                
+                                                bigData.fetchItems()
+                                                
+                                            }
+                                            viewMode = 1
+                                            guestViewMode = 2
+                                            departmentIndex = 1
+                                            toggle = true
+                                           
+                                        
+                                        }
+                                }
                             }.onDelete(perform: delete)
                                 
                             }
